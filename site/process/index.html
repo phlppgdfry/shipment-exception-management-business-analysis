@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Process — Shipment exception management</title>
+  <meta name="description" content="AS-IS and TO-BE BPMN 2.0 models of how a delay reaches the customer, before and after exception management.">
+  <meta property="og:title" content="AS-IS and TO-BE — shipment exception management">
+  <meta property="og:image" content="https://phlppgdfry.github.io/shipment-exception-management-business-analysis/assets/og-image.png">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="../">Shipment exceptions</a>
+      <nav aria-label="Sections">
+        <a href="../">Overview</a>
+        <a href="../prototype/">Prototype</a>
+        <a href="../rules/">Rule explorer</a>
+        <a href="./" aria-current="page">Process</a>
+        <a href="../event-storming/">Event storming</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="sub-hero wrap">
+      <p class="crumbs"><a href="../">Overview</a> / Process</p>
+      <h1>From "the customer calls" to "we told them first"</h1>
+      <p class="lede">The same sailing delay, before and after release 1. Modelled in BPMN 2.0; the source files open in Camunda Modeler or bpmn.io.</p>
+      <div class="cta-row">
+        <a class="btn" href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/04-process/bpmn/as-is.bpmn">AS-IS .bpmn</a>
+        <a class="btn" href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/04-process/bpmn/to-be.bpmn">TO-BE .bpmn</a>
+        <a class="btn" href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/04-process/uml.md">UML models</a>
+      </div>
+    </section>
+
+    <section class="wrap section">
+      <h2>AS-IS — today</h2>
+      <p class="measure">The information exists within minutes. It gets lost between people: nobody owns the step from "delay known" to "customer told". Red labels are pain points.</p>
+      <figure class="bpmn-figure">
+        <img src="../assets/bpmn/as-is.svg" alt="AS-IS BPMN: a sailing delay is noticed by chance by the road planner, looked up in Excel, communicated only if an account manager knows; other customers find out at the delivery slot and call customer service.">
+        <figcaption>Scroll sideways on small screens.</figcaption>
+      </figure>
+      <div class="table-wrap" style="margin-top:16px">
+        <table>
+          <thead><tr><th>#</th><th>Pain point</th><th>Evidence</th></tr></thead>
+          <tbody>
+            <tr><td>P1</td><td>Order ETAs stay on the old plan; nobody evaluates what the delay means</td><td>2 of 7 delayed orders showed the old ETA an hour later</td></tr>
+            <tr><td>P2</td><td>The delay is noticed by chance</td><td>chat, e-mail, haulier WhatsApp</td></tr>
+            <tr><td>P3</td><td>Affected orders looked up by hand in Excel</td><td>±25 min per delayed sailing</td></tr>
+            <tr><td>P4</td><td>Only key accounts whose account manager knows are told</td><td>22% told before the window</td></tr>
+            <tr><td>P5</td><td>The customer finds out at the slot and calls</td><td>±1,250 WISMO contacts a week</td></tr>
+            <tr><td>P6</td><td>Nothing is recorded</td><td>no reason on 60% of credit notes</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Illustrative assumptions — not real company data.</p>
+    </section>
+
+    <section class="wrap section">
+      <h2>TO-BE — release 1</h2>
+      <p class="measure">Every change is evaluated by the exception rules. Only what puts the window at risk becomes an exception, with an owner and a response time. The customer is told proactively — except for a missing status, which a planner confirms first. Green labels show which pain point each step removes.</p>
+      <figure class="bpmn-figure">
+        <img src="../assets/bpmn/to-be.svg" alt="TO-BE BPMN: TMS change, rule evaluation, exception with severity, owner and response time, customer message or hold, planner acknowledges within response time or escalation, re-plan, new ETA re-evaluated, resolve with reason code.">
+        <figcaption>Try the flow in the <a href="../prototype/">prototype</a>.</figcaption>
+      </figure>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>Independent portfolio case study based on a fictional organisation. It contains no confidential information from any real employer or the hiring company.</p>
+      <p>Philippe Godfroy · <a href="https://github.com/phlppgdfry">GitHub</a></p>
+    </div>
+  </footer>
+</body>
+</html>

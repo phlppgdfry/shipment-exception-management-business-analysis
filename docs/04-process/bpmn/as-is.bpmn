@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Defs_as_is" targetNamespace="https://github.com/phlppgdfry/shipment-exception-management-business-analysis" exporter="build_bpmn.py" exporterVersion="1">
+  <bpmn:collaboration id="Collab_as_is">
+    <bpmn:participant id="Pool_as_is" name="AS-IS: a sailing is delayed (today)" processRef="Process_as_is" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_as_is" isExecutable="false">
+    <bpmn:laneSet id="LaneSet_as_is">
+      <bpmn:lane id="Lane_customer" name="Customer">
+        <bpmn:flowNodeRef>t_wait</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>t_call</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>end</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_cs" name="Customer service">
+        <bpmn:flowNodeRef>t_ask</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>t_answer</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_am" name="Account manager">
+        <bpmn:flowNodeRef>g_key</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>t_mail</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_planner" name="Road planner">
+        <bpmn:flowNodeRef>t_notice</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>t_excel</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>t_replan</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_systems" name="Sailing system / TMS">
+        <bpmn:flowNodeRef>start</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>t_tms</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="start" name="Sailing delay published">
+      <bpmn:outgoing>Flow_0</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="Msg_start" />
+    </bpmn:startEvent>
+    <bpmn:serviceTask id="t_tms" name="Order ETAs stay on the old plan">
+      <bpmn:incoming>Flow_0</bpmn:incoming>
+    </bpmn:serviceTask>
+    <bpmn:userTask id="t_notice" name="Notices delay (chat, e-mail, screen)">
+      <bpmn:incoming>Flow_1</bpmn:incoming>
+      <bpmn:outgoing>Flow_2</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="t_excel" name="Looks up affected orders in Excel">
+      <bpmn:incoming>Flow_2</bpmn:incoming>
+      <bpmn:outgoing>Flow_3</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="t_replan" name="Re-plans haulier where possible">
+      <bpmn:incoming>Flow_3</bpmn:incoming>
+      <bpmn:outgoing>Flow_4</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="g_key" name="Key account and AM knows?">
+      <bpmn:incoming>Flow_4</bpmn:incoming>
+      <bpmn:outgoing>Flow_5</bpmn:outgoing>
+      <bpmn:outgoing>Flow_6</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:userTask id="t_mail" name="E-mails customer">
+      <bpmn:incoming>Flow_5</bpmn:incoming>
+      <bpmn:outgoing>Flow_7</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:task id="t_wait" name="Waits at the delivery slot">
+      <bpmn:incoming>Flow_6</bpmn:incoming>
+      <bpmn:outgoing>Flow_8</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="t_call" name="Calls: where is my load?">
+      <bpmn:incoming>Flow_8</bpmn:incoming>
+      <bpmn:outgoing>Flow_9</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:userTask id="t_ask" name="Asks planner by phone or chat">
+      <bpmn:incoming>Flow_9</bpmn:incoming>
+      <bpmn:outgoing>Flow_10</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="t_answer" name="Answers customer, logs nothing">
+      <bpmn:incoming>Flow_10</bpmn:incoming>
+      <bpmn:outgoing>Flow_11</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="end" name="Customer informed, often late">
+      <bpmn:incoming>Flow_7</bpmn:incoming>
+      <bpmn:incoming>Flow_11</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0" sourceRef="start" targetRef="t_tms" />
+    <bpmn:sequenceFlow id="Flow_1" sourceRef="start" targetRef="t_notice" />
+    <bpmn:sequenceFlow id="Flow_2" sourceRef="t_notice" targetRef="t_excel" />
+    <bpmn:sequenceFlow id="Flow_3" sourceRef="t_excel" targetRef="t_replan" />
+    <bpmn:sequenceFlow id="Flow_4" sourceRef="t_replan" targetRef="g_key" />
+    <bpmn:sequenceFlow id="Flow_5" name="yes" sourceRef="g_key" targetRef="t_mail" />
+    <bpmn:sequenceFlow id="Flow_6" name="no" sourceRef="g_key" targetRef="t_wait" />
+    <bpmn:sequenceFlow id="Flow_7" sourceRef="t_mail" targetRef="end" />
+    <bpmn:sequenceFlow id="Flow_8" sourceRef="t_wait" targetRef="t_call" />
+    <bpmn:sequenceFlow id="Flow_9" sourceRef="t_call" targetRef="t_ask" />
+    <bpmn:sequenceFlow id="Flow_10" sourceRef="t_ask" targetRef="t_answer" />
+    <bpmn:sequenceFlow id="Flow_11" sourceRef="t_answer" targetRef="end" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="Diagram_as_is">
+    <bpmndi:BPMNPlane id="Plane_as_is" bpmnElement="Collab_as_is">
+      <bpmndi:BPMNShape id="Pool_as_is_di" bpmnElement="Pool_as_is" isHorizontal="true">
+        <dc:Bounds x="0" y="0" width="1358" height="650" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_customer_di" bpmnElement="Lane_customer" isHorizontal="true">
+        <dc:Bounds x="34" y="0" width="1324" height="130" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_cs_di" bpmnElement="Lane_cs" isHorizontal="true">
+        <dc:Bounds x="34" y="130" width="1324" height="130" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_am_di" bpmnElement="Lane_am" isHorizontal="true">
+        <dc:Bounds x="34" y="260" width="1324" height="130" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_planner_di" bpmnElement="Lane_planner" isHorizontal="true">
+        <dc:Bounds x="34" y="390" width="1324" height="130" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_systems_di" bpmnElement="Lane_systems" isHorizontal="true">
+        <dc:Bounds x="34" y="520" width="1324" height="130" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="start_di" bpmnElement="start">
+        <dc:Bounds x="105" y="567" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="t_tms_di" bpmnElement="t_tms">
+        <dc:Bounds x="222" y="552" width="118" height="66" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="t_notice_di" bpmnElement="t_notice">
+        <dc:Bounds x="222" y="422" width="118" height="66" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="t_excel_di" bpmnElement="t_excel">
+        <dc:Bounds x="380" y="422" width="118" height="66" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="t_replan_di" bpmnElement="t_replan">
+        <dc:Bounds x="538" y="422" width="118" height="66" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="g_key_di" bpmnElement="g_key" isMarkerVisible="true">
+        <dc:Bounds x="572" y="300" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="t_mail_di" bpmnElement="t_mail">
+        <dc:Bounds x="696" y="292" width="118" height="66" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="t_wait_di" bpmnElement="t_wait">
+        <dc:Bounds x="696" y="32" width="118" height="66" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="t_call_di" bpmnElement="t_call">
+        <dc:Bounds x="854" y="32" width="118" height="66" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="t_ask_di" bpmnElement="t_ask">
+        <dc:Bounds x="854" y="162" width="118" height="66" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="t_answer_di" bpmnElement="t_answer">
+        <dc:Bounds x="1012" y="162" width="118" height="66" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="end_di" bpmnElement="end">
+        <dc:Bounds x="1211" y="47" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0_di" bpmnElement="Flow_0">
+        <di:waypoint x="141" y="585" />
+        <di:waypoint x="222" y="585" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1_di" bpmnElement="Flow_1">
+        <di:waypoint x="141" y="585" />
+        <di:waypoint x="202" y="585" />
+        <di:waypoint x="202" y="455" />
+        <di:waypoint x="222" y="455" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_2_di" bpmnElement="Flow_2">
+        <di:waypoint x="340" y="455" />
+        <di:waypoint x="380" y="455" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_3_di" bpmnElement="Flow_3">
+        <di:waypoint x="498" y="455" />
+        <di:waypoint x="538" y="455" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_4_di" bpmnElement="Flow_4">
+        <di:waypoint x="597" y="422" />
+        <di:waypoint x="597" y="350" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_5_di" bpmnElement="Flow_5">
+        <di:waypoint x="622" y="325" />
+        <di:waypoint x="696" y="325" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_6_di" bpmnElement="Flow_6">
+        <di:waypoint x="597" y="300" />
+        <di:waypoint x="597" y="65" />
+        <di:waypoint x="696" y="65" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_7_di" bpmnElement="Flow_7">
+        <di:waypoint x="814" y="325" />
+        <di:waypoint x="1229" y="325" />
+        <di:waypoint x="1229" y="83" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_8_di" bpmnElement="Flow_8">
+        <di:waypoint x="814" y="65" />
+        <di:waypoint x="854" y="65" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_9_di" bpmnElement="Flow_9">
+        <di:waypoint x="913" y="98" />
+        <di:waypoint x="913" y="162" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_10_di" bpmnElement="Flow_10">
+        <di:waypoint x="972" y="195" />
+        <di:waypoint x="1012" y="195" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_11_di" bpmnElement="Flow_11">
+        <di:waypoint x="1130" y="195" />
+        <di:waypoint x="1191" y="195" />
+        <di:waypoint x="1191" y="65" />
+        <di:waypoint x="1211" y="65" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

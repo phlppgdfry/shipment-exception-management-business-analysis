@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prototype — Shipment exception management</title>
+  <meta name="description" content="Clickable prototype of a planner exception workbench and the customer's view, driven by the same rule module as the acceptance tests. Fictional data.">
+  <meta property="og:title" content="Prototype — shipment exceptions, handled before the customer calls">
+  <meta property="og:description" content="Planner workbench, customer messages and event log for a fictional door-to-door operator.">
+  <meta property="og:image" content="https://phlppgdfry.github.io/shipment-exception-management-business-analysis/assets/og-image.png">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="../">Shipment exceptions</a>
+      <nav aria-label="Sections">
+        <a href="../">Overview</a>
+        <a href="./" aria-current="page">Prototype</a>
+        <a href="../rules/">Rule explorer</a>
+        <a href="../process/">Process</a>
+        <a href="../event-storming/">Event storming</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="sub-hero" style="padding-left:0;padding-right:0">
+      <p class="crumbs"><a href="../">Overview</a> / Prototype</p>
+      <h1>Planner workbench and customer view</h1>
+      <p class="lede">A clickable prototype of release 1. It runs on the same rule module as the 30 acceptance examples in CI, with fictional orders. Nothing is sent anywhere.</p>
+    </section>
+
+    <div class="proto-bar">
+      <div class="seg" role="group" aria-label="View">
+        <button type="button" data-view="workbench" aria-pressed="true">Planner workbench</button>
+        <button type="button" data-view="customer" aria-pressed="false">Customer view</button>
+      </div>
+      <span class="clock" id="clock">Demo clock</span>
+      <div class="cta-row">
+        <button type="button" class="tool-btn" id="btn-tour">Guided tour (2 min)</button>
+        <button type="button" class="tool-btn" id="btn-tick">+15 min</button>
+        <button type="button" class="tool-btn" id="btn-reset">Reset demo</button>
+      </div>
+    </div>
+
+    <div id="workbench" class="proto">
+      <section class="panel" id="list" aria-label="Exception list"></section>
+      <section class="panel" id="detail" aria-label="Exception detail" aria-live="polite"></section>
+    </div>
+
+    <section id="customer" class="panel panel-b hidden" aria-label="Customer view"></section>
+
+    <section class="panel" id="log-panel" style="margin-top:16px" aria-label="Event log">
+      <div class="panel-h"><h2>Event log</h2><span class="small">what happens behind the screens (simulated TMS, rules, messages)</span></div>
+      <ul class="log" id="log"></ul>
+    </section>
+
+    <div class="tour hidden" id="tour" role="dialog" aria-label="Guided tour">
+      <p id="tour-text"></p>
+      <div class="cta-row">
+        <button type="button" id="tour-prev">Back</button>
+        <button type="button" id="tour-next">Next</button>
+        <button type="button" id="tour-close">Close</button>
+      </div>
+    </div>
+
+    <p class="small" style="margin:24px 0">How this maps to the analysis: <a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/05-requirements/exception-rules.md">exception rules</a> · <a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/06-backlog/user-stories.md">user stories</a> · <a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/07-design/design.md">design decisions</a>. This is an analyst's prototype to validate the flow with users, not production code.</p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>Independent portfolio case study based on a fictional organisation. It contains no confidential information from any real employer or the hiring company. All orders, customers and figures are illustrative.</p>
+      <p>Philippe Godfroy · <a href="https://github.com/phlppgdfry">GitHub</a></p>
+    </div>
+  </footer>
+  <script type="module" src="../assets/prototype.mjs"></script>
+</body>
+</html>

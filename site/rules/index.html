@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rule explorer — Shipment exception management</title>
+  <meta name="description" content="Try the exception rules of a fictional door-to-door operator: severity, owner, response time and customer notification for any change.">
+  <meta property="og:title" content="Rule explorer — shipment exception rules">
+  <meta property="og:image" content="https://phlppgdfry.github.io/shipment-exception-management-business-analysis/assets/og-image.png">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="../">Shipment exceptions</a>
+      <nav aria-label="Sections">
+        <a href="../">Overview</a>
+        <a href="../prototype/">Prototype</a>
+        <a href="./" aria-current="page">Rule explorer</a>
+        <a href="../process/">Process</a>
+        <a href="../event-storming/">Event storming</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="sub-hero wrap">
+      <p class="crumbs"><a href="../">Overview</a> / Rule explorer</p>
+      <h1>Rule explorer</h1>
+      <p class="lede">The exception rules from the analysis, as something you can try. The same module runs the 30 acceptance examples in CI, so what you see here is what the tests check.</p>
+      <p class="small">An analyst's tool to show the Product Owner what a threshold change would do — not a product screen. Parameters are illustrative: major from 2 h after the window, critical from 6 h or next day, throttle window 2 h.</p>
+    </section>
+
+    <section class="wrap" aria-label="Rule explorer">
+      <div class="presets" role="group" aria-label="Example situations">
+        <button type="button" data-preset="inside">Late, but inside the window</button>
+        <button type="button" data-preset="major">2 h 20 after the window</button>
+        <button type="button" data-preset="reefer">Reefer, key account, +5 h</button>
+        <button type="button" data-preset="missing">No status from haulier</button>
+        <button type="button" data-preset="throttle">Told 30 min ago, same severity</button>
+        <button type="button" data-preset="recover">Back inside after a message</button>
+      </div>
+      <div class="explorer">
+        <form class="card form-grid" id="form" aria-label="Situation">
+          <div class="field"><label for="cause">What changed</label>
+            <select id="cause">
+              <option value="SAILING_DELAY">Sailing delayed</option>
+              <option value="SAILING_CANCELLED">Sailing cancelled</option>
+              <option value="ROAD_DELAY">Road transport delayed</option>
+              <option value="TERMINAL_DELAY">Terminal delay</option>
+              <option value="CUSTOMS_HOLD">Customs hold (release 2)</option>
+              <option value="STATUS_MISSING">Status missing</option>
+            </select></div>
+          <div class="field"><label for="late">Expected delivery vs. end of agreed window (minutes)</label>
+            <input type="number" id="late" value="140" step="10">
+            <p class="hint">Negative = still inside the window. 120 = two hours after the window ends.</p></div>
+          <label class="check"><input type="checkbox" id="nextDay"> Delivery moves to another day</label>
+          <label class="check"><input type="checkbox" id="timeCritical"> Reefer or time-critical cargo</label>
+          <label class="check"><input type="checkbox" id="keyAccount"> Key account</label>
+          <label class="check"><input type="checkbox" id="prefersAllUpdates"> Customer wants every update</label>
+          <label class="check"><input type="checkbox" id="statusConfirmed"> Missing status confirmed by the planner</label>
+          <div class="field"><label for="lastSev">Last message to this customer about this order</label>
+            <select id="lastSev"><option value="">none</option><option>MINOR</option><option>MAJOR</option><option>CRITICAL</option></select></div>
+          <div class="field"><label for="since">…sent how many minutes ago</label>
+            <input type="number" id="since" value="30" step="5"></div>
+        </form>
+        <div class="card result" aria-live="polite">
+          <p class="eyebrow">Decision</p>
+          <p class="outcome" id="out-sev">—</p>
+          <dl class="kv">
+            <dt>Type</dt><dd id="out-type"></dd>
+            <dt>Owner</dt><dd id="out-owner"></dd>
+            <dt>Respond within</dt><dd id="out-sla"></dd>
+            <dt>Customer</dt><dd id="out-notif"></dd>
+          </dl>
+          <p class="eyebrow" style="margin-top:16px">Rules applied</p>
+          <ul class="rule-list" id="out-rules"></ul>
+          <p class="small" style="margin-top:12px"><a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/05-requirements/exception-rules.md">Rule catalogue and decision table</a> · <a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/06-backlog/features/exception-decision.feature">the 30 executable examples</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>Independent portfolio case study based on a fictional organisation. It contains no confidential information from any real employer or the hiring company. All parameters are illustrative.</p>
+      <p>Philippe Godfroy · <a href="https://github.com/phlppgdfry">GitHub</a></p>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { evaluate, RULE_TEXT } from "../assets/exception-rules.mjs";
+    const $ = (id) => document.getElementById(id);
+    const OWNER = { ROAD_PLANNING: "Road planning", TERMINAL_OPS: "Terminal operations", CUSTOMS_DESK: "Customs desk" };
+    const NOTIF = {
+      NONE: "No message — monitored", NOTIFY: "Proactive message (portal + e-mail)", NOTIFY_AND_CALL: "Message + call task for customer service",
+      ACTION_REQUIRED: "Message asking the customer to act", HOLD: "Held until a planner confirms with the haulier",
+      SUPPRESSED: "No new message — told recently, not worse", NOTIFY_RECOVERY: "'Back on schedule' message",
+    };
+    const PRESETS = {
+      inside: { cause: "SAILING_DELAY", late: -40 },
+      major: { cause: "SAILING_DELAY", late: 140 },
+      reefer: { cause: "SAILING_DELAY", late: 300, timeCritical: true, keyAccount: true },
+      missing: { cause: "STATUS_MISSING", late: 0, timeCritical: true },
+      throttle: { cause: "ROAD_DELAY", late: 200, lastSev: "MAJOR", since: 30 },
+      recover: { cause: "SAILING_DELAY", late: -15, lastSev: "MAJOR", since: 90 },
+    };
+    const boxes = ["nextDay", "timeCritical", "keyAccount", "prefersAllUpdates", "statusConfirmed"];
+    function read() {
+      return {
+        cause: $("cause").value, minutesLate: Number($("late").value), lastNotifiedSeverity: $("lastSev").value || null,
+        minutesSinceLastNotice: $("lastSev").value ? Number($("since").value) : null,
+        ...Object.fromEntries(boxes.map((b) => [b, $(b).checked])),
+      };
+    }
+    function show() {
+      const r = evaluate(read());
+      const sev = r.type === "RECOVERED" ? "Recovered" : r.severity === "NONE" ? "No exception" : r.severity.charAt(0) + r.severity.slice(1).toLowerCase();
+      $("out-sev").textContent = sev;
+      $("out-sev").className = `outcome ${r.severity}`;
+      $("out-type").textContent = r.type.replaceAll("_", " ").toLowerCase();
+      $("out-owner").textContent = OWNER[r.owner] ?? "—";
+      $("out-sla").textContent = r.responseSlaMinutes ? `${r.responseSlaMinutes} min` : r.severity === "MINOR" ? "monitored, next working day" : "—";
+      $("out-notif").textContent = NOTIF[r.notification];
+      $("out-rules").innerHTML = r.rules.map((id) => `<li><code>${id}</code> ${RULE_TEXT[id]}</li>`).join("");
+    }
+    function apply(p) {
+      $("cause").value = p.cause; $("late").value = p.late; $("lastSev").value = p.lastSev ?? ""; $("since").value = p.since ?? 30;
+      boxes.forEach((b) => ($(b).checked = !!p[b]));
+      show();
+    }
+    $("form").addEventListener("input", show);
+    document.querySelectorAll("[data-preset]").forEach((b) => b.addEventListener("click", () => apply(PRESETS[b.dataset.preset])));
+    show();
+  </script>
+</body>
+</html>

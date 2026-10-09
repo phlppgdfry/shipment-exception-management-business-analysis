@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-1 -1 1400 652" width="1400" height="652" role="img" aria-label="AS-IS: a sailing is delayed (today)" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="12">
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#3b4652"/></marker></defs>
+<rect x="0" y="0" width="1398" height="650" fill="#ffffff" stroke="#3b4652"/>
+<rect x="34" y="0" width="1364" height="130" fill="#ffffff" stroke="#c9d1db"/>
+<text transform="translate(21.0,65.0) rotate(-90)" text-anchor="middle" font-weight="600" fill="#1b2430">Customer</text>
+<rect x="34" y="130" width="1364" height="130" fill="#f4f6f9" stroke="#c9d1db"/>
+<text transform="translate(21.0,195.0) rotate(-90)" text-anchor="middle" font-weight="600" fill="#1b2430">Customer service</text>
+<rect x="34" y="260" width="1364" height="130" fill="#ffffff" stroke="#c9d1db"/>
+<text transform="translate(21.0,325.0) rotate(-90)" text-anchor="middle" font-weight="600" fill="#1b2430">Account manager</text>
+<rect x="34" y="390" width="1364" height="130" fill="#f4f6f9" stroke="#c9d1db"/>
+<text transform="translate(21.0,455.0) rotate(-90)" text-anchor="middle" font-weight="600" fill="#1b2430">Road planner</text>
+<rect x="34" y="520" width="1364" height="130" fill="#ffffff" stroke="#c9d1db"/>
+<text transform="translate(21.0,585.0) rotate(-90)" text-anchor="middle" font-weight="600" fill="#1b2430">Sailing system / TMS</text>
+<line x1="34" y1="0" x2="34" y2="650" stroke="#3b4652"/>
+<path d="M141,585 L222,585" fill="none" stroke="#3b4652" stroke-width="1.3" marker-end="url(#arrow)"/>
+<path d="M141,585 L202,585 L202,455 L222,455" fill="none" stroke="#3b4652" stroke-width="1.3" marker-end="url(#arrow)"/>
+<path d="M340,455 L380,455" fill="none" stroke="#3b4652" stroke-width="1.3" marker-end="url(#arrow)"/>
+<path d="M498,455 L538,455" fill="none" stroke="#3b4652" stroke-width="1.3" marker-end="url(#arrow)"/>
+<path d="M597,422 L597,350" fill="none" stroke="#3b4652" stroke-width="1.3" marker-end="url(#arrow)"/>
+<path d="M622,325 L696,325" fill="none" stroke="#3b4652" stroke-width="1.3" marker-end="url(#arrow)"/>
+<text x="690" y="319" text-anchor="end" font-size="11" fill="#5b6675">yes</text>
+<path d="M597,300 L597,65 L696,65" fill="none" stroke="#3b4652" stroke-width="1.3" marker-end="url(#arrow)"/>
+<text x="690" y="59" text-anchor="end" font-size="11" fill="#5b6675">no</text>
+<path d="M814,325 L1229,325 L1229,83" fill="none" stroke="#3b4652" stroke-width="1.3" marker-end="url(#arrow)"/>
+<path d="M814,65 L854,65" fill="none" stroke="#3b4652" stroke-width="1.3" marker-end="url(#arrow)"/>
+<path d="M913,98 L913,162" fill="none" stroke="#3b4652" stroke-width="1.3" marker-end="url(#arrow)"/>
+<path d="M972,195 L1012,195" fill="none" stroke="#3b4652" stroke-width="1.3" marker-end="url(#arrow)"/>
+<path d="M1130,195 L1191,195 L1191,65 L1211,65" fill="none" stroke="#3b4652" stroke-width="1.3" marker-end="url(#arrow)"/>
+<circle cx="123" cy="585" r="18.0" fill="#fff" stroke="#1b2430" stroke-width="1.5"/>
+<rect x="115" y="580" width="16" height="11" fill="none" stroke="#1b2430"/><path d="M115,580 L123,586 L131,580" fill="none" stroke="#1b2430"/>
+<text x="123" y="617" text-anchor="middle" fill="#1b2430">Sailing delay</text>
+<text x="123" y="630" text-anchor="middle" fill="#1b2430">published</text>
+<rect x="222" y="552" width="118" height="66" rx="9" fill="#fff" stroke="#1b2430" stroke-width="1.5"/>
+<text x="228" y="565" font-size="9" fill="#5b6675">service</text>
+<text x="281" y="582" text-anchor="middle" fill="#1b2430">Order ETAs stay</text>
+<text x="281" y="596" text-anchor="middle" fill="#1b2430">on the old plan</text>
+<rect x="329" y="543" width="22" height="16" rx="8" fill="#a3312a"/><text x="340" y="555" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">P1</text>
+<rect x="222" y="422" width="118" height="66" rx="9" fill="#fff" stroke="#1b2430" stroke-width="1.5"/>
+<text x="228" y="435" font-size="9" fill="#5b6675">user</text>
+<text x="281" y="445" text-anchor="middle" fill="#1b2430">Notices delay</text>
+<text x="281" y="459" text-anchor="middle" fill="#1b2430">(chat, e-mail,</text>
+<text x="281" y="473" text-anchor="middle" fill="#1b2430">screen)</text>
+<rect x="329" y="413" width="22" height="16" rx="8" fill="#a3312a"/><text x="340" y="425" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">P2</text>
+<rect x="380" y="422" width="118" height="66" rx="9" fill="#fff" stroke="#1b2430" stroke-width="1.5"/>
+<text x="386" y="435" font-size="9" fill="#5b6675">user</text>
+<text x="439" y="452" text-anchor="middle" fill="#1b2430">Looks up affected</text>
+<text x="439" y="466" text-anchor="middle" fill="#1b2430">orders in Excel</text>
+<rect x="487" y="413" width="22" height="16" rx="8" fill="#a3312a"/><text x="498" y="425" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">P3</text>
+<rect x="538" y="422" width="118" height="66" rx="9" fill="#fff" stroke="#1b2430" stroke-width="1.5"/>
+<text x="544" y="435" font-size="9" fill="#5b6675">user</text>
+<text x="597" y="452" text-anchor="middle" fill="#1b2430">Re-plans haulier</text>
+<text x="597" y="466" text-anchor="middle" fill="#1b2430">where possible</text>
+<path d="M597,300 L622,325 L597,350 L572,325 z" fill="#fff" stroke="#1b2430" stroke-width="1.5"/>
+<path d="M589,317 L605,333 M605,317 L589,333" stroke="#1b2430" stroke-width="2.5"/>
+<text x="589" y="285" text-anchor="end" fill="#1b2430">Key account and AM</text>
+<text x="589" y="298" text-anchor="end" fill="#1b2430">knows?</text>
+<rect x="611" y="291" width="22" height="16" rx="8" fill="#a3312a"/><text x="622" y="303" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">P4</text>
+<rect x="696" y="292" width="118" height="66" rx="9" fill="#fff" stroke="#1b2430" stroke-width="1.5"/>
+<text x="702" y="305" font-size="9" fill="#5b6675">user</text>
+<text x="755" y="329" text-anchor="middle" fill="#1b2430">E-mails customer</text>
+<rect x="696" y="32" width="118" height="66" rx="9" fill="#fff" stroke="#1b2430" stroke-width="1.5"/>
+<text x="755" y="62" text-anchor="middle" fill="#1b2430">Waits at the</text>
+<text x="755" y="76" text-anchor="middle" fill="#1b2430">delivery slot</text>
+<rect x="854" y="32" width="118" height="66" rx="9" fill="#fff" stroke="#1b2430" stroke-width="1.5"/>
+<text x="913" y="62" text-anchor="middle" fill="#1b2430">Calls: where is</text>
+<text x="913" y="76" text-anchor="middle" fill="#1b2430">my load?</text>
+<rect x="961" y="23" width="22" height="16" rx="8" fill="#a3312a"/><text x="972" y="35" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">P5</text>
+<rect x="854" y="162" width="118" height="66" rx="9" fill="#fff" stroke="#1b2430" stroke-width="1.5"/>
+<text x="860" y="175" font-size="9" fill="#5b6675">user</text>
+<text x="913" y="192" text-anchor="middle" fill="#1b2430">Asks planner by</text>
+<text x="913" y="206" text-anchor="middle" fill="#1b2430">phone or chat</text>
+<rect x="1012" y="162" width="118" height="66" rx="9" fill="#fff" stroke="#1b2430" stroke-width="1.5"/>
+<text x="1018" y="175" font-size="9" fill="#5b6675">user</text>
+<text x="1071" y="192" text-anchor="middle" fill="#1b2430">Answers customer,</text>
+<text x="1071" y="206" text-anchor="middle" fill="#1b2430">logs nothing</text>
+<rect x="1119" y="153" width="22" height="16" rx="8" fill="#a3312a"/><text x="1130" y="165" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">P6</text>
+<circle cx="1229" cy="65" r="18.0" fill="#fff" stroke="#1b2430" stroke-width="3"/>
+<text x="1253" y="63" fill="#1b2430">Customer informed,</text>
+<text x="1253" y="76" fill="#1b2430">often late</text>
+</svg>

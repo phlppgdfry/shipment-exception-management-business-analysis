@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Event storming — Shipment exception management</title>
+  <meta name="description" content="Big-picture event storming board for shipment exceptions at a fictional door-to-door operator: events, actors, systems, policies, read models and hotspots, with the decisions that followed.">
+  <meta property="og:title" content="Event storming — shipment exceptions">
+  <meta property="og:image" content="https://phlppgdfry.github.io/shipment-exception-management-business-analysis/assets/og-image.png">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="../">Shipment exceptions</a>
+      <nav aria-label="Sections">
+        <a href="../">Overview</a>
+        <a href="../prototype/">Prototype</a>
+        <a href="../rules/">Rule explorer</a>
+        <a href="../process/">Process</a>
+        <a href="./" aria-current="page">Event storming</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="sub-hero wrap">
+      <p class="crumbs"><a href="../">Overview</a> / Event storming</p>
+      <h1>Event storming: one timeline, six hotspots</h1>
+      <p class="lede">Planners, customer service, an account manager, the customs desk, the Product Owner and a developer put what they see on one wall. The disagreements became red stickies with an owner — not footnotes in a document.</p>
+      <p class="small">Simulated workshop for a fictional organisation. <a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/03-workshops/event-storming-plan.md">Facilitation plan</a> · <a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/03-workshops/event-storming-board.md">board as text</a> · <a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/03-workshops/decision-log.md">decision log</a></p>
+    </section>
+
+    <section class="wrap" aria-label="Board">
+      <ul class="legend">
+        <li><span class="swatch" style="background:var(--es-event)"></span>Domain event</li>
+        <li><span class="swatch" style="background:var(--es-command)"></span>Command</li>
+        <li><span class="swatch" style="background:var(--es-actor)"></span>Actor</li>
+        <li><span class="swatch" style="background:var(--es-system)"></span>External system</li>
+        <li><span class="swatch" style="background:var(--es-policy)"></span>Policy</li>
+        <li><span class="swatch" style="background:var(--es-read)"></span>Read model</li>
+        <li><span class="swatch" style="background:var(--es-hot)"></span>Hotspot</li>
+      </ul>
+      <div class="board-scroll" tabindex="0" aria-label="Event storming board, scroll sideways">
+        <div class="board">
+          <div class="board-col">
+            <h3>1 · Something changes</h3>
+            <div class="sticky s-system"><small>System</small>Sailing system</div>
+            <div class="sticky s-event"><small>Event</small>Sailing delay published</div>
+            <div class="sticky s-event"><small>Event</small>Sailing cancelled</div>
+            <div class="sticky s-actor"><small>Actor</small>Haulier</div>
+            <div class="sticky s-command"><small>Command</small>Update ETA</div>
+            <div class="sticky s-event"><small>Event</small>Haulier ETA updated</div>
+            <div class="sticky s-event"><small>Event</small>Discharge delayed</div>
+            <div class="sticky s-event"><small>Event</small>Customs hold placed</div>
+            <div class="sticky s-hot"><small>Hotspot H-01</small>Late compared to what? Planned ETA, window, or slot?</div>
+          </div>
+          <div class="board-col">
+            <h3>2 · Is it a problem?</h3>
+            <div class="sticky s-system"><small>System</small>TMS</div>
+            <div class="sticky s-event"><small>Event</small>Delivery window at risk</div>
+            <div class="sticky s-event"><small>Event</small>Delivery moved to next day</div>
+            <div class="sticky s-event"><small>Event</small>No status for 6 h</div>
+            <div class="sticky s-policy"><small>Policy</small>Whenever a sailing is delayed, check every order on it</div>
+            <div class="sticky s-read"><small>Read model</small>Disruption sheet (Excel)</div>
+            <div class="sticky s-hot"><small>Hotspot H-03</small>Missing status: alarm, or just no app?</div>
+          </div>
+          <div class="board-col">
+            <h3>3 · Who acts?</h3>
+            <div class="sticky s-actor"><small>Actor</small>Road planner</div>
+            <div class="sticky s-command"><small>Command</small>Re-plan delivery</div>
+            <div class="sticky s-event"><small>Event</small>Haulier re-planned</div>
+            <div class="sticky s-event"><small>Event</small>New window agreed with consignee</div>
+            <div class="sticky s-actor"><small>Actor</small>Customs desk</div>
+            <div class="sticky s-command"><small>Command</small>Request documents</div>
+            <div class="sticky s-policy"><small>Policy</small>Whenever customs hold, customs desk owns it</div>
+            <div class="sticky s-hot"><small>Hotspot H-05</small>Customs is "everyone's problem"</div>
+          </div>
+          <div class="board-col">
+            <h3>4 · Who is told?</h3>
+            <div class="sticky s-actor"><small>Actor</small>Account manager</div>
+            <div class="sticky s-command"><small>Command</small>E-mail key account</div>
+            <div class="sticky s-event"><small>Event</small>Customer e-mailed</div>
+            <div class="sticky s-event"><small>Event</small>Customer called us</div>
+            <div class="sticky s-actor"><small>Actor</small>CS agent</div>
+            <div class="sticky s-command"><small>Command</small>Ask planner</div>
+            <div class="sticky s-read"><small>Read model</small>Planner chat</div>
+            <div class="sticky s-hot"><small>Hotspot H-02</small>Key accounts: tell them everything?</div>
+            <div class="sticky s-hot"><small>Hotspot H-04</small>Planner's own call vs. a system message</div>
+          </div>
+          <div class="board-col">
+            <h3>5 · It ends</h3>
+            <div class="sticky s-event"><small>Event</small>Delivered in window</div>
+            <div class="sticky s-event"><small>Event</small>Delivered late</div>
+            <div class="sticky s-event"><small>Event</small>Slot missed</div>
+            <div class="sticky s-actor"><small>Actor</small>Finance</div>
+            <div class="sticky s-event"><small>Event</small>Credit note issued</div>
+            <div class="sticky s-system"><small>System</small>ERP</div>
+            <div class="sticky s-hot"><small>Hotspot H-06</small>Nobody records why</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap section">
+      <h2>From hotspot to decision</h2>
+      <p class="measure">I prepared options with consequences for each hotspot; the owner decided within a week. The concept that unlocked most hotspots was <strong>severity</strong>: once "minor, major, critical" existed, "tell key accounts everything" and "no notification storm" stopped being opposites.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Hotspot</th><th>Votes</th><th>Decided by</th><th>Decision</th></tr></thead>
+          <tbody>
+            <tr><td>H-01 Late compared to what?</td><td>7</td><td>PO + Head of CS + planning lead</td><td>After the end of the agreed window (D-01)</td></tr>
+            <tr><td>H-02 Key accounts: everything?</td><td>6</td><td>Product Owner</td><td>By severity; critical key-account cases also get a call (D-02)</td></tr>
+            <tr><td>H-03 Missing status</td><td>5</td><td>Road planning lead</td><td>Planner confirms before the customer is told (D-04)</td></tr>
+            <tr><td>H-04 Planner's call vs. message</td><td>4</td><td>PO + planning lead</td><td>One system message; planner can add a note and still call (D-08)</td></tr>
+            <tr><td>H-06 Nobody records why</td><td>3</td><td>Product Owner</td><td>Reason code mandatory on close</td></tr>
+            <tr><td>H-05 Customs ownership</td><td>2</td><td>Customs desk lead</td><td>Customs desk owns it; release 2</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>Independent portfolio case study based on a fictional organisation. It contains no confidential information from any real employer or the hiring company.</p>
+      <p>Philippe Godfroy · <a href="https://github.com/phlppgdfry">GitHub</a></p>
+    </div>
+  </footer>
+</body>
+</html>

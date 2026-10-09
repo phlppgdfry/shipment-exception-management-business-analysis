@@ -1,0 +1,19 @@
+Item,Value,Note
+WISMO contacts per week,1250,"contact-reason tagging, 2 weeks"
+Handling time per contact (min),6,telephony report
+Loaded cost customer service (EUR/h),42,finance
+Expected WISMO reduction,0.35,riskiest assumption — measured in the pilot
+Missed delivery slots per week,55,planner log + credit notes
+Cost per missed slot (EUR),140,"credit notes, 3 months"
+Expected missed-slot reduction,0.3,planning lead estimate
+Weeks per year,50,
+"Sprint cost (EUR, team of 8 for 2 weeks)",38000,
+Sprints (R1 + R2),4,"R1 = 2 sprints, R2 = 2 sprints"
+TMS supplier set-up (EUR),25000,quote
+Notification set-up (EUR),8000,estimate
+"BAT, training, pilot support (EUR)",10000,2 x 5k
+Yearly running cost (EUR),34000,API licence 18k + 0.2 FTE support 16k
+Total benefits (EUR/yr),207375,calculated
+One-off cost (EUR),195000,calculated
+Net benefit (EUR/yr),173375,calculated
+Payback (months),13.5,calculated

@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shipment exceptions, handled before the customer calls — a business analysis case</title>
+  <meta name="description" content="Portfolio case: how a short-sea and door-to-door operator could tell customers about delays before they call — from opportunity and business case to BAT and production readiness.">
+  <meta property="og:title" content="Shipment exceptions, handled before the customer calls">
+  <meta property="og:description" content="A business analysis case for a fictional short-sea and door-to-door operator — from opportunity to production readiness.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://phlppgdfry.github.io/shipment-exception-management-business-analysis/assets/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="./">Shipment exceptions</a>
+      <nav aria-label="Sections">
+        <a href="#challenge">Challenge</a>
+        <a href="#journey">Journey</a>
+        <a href="prototype/">Prototype</a>
+        <a href="rules/">Rule explorer</a>
+        <a href="#evidence">Evidence</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero wrap">
+      <p class="eyebrow">Independent portfolio case · fictional organisation · Philippe Godfroy</p>
+      <h1>Shipment exceptions, handled before the customer calls</h1>
+      <p class="lede">A business analysis case for a fictional short-sea and door-to-door operator — from opportunity and business case, through event storming, backlog and design, to Business Acceptance Testing and a controlled go-live.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="prototype/?tour">Open the prototype (2-min tour)</a>
+        <a class="btn" href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/CASE_STUDY.md">Read the case study</a>
+        <a class="btn" href="process/">See AS-IS / TO-BE</a>
+        <a class="btn" href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis">Explore on GitHub</a>
+      </div>
+    </section>
+
+    <section id="challenge" class="wrap section">
+      <h2>The challenge</h2>
+      <p class="measure">Tidewell Logistics (fictional) moves trailers door to door between the Continent, the UK and Ireland. Its new transport management system shows customers statuses — but not whether their <strong>delivery window</strong> is at risk. So they call.</p>
+      <div class="grid cards-4">
+        <article class="card"><span class="chip risk">Customers</span><h3>Hear it at the gate</h3><p>Only 22% of late deliveries were announced before the window started.</p></article>
+        <article class="card"><span class="chip warn">Customer service</span><h3>A switchboard</h3><p>±1,250 "where is my load?" contacts a week — 38% of all contacts.</p></article>
+        <article class="card"><span class="chip warn">Planners</span><h3>Excel and interruptions</h3><p>Delays noticed by chance, affected orders looked up by hand.</p></article>
+        <article class="card"><span class="chip risk">Money</span><h3>Missed slots</h3><p>±55 missed delivery slots a week at ±€140 each.</p></article>
+      </div>
+      <p class="note">Illustrative assumptions — not real company data.</p>
+    </section>
+
+    <section id="role" class="wrap section">
+      <h2>My role in this case</h2>
+      <p class="measure">Business analyst in the Scrum team <em>Customer Visibility</em>, next to the Product Owner. Three people asked for three solutions — a tracking page, mails to key accounts, "nothing that adds work". I:</p>
+      <ul class="checklist measure">
+        <li>framed the problem and compared four options in a <strong>business case</strong> with its riskiest assumption named;</li>
+        <li>ran discovery and a <strong>big-picture event storming</strong>, and turned six hotspots into decisions by their owners;</li>
+        <li>modelled the <strong>AS-IS and TO-BE in BPMN 2.0</strong> and the release in UML;</li>
+        <li>wrote 13 <strong>exception rules</strong> and 30 decision examples that <strong>run as tests</strong>;</li>
+        <li>prepared the backlog with the PO — story map, <strong>WSJF prioritisation</strong>, a two-sprint pilot;</li>
+        <li>designed the planner workbench and the customer message, in <strong>Figma</strong> and as a clickable prototype;</li>
+        <li>organised <strong>Business Acceptance Testing</strong> with key users, prepared the <strong>go/no-go</strong>, the communication and the support handover.</li>
+      </ul>
+    </section>
+
+    <section id="journey" class="wrap section">
+      <h2>The journey</h2>
+      <ol class="journey long">
+        <li><a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/01-opportunity/options-and-business-case.md"><span class="step-no">1</span>Frame the opportunity</a></li>
+        <li><a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/02-discovery/interview-notes.md"><span class="step-no">2</span>Discover</a></li>
+        <li><a href="event-storming/"><span class="step-no">3</span>Event storm</a></li>
+        <li><a href="process/"><span class="step-no">4</span>Model AS-IS / TO-BE</a></li>
+        <li><a href="rules/"><span class="step-no">5</span>Define the rules</a></li>
+        <li><a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/06-backlog/prioritisation.md"><span class="step-no">6</span>Prioritise with the PO</a></li>
+        <li><a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/06-backlog/user-stories.md"><span class="step-no">7</span>Specify</a></li>
+        <li><a href="prototype/"><span class="step-no">8</span>Design</a></li>
+        <li><a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/08-delivery/refinement-log.md"><span class="step-no">9</span>Deliver</a></li>
+        <li><a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/09-acceptance/bat-log.md"><span class="step-no">10</span>Accept (BAT)</a></li>
+        <li><a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/10-go-live/release-readiness.md"><span class="step-no">11</span>Go live and measure</a></li>
+      </ol>
+    </section>
+
+    <section id="opportunity" class="wrap section">
+      <h2>Is it worth it? Four options, one honest business case</h2>
+      <div class="two-col">
+        <div>
+          <p class="measure">"Switch on the standard TMS e-mails" was cheap and fast. I tested it on paper with a week of real-looking status events: ±9 messages per order, 0.3 of which mattered. Two pilot customers said they would filter them out. More messages is not better information.</p>
+          <p class="measure">The recommended option pays back in ±13.5 months — <strong>if</strong> a third of the "where is my load?" contacts disappear. Nobody knew that number, so the sponsor funded a <strong>six-week pilot with a stage gate</strong> instead of the whole thing.</p>
+          <p><a class="btn" href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/01-opportunity/options-and-business-case.md">Options and business case</a></p>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Option</th><th>Score</th><th>Verdict</th></tr></thead>
+            <tbody>
+              <tr><td>O1 Do nothing, add an agent</td><td>2.45</td><td>treats the symptom</td></tr>
+              <tr><td>O2 Standard TMS e-mails</td><td>3.10</td><td>noise, no owner</td></tr>
+              <tr><td><strong>O3 Exception management</strong></td><td><strong>3.95</strong></td><td><strong>recommended, as a pilot</strong></td></tr>
+              <tr><td>O4 External visibility platform</td><td>2.85</td><td>later, for consignees</td></tr>
+            </tbody>
+          </table>
+          <p class="small" style="padding:0 12px">Weighted criteria agreed before scoring. Spreadsheet with formulas in the repo.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="rules" class="wrap section">
+      <h2>Rules before screens</h2>
+      <div class="two-col">
+        <div>
+          <p class="measure">The root cause was not a missing screen but missing rules: what counts as late, how bad it is, who acts, who is told. The event storming made that visible; severity turned "tell key accounts everything" and "no notification storm" from opposites into one table.</p>
+          <ul class="checklist measure">
+            <li>Late = after the <strong>end of the agreed window</strong>, not after the planned ETA</li>
+            <li>Minor &lt; 2 h · major 2–6 h · critical ≥ 6 h or next day · reefer one level up</li>
+            <li>Missing status: the planner confirms <strong>before</strong> the customer is alarmed</li>
+            <li>At most one message per order every 2 h — unless it got worse</li>
+          </ul>
+          <div class="cta-row">
+            <a class="btn primary" href="rules/">Try the rule explorer</a>
+            <a class="btn" href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/05-requirements/exception-rules.md">Read the rules</a>
+          </div>
+        </div>
+        <figure class="diagram">
+          <pre class="mermaid">
+stateDiagram-v2
+  [*] --> Open: rules say exception
+  Open --> Held: missing status
+  Held --> Open: delay confirmed
+  Held --> Closed: on time after all
+  Open --> Acknowledged: owner responds
+  Open --> Escalated: response time passed
+  Escalated --> Acknowledged
+  Acknowledged --> Recovered: back inside window
+  Acknowledged --> Resolved: reason code
+  Recovered --> Resolved
+  Resolved --> Closed
+          </pre>
+          <figcaption>The exception lifecycle. The 30 decision examples behind it run in CI on every change.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="backlog" class="wrap section">
+      <h2>Prioritised with the Product Owner</h2>
+      <p class="measure">WSJF ranked the work; dependencies sequenced it. Release 1 is a two-sprint pilot for five customers — deliberately without EDI status messages and customs holds, and with the measurement export that the stage gate needs.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Top of the backlog</th><th>WSJF</th><th>Release</th><th>Why</th></tr></thead>
+          <tbody>
+            <tr><td>Delivery window mandatory for pilot customers</td><td>15.0</td><td>R1</td><td>1 point, and nothing works without it (28% of orders had no window)</td></tr>
+            <tr><td>No message storm (throttling)</td><td>9.0</td><td>R1</td><td>planners' biggest fear; cheap</td></tr>
+            <tr><td>Pilot toggle and measurement</td><td>8.0</td><td>R1</td><td>no customer sees it, but the stage gate depends on it</td></tr>
+            <tr><td>Proactive customer message</td><td>5.8</td><td>R1</td><td>the value</td></tr>
+            <tr><td>EDI/API status messages</td><td>1.8</td><td>R2</td><td>asked by the largest forwarder; PO chose trust first</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small"><a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/06-backlog/story-map.md">Story map</a> · <a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/06-backlog/prioritisation.md">full scoring and trade-offs</a> · <a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/06-backlog/user-stories.md">stories and acceptance criteria</a></p>
+    </section>
+
+    <section id="design" class="wrap section">
+      <h2>Designed with the people who use it</h2>
+      <div class="grid cards-3">
+        <article class="card"><span class="chip ok">Planner</span><h3>One list, most urgent first</h3><p>Replaces the disruption sheet. The decision explains itself with the rule IDs behind it.</p></article>
+        <article class="card"><span class="chip ok">Customer</span><h3>One clear message</h3><p>New ETA, reason, next step — tested with two pilot customers. Never driver data.</p></article>
+        <article class="card"><span class="chip ok">Senior planner</span><h3>Her call still counts</h3><p>She can add a note to critical messages and still call — one story, not two.</p></article>
+      </div>
+      <p class="cta-row" style="margin-top:16px"><a class="btn primary" href="prototype/?tour">Walk through the prototype</a> <a class="btn" href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/07-design/design.md">Design decisions and Figma</a></p>
+    </section>
+
+    <section id="golive" class="wrap section">
+      <h2>Accepted by the business, ready for production</h2>
+      <div class="grid cards-3">
+        <article class="card"><span class="chip warn">BAT</span><h3>4 majors found by real readers</h3><p>Three came from key users reading real messages in their own context. One — two e-mails in ten minutes — came from my own refinement answer. Fixed, retested, signed off with two known issues.</p></article>
+        <article class="card"><span class="chip ok">Go/no-go</span><h3>13 criteria, one owner each</h3><p>Shadow mode for two days, rollback rehearsed in 4 minutes, customers switched on one by one — on a Monday, not a Friday.</p></article>
+        <article class="card"><span class="chip ok">Understood</span><h3>Everyone knows what changes</h3><p>Communication plan per audience, pilot customer letter, a first-line KB article that answers "rule or bug?".</p></article>
+      </div>
+      <p class="small"><a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/09-acceptance/bat-plan.md">BAT plan</a> · <a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/09-acceptance/bat-log.md">BAT log</a> · <a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/10-go-live/release-readiness.md">release readiness</a> · <a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/10-go-live/support-handover.md">KB article</a></p>
+    </section>
+
+    <section id="outcomes" class="wrap section">
+      <h2>What the pilot is measured on</h2>
+      <div class="grid cards-4">
+        <article class="card kpi"><p class="kpi-value">22% → 90%</p><p>major/critical delays announced before the window</p></article>
+        <article class="card kpi"><p class="kpi-value">3 h → 30 min</p><p>median time to inform the customer</p></article>
+        <article class="card kpi"><p class="kpi-value">−35%</p><p>"where is my load?" contacts vs. a control group</p></article>
+        <article class="card kpi"><p class="kpi-value">&lt; 5%</p><p>false alarms — the guardrail the planners asked for</p></article>
+      </div>
+      <p class="note">Illustrative targets — not real company data. Stage gate for release 2: at least −20% WISMO against the control group.</p>
+    </section>
+
+    <section id="evidence" class="wrap section">
+      <h2>Evidence</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Business analyst requirement</th><th>Evidence</th><th>Where</th></tr></thead>
+          <tbody>
+            <tr><td>Analyse business needs, challenges and opportunities</td><td>Problem statement, four options, business case with sensitivity, KPI tree</td><td><a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/01-opportunity/options-and-business-case.md">Open</a></td></tr>
+            <tr><td>User stories, flows and acceptance criteria</td><td>BPMN AS-IS/TO-BE, 10 stories + 2 enablers, Gherkin criteria, 30 executable examples</td><td><a href="process/">Open</a></td></tr>
+            <tr><td>Event storming and refinement workshops</td><td>Facilitation plan, board, hotspots → decision log, refinement log</td><td><a href="event-storming/">Open</a></td></tr>
+            <tr><td>Designs and mock-ups (Figma)</td><td>Figma screens, clickable prototype, design rationale</td><td><a href="prototype/">Open</a></td></tr>
+            <tr><td>Support the PO in defining and prioritising the backlog</td><td>Story map, WSJF with trade-offs, release slicing, DoR/DoD</td><td><a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/06-backlog/prioritisation.md">Open</a></td></tr>
+            <tr><td>Agile ceremonies, documentation and testing</td><td>Sprint plan, review demo script, retro action, traceability</td><td><a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/08-delivery/sprint-plan.md">Open</a></td></tr>
+            <tr><td>Business Acceptance Testing and end-user documentation</td><td>BAT plan, log, defect triage, sign-off, KB article, quick guide</td><td><a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/09-acceptance/bat-log.md">Open</a></td></tr>
+            <tr><td>Ready for production, understood by all stakeholders</td><td>Go/no-go checklist, rollback, hypercare, communication plan</td><td><a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/10-go-live/release-readiness.md">Open</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small">Full mapping, including what is <em>not</em> claimed: <a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/EVIDENCE.md">EVIDENCE.md</a> · Role view: <a href="for/business-analyst/">for an IT business analyst role</a> · Companion case (functional analysis, same fictional operator): <a href="https://phlppgdfry.github.io/shortsea-booking-functional-analysis/">late booking amendments</a></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>Independent portfolio case study based on a fictional organisation. It contains no confidential information from any real employer or the hiring company. All figures are illustrative assumptions.</p>
+      <p>Philippe Godfroy · <a href="https://github.com/phlppgdfry">GitHub</a> · Updated 2026-10-09</p>
+    </div>
+  </footer>
+
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.esm.min.mjs";
+    const dark = matchMedia("(prefers-color-scheme: dark)").matches;
+    mermaid.initialize({ startOnLoad: true, theme: dark ? "dark" : "neutral" });
+  </script>
+</body>
+</html>

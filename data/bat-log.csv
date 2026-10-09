@@ -1,0 +1,13 @@
+ID,Scenario,Key user,Stories,Run 1,Finding,Retest,Final
+BAT-01,Sailing with 20 orders delayed 6 h,planner,"US-01, US-03",pass,,,pass
+BAT-02,8 situations from last month,"planner, CS","US-01, US-02",pass,1 rule question (consignee hours) → R2,,pass
+BAT-03,Untouched critical escalates,shift lead,US-03,pass,"DEF-05 (minor, known issue)",,pass with known issue
+BAT-04,"Acknowledge, new window, resolve",planner,US-04,fail,DEF-03 (minor),pass,pass
+BAT-05,No status for 7 h,planner,US-08,pass,,,pass
+BAT-06,Critical for key account,"AM, CS",US-11,pass,"DEF-06 (minor, known issue)",,pass with known issue
+BAT-07,Customer reads the message,pilot customer,US-05,fail,DEF-01 (major),pass,pass
+BAT-08,Three sailing updates in 10 min,"planner, pilot customer",US-07,fail,DEF-04 (major),pass,pass
+BAT-09,Order without a window,planner,US-01,fail,DEF-02 (major),pass,pass
+BAT-10,Notified delay recovers,pilot customer,US-10,pass,,,pass
+BAT-11,"Pilot export, shadow mode",PO,US-13,pass,,,pass
+BAT-12,Bounced address,CS,US-05,pass,,,pass
