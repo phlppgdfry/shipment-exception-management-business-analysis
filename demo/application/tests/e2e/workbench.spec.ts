@@ -42,6 +42,14 @@ test("an unacknowledged critical exception escalates after 30 minutes (ER-09)", 
   await expect(page.locator("#audit")).toContainText("assigned to Maren Vos by Priya Raman");
 });
 
+test("a held exception past its response time is escalated but stays held (D-09)", async ({ page }) => {
+  await page.goto("exceptions/?id=EX-1008");
+  await page.getByRole("button", { name: "+30 min" }).click();
+  await expect(page.locator("main").getByText("escalated (D-09)").first()).toBeVisible();
+  await expect(page.getByText(/still held \(D-09\)/)).toBeVisible();
+  await expect(page.getByText("Held: nothing goes to the customer")).toBeVisible();
+});
+
 test("a TMS outage shows an error with retry, and recovers (NFR-04)", async ({ page }) => {
   await page.goto("shipments/");
   await page.getByLabel("Simulate TMS outage").check();

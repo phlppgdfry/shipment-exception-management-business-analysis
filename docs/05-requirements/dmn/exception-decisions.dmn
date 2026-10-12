@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="exception_decisions" name="Shipment exception decisions" namespace="https://github.com/phlppgdfry/shipment-exception-management-business-analysis" exporter="build_dmn.py" exporterVersion="1">
+  <decision id="base_severity" name="Base severity">
+    <decisionTable id="table_base_severity" hitPolicy="FIRST">
+      <input id="in_base_severity_0" label="Cause"><inputExpression id="ie_base_severity_0" typeRef="string"><text>cause</text></inputExpression></input>
+      <input id="in_base_severity_1" label="Minutes after the end of the window"><inputExpression id="ie_base_severity_1" typeRef="number"><text>minutesLate</text></inputExpression></input>
+      <input id="in_base_severity_2" label="Moves to another day"><inputExpression id="ie_base_severity_2" typeRef="boolean"><text>nextDay</text></inputExpression></input>
+      <output id="out_base_severity" label="Base severity" name="baseSeverity" typeRef="string" />
+      <rule id="r_base_severity_1">
+        <description>ER-01: inside the agreed window is not an exception</description>
+        <inputEntry><text>not(&quot;SAILING_CANCELLED&quot;,&quot;CUSTOMS_HOLD&quot;,&quot;STATUS_MISSING&quot;)</text></inputEntry>
+        <inputEntry><text>&lt;= 0</text></inputEntry>
+        <inputEntry><text>false</text></inputEntry>
+        <outputEntry><text>&quot;NONE&quot;</text></outputEntry>
+      </rule>
+      <rule id="r_base_severity_2">
+        <description>ER-05: a cancelled sailing is always critical</description>
+        <inputEntry><text>&quot;SAILING_CANCELLED&quot;</text></inputEntry>
+        <inputEntry><text>-</text></inputEntry>
+        <inputEntry><text>-</text></inputEntry>
+        <outputEntry><text>&quot;CRITICAL&quot;</text></outputEntry>
+      </rule>
+      <rule id="r_base_severity_3">
+        <description>ER-06: customs hold is major</description>
+        <inputEntry><text>&quot;CUSTOMS_HOLD&quot;</text></inputEntry>
+        <inputEntry><text>-</text></inputEntry>
+        <inputEntry><text>-</text></inputEntry>
+        <outputEntry><text>&quot;MAJOR&quot;</text></outputEntry>
+      </rule>
+      <rule id="r_base_severity_4">
+        <description>ER-07: missing status is major (held)</description>
+        <inputEntry><text>&quot;STATUS_MISSING&quot;</text></inputEntry>
+        <inputEntry><text>-</text></inputEntry>
+        <inputEntry><text>-</text></inputEntry>
+        <outputEntry><text>&quot;MAJOR&quot;</text></outputEntry>
+      </rule>
+      <rule id="r_base_severity_5">
+        <description>ER-03: delivery moves to another day</description>
+        <inputEntry><text>-</text></inputEntry>
+        <inputEntry><text>-</text></inputEntry>
+        <inputEntry><text>true</text></inputEntry>
+        <outputEntry><text>&quot;CRITICAL&quot;</text></outputEntry>
+      </rule>
+      <rule id="r_base_severity_6">
+        <description>ER-02: 360 min or more</description>
+        <inputEntry><text>-</text></inputEntry>
+        <inputEntry><text>&gt;= 360</text></inputEntry>
+        <inputEntry><text>false</text></inputEntry>
+        <outputEntry><text>&quot;CRITICAL&quot;</text></outputEntry>
+      </rule>
+      <rule id="r_base_severity_7">
+        <description>ER-02: 120–359 min</description>
+        <inputEntry><text>-</text></inputEntry>
+        <inputEntry><text>[120..360)</text></inputEntry>
+        <inputEntry><text>false</text></inputEntry>
+        <outputEntry><text>&quot;MAJOR&quot;</text></outputEntry>
+      </rule>
+      <rule id="r_base_severity_8">
+        <description>ER-02: 1–119 min</description>
+        <inputEntry><text>-</text></inputEntry>
+        <inputEntry><text>(0..120)</text></inputEntry>
+        <inputEntry><text>false</text></inputEntry>
+        <outputEntry><text>&quot;MINOR&quot;</text></outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <decision id="severity" name="Severity">
+    <informationRequirement id="req_severity_base_severity"><requiredDecision href="#base_severity" /></informationRequirement>
+    <decisionTable id="table_severity" hitPolicy="UNIQUE">
+      <input id="in_severity_0" label="Base severity"><inputExpression id="ie_severity_0" typeRef="string"><text>baseSeverity</text></inputExpression></input>
+      <input id="in_severity_1" label="Reefer or time-critical"><inputExpression id="ie_severity_1" typeRef="boolean"><text>timeCritical</text></inputExpression></input>
+      <output id="out_severity" label="Severity" name="severity" typeRef="string" />
+      <rule id="r_severity_1">
+        <description>no exception</description>
+        <inputEntry><text>&quot;NONE&quot;</text></inputEntry>
+        <inputEntry><text>-</text></inputEntry>
+        <outputEntry><text>&quot;NONE&quot;</text></outputEntry>
+      </rule>
+      <rule id="r_severity_2">
+        <description>not time-critical: unchanged</description>
+        <inputEntry><text>not(&quot;NONE&quot;)</text></inputEntry>
+        <inputEntry><text>false</text></inputEntry>
+        <outputEntry><text>baseSeverity</text></outputEntry>
+      </rule>
+      <rule id="r_severity_3">
+        <description>ER-04: one level up</description>
+        <inputEntry><text>&quot;MINOR&quot;</text></inputEntry>
+        <inputEntry><text>true</text></inputEntry>
+        <outputEntry><text>&quot;MAJOR&quot;</text></outputEntry>
+      </rule>
+      <rule id="r_severity_4">
+        <description>ER-04: one level up</description>
+        <inputEntry><text>&quot;MAJOR&quot;</text></inputEntry>
+        <inputEntry><text>true</text></inputEntry>
+        <outputEntry><text>&quot;CRITICAL&quot;</text></outputEntry>
+      </rule>
+      <rule id="r_severity_5">
+        <description>ER-04: maximum critical</description>
+        <inputEntry><text>&quot;CRITICAL&quot;</text></inputEntry>
+        <inputEntry><text>true</text></inputEntry>
+        <outputEntry><text>&quot;CRITICAL&quot;</text></outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <decision id="notification" name="Customer notification">
+    <informationRequirement id="req_notification_severity"><requiredDecision href="#severity" /></informationRequirement>
+    <decisionTable id="table_notification" hitPolicy="FIRST">
+      <input id="in_notification_0" label="Cause"><inputExpression id="ie_notification_0" typeRef="string"><text>cause</text></inputExpression></input>
+      <input id="in_notification_1" label="Severity"><inputExpression id="ie_notification_1" typeRef="string"><text>severity</text></inputExpression></input>
+      <input id="in_notification_2" label="Key account"><inputExpression id="ie_notification_2" typeRef="boolean"><text>keyAccount</text></inputExpression></input>
+      <input id="in_notification_3" label="Wants every update"><inputExpression id="ie_notification_3" typeRef="boolean"><text>prefersAllUpdates</text></inputExpression></input>
+      <output id="out_notification" label="Customer notification (before throttling, ER-12)" name="notification" typeRef="string" />
+      <rule id="r_notification_1">
+        <description>ER-07: planner confirms first</description>
+        <inputEntry><text>&quot;STATUS_MISSING&quot;</text></inputEntry>
+        <inputEntry><text>-</text></inputEntry>
+        <inputEntry><text>-</text></inputEntry>
+        <inputEntry><text>-</text></inputEntry>
+        <outputEntry><text>&quot;HOLD&quot;</text></outputEntry>
+      </rule>
+      <rule id="r_notification_2">
+        <description>ER-06: the customer must act</description>
+        <inputEntry><text>&quot;CUSTOMS_HOLD&quot;</text></inputEntry>
+        <inputEntry><text>-</text></inputEntry>
+        <inputEntry><text>-</text></inputEntry>
+        <inputEntry><text>-</text></inputEntry>
+        <outputEntry><text>&quot;ACTION_REQUIRED&quot;</text></outputEntry>
+      </rule>
+      <rule id="r_notification_3">
+        <description>no exception</description>
+        <inputEntry><text>-</text></inputEntry>
+        <inputEntry><text>&quot;NONE&quot;</text></inputEntry>
+        <inputEntry><text>-</text></inputEntry>
+        <inputEntry><text>-</text></inputEntry>
+        <outputEntry><text>&quot;NONE&quot;</text></outputEntry>
+      </rule>
+      <rule id="r_notification_4">
+        <description>ER-10: minor only if opted in</description>
+        <inputEntry><text>-</text></inputEntry>
+        <inputEntry><text>&quot;MINOR&quot;</text></inputEntry>
+        <inputEntry><text>-</text></inputEntry>
+        <inputEntry><text>true</text></inputEntry>
+        <outputEntry><text>&quot;NOTIFY&quot;</text></outputEntry>
+      </rule>
+      <rule id="r_notification_5">
+        <description>ER-10: minor is monitored</description>
+        <inputEntry><text>-</text></inputEntry>
+        <inputEntry><text>&quot;MINOR&quot;</text></inputEntry>
+        <inputEntry><text>-</text></inputEntry>
+        <inputEntry><text>false</text></inputEntry>
+        <outputEntry><text>&quot;NONE&quot;</text></outputEntry>
+      </rule>
+      <rule id="r_notification_6">
+        <description>ER-11: critical key account also gets a call</description>
+        <inputEntry><text>-</text></inputEntry>
+        <inputEntry><text>&quot;CRITICAL&quot;</text></inputEntry>
+        <inputEntry><text>true</text></inputEntry>
+        <inputEntry><text>-</text></inputEntry>
+        <outputEntry><text>&quot;NOTIFY_AND_CALL&quot;</text></outputEntry>
+      </rule>
+      <rule id="r_notification_7">
+        <description>ER-10: major and critical are notified</description>
+        <inputEntry><text>-</text></inputEntry>
+        <inputEntry><text>-</text></inputEntry>
+        <inputEntry><text>-</text></inputEntry>
+        <inputEntry><text>-</text></inputEntry>
+        <outputEntry><text>&quot;NOTIFY&quot;</text></outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI><dmndi:DMNDiagram id="DMNDiagram_1">
+    <dmndi:DMNShape id="shape_base_severity" dmnElementRef="base_severity"><dc:Bounds x="160" y="300" width="180" height="80" /></dmndi:DMNShape>
+    <dmndi:DMNShape id="shape_severity" dmnElementRef="severity"><dc:Bounds x="380" y="190" width="180" height="80" /></dmndi:DMNShape>
+    <dmndi:DMNShape id="shape_notification" dmnElementRef="notification"><dc:Bounds x="600" y="80" width="180" height="80" /></dmndi:DMNShape>
+    <dmndi:DMNEdge id="edge_severity_base_severity" dmnElementRef="req_severity_base_severity"><di:waypoint x="250" y="300" /><di:waypoint x="470" y="270" /></dmndi:DMNEdge>
+    <dmndi:DMNEdge id="edge_notification_severity" dmnElementRef="req_notification_severity"><di:waypoint x="470" y="190" /><di:waypoint x="690" y="160" /></dmndi:DMNEdge>
+  </dmndi:DMNDiagram></dmndi:DMNDI>
+</definitions>

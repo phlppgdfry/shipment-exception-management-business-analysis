@@ -54,6 +54,7 @@ TO_BE = {
     "lanes": [
         ("customer", "Customer"),
         ("cs", "Customer service"),
+        ("lead", "Shift lead"),
         ("planner", "Road planner"),
         ("rules", "Exception component"),
         ("tms", "TMS"),
@@ -68,19 +69,29 @@ TO_BE = {
         ("t_send", "sendTask", "customer", 5, "Proactive message (portal + e-mail)"),
         ("t_calltask", "userTask", "cs", 5, "Call key account (critical only)"),
         ("t_confirm", "userTask", "planner", 5, "Hold: confirm with haulier"),
-        ("t_ack", "userTask", "planner", 6, "Acknowledge within response time"),
-        ("g_sla", "xor", "planner", 7, "Within response time?"),
-        ("t_esc", "userTask", "cs", 8, "Escalate to shift lead"),
+        ("g_conf", "xor", "planner", 6, "Confirmed?"),
+        ("end_fa", "end", "rules", 6, "Closed as false alarm, no message"),
+        ("t_chase", "userTask", "lead", 5, "Chase haulier; hold stays (D-09)"),
+        ("end_chase", "end", "lead", 6, "Hold kept"),
+        ("t_ack", "userTask", "planner", 7, "Acknowledge within response time"),
+        ("t_esc", "userTask", "lead", 7, "Assign a planner"),
         ("t_replan", "userTask", "planner", 8, "Re-plan delivery, agree new window"),
         ("t_update", "serviceTask", "tms", 9, "New ETA published"),
         ("t_resolve", "userTask", "planner", 10, "Resolve with reason code"),
         ("end", "end", "planner", 11, "Exception closed, KPIs logged"),
     ],
+    # Timer boundary events (ER-09): (id, host task, interrupting?, label, timer expression)
+    "boundaries": [
+        ("b_sla", "t_ack", True, "Response time passed (ER-09)", "=responseTime"),
+        ("b_hold", "t_confirm", False, "Response time passed (D-09)", "=responseTime"),
+    ],
     "flows": [
         ("start", "t_eval", ""), ("t_eval", "g_exc", ""), ("g_exc", "end_none", "no", "vh"), ("g_exc", "t_open", "yes"),
         ("t_open", "g_notify", ""), ("g_notify", "t_send", "notify", "vh"), ("g_notify", "t_calltask", "notify + call", "vh"),
-        ("g_notify", "t_confirm", "hold", "vh"), ("t_send", "t_ack", ""), ("t_calltask", "t_ack", ""), ("t_confirm", "t_ack", ""),
-        ("t_ack", "g_sla", ""), ("g_sla", "t_replan", "yes"), ("g_sla", "t_esc", "no", "vh"), ("t_esc", "t_replan", ""),
+        ("g_notify", "t_confirm", "hold", "vh"), ("t_send", "t_ack", ""), ("t_calltask", "t_ack", ""),
+        ("t_confirm", "g_conf", ""), ("g_conf", "t_ack", "delay"), ("g_conf", "end_fa", "on time"),
+        ("b_hold", "t_chase", "", "v"), ("t_chase", "end_chase", ""),
+        ("t_ack", "t_replan", ""), ("b_sla", "t_esc", "", "v"), ("t_esc", "t_replan", ""),
         ("t_replan", "t_update", ""), ("t_update", "t_resolve", "re-evaluated"), ("t_resolve", "end", ""),
     ],
     "pain": {},
@@ -109,6 +120,9 @@ def layout(model: dict) -> dict:
         cx = HEADER_W + LEFT_PAD + col * COL_W + TASK_W / 2
         cy = lanes[lane] * LANE_H + LANE_H / 2
         boxes[node_id] = (cx - w / 2, cy - h / 2, w, h)
+    for b_id, host, *_ in model.get("boundaries", []):
+        hx, hy, hw, _ = boxes[host]
+        boxes[b_id] = (hx + hw - 12 - EVENT / 2, hy - EVENT / 2, EVENT, EVENT)
     return boxes
 
 
@@ -121,6 +135,8 @@ def waypoints(a: tuple, b: tuple, route: str = "gap") -> list[tuple[float, float
         return [(ax + aw, acy), (bx, bcy)] if bcx > acx else [(ax, acy), (bx + bw, bcy)]
     if abs(acx - bcx) < 1:
         return [(acx, ay + ah), (bcx, by)] if bcy > acy else [(acx, ay), (bcx, by + bh)]
+    if route == "v":  # straight up or down, e.g. from a boundary event to the task above it
+        return [(acx, ay if bcy < acy else ay + ah), (acx, by + bh if bcy < acy else by)]
     if route == "vh":
         return [(acx, ay + ah if bcy > acy else ay), (acx, bcy), (bx, bcy)]
     if route == "hv":
@@ -142,6 +158,7 @@ def bpmn_xml(model: dict, boxes: dict) -> str:
            '<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" '
            'xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" '
            'xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" '
+           'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" '
            f'id="Defs_{model["id"]}" targetNamespace="https://github.com/phlppgdfry/shipment-exception-management-business-analysis" '
            'exporter="build_bpmn.py" exporterVersion="1">',
            f'  <bpmn:collaboration id="Collab_{model["id"]}">',
@@ -154,7 +171,12 @@ def bpmn_xml(model: dict, boxes: dict) -> str:
         for node_id, _, lane, _, _ in model["nodes"]:
             if lane == lane_id:
                 out.append(f'        <bpmn:flowNodeRef>{node_id}</bpmn:flowNodeRef>')
+        for b_id, host, *_ in model.get("boundaries", []):
+            if {n[0]: n[2] for n in model["nodes"]}[host] == lane_id:
+                out.append(f'        <bpmn:flowNodeRef>{b_id}</bpmn:flowNodeRef>')
         out.append('      </bpmn:lane>')
+    boundaries = model.get("boundaries", [])
+    lane_of = {n[0]: n[2] for n in model["nodes"]}
     out.append('    </bpmn:laneSet>')
     for node_id, kind, _, _, label in model["nodes"]:
         tag = TAGS[kind]
@@ -164,6 +186,14 @@ def bpmn_xml(model: dict, boxes: dict) -> str:
         if kind == "messageStart":
             out.append(f'      <bpmn:messageEventDefinition id="Msg_{node_id}" />')
         out.append(f'    </bpmn:{tag}>')
+    for b_id, host, interrupting, label, expr in boundaries:
+        cancel = "true" if interrupting else "false"
+        out.append(f'    <bpmn:boundaryEvent id="{b_id}" name="{escape(label)}" attachedToRef="{host}" cancelActivity="{cancel}">')
+        out += [f'      <bpmn:outgoing>{f}</bpmn:outgoing>' for f in outgoing.get(b_id, [])]
+        out.append(f'      <bpmn:timerEventDefinition id="Timer_{b_id}">')
+        out.append(f'        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">{escape(expr)}</bpmn:timeDuration>')
+        out.append('      </bpmn:timerEventDefinition>')
+        out.append('    </bpmn:boundaryEvent>')
     for i, (s, t, label, *_) in enumerate(model["flows"]):
         name = f' name="{escape(label)}"' if label else ""
         out.append(f'    <bpmn:sequenceFlow id="Flow_{i}"{name} sourceRef="{s}" targetRef="{t}" />')
@@ -181,6 +211,11 @@ def bpmn_xml(model: dict, boxes: dict) -> str:
         x, y, w, h = boxes[node_id]
         marker = ' isMarkerVisible="true"' if kind == "xor" else ""
         out.append(f'      <bpmndi:BPMNShape id="{node_id}_di" bpmnElement="{node_id}"{marker}>')
+        out.append(f'        <dc:Bounds x="{x:.0f}" y="{y:.0f}" width="{w}" height="{h}" />')
+        out.append('      </bpmndi:BPMNShape>')
+    for b_id, *_ in boundaries:
+        x, y, w, h = boxes[b_id]
+        out.append(f'      <bpmndi:BPMNShape id="{b_id}_di" bpmnElement="{b_id}">')
         out.append(f'        <dc:Bounds x="{x:.0f}" y="{y:.0f}" width="{w}" height="{h}" />')
         out.append('      </bpmndi:BPMNShape>')
     for i, (s, t, *rest) in enumerate(model["flows"]):
@@ -221,9 +256,12 @@ def svg(model: dict, boxes: dict) -> str:
         d = " ".join(f"{'M' if j == 0 else 'L'}{x:.0f},{y:.0f}" for j, (x, y) in enumerate(pts))
         o.append(f'<path d="{d}" fill="none" stroke="#3b4652" stroke-width="1.3" marker-end="url(#arrow)"/>')
         if label:
-            # label the last segment, where the flow enters its target
+            # label the last segment, where the flow enters its target — or, for a straight flow out of a gateway, its start
             (x1, y1), (x2, y2) = pts[-2], pts[-1]
-            if abs(y1 - y2) < 1:  # horizontal into the target: right-align just before it
+            source_kind = {n[0]: n[1] for n in model["nodes"]}.get(s)
+            if len(pts) == 2 and abs(y1 - y2) < 1 and source_kind == "xor" and x2 > x1:
+                o.append(f'<text x="{x1 + 6:.0f}" y="{y1 - 6:.0f}" font-size="11" fill="#5b6675">{escape(label)}</text>')
+            elif abs(y1 - y2) < 1:  # horizontal into the target: right-align just before it
                 o.append(f'<text x="{x2 - 6:.0f}" y="{y2 - 6:.0f}" text-anchor="end" font-size="11" fill="#5b6675">{escape(label)}</text>')
             else:
                 o.append(f'<text x="{x1 + 5:.0f}" y="{(y1 + y2) / 2:.0f}" font-size="11" fill="#5b6675">{escape(label)}</text>')
@@ -261,6 +299,17 @@ def svg(model: dict, boxes: dict) -> str:
             bw = 8 + 7 * len(text)
             o.append(f'<rect x="{x + w - bw / 2:.0f}" y="{y - 9:.0f}" width="{bw}" height="16" rx="8" fill="{colour}"/>'
                      f'<text x="{x + w:.0f}" y="{y + 3:.0f}" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">{escape(text)}</text>')
+    for b_id, _, interrupting, label, _ in model.get("boundaries", []):
+        x, y, w, h = boxes[b_id]
+        cx, cy, r = x + w / 2, y + h / 2, EVENT / 2
+        dash = "" if interrupting else ' stroke-dasharray="4 3"'
+        o.append(f'<circle cx="{cx:.0f}" cy="{cy:.0f}" r="{r}" fill="#fff" stroke="#1b2430" stroke-width="1.5"{dash}/>'
+                 f'<circle cx="{cx:.0f}" cy="{cy:.0f}" r="{r - 4}" fill="none" stroke="#1b2430" stroke-width="1.2"{dash}/>'
+                 f'<circle cx="{cx:.0f}" cy="{cy:.0f}" r="{r - 8}" fill="none" stroke="#1b2430"/>'
+                 f'<path d="M{cx:.0f},{cy:.0f} L{cx:.0f},{cy - 7:.0f} M{cx:.0f},{cy:.0f} L{cx + 5:.0f},{cy + 2:.0f}" stroke="#1b2430" stroke-width="1.4"/>')
+        lines = wrap(label, 14)  # above the host's top edge, left of the event, clear of the flows
+        for j, line in enumerate(lines):
+            o.append(f'<text x="{x - 4:.0f}" y="{cy - 4 - (len(lines) - 1 - j) * 12:.0f}" text-anchor="end" font-size="10.5" fill="#5b6675">{escape(line)}</text>')
     o.append('</svg>')
     return "\n".join(o)
 

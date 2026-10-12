@@ -27,7 +27,7 @@
 |---|---|
 | "Hoe krijgen jullie wijzigingen uit het TMS binnen?" | webhooks + order opvragen via REST; aannames TA-1 – TA-6 |
 | "Wat als hetzelfde event twee keer komt?" | idempotentie op eventId; getest; demo stap 3 |
-| "En als een ouder event na een nieuwer komt?" | `occurredAt` vergelijken — voorgesteld, níét in de demo (eerlijk zeggen) |
+| "En als een ouder event na een nieuwer komt?" | `occurredAt` vergelijken: in de demo geïmplementeerd en getest (scenariostap 3, TC-34); sailing delays zijn delta's en worden niet herordend |
 | "Waarom geen Kafka?" | volume, één bron, beheerbaarheid voor support; herbekijken bij 10× volume |
 | "Hoe zou jij `resolve` specificeren?" | reason code verplicht, "other" + notitie, 409 vanuit OPEN, rechten, idempotency key |
 | "Je hebt een demo gebouwd. Moet een BA coderen?" | nee; demo als bewijs dat de spec precies genoeg is; vond OQ-01 – OQ-05 en een privacylek |

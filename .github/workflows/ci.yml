@@ -17,6 +17,11 @@ jobs:
           node-version: 22
       - name: Acceptance examples against the business rules
         run: node --test tests/*.test.mjs
+      - name: BPMN and DMN files are up to date with their generators
+        run: |
+          python3 scripts/build_bpmn.py
+          python3 scripts/build_dmn.py
+          git diff --exit-code -- docs/04-process/bpmn site/assets/bpmn docs/05-requirements/dmn
       - name: Mock data is up to date with its generator
         run: node demo/mock-data/generate.mjs --check
       - name: API contract lint (OpenAPI 3.1)

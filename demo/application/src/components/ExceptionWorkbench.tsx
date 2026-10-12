@@ -120,6 +120,7 @@ export function ExceptionWorkbench() {
                     <div className="flex flex-wrap items-center gap-2">
                       <SeverityBadge severity={e.severity} />
                       <StatusBadge status={e.status} />
+                      {e.status === "HELD" && e.escalatedAt && <span className="rounded bg-critical-soft px-1.5 py-0.5 text-xs text-critical">escalated (D-09)</span>}
                       {e.windowAssumed && <span className="rounded bg-major-soft px-1.5 py-0.5 text-xs text-major">window assumed</span>}
                       {e.release === "R2" && <span className="rounded bg-surface-2 px-1.5 py-0.5 text-xs text-muted">release 2</span>}
                       <span className="ml-auto text-xs text-muted">{e.exceptionId}</span>
@@ -307,7 +308,7 @@ function Actions({ ex, state, actorId, canWork }: { ex: ExceptionRecord; state: 
         {ex.status === "HELD" && (
           <fieldset className="rounded-md border border-border p-3" disabled={!canWork || pending}>
             <legend className="px-1 text-sm font-medium">Confirm with the haulier (US-08)</legend>
-            <p className="mb-2 text-sm text-muted">The customer hears nothing until you confirm. Many hauliers simply did not update the app (D-04).</p>
+            <p className="mb-2 text-sm text-muted">The customer hears nothing until you confirm. Many hauliers simply did not update the app (D-04).{ex.escalatedAt ? ` Escalated to the shift lead at ${formatDayTime(ex.escalatedAt)}: not confirmed within the response time — still held (D-09).` : ""}</p>
             <div className="flex flex-wrap items-end gap-3">
               <Button onClick={() => run((api) => api.confirmStatus(ex.exceptionId, "ON_TIME", null, actorId, key()))}>Haulier confirms on time</Button>
               <Field label="New ETA from the haulier (UK time)" htmlFor="neweta">
@@ -325,7 +326,7 @@ function Actions({ ex, state, actorId, canWork }: { ex: ExceptionRecord; state: 
             <span className="text-sm text-muted">Records your name and time; stops the response clock (AC-04.1).</span>
           </div>
         )}
-        {me.role === "SHIFT_LEAD" && ["OPEN", "ESCALATED", "ACKNOWLEDGED", "RECOVERED"].includes(ex.status) && (
+        {me.role === "SHIFT_LEAD" && ["OPEN", "ESCALATED", "ACKNOWLEDGED", "RECOVERED", "HELD"].includes(ex.status) && (
           <div className="flex flex-wrap items-end gap-3">
             <Field label={ex.status === "ESCALATED" ? "Escalated — assign to a planner (AC-03.5)" : "Assign to"} htmlFor="assignee">
               <select id="assignee" className={inputClass} value={assignee} onChange={(e) => setAssignee(e.target.value)}>

@@ -111,7 +111,7 @@ Size in story points (team estimate in refinement). Rules: [ER-xx](../05-require
 
 | ID | Story | Release | Why later |
 |---|---|---|---|
-| US-06 | As an EDI/API customer I receive a status message for major/critical exceptions | R2 | Different message standard per customer; one EDI customer in the pilot gets portal + e-mail meanwhile |
+| US-06 | As an EDI/API customer I receive a status message for major/critical exceptions | R2 | Different message standard per customer; one EDI customer in the pilot gets portal + e-mail meanwhile — **refined:** [release 2, EDI/API status](release-2-edi-status.md) |
 | US-09 | As the customs desk I want customs holds to ask the customer to act, with what is missing | R2 | Customs desk not in the pilot; message content needs legal review |
 | US-12 | As a customer I manage my notification preferences in the portal | R2 | R1: CS sets "every update" on request (1 of 5 pilot customers asked) |
 | US-14 | As a consignee I receive the new ETA | R3 | GDPR and contract questions (D-05) |

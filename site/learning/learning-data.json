@@ -393,7 +393,7 @@
       }
      ],
      "answer": "B",
-     "explanation": "Een timer boundary event drukt een termijn op een taak uit. De gateway in de huidige TO-BE werkt voor leesbaarheid maar is minder precies — een goed onderwerp om in een interview zelf aan te kaarten."
+     "explanation": "Een timer boundary event drukt een termijn uit die loopt *tijdens* een taak; een gateway beslist op één moment. De eerste versie van de TO-BE gebruikte een gateway; de huidige gebruikt een onderbrekende timer (Acknowledge) en een niet-onderbrekende timer (Hold, D-09). Een goed verhaal voor een interview: \"een review vond het, ik heb het verbeterd\"."
     },
     {
      "id": "Q8",

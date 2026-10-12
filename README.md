@@ -10,7 +10,9 @@
 
 [![CI](https://github.com/phlppgdfry/shipment-exception-management-business-analysis/actions/workflows/ci.yml/badge.svg)](https://github.com/phlppgdfry/shipment-exception-management-business-analysis/actions/workflows/ci.yml)
 
-![Planner workbench designed in Figma](docs/07-design/figma/planner-workbench.png)
+![65-second walkthrough of the control tower: a sailing delay is classified by the rules, assigned, told to the customer, resolved and audited](portfolio/walkthrough/walkthrough.gif)
+
+*65-second walkthrough of the [control tower](https://phlppgdfry.github.io/shipment-exception-management-business-analysis/control-tower/) (also as [MP4 on the site](https://phlppgdfry.github.io/shipment-exception-management-business-analysis/assets/walkthrough/walkthrough.mp4)). The earlier screens designed in Figma are in [design](docs/07-design/design.md).*
 
 ## The journey
 
@@ -53,8 +55,8 @@ Since its new transport management system went live, Tidewell's customers can se
 - **Framed the problem before the solution** — five whys, four options scored with the business, a business case with its riskiest assumption named and a six-week pilot as the way to test it — [options and business case](docs/01-opportunity/options-and-business-case.md)
 - **Ran discovery and a big-picture event storming** — contradictions kept, six hotspots, each decided by its owner — [interview notes](docs/02-discovery/interview-notes.md), [event storming](docs/03-workshops/event-storming-board.md), [decision log](docs/03-workshops/decision-log.md)
 - **Modelled the process** in BPMN 2.0 (valid `.bpmn` files) and the release in UML — [AS-IS](docs/04-process/as-is.md), [TO-BE](docs/04-process/to-be.md), [UML](docs/04-process/uml.md)
-- **Wrote the exception rules** as one decision table; the 30 examples **run as tests in CI** — [rules](docs/05-requirements/exception-rules.md), [feature file](docs/06-backlog/features/exception-decision.feature)
-- **Prepared the backlog with the PO** — story map, WSJF with the trade-offs she made, a two-sprint pilot — [prioritisation](docs/06-backlog/prioritisation.md), [user stories](docs/06-backlog/user-stories.md)
+- **Wrote the exception rules** as one decision table — also as **DMN 1.3** — and the 30 examples **run as tests in CI**; a second test checks that the DMN and the code agree on 912 combinations — [rules](docs/05-requirements/exception-rules.md), [feature file](docs/06-backlog/features/exception-decision.feature), [DMN](docs/05-requirements/dmn/exception-decisions.dmn)
+- **Prepared the backlog with the PO** — story map, WSJF with the trade-offs she made, a two-sprint pilot — [prioritisation](docs/06-backlog/prioritisation.md), [user stories](docs/06-backlog/user-stories.md); and a **second iteration**: release 2 (EDI/API status messages) refined into slices with criteria and open questions — [release 2](docs/06-backlog/release-2-edi-status.md)
 - **Designed the screens** in Figma and as a clickable prototype on the same rules — [design](docs/07-design/design.md), [prototype](https://phlppgdfry.github.io/shipment-exception-management-business-analysis/prototype/)
 - **Took it through delivery** — refinement, sprint review demo, a retro action on my own mistake — [refinement log](docs/08-delivery/refinement-log.md)
 - **Specified the solution for the team** — conceptual architecture (proposed vs. implemented), OpenAPI contract, idempotency and failure handling, data model and state machines, security and privacy — [architecture](docs/12-architecture/README.md)

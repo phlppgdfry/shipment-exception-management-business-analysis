@@ -83,6 +83,15 @@
   ],
   "scenario": {
     "orderRef": "D2D-48213",
+    "staleEvent": {
+      "eventId": "EVT-0930-OT-ROAD-LATE-ARRIVAL",
+      "type": "ROAD_ETA_UPDATED",
+      "occurredAt": "2026-02-04T09:30:00Z",
+      "source": "Haulier app (delivered late by the network)",
+      "orderRef": "D2D-48231",
+      "newEta": "2026-02-04T13:40:00Z",
+      "reason": "Replacement tractor ETA 13:40"
+    },
     "delayEvent": {
       "eventId": "EVT-0952-E312-DELAY",
       "type": "SAILING_DELAYED",

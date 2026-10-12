@@ -70,7 +70,7 @@ export function overview(state: DemoState): Overview {
     delayed: delayed.length,
     criticalExceptions: activeEx.filter((e) => e.severity === "CRITICAL").length,
     unassignedExceptions: activeEx.filter((e) => !e.assigneeId && e.status !== "RECOVERED").length,
-    escalated: activeEx.filter((e) => e.status === "ESCALATED").length,
+    escalated: activeEx.filter((e) => e.status === "ESCALATED" || (e.status === "HELD" && e.escalatedAt)).length,
     held: activeEx.filter((e) => e.status === "HELD").length,
     openCallTasks: state.callTasks.filter((t) => t.status === "OPEN").length,
     byOwner,

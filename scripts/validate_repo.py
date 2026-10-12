@@ -56,7 +56,7 @@ REQUIRED = [
     "docs/03-workshops/event-storming-plan.md", "docs/03-workshops/event-storming-board.md", "docs/03-workshops/workshop-dialogue.md", "docs/03-workshops/decision-log.md",
     "docs/04-process/as-is.md", "docs/04-process/to-be.md", "docs/04-process/gap-analysis.md", "docs/04-process/uml.md",
     "docs/04-process/bpmn/as-is.bpmn", "docs/04-process/bpmn/to-be.bpmn",
-    "docs/05-requirements/exception-rules.md", "docs/05-requirements/requirements.md", "docs/05-requirements/traceability.md",
+    "docs/05-requirements/exception-rules.md", "docs/05-requirements/dmn/exception-decisions.dmn", "docs/05-requirements/requirements.md", "docs/05-requirements/traceability.md",
     "docs/06-backlog/product-vision-and-roadmap.md", "docs/06-backlog/story-map.md", "docs/06-backlog/user-stories.md", "docs/06-backlog/prioritisation.md",
     "docs/06-backlog/definition-of-ready-done.md", "docs/06-backlog/features/exception-decision.feature",
     "docs/07-design/personas-and-journeys.md", "docs/07-design/ux-specification.md", "docs/07-design/design.md",
@@ -233,7 +233,15 @@ for f in sorted((ROOT / "docs/04-process/bpmn").glob("*.bpmn")):
                 bp.append(f"{f.name}: {flow.get('id')} {attr}={flow.get(attr)} does not exist")
     if not list(root.iter(f"{{{NS['bpmn']}}}startEvent")) or not list(root.iter(f"{{{NS['bpmn']}}}endEvent")):
         bp.append(f"{f.name}: needs a start and an end event")
-report("BPMN 2.0 files", bp)
+for f in sorted((ROOT / "docs/05-requirements/dmn").glob("*.dmn")):
+    try:
+        root = ET.parse(f).getroot()
+    except ET.ParseError as e:
+        bp.append(f"{f.name}: not well-formed XML ({e})")
+        continue
+    if root.tag != "{https://www.omg.org/spec/DMN/20191111/MODEL/}definitions":
+        bp.append(f"{f.name}: root is not a DMN 1.3 definitions element")
+report("BPMN 2.0 and DMN 1.3 files", bp)
 
 # ---------------------------------------------------------------- 7. learning lab
 SECTIONS = [

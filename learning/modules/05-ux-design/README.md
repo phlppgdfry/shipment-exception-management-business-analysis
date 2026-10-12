@@ -83,6 +83,7 @@ Kleur is nooit het enige signaal (severity = vorm + tekst + kleur), voldoende co
 | [Design + Figma-exports](../../../docs/07-design/design.md) | het "exception row"-component en de geannoteerde ontwerpkeuzes |
 | [Control tower](https://phlppgdfry.github.io/shipment-exception-management-business-analysis/control-tower/exceptions/) | probeer flow F1 en de rol "terminal coordinator" (read-only) |
 | [`globals.css`](../../../demo/application/src/app/globals.css) | dezelfde tokens als in de UX-specificatie |
+| [Usability-testplan](../../../docs/07-design/usability-test-plan.md) | klaar om uit te voeren met 1–2 mensen; het [verslag](../../../docs/07-design/usability-test-report.md) vul je zelf in |
 
 ## 6. Stap voor stap (tutorial)
 

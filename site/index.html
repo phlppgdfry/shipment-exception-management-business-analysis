@@ -38,6 +38,13 @@
         <a class="btn" href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/portfolio/case-study/case-study.pdf">Executive case study (PDF)</a>
         <a class="btn" href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis">Explore on GitHub</a>
       </div>
+      <figure class="diagram" style="margin-top:24px">
+        <video controls muted playsinline preload="none" poster="assets/walkthrough/walkthrough-poster.png" style="width:100%;height:auto;display:block;border-radius:8px" aria-describedby="walkthrough-caption">
+          <source src="assets/walkthrough/walkthrough.mp4" type="video/mp4">
+          <a href="control-tower/">Open the control tower</a> to see the scenario.
+        </video>
+        <figcaption id="walkthrough-caption">65-second walkthrough of the guided scenario in the control tower, no sound, captions in the video: a sailing delay, the rules classifying the exception, the shift lead assigning it, the customer message, the new window, the audit trail and the test results.</figcaption>
+      </figure>
     </section>
 
     <section id="routes" class="wrap section" aria-labelledby="routes-title">
@@ -138,6 +145,7 @@ stateDiagram-v2
   Open --> Held: missing status
   Held --> Open: delay confirmed
   Held --> Closed: on time after all
+  Held --> Held: overdue, shift lead alerted
   Open --> Acknowledged: owner responds
   Open --> Escalated: response time passed
   Escalated --> Acknowledged

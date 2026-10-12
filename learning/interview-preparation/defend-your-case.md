@@ -67,9 +67,9 @@
 | **Waarom zo** | Eén scenario (afvaartvertraging); de klant als lane voor leesbaarheid (bewuste afwijking van pool + message flows). |
 | **Alternatieven** | Swimlane in Visio zonder BPMN-semantiek; value stream map; SIPOC. |
 | **Aannames** | Het AS-IS is gebaseerd op gesimuleerde shadowing. |
-| **Beperkingen** | Escalatie als gateway i.p.v. timer boundary event; klant niet als aparte pool. |
+| **Beperkingen** | Klant niet als aparte pool met message flows; één scenario. (De escalatie stond eerst als gateway; nu een timer boundary event — na review aangepast.) |
 | **Valideren** | AS-IS laten bevestigen door een planner van elke shift. |
-| **Senior BA vraagt** | "Waarom geen timer event voor de response time?" → *Goed punt: dat is correcter BPMN; ik koos leesbaarheid voor de business, en de regel staat in ER-09.* |
+| **Senior BA vraagt** | "Waarom een onderbrekende timer op Acknowledge en een niet-onderbrekende op Hold?" → *Bij Acknowledge neemt de shift lead het over (de taak stopt); bij Hold moet de planner blijven proberen de haulier te bereiken en blijft de klant in de wacht — de shift lead komt erbij (D-09).* |
 
 ### 6. Exception rules en beslistabel — [doc](../../docs/05-requirements/exception-rules.md)
 
@@ -123,7 +123,7 @@
 | **Waarom zo** | Klein houden (D-03); geen broker of microservices zonder reden. |
 | **Alternatieven** | Integratieplatform; leveranciersmodule afwachten; extern visibility-platform. |
 | **Aannames** | TMS-gedrag (TA-1 – TA-6). |
-| **Beperkingen** | Niet gereviewd door een echte architect of securityteam; out-of-order events niet in de demo. |
+| **Beperkingen** | Niet gereviewd door een echte architect of securityteam; bounces (FR-09) en load niet in de demo. |
 | **Valideren** | Spike met de leverancier; architectuurreview; DPO. |
 | **Senior BA vraagt** | "Is het jouw rol om een architectuur te tekenen?" → *Nee — de architect beslist; ik maak het concreet genoeg om de juiste vragen te stellen en de gevolgen voor gebruikers te zien.* |
 

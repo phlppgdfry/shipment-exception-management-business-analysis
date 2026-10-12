@@ -21,7 +21,7 @@ Eén object, toestanden en overgangen: state diagram ([data model and states](..
 Het type verandering bepaalt het soort werk: backlog, beslissing, of training en communicatie.
 
 ### Q7 — B
-Een timer boundary event drukt een termijn op een taak uit. De gateway in de huidige TO-BE werkt voor leesbaarheid maar is minder precies — een goed onderwerp om in een interview zelf aan te kaarten.
+Een timer boundary event drukt een termijn uit die loopt *tijdens* een taak; een gateway beslist op één moment. De eerste versie van de TO-BE gebruikte een gateway; de huidige gebruikt een onderbrekende timer (Acknowledge) en een niet-onderbrekende timer (Hold, D-09). Een goed verhaal voor een interview: "een review vond het, ik heb het verbeterd".
 
 ### Q8 — B
 Het bestand is het artefact; de SVG in `site/assets/bpmn` wordt ervan gegenereerd.

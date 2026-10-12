@@ -72,6 +72,8 @@ export interface Shipment {
   scenarioOrder: boolean;
   updates?: ShipmentUpdate[];
   customsHold?: boolean;
+  /** occurredAt of the last applied absolute ETA change — older events are ignored (out-of-order handling). */
+  lastChangeAt?: string;
 }
 
 export interface Sailing {
@@ -220,7 +222,7 @@ export interface EventLogEntry {
   type: TransportEventType;
   receivedAt: string;
   occurredAt: string;
-  outcome: "PROCESSED" | "DUPLICATE_IGNORED";
+  outcome: "PROCESSED" | "DUPLICATE_IGNORED" | "STALE_IGNORED";
   affectedOrders: string[];
   exceptionsOpened: string[];
   summary: string;

@@ -32,7 +32,7 @@ Open the overview and follow the panel on the right. Every button calls the same
 9. The **audit trail** shows every event, decision and change, with who and when.
 10. The **acceptance examples** behind these rules, with the result of the test run in this build.
 
-Also try: switch **Acting as** to the terminal coordinator (read-only on road planning, NFR-06); press **+30 min** to see escalation (ER-09); confirm the **held** missing-status exception EX-1008 as "on time" (no customer message, ER-07); tick **Simulate TMS outage** to see the error and retry states.
+Also try: in step 3, **send an older ETA update** — it arrived late from the network and must not overwrite the newer ETA (out of order, TC-34); press **+30 min** on held exception EX-1008 to see it escalated to the shift lead while the customer message stays held (D-09); switch **Acting as** to the terminal coordinator (read-only on road planning, NFR-06); press **+30 min** to see escalation (ER-09); confirm the **held** missing-status exception EX-1008 as "on time" (no customer message, ER-07); tick **Simulate TMS outage** to see the error and retry states.
 
 ## How it is built
 
@@ -69,7 +69,6 @@ Regenerate the mock data after changing the generator: `node demo/mock-data/gene
 
 - **One active exception per order.** A new cause on the same order updates the active exception instead of opening a second one. The proposed service may need both (see [DEF-04](../docs/09-acceptance/bat-log.md)); throttling is per order either way.
 - **No delivery simulation.** Advancing the clock escalates and sends pending messages, but shipments do not move to "delivered", so resolved exceptions do not reach *closed*.
-- **Held exceptions do not escalate.** The UML diagram has no Held → Escalated transition; the demo shows "respond by" but leaves it to the planner. Recorded as open question OQ-02 in the [architecture](../docs/12-architecture/README.md#open-questions-found-while-building-the-demo).
 - **No bounce handling (FR-09)** and no EDI/API status messages (US-06, release 2).
 - **State lives in your browser tab** (sessionStorage). "Reset demo" starts the day again.
 - **Time zones:** everything is shown in UK local time. That is right for customer messages, but refinement Q10 decided the workbench shows the *planner's* local time — a planner in Belgium would see +1 h. Window inputs are UK time (in the demo week, February, UK time equals UTC).

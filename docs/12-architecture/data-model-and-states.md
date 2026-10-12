@@ -120,6 +120,7 @@ stateDiagram-v2
   [*] --> Held: missing status (ER-07)
   Held --> Open: planner confirms a delay
   Held --> Closed: planner confirms on time (false alarm)
+  Held --> Held: response time passed / escalated, still held (D-09)
   Open --> Acknowledged: owner acknowledges / shift lead assigns
   Open --> Escalated: response time passed (ER-09)
   Escalated --> Acknowledged: shift lead assigns
@@ -144,6 +145,7 @@ stateDiagram-v2
 | Open → Acknowledged | acknowledge | owner group | — | AC-04.1 |
 | Open/Escalated → Acknowledged | assign | shift lead only | assignee in owner group | AC-03.5, e2e escalation |
 | Open → Escalated | clock passes `dueAt` | system | not acknowledged | AC-03.4, lifecycle test |
+| Held → Held (escalated) | clock passes `dueAt` | system | not confirmed; once only | D-09, TC-33 |
 | any active → Recovered | evaluation: inside window | system | — | AC-10.1/10.2, scenario step 8 |
 | Acknowledged/Recovered → Resolved | resolve | owner group / shift lead | reason code; note if "other" | AC-04.3, e2e |
 | Resolved → Closed | delivery confirmed | system | — | not in the demo (no delivery simulation) |

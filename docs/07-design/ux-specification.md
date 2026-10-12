@@ -129,7 +129,7 @@ Target: **WCAG 2.2 AA**. Checked automatically with axe-core on every route, des
 - All form controls labelled; errors announced with `role="alert"`; the demo clock is `aria-live`.
 - Tables have captions and header scopes; wide tables are focusable scroll regions with a label.
 - Visible focus ring (3 px, accent colour); `prefers-reduced-motion` respected; dark mode via `prefers-color-scheme`.
-- **Not verified:** a walkthrough with a screen-reader user (TC-M6). Automated checks find roughly a third of issues; they are a floor, not a certificate.
+- **Not verified:** a walkthrough with a screen-reader user (TC-M6), and a usability test with real users — prepared in the [usability test plan](usability-test-plan.md), not yet run. Automated checks find roughly a third of issues; they are a floor, not a certificate.
 
 ## UX decisions and the need behind each
 

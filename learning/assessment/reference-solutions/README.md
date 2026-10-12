@@ -23,14 +23,14 @@ Mogelijke tegenstrijdigheid: de case maakt terminal operations eigenaar van TERM
 ```text
 Lanes: Exception component | Road planner | Haulier | Customer
 (start: timer "no status for N h") → [service] Evaluate rules → exception HELD (major / critical if time-critical)
- → [user, planner] Contact haulier   ⏱ timer boundary: response time passed → [user, shift lead] Escalate (OQ-02)
+ → [user, planner] Contact haulier   ⏱ timer boundary: response time passed → [user, shift lead] Chase haulier — non-interrupting: the hold continues (D-09)
  → [haulier] Confirms position / ETA
  → <XOR> "Delivery inside window?"
      yes → [service] Close as false alarm → (end: no customer message)
      no  → [service] Re-evaluate as road delay → [send] Customer message → (end)
 ```
 
-Let op: de klant-lane krijgt pas iets in het "no"-pad. De timer is een *voorstel* (OQ-02 is open) — zeg dat.
+Let op: de klant-lane krijgt pas iets in het "no"-pad. De timer is *niet-onderbrekend*: de hold loopt door en de klant hoort nog niets (D-09). Vergelijk met de TO-BE in de repo.
 
 ## T4 — stories voor meldingsvoorkeuren
 

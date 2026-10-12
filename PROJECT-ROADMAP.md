@@ -51,9 +51,10 @@
 | Owner's own exercises, competency tasks and AI-provenance levels | only the owner can do them | start with module 1, T1, T4, T5 ([learning lab](learning/README.md)) |
 | Control tower screens not in Figma | not created in this environment | import screenshots or html.to.design into the existing Figma file |
 | Interview deck not opened in PowerPoint/Keynote here | no presentation app available | open once and fix any layout issue |
-| Open questions OQ-02 (held exceptions escalation) and review items A6, A9–A11, C5, C7, C8 | need a real owner or real practice | see [reviews](docs/13-quality/reviews.md) |
+| Review items A10, A11, C5, C7, C8 | need a real owner or real practice | see [reviews](docs/13-quality/reviews.md) |
+| Usability test with 1–2 real people | only the owner can run it | [plan and script](docs/07-design/usability-test-plan.md) ready; [report](docs/07-design/usability-test-report.md) template empty |
 | Real-world validation (stakeholders, data, BAT) | fictional case | listed per artefact in [defend your case](learning/interview-preparation/defend-your-case.md) |
-| Out-of-order event handling, bounces (FR-09), load testing | not in the demo | proposed in the [architecture](docs/12-architecture/integration-and-api.md) |
+| Bounces (FR-09), load testing | not in the demo | proposed in the [architecture](docs/12-architecture/integration-and-api.md) |
 | Screen-reader walkthrough | needs a person | TC-M6 |
 
 ## How to publish (already set up)

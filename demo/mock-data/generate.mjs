@@ -257,6 +257,8 @@ const morningCommands = [
 // The guided scenario (see demo/README.md). Step 2 publishes this event.
 const scenario = {
   orderRef: "D2D-48213",
+  // Arrives after the 09:45 update but happened at 09:30: must not overwrite the newer ETA (out-of-order handling).
+  staleEvent: { eventId: "EVT-0930-OT-ROAD-LATE-ARRIVAL", type: "ROAD_ETA_UPDATED", occurredAt: at("Wed", "09:30"), source: "Haulier app (delivered late by the network)", orderRef: "D2D-48231", newEta: at("Wed", "13:40"), reason: "Replacement tractor ETA 13:40" },
   delayEvent: { eventId: "EVT-0952-E312-DELAY", type: "SAILING_DELAYED", occurredAt: at("Wed", "09:52"), source: "Booking & sailing system", sailingId: "E-312", delayMinutes: 360, reason: "Technical inspection: departure 18:00 instead of 12:00" },
   assignTo: "USR-PLANNER",
   responseAction: "Called the consignee's goods-in desk: a new slot Thu 13:00–15:00 is possible.",

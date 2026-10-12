@@ -150,7 +150,7 @@ export class MockControlTowerApi {
     this.command((d): EventOutcome & { httpStatus: 200 | 202 } => {
       if (event.occurredAt > d.now) d.now = event.occurredAt;
       const out = processEvent(d, event);
-      return { ...out, httpStatus: out.outcome === "DUPLICATE_IGNORED" ? 200 : 202 };
+      return { ...out, httpStatus: out.outcome === "PROCESSED" ? 202 : 200 };
     });
 
   // POST /v1/exceptions/{id}/acknowledge · /assign · /actions · /confirm-status · /replan · /resolve
@@ -161,6 +161,17 @@ export class MockControlTowerApi {
     this.command((d) => confirmStatus(d, id, outcome, newEta, actorId), key);
   replan = (id: string, window: TimeWindow, actorId: string, key?: string) => this.command((d) => replan(d, id, window, actorId), key);
   resolve = (id: string, reason: ReasonCode, note: string, actorId: string, key?: string) => this.command((d) => resolve(d, id, reason, note, actorId), key);
+
+  /**
+   * Scenario step 6 as ONE command: register the action and, if a message is waiting for a note, send it with the note.
+   * One commit means a page reload can never leave half of it applied.
+   */
+  respondAndSend = (id: string, text: string, messageId: string | null, note: string, actorId: string, key?: string) =>
+    this.command((d) => {
+      addAction(d, id, text, actorId);
+      const pending = messageId ? d.messages.find((m) => m.messageId === messageId && m.status === "PENDING_NOTE") : undefined;
+      if (pending) sendWithNote(d, pending.messageId, note, actorId);
+    }, key);
 
   // POST /v1/messages/{id}/send · POST /v1/call-tasks/{id}/complete
   sendWithNote = (messageId: string, note: string, actorId: string, key?: string) => this.command((d) => sendWithNote(d, messageId, note, actorId), key);

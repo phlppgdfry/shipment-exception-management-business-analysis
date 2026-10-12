@@ -93,6 +93,7 @@ stateDiagram-v2
   Open --> Held: missing status (ER-07)
   Held --> Open: planner confirms delay
   Held --> Closed: planner confirms on time
+  Held --> Held: response time passed / escalate to shift lead (D-09)
   Open --> Acknowledged: owner acknowledges
   Open --> Escalated: response time passed
   Escalated --> Acknowledged: shift lead assigns

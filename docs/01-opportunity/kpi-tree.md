@@ -19,7 +19,7 @@ flowchart LR
   O3 --> K8["K8 messages per exception"]
 ```
 
-| ID | KPI | Definition | Baseline | Target (pilot, week 6) | Owner | Frequency |
+| ID | KPI | Definition | Baseline | Target (after 6 pilot weeks) | Owner | Frequency |
 |---|---|---|---:|---:|---|---|
 | K1 | Proactive notification rate | Major/critical exceptions where the customer was told before the window started ÷ all major/critical exceptions | 22% | ≥ 90% | Head of Customer Service | weekly |
 | K2 | Time to inform (median) | Exception opened → customer message sent | 3 h 10 min | ≤ 30 min | Head of Customer Service | weekly |

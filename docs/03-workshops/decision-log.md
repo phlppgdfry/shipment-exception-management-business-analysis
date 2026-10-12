@@ -71,6 +71,18 @@ Format: context → options → decision → consequences. The BA prepares; the 
 - **Decision:** the system message always goes out (one story), and the planner can add a free-text note to it before sending for critical exceptions. Personal calls stay possible and are logged on the exception.
 - **Why:** keeps what works (personal contact) and removes what does not (customers who are never called).
 
+## D-09
+
+**Held exceptions that pass their response time** · Owner: road planning lead · Open question OQ-02 (found while building the demo)
+
+- **Context:** a missing-status exception is *held* (ER-07): the customer hears nothing until a planner confirms with the haulier. It has a response time (D-04), but nothing happened when that time passed.
+- **Options:** (a) escalate to the shift lead *and* release the customer message; (b) escalate to the shift lead, keep the message held; (c) do nothing, show "overdue".
+- **Decision:** (b). The shift lead is alerted and can give the exception to a planner to chase the haulier; the customer is still told only after confirmation.
+- **Why:** the reason for holding (a false alarm costs more trust than a late one) does not change when the clock runs out — but the haulier going silent for longer *is* a reason for a more senior person to act.
+- **Consequences:** ER-09 now covers held exceptions; non-interrupting timer on "Hold: confirm with haulier" in the [TO-BE](../04-process/to-be.md); state diagram shows Held → Held (escalated); tested (TC-33).
+
+*Simulated decision of a fictional owner, proposed by the analyst after building the demo.*
+
 ---
 
 [Documentation map](../00-documentation-map.md) · Next: [AS-IS process →](../04-process/as-is.md)

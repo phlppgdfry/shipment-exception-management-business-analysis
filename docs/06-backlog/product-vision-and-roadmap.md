@@ -31,9 +31,9 @@
 |---|---|---:|---:|---|
 | R1 | see story map | 36 pts | 2 | BAT signed, go/no-go ([readiness](../10-go-live/release-readiness.md)) |
 | R1.1 | DEF-05 auto-refresh, DEF-06 link in call task | ±3 pts | part of sprint 3 | hypercare exit |
-| R2 | US-06, US-09, US-12 + consignee hours + onboarding | 18 pts refined (+ unrefined items) | ±2–3 | stage gate passed |
+| R2 | US-06 ([refined](release-2-edi-status.md): 06a/06b/06c, 10 pts), US-09, US-12 + consignee hours + onboarding | 20 pts estimated (+ unrefined items) | ±2–3 | stage gate passed |
 
-Velocity ±18–20 points per sprint. R2 estimates cover US-06/09/12 only (8 + 5 + 5 from the [WSJF table](prioritisation.md#scores)); the other R2 items are not refined yet, so the R2 range is a forecast, not a promise.
+Velocity ±18–20 points per sprint. R2 estimates cover US-06/09/12 only (US-06 re-estimated at 10 after splitting, + 5 + 5); the other R2 items are not refined yet, so the R2 range is a forecast, not a promise.
 
 ## Sprint goals (examples)
 

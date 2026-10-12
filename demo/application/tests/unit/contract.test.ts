@@ -88,6 +88,29 @@ describe("mock API responses conform to openapi.yaml", () => {
     expect(api.snapshot().exceptions.find((e) => e.exceptionId === exceptionId)!.actions).toHaveLength(1);
   });
 
+  test("scenario step 6 is one atomic command: action and message with note, or nothing", async () => {
+    const api = new MockControlTowerApi({ latencyMs: 0 });
+    await api.postTmsEvent(SCENARIO.delayEvent);
+    const ex = (await api.listExceptions()).find((e) => e.orderRef === SCENARIO.orderRef)!;
+    const pending = api.snapshot().messages.find((m) => m.orderRef === SCENARIO.orderRef && m.status === "PENDING_NOTE")!;
+    // Refused for a user outside the owner group: nothing at all is applied
+    await api.respondAndSend(ex.exceptionId, "Called", pending.messageId, "note", "USR-TERMINAL").catch(() => undefined);
+    expect(api.snapshot().exceptions.find((e) => e.exceptionId === ex.exceptionId)!.actions).toHaveLength(0);
+    expect(api.snapshot().messages.find((m) => m.messageId === pending.messageId)!.status).toBe("PENDING_NOTE");
+    await api.respondAndSend(ex.exceptionId, "Called", pending.messageId, "note", "USR-PLANNER");
+    expect(api.snapshot().exceptions.find((e) => e.exceptionId === ex.exceptionId)!.actions).toHaveLength(1);
+    expect(api.snapshot().messages.find((m) => m.messageId === pending.messageId)!.status).toBe("SENT");
+  });
+
+  test("an out-of-order event returns 200 and changes nothing", async () => {
+    const api = new MockControlTowerApi({ latencyMs: 0 });
+    const out = await api.postTmsEvent(SCENARIO.staleEvent);
+    expect(out.httpStatus).toBe(200);
+    const { httpStatus: _h, ...body } = out;
+    void _h;
+    expect(check(body, schema("EventOutcome"))).toEqual([]);
+  });
+
   test("a TMS outage returns 503 problem details for reads", async () => {
     const api = new MockControlTowerApi({ latencyMs: 0 });
     api.setFault({ tmsUnavailable: true });

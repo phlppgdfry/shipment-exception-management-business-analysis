@@ -59,6 +59,10 @@ The 30 decision examples **are** test cases; they live in [`exception-decision.f
 | TC-29 | accessibility | Every route: no serious/critical axe violations, one h1, no horizontal scroll on mobile | NFR-07, WCAG 2.2 | `route /… renders and passes axe` (desktop + mobile) |
 | TC-30 | routes | Every internal link on the overview resolves | navigation | `every internal link on the overview resolves` |
 | TC-31 | property | Severity never decreases as the delay grows | ER-02 | `severity never decreases when the delay grows` |
+| TC-33 | exception | Held exception past its response time → escalated to the shift lead once, still held, no message; shift lead can give it to a planner | ER-09, D-09 | `are escalated to the shift lead but stay held…`, `the shift lead can give a held exception to a planner…`, `escalation happens once` (unit), `a held exception past its response time is escalated but stays held (D-09)` (e2e) |
+| TC-34 | negative | An ETA update older than the last applied one → logged, not applied, no message (HTTP 200) | TA-4, NFR-03 | `an ETA update that happened before the last applied one…`, `an out-of-order event returns 200…` |
+| TC-35 | negative | Scenario step 6 is one command: refused completely for a user outside the owner group, applied completely otherwise | API atomicity | `scenario step 6 is one atomic command…` |
+| TC-36 | consistency | The DMN decision tables and the rule module agree on severity and notification for all 912 input combinations | ER-01 – ER-11, DMN | `DMN and the rule module give the same severity and notification…` |
 | TC-32 | coverage | Every documented rule is exercised by an example | traceability | `every rule the module can fire has a plain-language explanation` |
 
 ## Manual (designed, not automated here)
@@ -69,7 +73,6 @@ The 30 decision examples **are** test cases; they live in [`exception-decision.f
 | TC-M2 | performance | 95% of events evaluated within 2 min at 5× normal volume | NFR-01 | load environment |
 | TC-M3 | exception | E-mail bounces → "message failed" + call task | FR-09 | not in the demo |
 | TC-M4 | usability | Customer reads the message in their own inbox, local time correct | AC-05.2, DEF-01 | real reader (BAT-07) |
-| TC-M5 | negative | Out-of-order events: an older ETA after a newer one is ignored | integration | demo events arrive in order |
 | TC-M6 | accessibility | Screen-reader walkthrough of the workbench | NFR-07 | needs a person |
 
 ## Requirements → tests (summary)
@@ -92,7 +95,7 @@ The 30 decision examples **are** test cases; they live in [`exception-decision.f
 | FR-14 per-customer toggle | TC-23 |
 | NFR-01 timeliness | TC-M2 (load test, proposed); demo: evaluation is synchronous |
 | NFR-02 availability | not testable here — monitoring in production ([observability](../12-architecture/security-privacy-observability.md#observability)) |
-| NFR-03 idempotency | TC-08, TC-09 |
+| NFR-03 idempotency | TC-08, TC-09, TC-34 |
 | NFR-04 recovery | TC-26 (read path), TC-M1 |
 | NFR-05 privacy | TC-27 |
 | NFR-06 access | TC-12, TC-13 |

@@ -98,7 +98,7 @@ Building the demo was a test of the specification. These are the gaps it exposed
 | ID | Question | Owner | Demo's proposal |
 |---|---|---|---|
 | OQ-01 | An exception recovers **before anyone acknowledged it**. The state diagram only had Acknowledged → Recovered. | PO | Open/Escalated → Recovered allowed; no message unless the customer was told (ER-13). Added to the [state diagram](../04-process/uml.md#exception-lifecycle-uml-state-diagram) |
-| OQ-02 | A **held** (missing status) exception passes its response time. Escalate, or keep waiting for the haulier? | Road planning lead | Not escalated; "respond by" shown in red |
+| OQ-02 | A **held** (missing status) exception passes its response time. Escalate, or keep waiting for the haulier? | Road planning lead | **Decided in [D-09](../03-workshops/decision-log.md#d-09):** escalate to the shift lead, keep the customer message held |
 | OQ-03 | A critical message is **waiting for the planner note** (D-08) when the order recovers. Send, or withdraw? | PO | Withdraw it; the customer never hears about a delay that no longer exists |
 | OQ-04 | A recovered order becomes **late again**. Same exception or a new one? | PO | Same exception reopens (Recovered → Open/Acknowledged), with full history |
 | OQ-05 | A cancelled sailing moves the order to the next sailing — is that the planner's decision or automatic? | Road planning lead | Automatic in the demo (replacement sailing from the event); planner can re-plan |

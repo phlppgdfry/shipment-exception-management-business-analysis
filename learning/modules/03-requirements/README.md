@@ -101,6 +101,8 @@ Zo is niets gebouwd zonder reden en niets beloofd zonder test ([traceability](..
 | [User stories](../../../docs/06-backlog/user-stories.md) | US-07 en de toevoeging na DEF-04 |
 | [Feature file](../../../docs/06-backlog/features/exception-decision.feature) | 30 voorbeelden; draaien in CI |
 | [Traceability](../../../docs/05-requirements/traceability.md) | "One pain point, followed all the way" |
+| [DMN 1.3-beslistabellen](../../../docs/05-requirements/dmn/exception-decisions.dmn) | dezelfde regels in de OMG-standaard; hit policy FIRST vs. UNIQUE; een test vergelijkt ze met de code |
+| [Release 2 verfijnd](../../../docs/06-backlog/release-2-edi-status.md) | een story splitsen in slices, open vragen, en een eerlijke "nog niet ready" |
 | [Test cases](../../../docs/09-acceptance/test-cases.md) | requirements → tests |
 
 **Zelf proberen:** wijzig in de feature file de verwachte severity van AC-01.6 naar `MINOR` en draai `node --test tests/*.test.mjs`. De test faalt en toont precies welk voorbeeld van betekenis veranderd is. Zet het daarna terug.

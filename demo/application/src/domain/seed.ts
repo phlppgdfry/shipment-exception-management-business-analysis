@@ -12,6 +12,7 @@ import type { Customer, DemoState, Sailing, Shipment, TransportEvent, User } fro
 
 export const SCENARIO = scenarioFile.scenario as {
   orderRef: string;
+  staleEvent: TransportEvent;
   delayEvent: TransportEvent;
   assignTo: string;
   responseAction: string;

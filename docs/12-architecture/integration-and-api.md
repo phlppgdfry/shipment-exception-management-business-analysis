@@ -48,7 +48,7 @@ sequenceDiagram
 |---|---|---|
 | Same event ID twice | Second one returns `200`, changes nothing, logged as `EVENT_DUPLICATE` | NFR-03 · demo unit test "idempotency" · contract test "duplicate event returns 200" |
 | Same command retried (network timeout on the planner's side) | `Idempotency-Key` header; the second call returns the first result | contract test "retried command … applied once" |
-| Older event arrives after a newer one for the same order | Ignore changes whose `occurredAt` is older than the last applied change for that order; still audit them | proposed; **not in the demo** (events arrive in order there) |
+| Older event arrives after a newer one for the same order | Ignore absolute ETA changes whose `occurredAt` is older than the last applied change for that order; still audit them (`STALE_IGNORED`, HTTP 200) | **implemented in the demo** — guided scenario step 3, TC-34. Sailing delays are deltas and are not reordered; a corrected sailing time arrives as a new event |
 | Sailing event affects many orders | Fan out; evaluate each order; one audit line for the event plus one per order | demo step 3: 11 orders, 4 exceptions |
 | Two causes on one order (sailing delay, then road re-plan) | Throttle **per order** (ER-12 after DEF-04) | AC-07.x; demo keeps one active exception per order |
 

@@ -17,6 +17,15 @@ Source: [`bpmn/to-be.bpmn`](bpmn/to-be.bpmn) (valid BPMN 2.0 with diagram interc
 | Respond | When the phone rings | Acknowledge within 30 min (critical) or 2 h (major); otherwise escalated to the shift lead | P2 |
 | Close | Not recorded | Reason code mandatory; KPIs logged | P6 |
 
+## How the response time is modelled
+
+The response time (ER-09) is a **timer boundary event**, not a gateway:
+
+- On **"Acknowledge within response time"** an *interrupting* timer (solid double circle) fires when the response time passes: the planner's task is cancelled and the **shift lead assigns a planner** (AC-03.4, AC-03.5).
+- On **"Hold: confirm with haulier"** a *non-interrupting* timer (dashed) fires: the shift lead is alerted and chases the haulier, while the hold — and the planner's task — continue (D-09).
+
+An earlier version used a gateway "Within response time?". That reads easily but is not correct BPMN: a gateway decides at one moment, while a response time is a clock running *during* a task. The timer is the standard notation for it, and it made the open question about held exceptions (OQ-02) visible.
+
 ## Exception lifecycle
 
 The exception's own states are in the [state diagram](uml.md#exception-lifecycle-uml-state-diagram). Every ETA change re-evaluates the exception: it can become worse (new message, ER-12 allows it), better, or recover inside the window (recovery message, ER-13).
@@ -30,6 +39,8 @@ The exception's own states are in the [state diagram](uml.md#exception-lifecycle
 | Order has no delivery window | Window assumed = planned ETA + 2 h, flagged in the workbench | FR-03 · [D-06](../03-workshops/decision-log.md#d-06) |
 | Customer contact address bounces | Exception gets a "message failed" flag; CS task to call | FR-09 |
 | Webhook not received for 15 min | Application support alert; component re-reads changed orders via the API | NFR-04 |
+| Missing status not confirmed within the response time | Escalated to the shift lead; the customer message stays held | ER-09 · [D-09](../03-workshops/decision-log.md#d-09) |
+| An older ETA update arrives after a newer one | Logged, not applied (out of order) | TA-4 · TC-34 |
 | Planner does not acknowledge in time | Escalation to the shift lead | ER-09 · FR-07 |
 
 ## What is deliberately not in the TO-BE

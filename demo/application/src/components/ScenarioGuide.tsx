@@ -21,6 +21,7 @@ function facts(state: DemoState) {
     delayEvent,
     published: Boolean(delayEvent),
     duplicateTried: state.events.some((e) => e.eventId === SCENARIO.delayEvent.eventId && e.outcome === "DUPLICATE_IGNORED"),
+    staleTried: state.events.some((e) => e.eventId === SCENARIO.staleEvent.eventId),
     assigned: Boolean(ex?.assigneeId),
     actionLogged: Boolean(ex?.actions.length),
     delaySent: msgs.some((m) => m.kind === "DELAY" && m.status === "SENT"),
@@ -69,11 +70,20 @@ export function ScenarioGuide() {
       body: (
         <>
           All {f.delayEvent?.affectedOrders.length ?? 11} orders on E-312 are evaluated; only the {f.delayEvent?.exceptionsOpened.length ?? 4} whose delivery now falls <em>after the end of their window</em> become exceptions <RuleChip id="ER-01" text={RULE_TEXT["ER-01"]} />. Calder Retail has a wide window: later, but not late.
-          {f.published && <> Try sending the same event again: the component recognises the event ID and ignores it (NFR-03).</>}
+          {f.published && (
+            <>
+              {" "}Two integration checks you can try: send the same event again (recognised by its ID and ignored, NFR-03), or deliver an <em>older</em> ETA update for D2D-48231 after a newer one (not applied: out of order).
+            </>
+          )}
         </>
       ),
       done: f.published,
-      actions: f.published ? [{ label: f.duplicateTried ? "Duplicate ignored ✓" : "Send the same event again", run: () => run((api) => api.postTmsEvent(SCENARIO.delayEvent)), disabled: f.duplicateTried }] : undefined,
+      actions: f.published
+        ? [
+            { label: f.duplicateTried ? "Duplicate ignored ✓" : "Send the same event again", run: () => run((api) => api.postTmsEvent(SCENARIO.delayEvent)), disabled: f.duplicateTried },
+            { label: f.staleTried ? "Out-of-order update ignored ✓" : "Send an older ETA update", run: () => run((api) => api.postTmsEvent(SCENARIO.staleEvent)), disabled: f.staleTried },
+          ]
+        : undefined,
       link: { href: "/exceptions/?sailing=E-312", label: "See the exceptions from E-312" },
     },
     {
@@ -105,11 +115,7 @@ export function ScenarioGuide() {
         {
           label: f.pending ? "Log the action and send the message with a note" : "Log the action",
           disabled: !f.assigned || f.actionLogged,
-          run: () =>
-            run(async (api) => {
-              await api.addAction(exId!, SCENARIO.responseAction, "USR-PLANNER", "scenario-action");
-              if (f.pending) await api.sendWithNote(f.pending.messageId, SCENARIO.messageNote, "USR-PLANNER", "scenario-note");
-            }),
+          run: () => run((api) => api.respondAndSend(exId!, SCENARIO.responseAction, f.pending?.messageId ?? null, SCENARIO.messageNote, "USR-PLANNER", "scenario-action")),
         },
       ],
     },

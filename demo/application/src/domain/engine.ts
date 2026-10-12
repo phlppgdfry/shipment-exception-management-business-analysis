@@ -419,7 +419,7 @@ const EVENT_CAUSE: Record<TransportEvent["type"], Cause> = {
 };
 
 export interface EventOutcome {
-  outcome: "PROCESSED" | "DUPLICATE_IGNORED";
+  outcome: "PROCESSED" | "DUPLICATE_IGNORED" | "STALE_IGNORED";
   affectedOrders: string[];
   exceptionsOpened: string[];
 }
@@ -453,8 +453,20 @@ export function processEvent(state: DemoState, event: TransportEvent): EventOutc
 
   audit(state, SYSTEM, "EVENT_RECEIVED", `${event.eventId} ${event.type} from ${event.source}: ${event.reason}${refs.length > 1 ? ` — ${refs.length} orders on ${event.sailingId}` : ""}`, refs.length === 1 ? refs[0] : null, null);
 
+  // Out-of-order handling: an absolute ETA that is older than the last one applied to the order must not
+  // overwrite it (TA-4). The event is still logged and audited. Sailing events carry a delay, not an ETA.
+  const absolute = event.type === "ROAD_ETA_UPDATED" || event.type === "TERMINAL_DELAYED";
+  const stale = absolute ? refs.filter((r) => state.shipments[r].lastChangeAt && event.occurredAt < state.shipments[r].lastChangeAt!) : [];
+  for (const ref of stale) {
+    audit(state, SYSTEM, "EVENT_STALE", `${event.eventId} occurred at ${formatDayTime(event.occurredAt)}, before the last applied change (${formatDayTime(state.shipments[ref].lastChangeAt)}) — not applied (out of order)`, ref, activeExceptionFor(state, ref)?.exceptionId ?? null);
+  }
+  if (stale.length === refs.length && refs.length > 0) {
+    state.events.push({ eventId: event.eventId, type: event.type, receivedAt: state.now, occurredAt: event.occurredAt, outcome: "STALE_IGNORED", affectedOrders: refs, exceptionsOpened: [], summary: "Older than the last applied change — ignored (out of order)" });
+    return { outcome: "STALE_IGNORED", affectedOrders: refs, exceptionsOpened: [] };
+  }
+
   const opened: string[] = [];
-  for (const ref of refs) {
+  for (const ref of refs.filter((r) => !stale.includes(r))) {
     const s = state.shipments[ref];
     applyEventToShipment(s, event);
     const result = evaluateOrder(state, ref, cause, event.eventId);
@@ -486,6 +498,7 @@ function applyEventToShipment(s: Shipment, event: TransportEvent) {
     case "ROAD_ETA_UPDATED":
     case "TERMINAL_DELAYED":
       if (event.newEta) s.eta = event.newEta;
+      s.lastChangeAt = event.occurredAt;
       break;
     case "CUSTOMS_HOLD_PLACED":
       s.customsHold = true;
@@ -532,6 +545,8 @@ export function assign(state: DemoState, exceptionId: string, assigneeId: string
   if (ex.status === "OPEN" || ex.status === "ESCALATED") {
     transition(state, ex, "ACKNOWLEDGED", actorId, `assigned to ${assignee.name} by ${lead.name}`);
     ex.acknowledgedAt = ex.acknowledgedAt ?? state.now;
+  } else if (ex.status === "HELD") {
+    // D-09: a held exception can be given to a planner to chase the haulier; it stays held until confirmed.
   } else if (ex.status !== "ACKNOWLEDGED" && ex.status !== "RECOVERED") {
     throw new DomainError("INVALID_TRANSITION", `A ${ex.status.toLowerCase()} exception cannot be assigned`);
   }
@@ -633,6 +648,7 @@ export function advanceClock(state: DemoState, minutes: number) {
   const moments = [
     ...state.messages.filter((m) => m.status === "PENDING_NOTE" && m.sendAt && m.sendAt <= target).map((m) => ({ at: m.sendAt!, kind: "send" as const, id: m.messageId })),
     ...state.exceptions.filter((e) => e.status === "OPEN" && e.dueAt && e.dueAt <= target).map((e) => ({ at: e.dueAt!, kind: "escalate" as const, id: e.exceptionId })),
+    ...state.exceptions.filter((e) => e.status === "HELD" && !e.escalatedAt && e.dueAt && e.dueAt <= target).map((e) => ({ at: e.dueAt!, kind: "escalateHeld" as const, id: e.exceptionId })),
   ].sort((a, b) => a.at.localeCompare(b.at));
   for (const m of moments) {
     state.now = m.at > state.now ? m.at : state.now;
@@ -642,6 +658,12 @@ export function advanceClock(state: DemoState, minutes: number) {
       msg.status = "SENT";
       msg.sentAt = state.now;
       audit(state, SYSTEM, "MESSAGE_SENT", `${msg.messageId} sent without a planner note after ${PLANNER_NOTE_MINUTES} min (D-08)`, msg.orderRef, msg.exceptionId);
+    } else if (m.kind === "escalateHeld") {
+      // D-09: escalate to the shift lead, but keep the customer message held until the haulier confirms.
+      const ex = findException(state, m.id);
+      if (ex.status !== "HELD" || ex.escalatedAt) continue;
+      ex.escalatedAt = state.now;
+      audit(state, SYSTEM, "HELD_ESCALATED", `${ex.exceptionId} not confirmed within ${ex.severity === "CRITICAL" ? "30 min" : "2 h"} — escalated to the shift lead; the customer message stays held (D-09)`, ex.orderRef, ex.exceptionId);
     } else {
       const ex = findException(state, m.id);
       if (ex.status !== "OPEN") continue;

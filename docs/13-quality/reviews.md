@@ -19,10 +19,12 @@
 | A3 | IT architect and security appeared in D-03 but not in the stakeholder analysis | moderate | added to the stakeholder matrix | **fixed** |
 | A4 | The demo shows UK time in the workbench, while refinement Q10 decided the planner's local time there | moderate | recorded as a known demo simplification (UX-6, demo README) | **fixed** (documented) |
 | A5 | The lifecycle had gaps (recover before acknowledge; late again after recovery; pending message when recovering) | significant | found by building the demo; OQ-01, OQ-03, OQ-04 answered as proposals; state diagram updated | **fixed** (proposal) |
-| A6 | Held (missing-status) exceptions have a response time but no escalation path | moderate | OQ-02 for the road planning lead | **open** |
+| A6 | Held (missing-status) exceptions have a response time but no escalation path | moderate | decided in D-09 (escalate, stay held); timer boundary event in the TO-BE; tested (TC-33) | **fixed** |
 | A7 | Customer tracking API first exposed internal severity and message status | significant (privacy) | public message projection + unit and contract tests | **fixed** |
 | A8 | Benefits counted as euros for freed customer-service time could be read as headcount savings | minor | already stated as capacity, not headcount, in the business case | no change |
-| A9 | KPI targets labelled "week 6" mean "after the pilot"; ambiguous | minor | left as is in the KPI table (the demo parses that header); explained in this review | **open** (cosmetic) |
+| A9 | KPI targets labelled "week 6" mean "after the pilot"; ambiguous | minor | column renamed "Target (after 6 pilot weeks)" | **fixed** |
+| A12 | The TO-BE modelled the response time as a gateway; a clock running during a task is a timer boundary event | moderate (notation) | interrupting timer on "Acknowledge", non-interrupting timer on "Hold"; shift lead got its own lane | **fixed** |
+| A13 | Out-of-order events were only proposed | moderate (technical depth) | implemented in the demo with tests (TC-34) | **fixed** |
 | A10 | The business case has no discounting or NPV | minor | stated as a limitation in [defend your case](../../learning/interview-preparation/defend-your-case.md) | **open** (by design) |
 | A11 | No real stakeholder validation of any artefact | inherent | every artefact lists what to validate; [EVIDENCE.md](../../EVIDENCE.md) says what is not claimed | **open** (inherent to a portfolio case) |
 

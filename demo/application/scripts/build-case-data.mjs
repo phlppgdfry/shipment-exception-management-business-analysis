@@ -61,7 +61,7 @@ const businessRequirements = tableAfter(requirementsMd, /^## Business requiremen
 const functionalRequirements = tableAfter(requirementsMd, /^## Functional requirements/).map((r) => ({ id: r.ID, text: r.Requirement, moscow: r.MoSCoW, stories: r.Story }));
 const nonFunctionalRequirements = tableAfter(requirementsMd, /^## Non-functional requirements/).map((r) => ({ id: r.ID, text: r.Requirement, verification: r["How it is verified"] }));
 
-const kpis = tableAfter(read("docs/01-opportunity/kpi-tree.md"), /^\| ID \| KPI/).map((r) => ({ id: r.ID, name: r.KPI, baseline: r.Baseline, target: r["Target (pilot, week 6)"], owner: r.Owner }));
+const kpis = tableAfter(read("docs/01-opportunity/kpi-tree.md"), /^\| ID \| KPI/).map((r) => ({ id: r.ID, name: r.KPI, baseline: r.Baseline, target: r["Target (after 6 pilot weeks)"], owner: r.Owner }));
 
 const rules = tableAfter(read("docs/05-requirements/exception-rules.md"), /^## Rules/).map((r) => ({ id: r.ID, text: r.Rule, owner: r.Owner }));
 
@@ -97,7 +97,7 @@ for (const f of readdirSync(featureDir).filter((x) => x.endsWith(".feature"))) {
 const scenarios = [];
 for (const f of readdirSync(featureDir).filter((x) => x.endsWith(".feature"))) {
   const text = readFileSync(join(featureDir, f), "utf8");
-  if (text.includes("@decision")) continue;
+  if (text.includes("@decision") || text.includes("@release-2")) continue; // release 2 is specified, not built
   for (const m of text.matchAll(/^\s*Scenario:\s*(.+)$/gm)) scenarios.push({ file: f, title: m[1].trim() });
 }
 

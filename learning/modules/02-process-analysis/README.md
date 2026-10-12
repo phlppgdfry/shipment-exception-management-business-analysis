@@ -104,7 +104,7 @@ Kijk naar vijf dingen: **wachttijd** (de klant hoort het pas aan de poort), **du
 8. **Valideer** met één persoon die het werk doet: "Klopt dit voor een gewone dinsdag?"
 9. **Bewaar als `.bpmn`** (niet alleen een afbeelding), zodat anderen het kunnen aanpassen.
 
-**Oefenen in een tool:** open [demo.bpmn.io](https://demo.bpmn.io), sleep `to-be.bpmn` erin, voeg een *timer boundary event* toe op "Acknowledge within response time" en sluit het aan op "Escalate to shift lead". Dat is de correctere BPMN-manier om ER-09 te tonen dan een gateway "Within response time?".
+**Oefenen in een tool:** open [demo.bpmn.io](https://demo.bpmn.io) en sleep `to-be.bpmn` erin. Zoek de twee *timer boundary events*: een **onderbrekende** op "Acknowledge within response time" (de taak wordt afgebroken, de shift lead wijst toe) en een **niet-onderbrekende** op "Hold: confirm with haulier" (de shift lead wordt gealarmeerd, maar de hold loopt door — D-09). Leg het verschil in één zin uit. Voeg daarna zelf een niet-onderbrekende timer toe op "Re-plan delivery" ("geen nieuw venster na 1 uur → klantendienst belt de klant") en exporteer het bestand. Een eerdere versie van de TO-BE gebruikte hier een gateway "Within response time?" — waarom is een timer correcter?
 
 ## 7. Begeleide oefening
 
@@ -154,7 +154,7 @@ Maak het **TO-BE voor de customs hold** (release 2, US-09) en een **gap-analyse 
 - [ ] Ik kan uitleggen waarom het AS-IS "niet het TMS" als probleem toont.
 - [ ] Ik kan een gap-analyse maken met het type verandering per gap.
 - [ ] Ik kan kiezen tussen BPMN, activiteiten-, sequentie- en state diagram, met reden.
-- [ ] Ik heb `to-be.bpmn` geopend en een timer boundary event toegevoegd.
+- [ ] Ik heb `to-be.bpmn` geopend, het verschil tussen de twee timers uitgelegd en zelf een timer toegevoegd.
 - [ ] Ik heb de begeleide oefening en de uitdaging gemaakt (≥ 7/10).
 
 ---

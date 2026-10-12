@@ -183,3 +183,53 @@ describe("measurement (US-13)", () => {
     expect(o.k1ProactiveRate.numerator).toBeLessThanOrEqual(o.k1ProactiveRate.denominator);
   });
 });
+
+describe("held exceptions past their response time (D-09)", () => {
+  test("are escalated to the shift lead but stay held: still no customer message", () => {
+    const state = initialState();
+    const ex = activeExceptionFor(state, "D2D-48288")!;
+    expect(ex.dueAt).toBe("2026-02-04T10:20:00Z");
+    advanceClock(state, 29);
+    expect(ex.escalatedAt).toBeNull();
+    advanceClock(state, 1);
+    expect(ex.status).toBe("HELD");
+    expect(ex.escalatedAt).toBe("2026-02-04T10:20:00Z");
+    expect(state.messages.some((m) => m.orderRef === "D2D-48288")).toBe(false);
+    expect(state.audit.at(-1)?.action).toBe("HELD_ESCALATED");
+  });
+  test("the shift lead can give a held exception to a planner; it stays held until confirmed", () => {
+    const state = initialState();
+    const ex = activeExceptionFor(state, "D2D-48288")!;
+    advanceClock(state, 30);
+    assign(state, ex.exceptionId, "USR-PLANNER-2", "USR-SHIFTLEAD");
+    expect(ex.status).toBe("HELD");
+    expect(ex.assigneeId).toBe("USR-PLANNER-2");
+    confirmStatus(state, ex.exceptionId, "ON_TIME", null, "USR-PLANNER-2");
+    expect(ex.status).toBe("CLOSED");
+  });
+  test("escalation happens once", () => {
+    const state = initialState();
+    advanceClock(state, 30);
+    advanceClock(state, 60);
+    expect(state.audit.filter((a) => a.action === "HELD_ESCALATED")).toHaveLength(1);
+  });
+});
+
+describe("out-of-order events (TA-4)", () => {
+  test("an ETA update that happened before the last applied one is logged but not applied", () => {
+    const state = initialState();
+    const before = { eta: state.shipments["D2D-48231"].eta, messages: state.messages.length, evaluations: activeExceptionFor(state, "D2D-48231")!.evaluations.length };
+    expect(before.eta).toBe("2026-02-04T13:50:00Z");
+    const out = processEvent(state, SCENARIO.staleEvent);
+    expect(out.outcome).toBe("STALE_IGNORED");
+    expect(state.shipments["D2D-48231"].eta).toBe(before.eta);
+    expect(state.messages.length).toBe(before.messages);
+    expect(activeExceptionFor(state, "D2D-48231")!.evaluations.length).toBe(before.evaluations);
+    expect(state.audit.some((a) => a.action === "EVENT_STALE" && a.orderRef === "D2D-48231")).toBe(true);
+  });
+  test("a newer ETA update is still applied", () => {
+    const state = initialState();
+    processEvent(state, { ...SCENARIO.staleEvent, eventId: "EVT-NEWER", occurredAt: "2026-02-04T09:55:00Z", newEta: "2026-02-04T14:10:00Z" });
+    expect(state.shipments["D2D-48231"].eta).toBe("2026-02-04T14:10:00Z");
+  });
+});

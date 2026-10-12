@@ -17,6 +17,8 @@ test("guided scenario: from on schedule to resolved, with audit trail and test r
   await expect(guide).toContainText("All 11 orders on E-312 are evaluated; only the 4");
   await guide.getByRole("button", { name: "Send the same event again" }).click();
   await expect(guide.getByRole("button", { name: "Duplicate ignored ✓" })).toBeVisible();
+  await guide.getByRole("button", { name: "Send an older ETA update" }).click();
+  await expect(guide.getByRole("button", { name: "Out-of-order update ignored ✓" })).toBeVisible();
   await next();
   // 4. Classification
   await expect(guide).toContainText("Critical");

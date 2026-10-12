@@ -44,6 +44,7 @@ paths:
       description: |
         Evaluates the change with the exception rules (FR-01) and opens, updates, recovers or closes exceptions.
         **Idempotent on `eventId` (NFR-03):** the same event received again returns `200` and changes nothing.
+        **Out of order (TA-4):** an absolute ETA (road, terminal) whose `occurredAt` is older than the last applied change for the order is logged and returns `200` with `STALE_IGNORED`.
         Acknowledged within 5 seconds (EN-1); evaluation happens asynchronously in the proposed service.
       security:
         - tmsSignature: []
@@ -63,7 +64,7 @@ paths:
               examples:
                 processed: { externalValue: "examples/event-outcome-processed.json" }
         "200":
-          description: Duplicate event ID — ignored
+          description: Duplicate event ID, or an out-of-order event older than the last applied change — ignored
           content:
             application/json:
               schema: { $ref: "#/components/schemas/EventOutcome" }
@@ -452,7 +453,7 @@ components:
       type: object
       required: [outcome, affectedOrders, exceptionsOpened]
       properties:
-        outcome: { type: string, enum: [PROCESSED, DUPLICATE_IGNORED] }
+        outcome: { type: string, enum: [PROCESSED, DUPLICATE_IGNORED, STALE_IGNORED], description: "STALE_IGNORED: an absolute ETA older than the last applied change for the order (out of order) — logged, not applied" }
         affectedOrders: { type: array, items: { type: string } }
         exceptionsOpened: { type: array, items: { type: string } }
 

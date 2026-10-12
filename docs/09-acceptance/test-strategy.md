@@ -50,7 +50,6 @@ The rule examples, unit, contract and browser tests are the regression suite. Th
 |---|---|---|
 | Real TMS webhooks, real e-mail delivery | no real systems | spike (A-01), BAT environment with the supplier |
 | Performance under load | the demo runs in a browser | load test against NFR-01 in the BAT environment |
-| Out-of-order events | demo events arrive in order | integration test with replayed, shuffled events |
 | Bounces (FR-09) | not implemented in the demo | BAT-12 (simulated) |
 | Screen-reader walkthrough by a real user | no access to users | axe covers automatable checks only; manual check proposed |
 

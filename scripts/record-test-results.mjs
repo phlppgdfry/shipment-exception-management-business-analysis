@@ -28,13 +28,13 @@ const suites = [];
 // 1. Acceptance examples (node:test, JUnit)
 {
   const file = join(tmp, "rules.xml");
-  const r = run(process.execPath, ["--test", "--test-reporter=junit", `--test-reporter-destination=${file}`, "tests/exception-rules.test.mjs"], root);
+  const r = run(process.execPath, ["--test", "--test-reporter=junit", `--test-reporter-destination=${file}`, "tests/exception-rules.test.mjs", "tests/dmn-consistency.test.mjs"], root);
   const xml = readFileSync(file, "utf8");
   const tests = [...xml.matchAll(/<testcase\b([^>]*?)(\/>|>([\s\S]*?)<\/testcase>)/g)].map((m) => ({
     name: ((m[1].match(/name="([^"]*)"/) ?? [])[1] ?? "").replace(/&quot;/g, '"').replace(/&amp;/g, "&").replace(/&gt;/g, ">").replace(/&lt;/g, "<").replace(/&apos;/g, "'"),
     status: /<failure\b/.test(m[3] ?? "") ? "failed" : "passed",
   }));
-  suites.push({ name: "Acceptance examples against the rule module", tool: "node --test", command: "node --test tests/*.test.mjs", code: r.code, seconds: r.seconds, tests });
+  suites.push({ name: "Acceptance examples and DMN consistency against the rule module", tool: "node --test", command: "node --test tests/*.test.mjs", code: r.code, seconds: r.seconds, tests });
 }
 
 // 2. Unit and contract tests (Vitest, JSON)
@@ -126,7 +126,7 @@ ${suites.map((s) => `<details><summary><b>${s.name}</b> — ${s.tests.filter((t)
 
 ## Not covered by automated tests
 
-See [test strategy — what is not tested here](test-strategy.md#what-is-not-tested-here-and-why): real TMS webhooks and e-mail, load (NFR-01), out-of-order events, bounces (FR-09), and a screen-reader walkthrough by a real user.
+See [test strategy — what is not tested here](test-strategy.md#what-is-not-tested-here-and-why): real TMS webhooks and e-mail, load (NFR-01), bounces (FR-09), and a screen-reader walkthrough by a real user.
 
 ---
 
