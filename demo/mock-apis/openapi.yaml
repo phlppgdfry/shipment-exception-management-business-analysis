@@ -1,0 +1,644 @@
+openapi: 3.1.0
+info:
+  title: Exception component API (proposed)
+  version: 1.0.0
+  summary: Proposed REST contract of the small exception component that sits next to the TMS (decision D-03).
+  description: |
+    Proposed contract for release 1 of the fictional Tidewell case. The demo implements it in the browser
+    (`demo/application/src/api/mock-api.ts`); nothing here has been deployed.
+
+    * The TMS calls `POST /tms-events` (webhook) for every status, ETA, window and sailing change.
+    * Planners, shift leads and customer service use the exception endpoints through the workbench.
+    * The customer portal reads `GET /orders/{orderRef}/tracking`, which returns only what the customer was told.
+
+    Rule IDs (ER-xx), requirement IDs (FR/NFR) and acceptance criteria (AC-xx) refer to the case documentation.
+    Errors use RFC 9457 problem details. All times are UTC (ISO 8601); clients format them in UK local time.
+  license:
+    name: Portfolio case — fictional organisation
+    identifier: MIT
+servers:
+  - url: https://exceptions.tidewell.example/v1
+    description: Fictional — no such server exists
+security:
+  - staffOidc: []
+tags:
+  - name: Events
+    description: Inbound changes from the TMS
+  - name: Shipments
+    description: Door-to-door orders, read through from the TMS
+  - name: Exceptions
+    description: Workbench (US-02, US-03, US-04, US-08)
+  - name: Messages
+    description: Customer messages and call tasks (US-05, US-07, US-10, US-11)
+  - name: Customer
+    description: Customer-facing tracking (portal)
+  - name: Measurement
+    description: Pilot export (US-13)
+
+paths:
+  /tms-events:
+    post:
+      tags: [Events]
+      operationId: receiveTmsEvent
+      summary: Receive one change from the TMS (webhook)
+      description: |
+        Evaluates the change with the exception rules (FR-01) and opens, updates, recovers or closes exceptions.
+        **Idempotent on `eventId` (NFR-03):** the same event received again returns `200` and changes nothing.
+        Acknowledged within 5 seconds (EN-1); evaluation happens asynchronously in the proposed service.
+      security:
+        - tmsSignature: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/TransportEvent" }
+            examples:
+              sailingDelayed: { externalValue: "examples/tms-event-sailing-delayed.json" }
+      responses:
+        "202":
+          description: Accepted and processed for the first time
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/EventOutcome" }
+              examples:
+                processed: { externalValue: "examples/event-outcome-processed.json" }
+        "200":
+          description: Duplicate event ID — ignored
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/EventOutcome" }
+        "401": { $ref: "#/components/responses/Problem" }
+        "422": { $ref: "#/components/responses/Problem" }
+
+  /shipments:
+    get:
+      tags: [Shipments]
+      operationId: listShipments
+      summary: Door-to-door orders in scope (pilot routes), read through from the TMS
+      parameters:
+        - { name: route, in: query, schema: { type: string, examples: ["BE-UK East"] } }
+        - { name: status, in: query, schema: { $ref: "#/components/schemas/ShipmentStatus" } }
+      responses:
+        "200":
+          description: Shipments
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/Shipment" }
+        "401": { $ref: "#/components/responses/Problem" }
+        "503": { $ref: "#/components/responses/Problem" }
+
+  /shipments/{orderRef}:
+    get:
+      tags: [Shipments]
+      operationId: getShipment
+      summary: One order with legs, milestones and updates
+      parameters:
+        - $ref: "#/components/parameters/orderRef"
+      responses:
+        "200":
+          description: Shipment
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Shipment" }
+        "404": { $ref: "#/components/responses/Problem" }
+        "503": { $ref: "#/components/responses/Problem" }
+
+  /exceptions:
+    get:
+      tags: [Exceptions]
+      operationId: listExceptions
+      summary: Exceptions, most urgent first (AC-03.1)
+      description: Planners see their owner group; customer service and shift leads see all (NFR-06).
+      parameters:
+        - { name: ownerGroup, in: query, schema: { $ref: "#/components/schemas/OwnerGroup" } }
+        - { name: status, in: query, schema: { $ref: "#/components/schemas/ExceptionStatus" } }
+        - { name: severity, in: query, schema: { $ref: "#/components/schemas/Severity" } }
+      responses:
+        "200":
+          description: Exceptions
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/Exception" }
+        "403": { $ref: "#/components/responses/Problem" }
+
+  /exceptions/{exceptionId}:
+    get:
+      tags: [Exceptions]
+      operationId: getException
+      summary: One exception with its evaluations, actions and history
+      parameters:
+        - $ref: "#/components/parameters/exceptionId"
+      responses:
+        "200":
+          description: Exception with evaluations and response actions
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Exception" }
+              examples:
+                critical: { externalValue: "examples/exception-critical.json" }
+        "404": { $ref: "#/components/responses/Problem" }
+
+  /exceptions/{exceptionId}/acknowledge:
+    post:
+      tags: [Exceptions]
+      operationId: acknowledgeException
+      summary: Owner acknowledges (AC-04.1) — OPEN → ACKNOWLEDGED
+      parameters:
+        - $ref: "#/components/parameters/exceptionId"
+        - $ref: "#/components/parameters/idempotencyKey"
+      responses:
+        "200": { $ref: "#/components/responses/ExceptionOk" }
+        "403": { $ref: "#/components/responses/Problem" }
+        "409": { $ref: "#/components/responses/Problem" }
+
+  /exceptions/{exceptionId}/assign:
+    post:
+      tags: [Exceptions]
+      operationId: assignException
+      summary: Shift lead assigns to a planner of the owner group (AC-03.5)
+      parameters:
+        - $ref: "#/components/parameters/exceptionId"
+        - $ref: "#/components/parameters/idempotencyKey"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [assigneeId]
+              properties:
+                assigneeId: { type: string, examples: ["USR-PLANNER"] }
+      responses:
+        "200": { $ref: "#/components/responses/ExceptionOk" }
+        "403": { $ref: "#/components/responses/Problem" }
+        "409": { $ref: "#/components/responses/Problem" }
+        "422": { $ref: "#/components/responses/Problem" }
+
+  /exceptions/{exceptionId}/actions:
+    post:
+      tags: [Exceptions]
+      operationId: addResponseAction
+      summary: Register what the owner did
+      parameters:
+        - $ref: "#/components/parameters/exceptionId"
+        - $ref: "#/components/parameters/idempotencyKey"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [text]
+              properties:
+                text: { type: string, minLength: 1, maxLength: 500 }
+      responses:
+        "200": { $ref: "#/components/responses/ExceptionOk" }
+        "403": { $ref: "#/components/responses/Problem" }
+        "422": { $ref: "#/components/responses/Problem" }
+
+  /exceptions/{exceptionId}/confirm-status:
+    post:
+      tags: [Exceptions]
+      operationId: confirmMissingStatus
+      summary: Confirm a held missing-status exception with the haulier (US-08, ER-07)
+      parameters:
+        - $ref: "#/components/parameters/exceptionId"
+        - $ref: "#/components/parameters/idempotencyKey"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [outcome]
+              properties:
+                outcome: { type: string, enum: [ON_TIME, DELAYED] }
+                newEta: { type: string, format: date-time, description: Required when outcome is DELAYED }
+      responses:
+        "200": { $ref: "#/components/responses/ExceptionOk" }
+        "409": { $ref: "#/components/responses/Problem" }
+        "422": { $ref: "#/components/responses/Problem" }
+
+  /exceptions/{exceptionId}/replan:
+    post:
+      tags: [Exceptions]
+      operationId: replanDelivery
+      summary: Record a new window agreed with the consignee (AC-04.2); the order is re-evaluated (ER-13)
+      description: In the proposed design the planner changes the window in the TMS and the component receives it as an event; the demo records it here directly.
+      parameters:
+        - $ref: "#/components/parameters/exceptionId"
+        - $ref: "#/components/parameters/idempotencyKey"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/TimeWindow" }
+      responses:
+        "200": { $ref: "#/components/responses/ExceptionOk" }
+        "409": { $ref: "#/components/responses/Problem" }
+        "422": { $ref: "#/components/responses/Problem" }
+
+  /exceptions/{exceptionId}/resolve:
+    post:
+      tags: [Exceptions]
+      operationId: resolveException
+      summary: Resolve with a mandatory reason code (AC-04.3)
+      parameters:
+        - $ref: "#/components/parameters/exceptionId"
+        - $ref: "#/components/parameters/idempotencyKey"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [reasonCode]
+              properties:
+                reasonCode: { $ref: "#/components/schemas/ReasonCode" }
+                note: { type: string, description: Required when reasonCode is OTHER (DEF-03) }
+      responses:
+        "200": { $ref: "#/components/responses/ExceptionOk" }
+        "409":
+          description: Not acknowledged yet
+          content:
+            application/problem+json:
+              schema: { $ref: "#/components/schemas/Problem" }
+              examples:
+                notAcknowledged: { externalValue: "examples/problem-409.json" }
+        "422": { $ref: "#/components/responses/Problem" }
+
+  /messages/{messageId}/send:
+    post:
+      tags: [Messages]
+      operationId: sendWithPlannerNote
+      summary: Add a planner note to a pending critical message and send it now (D-08, AC-05.4)
+      parameters:
+        - { name: messageId, in: path, required: true, schema: { type: string, examples: ["MSG-0009"] } }
+        - $ref: "#/components/parameters/idempotencyKey"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                plannerNote: { type: string, maxLength: 280 }
+      responses:
+        "200":
+          description: Sent
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/CustomerMessage" }
+        "409": { $ref: "#/components/responses/Problem" }
+
+  /call-tasks/{taskId}/complete:
+    post:
+      tags: [Messages]
+      operationId: completeCallTask
+      summary: Customer service closes a key-account call task with an outcome (US-11)
+      parameters:
+        - { name: taskId, in: path, required: true, schema: { type: string } }
+        - $ref: "#/components/parameters/idempotencyKey"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [outcome]
+              properties:
+                outcome: { type: string, minLength: 1 }
+      responses:
+        "200":
+          description: Completed
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/CallTask" }
+        "403": { $ref: "#/components/responses/Problem" }
+        "422": { $ref: "#/components/responses/Problem" }
+
+  /orders/{orderRef}/tracking:
+    get:
+      tags: [Customer]
+      operationId: getTracking
+      summary: What the customer sees in the portal
+      description: |
+        Built only from messages that were actually sent. Never contains severity, owner, rule IDs, driver name,
+        phone or location (NFR-05). The customer may only read their own orders.
+      security:
+        - customerOidc: []
+      parameters:
+        - $ref: "#/components/parameters/orderRef"
+      responses:
+        "200":
+          description: Tracking card
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Tracking" }
+              examples:
+                delayed: { externalValue: "examples/tracking-delayed.json" }
+        "404": { $ref: "#/components/responses/Problem" }
+
+  /pilot-export:
+    get:
+      tags: [Measurement]
+      operationId: getPilotExport
+      summary: Daily pilot measurement export (US-13, AC-13.2); PO and Head of CS only (AC-13.3)
+      parameters:
+        - { name: date, in: query, required: true, schema: { type: string, format: date } }
+      responses:
+        "200":
+          description: CSV, one row per exception
+          content:
+            text/csv:
+              schema: { type: string }
+        "403": { $ref: "#/components/responses/Problem" }
+
+components:
+  securitySchemes:
+    staffOidc:
+      type: openIdConnect
+      openIdConnectUrl: https://login.tidewell.example/.well-known/openid-configuration
+      description: Staff sign-in. Roles ROAD_PLANNER, SHIFT_LEAD, TERMINAL_OPERATOR, CUSTOMS_AGENT, CS_AGENT, PRODUCT_OWNER decide what a user may change (NFR-06).
+    customerOidc:
+      type: openIdConnect
+      openIdConnectUrl: https://portal.tidewell.example/.well-known/openid-configuration
+      description: Customer portal sign-in; tokens carry the customerId.
+    tmsSignature:
+      type: apiKey
+      in: header
+      name: X-Webhook-Signature
+      description: HMAC-SHA256 of the request body with a secret shared with the TMS supplier; requests with a missing or wrong signature get 401.
+
+  parameters:
+    orderRef:
+      name: orderRef
+      in: path
+      required: true
+      schema: { type: string, pattern: "^D2D-\\d{5}$", examples: ["D2D-48213"] }
+    exceptionId:
+      name: exceptionId
+      in: path
+      required: true
+      schema: { type: string, pattern: "^EX-\\d{4}$", examples: ["EX-1012"] }
+    idempotencyKey:
+      name: Idempotency-Key
+      in: header
+      required: false
+      description: A retried command with the same key returns the first result and changes nothing.
+      schema: { type: string, format: uuid }
+
+  responses:
+    Problem:
+      description: Problem details (RFC 9457)
+      content:
+        application/problem+json:
+          schema: { $ref: "#/components/schemas/Problem" }
+    ExceptionOk:
+      description: The updated exception
+      content:
+        application/json:
+          schema: { $ref: "#/components/schemas/Exception" }
+
+  schemas:
+    Severity:
+      type: string
+      enum: [NONE, MINOR, MAJOR, CRITICAL]
+    OwnerGroup:
+      type: string
+      enum: [ROAD_PLANNING, TERMINAL_OPS, CUSTOMS_DESK]
+    Cause:
+      type: string
+      enum: [SAILING_DELAY, SAILING_CANCELLED, ROAD_DELAY, TERMINAL_DELAY, CUSTOMS_HOLD, STATUS_MISSING]
+    ExceptionStatus:
+      type: string
+      enum: [OPEN, HELD, ACKNOWLEDGED, ESCALATED, RECOVERED, RESOLVED, CLOSED]
+    ShipmentStatus:
+      type: string
+      enum: [BOOKED, COLLECTED, AT_ORIGIN_TERMINAL, AT_SEA, AT_DESTINATION_TERMINAL, ON_DELIVERY_LEG, DELIVERED]
+    ReasonCode:
+      type: string
+      enum: [DELIVERED_IN_WINDOW, NEW_WINDOW_AGREED, CUSTOMER_INFORMED_NO_ACTION, FALSE_ALARM, OTHER]
+    NotificationDecision:
+      type: string
+      enum: [NONE, NOTIFY, NOTIFY_AND_CALL, SUPPRESSED, HOLD, ACTION_REQUIRED, NOTIFY_RECOVERY]
+
+    TimeWindow:
+      type: object
+      required: [start, end]
+      properties:
+        start: { type: string, format: date-time }
+        end: { type: string, format: date-time }
+
+    TransportEvent:
+      type: object
+      required: [eventId, type, occurredAt, source, reason]
+      properties:
+        eventId: { type: string, description: Unique per change; the idempotency key (NFR-03) }
+        type: { type: string, enum: [SAILING_DELAYED, SAILING_CANCELLED, ROAD_ETA_UPDATED, TERMINAL_DELAYED, CUSTOMS_HOLD_PLACED, STATUS_OVERDUE] }
+        occurredAt: { type: string, format: date-time }
+        source: { type: string }
+        reason: { type: string, description: Free text from the source system; mapped to a plain-language reason category for customers }
+        orderRef: { type: string, description: For order-level events }
+        sailingId: { type: string, description: For sailing-level events; fans out to every undelivered order on the sailing }
+        replacementSailingId: { type: string }
+        delayMinutes: { type: integer }
+        newEta: { type: string, format: date-time }
+
+    EventOutcome:
+      type: object
+      required: [outcome, affectedOrders, exceptionsOpened]
+      properties:
+        outcome: { type: string, enum: [PROCESSED, DUPLICATE_IGNORED] }
+        affectedOrders: { type: array, items: { type: string } }
+        exceptionsOpened: { type: array, items: { type: string } }
+
+    Shipment:
+      type: object
+      required: [orderRef, customerId, route, sailingId, cargo, consignee, deliveryWindow, plannedEta, eta, status, legs, milestones]
+      properties:
+        orderRef: { type: string }
+        customerId: { type: string }
+        route: { type: string }
+        sailingId: { type: string }
+        cargo:
+          type: object
+          required: [description, unitType, timeCritical]
+          properties:
+            description: { type: string }
+            unitType: { type: string, enum: [TRAILER, REEFER, FLATBED, CONTAINER] }
+            timeCritical: { type: boolean }
+        consignee: { type: string, description: Company and site only — no personal data }
+        deliveryWindow:
+          oneOf:
+            - $ref: "#/components/schemas/TimeWindow"
+            - type: "null"
+          description: Null when not agreed; the rules then assume planned ETA + 2 h (FR-03)
+        plannedEta: { type: string, format: date-time }
+        eta: { type: string, format: date-time }
+        status: { $ref: "#/components/schemas/ShipmentStatus" }
+        legs:
+          type: array
+          items:
+            type: object
+            required: [mode, from, to, plannedDeparture, plannedArrival, operator]
+            properties:
+              mode: { type: string, enum: [ROAD, SEA] }
+              from: { type: string }
+              to: { type: string }
+              plannedDeparture: { type: string, format: date-time }
+              plannedArrival: { type: string, format: date-time }
+              operator: { type: string, description: "Haulier company or sailing — never a driver's name" }
+        milestones:
+          type: array
+          items:
+            type: object
+            required: [code, label, plannedAt, actualAt, location]
+            properties:
+              code: { type: string }
+              label: { type: string }
+              plannedAt: { type: string, format: date-time }
+              actualAt: { type: ["string", "null"], format: date-time }
+              location: { type: string }
+
+    Evaluation:
+      type: object
+      required: [at, type, severity, minutesLate, nextDay, windowAssumed, notification, rules]
+      properties:
+        at: { type: string, format: date-time }
+        eventId: { type: ["string", "null"] }
+        type: { type: string }
+        severity: { $ref: "#/components/schemas/Severity" }
+        minutesLate: { type: integer, description: Expected delivery minus the END of the window; ≤ 0 is inside }
+        nextDay: { type: boolean }
+        windowAssumed: { type: boolean }
+        notification: { $ref: "#/components/schemas/NotificationDecision" }
+        rules: { type: array, items: { type: string, pattern: "^ER-\\d{2}$" }, description: "Rule IDs applied: answers why this customer got this message (NFR-08)" }
+
+    Exception:
+      type: object
+      required: [exceptionId, orderRef, customerId, type, severity, ownerGroup, status, assigneeId, openedAt, dueAt, windowAssumed, minutesLate, rulesApplied, notification, reasonCode, release, actions, evaluations]
+      properties:
+        exceptionId: { type: string }
+        orderRef: { type: string }
+        customerId: { type: string }
+        type: { $ref: "#/components/schemas/Cause" }
+        severity: { $ref: "#/components/schemas/Severity" }
+        ownerGroup: { $ref: "#/components/schemas/OwnerGroup" }
+        status: { $ref: "#/components/schemas/ExceptionStatus" }
+        assigneeId: { type: ["string", "null"] }
+        openedAt: { type: string, format: date-time }
+        dueAt: { type: ["string", "null"], format: date-time, description: "Null for minor: no response time (ER-09)" }
+        acknowledgedAt: { type: ["string", "null"], format: date-time }
+        escalatedAt: { type: ["string", "null"], format: date-time }
+        recoveredAt: { type: ["string", "null"], format: date-time }
+        resolvedAt: { type: ["string", "null"], format: date-time }
+        closedAt: { type: ["string", "null"], format: date-time }
+        windowAssumed: { type: boolean }
+        minutesLate: { type: integer }
+        rulesApplied: { type: array, items: { type: string } }
+        notification: { $ref: "#/components/schemas/NotificationDecision" }
+        reasonCode:
+          oneOf:
+            - $ref: "#/components/schemas/ReasonCode"
+            - type: "null"
+        resolutionNote: { type: ["string", "null"] }
+        release: { type: string, enum: [R1, R2] }
+        actions:
+          type: array
+          items:
+            type: object
+            required: [at, actorId, text]
+            properties:
+              at: { type: string, format: date-time }
+              actorId: { type: string }
+              text: { type: string }
+        evaluations:
+          type: array
+          items: { $ref: "#/components/schemas/Evaluation" }
+
+    CustomerMessage:
+      type: object
+      required: [messageId, orderRef, customerId, exceptionId, kind, severity, status, createdAt, channels, content]
+      properties:
+        messageId: { type: string }
+        orderRef: { type: string }
+        customerId: { type: string }
+        exceptionId: { type: string }
+        kind: { type: string, enum: [DELAY, RECOVERY, ACTION_REQUIRED] }
+        severity: { $ref: "#/components/schemas/Severity" }
+        status: { type: string, enum: [SENT, PENDING_NOTE, SHADOW, SUPPRESSED, NOT_IN_RELEASE, WITHDRAWN] }
+        createdAt: { type: string, format: date-time }
+        sendAt: { type: ["string", "null"], format: date-time }
+        sentAt: { type: ["string", "null"], format: date-time }
+        channels: { type: array, items: { type: string, enum: [PORTAL, EMAIL] } }
+        content:
+          type: object
+          required: [headline, agreedWindow, newEta, reasonCategory, nextStep, plannerNote]
+          properties:
+            headline: { type: string }
+            agreedWindow: { type: string }
+            newEta: { type: ["string", "null"] }
+            reasonCategory: { type: string }
+            nextStep: { type: string }
+            plannerNote: { type: ["string", "null"] }
+
+    CallTask:
+      type: object
+      required: [taskId, exceptionId, orderRef, customerId, createdAt, status]
+      properties:
+        taskId: { type: string }
+        exceptionId: { type: string }
+        orderRef: { type: string }
+        customerId: { type: string }
+        createdAt: { type: string, format: date-time }
+        status: { type: string, enum: [OPEN, DONE] }
+        outcome: { type: ["string", "null"] }
+        completedAt: { type: ["string", "null"], format: date-time }
+        completedBy: { type: ["string", "null"] }
+
+    Tracking:
+      type: object
+      required: [orderRef, customerName, tone, headline, progress, agreedWindow, expected, reason, nextStep, plannerNote, messages]
+      properties:
+        orderRef: { type: string }
+        customerName: { type: string }
+        pilot: { type: boolean }
+        tone: { type: string, enum: [ok, delayed, critical, action] }
+        headline: { type: string }
+        progress: { type: string }
+        agreedWindow: { type: string }
+        expected: { type: string }
+        reason: { type: ["string", "null"] }
+        nextStep: { type: ["string", "null"] }
+        plannerNote: { type: ["string", "null"] }
+        messages:
+          type: array
+          items: { $ref: "#/components/schemas/PublicMessage" }
+
+    PublicMessage:
+      type: object
+      description: A sent message as the customer sees it — deliberately without severity, status, owner or rule IDs.
+      required: [messageId, sentAt, channels, headline, agreedWindow, newEta, reasonCategory, nextStep, plannerNote]
+      properties:
+        messageId: { type: string }
+        sentAt: { type: ["string", "null"], format: date-time }
+        channels: { type: array, items: { type: string, enum: [PORTAL, EMAIL] } }
+        headline: { type: string }
+        agreedWindow: { type: string }
+        newEta: { type: ["string", "null"] }
+        reasonCategory: { type: string }
+        nextStep: { type: string }
+        plannerNote: { type: ["string", "null"] }
+
+    Problem:
+      type: object
+      required: [type, title, status, detail]
+      properties:
+        type: { type: string, format: uri }
+        title: { type: string }
+        status: { type: integer }
+        detail: { type: string }

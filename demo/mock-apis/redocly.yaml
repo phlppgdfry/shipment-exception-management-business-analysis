@@ -1,0 +1,6 @@
+extends:
+  - recommended
+rules:
+  # The servers are fictional on purpose; nothing is deployed.
+  no-server-example.com: off
+  operation-4xx-response: error

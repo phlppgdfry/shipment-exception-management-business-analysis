@@ -1,0 +1,92 @@
+[
+  {
+    "customerId": "C-NF",
+    "name": "Northfield Foods",
+    "keyAccount": true,
+    "pilot": true,
+    "prefersAllUpdates": false,
+    "channel": "PORTAL",
+    "contactEmail": "transport@northfield.example"
+  },
+  {
+    "customerId": "C-KF",
+    "name": "Kestrel Forwarding",
+    "keyAccount": false,
+    "pilot": true,
+    "prefersAllUpdates": false,
+    "channel": "EDI",
+    "contactEmail": "ops@kestrel.example"
+  },
+  {
+    "customerId": "C-BW",
+    "name": "Brightwater Paper",
+    "keyAccount": false,
+    "pilot": true,
+    "prefersAllUpdates": false,
+    "channel": "PORTAL",
+    "contactEmail": "planning@brightwater.example"
+  },
+  {
+    "customerId": "C-OT",
+    "name": "Oakridge Textiles",
+    "keyAccount": false,
+    "pilot": true,
+    "prefersAllUpdates": false,
+    "channel": "PORTAL",
+    "contactEmail": "shipping@oakridge.example"
+  },
+  {
+    "customerId": "C-PM",
+    "name": "Pellow Medical Supplies",
+    "keyAccount": false,
+    "pilot": true,
+    "prefersAllUpdates": true,
+    "channel": "EMAIL",
+    "contactEmail": "logistics@pellow.example"
+  },
+  {
+    "customerId": "C-MD",
+    "name": "Meadowline Dairy",
+    "keyAccount": false,
+    "pilot": false,
+    "prefersAllUpdates": false,
+    "channel": "PORTAL",
+    "contactEmail": "dispatch@meadowline.example"
+  },
+  {
+    "customerId": "C-FH",
+    "name": "Fenwick Home",
+    "keyAccount": false,
+    "pilot": false,
+    "prefersAllUpdates": false,
+    "channel": "PORTAL",
+    "contactEmail": "inbound@fenwick.example"
+  },
+  {
+    "customerId": "C-HG",
+    "name": "Harlow Garden Supplies",
+    "keyAccount": false,
+    "pilot": false,
+    "prefersAllUpdates": false,
+    "channel": "PORTAL",
+    "contactEmail": "imports@harlow.example"
+  },
+  {
+    "customerId": "C-AS",
+    "name": "Arden Steel",
+    "keyAccount": false,
+    "pilot": false,
+    "prefersAllUpdates": false,
+    "channel": "EDI",
+    "contactEmail": "logistics@arden.example"
+  },
+  {
+    "customerId": "C-CR",
+    "name": "Calder Retail",
+    "keyAccount": true,
+    "pilot": false,
+    "prefersAllUpdates": false,
+    "channel": "PORTAL",
+    "contactEmail": "dc@calder.example"
+  }
+]

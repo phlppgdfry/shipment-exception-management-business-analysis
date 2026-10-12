@@ -68,8 +68,9 @@ flowchart LR
 
 ## Assumptions
 
-| ID | Assumption | Why it matters | Check with | Status |
-|---|---|---|---|---|
+The assumptions behind this scope (TMS webhook timing, delivery-window completeness, notification channels, planner workload, the WISMO reduction) are kept in one place, with owner and status: the [assumptions register](../01-opportunity/registers.md#assumptions). The one that changed the scope most: only **72%** of door-to-door orders had a delivery window (A-02), which led to EN-2 and the default rule in [D-06](../03-workshops/decision-log.md#d-06).
+
+---|---|---|---|---|
 | A-01 | The TMS webhook fires within 2 minutes of a status or ETA change | Time to inform (K2) depends on it | TMS supplier | confirmed in sprint 1 spike |
 | A-02 | The agreed delivery window is filled in for ≥95% of door-to-door orders | Rules ER-01/ER-02 need the window | TMS data, 8 weeks | **72% only** → data-quality story and default rule ([D-06](../03-workshops/decision-log.md)) |
 | A-03 | Pilot customers accept e-mail + portal messages; no SMS needed | Notification channel | 5 pilot customers | confirmed |

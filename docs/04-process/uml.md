@@ -98,6 +98,9 @@ stateDiagram-v2
   Escalated --> Acknowledged: shift lead assigns
   Acknowledged --> Acknowledged: ETA changes (re-evaluated)
   Acknowledged --> Recovered: back inside the window (ER-13)
+  Open --> Recovered: back inside the window before anyone acknowledged
+  Escalated --> Recovered: back inside the window
+  Recovered --> Acknowledged: late again
   Acknowledged --> Resolved: resolved with reason code
   Recovered --> Resolved
   Resolved --> Closed
@@ -105,6 +108,8 @@ stateDiagram-v2
 ```
 
 Every arrow is at least one test case; the testers used this diagram to find two transitions the stories did not cover (Held → Closed, Escalated → Acknowledged). Both are now acceptance criteria in [US-08 and US-03](../06-backlog/user-stories.md).
+
+**Added after building the [control tower demo](../../demo/README.md):** implementing the lifecycle exposed three more situations the first version of this diagram did not cover — an exception that recovers before anyone acknowledged it, one that recovers while escalated, and one that becomes late again after recovering. They are open questions OQ-01 and OQ-04 for the PO in the [architecture overview](../12-architecture/README.md#open-questions-found-while-building-the-demo); the diagram shows the proposed answers. The complete transition table, with guards and tests, is in [data model and state machines](../12-architecture/data-model-and-states.md#exception-state-machine).
 
 ---
 

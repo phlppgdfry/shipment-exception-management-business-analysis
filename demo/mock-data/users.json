@@ -1,0 +1,44 @@
+[
+  {
+    "userId": "USR-PLANNER",
+    "name": "Maren Vos",
+    "role": "ROAD_PLANNER",
+    "ownerGroup": "ROAD_PLANNING",
+    "title": "Senior road planner, UK delivery"
+  },
+  {
+    "userId": "USR-PLANNER-2",
+    "name": "Tom Ellis",
+    "role": "ROAD_PLANNER",
+    "ownerGroup": "ROAD_PLANNING",
+    "title": "Road planner"
+  },
+  {
+    "userId": "USR-SHIFTLEAD",
+    "name": "Priya Raman",
+    "role": "SHIFT_LEAD",
+    "ownerGroup": "ROAD_PLANNING",
+    "title": "Road planning shift lead"
+  },
+  {
+    "userId": "USR-TERMINAL",
+    "name": "Jonas Peeters",
+    "role": "TERMINAL_OPERATOR",
+    "ownerGroup": "TERMINAL_OPS",
+    "title": "Terminal operations coordinator"
+  },
+  {
+    "userId": "USR-CUSTOMS",
+    "name": "Leen Martens",
+    "role": "CUSTOMS_AGENT",
+    "ownerGroup": "CUSTOMS_DESK",
+    "title": "Customs desk"
+  },
+  {
+    "userId": "USR-CS",
+    "name": "Sara Haddad",
+    "role": "CS_AGENT",
+    "ownerGroup": null,
+    "title": "Customer service agent"
+  }
+]

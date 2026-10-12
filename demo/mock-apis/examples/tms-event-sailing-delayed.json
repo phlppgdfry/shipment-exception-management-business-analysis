@@ -1,0 +1,9 @@
+{
+  "eventId": "EVT-0952-E312-DELAY",
+  "type": "SAILING_DELAYED",
+  "occurredAt": "2026-02-04T09:52:00Z",
+  "source": "Booking & sailing system",
+  "sailingId": "E-312",
+  "delayMinutes": 360,
+  "reason": "Technical inspection: departure 18:00 instead of 12:00"
+}

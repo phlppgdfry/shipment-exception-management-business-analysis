@@ -1,0 +1,3674 @@
+[
+  {
+    "orderRef": "D2D-48177",
+    "customerId": "C-CR",
+    "route": "BE-UK East",
+    "sailingId": "E-312",
+    "cargo": {
+      "description": "Trailer · retail goods",
+      "unitType": "TRAILER",
+      "timeCritical": false
+    },
+    "consignee": "Calder Retail DC Wakefield",
+    "deliveryWindow": {
+      "start": "2026-02-05T08:00:00Z",
+      "end": "2026-02-05T16:00:00Z"
+    },
+    "plannedEta": "2026-02-05T08:30:00Z",
+    "eta": "2026-02-05T08:30:00Z",
+    "status": "AT_ORIGIN_TERMINAL",
+    "lastStatusAt": "2026-02-04T08:00:00Z",
+    "legs": [
+      {
+        "mode": "ROAD",
+        "from": "Shipper, Belgium",
+        "to": "Continental terminal (BE)",
+        "plannedDeparture": "2026-02-04T04:00:00Z",
+        "plannedArrival": "2026-02-04T08:00:00Z",
+        "operator": "Subcontracted haulier (BE)"
+      },
+      {
+        "mode": "SEA",
+        "from": "Continental terminal (BE)",
+        "to": "UK East terminal",
+        "plannedDeparture": "2026-02-04T12:00:00Z",
+        "plannedArrival": "2026-02-04T20:00:00Z",
+        "operator": "Sailing E-312"
+      },
+      {
+        "mode": "ROAD",
+        "from": "UK East terminal",
+        "to": "Calder Retail DC Wakefield",
+        "plannedDeparture": "2026-02-05T06:00:00Z",
+        "plannedArrival": "2026-02-05T08:30:00Z",
+        "operator": "Subcontracted haulier (UK)"
+      }
+    ],
+    "milestones": [
+      {
+        "code": "ORDER_RECEIVED",
+        "label": "Order received",
+        "plannedAt": "2026-02-03T08:01:00Z",
+        "actualAt": "2026-02-03T08:01:00Z",
+        "location": "portal"
+      },
+      {
+        "code": "COLLECTED",
+        "label": "Collected at shipper",
+        "plannedAt": "2026-02-04T04:00:00Z",
+        "actualAt": "2026-02-04T04:00:00Z",
+        "location": "Shipper, Belgium"
+      },
+      {
+        "code": "GATE_IN_ORIGIN",
+        "label": "Gated in at terminal",
+        "plannedAt": "2026-02-04T08:00:00Z",
+        "actualAt": "2026-02-04T08:00:00Z",
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "SAILED",
+        "label": "Sailed on E-312",
+        "plannedAt": "2026-02-04T12:00:00Z",
+        "actualAt": null,
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "ARRIVED_DESTINATION",
+        "label": "Arrived at UK terminal",
+        "plannedAt": "2026-02-04T20:00:00Z",
+        "actualAt": null,
+        "location": "UK East terminal"
+      },
+      {
+        "code": "GATE_OUT_DESTINATION",
+        "label": "Gated out",
+        "plannedAt": "2026-02-04T21:00:00Z",
+        "actualAt": null,
+        "location": "UK East terminal"
+      },
+      {
+        "code": "OUT_FOR_DELIVERY",
+        "label": "Out for delivery",
+        "plannedAt": "2026-02-05T06:00:00Z",
+        "actualAt": null,
+        "location": "UK road leg"
+      },
+      {
+        "code": "DELIVERED",
+        "label": "Delivered",
+        "plannedAt": "2026-02-05T08:30:00Z",
+        "actualAt": null,
+        "location": "Calder Retail DC Wakefield"
+      }
+    ],
+    "scenarioOrder": false
+  },
+  {
+    "orderRef": "D2D-48190",
+    "customerId": "C-BW",
+    "route": "BE-UK East",
+    "sailingId": "E-312",
+    "cargo": {
+      "description": "Trailer · paper reels",
+      "unitType": "TRAILER",
+      "timeCritical": false
+    },
+    "consignee": "Printworks Basildon",
+    "deliveryWindow": {
+      "start": "2026-02-05T06:00:00Z",
+      "end": "2026-02-05T10:00:00Z"
+    },
+    "plannedEta": "2026-02-05T06:20:00Z",
+    "eta": "2026-02-05T06:20:00Z",
+    "status": "AT_ORIGIN_TERMINAL",
+    "lastStatusAt": "2026-02-04T08:00:00Z",
+    "legs": [
+      {
+        "mode": "ROAD",
+        "from": "Shipper, Belgium",
+        "to": "Continental terminal (BE)",
+        "plannedDeparture": "2026-02-04T04:00:00Z",
+        "plannedArrival": "2026-02-04T08:00:00Z",
+        "operator": "Subcontracted haulier (BE)"
+      },
+      {
+        "mode": "SEA",
+        "from": "Continental terminal (BE)",
+        "to": "UK East terminal",
+        "plannedDeparture": "2026-02-04T12:00:00Z",
+        "plannedArrival": "2026-02-04T20:00:00Z",
+        "operator": "Sailing E-312"
+      },
+      {
+        "mode": "ROAD",
+        "from": "UK East terminal",
+        "to": "Printworks Basildon",
+        "plannedDeparture": "2026-02-05T03:50:00Z",
+        "plannedArrival": "2026-02-05T06:20:00Z",
+        "operator": "Subcontracted haulier (UK)"
+      }
+    ],
+    "milestones": [
+      {
+        "code": "ORDER_RECEIVED",
+        "label": "Order received",
+        "plannedAt": "2026-02-02T16:44:00Z",
+        "actualAt": "2026-02-02T16:44:00Z",
+        "location": "portal"
+      },
+      {
+        "code": "COLLECTED",
+        "label": "Collected at shipper",
+        "plannedAt": "2026-02-04T04:00:00Z",
+        "actualAt": "2026-02-04T04:00:00Z",
+        "location": "Shipper, Belgium"
+      },
+      {
+        "code": "GATE_IN_ORIGIN",
+        "label": "Gated in at terminal",
+        "plannedAt": "2026-02-04T08:00:00Z",
+        "actualAt": "2026-02-04T08:00:00Z",
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "SAILED",
+        "label": "Sailed on E-312",
+        "plannedAt": "2026-02-04T12:00:00Z",
+        "actualAt": null,
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "ARRIVED_DESTINATION",
+        "label": "Arrived at UK terminal",
+        "plannedAt": "2026-02-04T20:00:00Z",
+        "actualAt": null,
+        "location": "UK East terminal"
+      },
+      {
+        "code": "GATE_OUT_DESTINATION",
+        "label": "Gated out",
+        "plannedAt": "2026-02-04T21:00:00Z",
+        "actualAt": null,
+        "location": "UK East terminal"
+      },
+      {
+        "code": "OUT_FOR_DELIVERY",
+        "label": "Out for delivery",
+        "plannedAt": "2026-02-05T03:50:00Z",
+        "actualAt": null,
+        "location": "UK road leg"
+      },
+      {
+        "code": "DELIVERED",
+        "label": "Delivered",
+        "plannedAt": "2026-02-05T06:20:00Z",
+        "actualAt": null,
+        "location": "Printworks Basildon"
+      }
+    ],
+    "scenarioOrder": false
+  },
+  {
+    "orderRef": "D2D-48199",
+    "customerId": "C-KF",
+    "route": "BE-UK East",
+    "sailingId": "E-312",
+    "cargo": {
+      "description": "Trailer · general cargo",
+      "unitType": "TRAILER",
+      "timeCritical": false
+    },
+    "consignee": "Retail park consignee, Milton Keynes",
+    "deliveryWindow": null,
+    "plannedEta": "2026-02-05T07:10:00Z",
+    "eta": "2026-02-05T07:10:00Z",
+    "status": "AT_ORIGIN_TERMINAL",
+    "lastStatusAt": "2026-02-04T08:00:00Z",
+    "legs": [
+      {
+        "mode": "ROAD",
+        "from": "Shipper, Belgium",
+        "to": "Continental terminal (BE)",
+        "plannedDeparture": "2026-02-04T04:00:00Z",
+        "plannedArrival": "2026-02-04T08:00:00Z",
+        "operator": "Subcontracted haulier (BE)"
+      },
+      {
+        "mode": "SEA",
+        "from": "Continental terminal (BE)",
+        "to": "UK East terminal",
+        "plannedDeparture": "2026-02-04T12:00:00Z",
+        "plannedArrival": "2026-02-04T20:00:00Z",
+        "operator": "Sailing E-312"
+      },
+      {
+        "mode": "ROAD",
+        "from": "UK East terminal",
+        "to": "Retail park consignee, Milton Keynes",
+        "plannedDeparture": "2026-02-05T04:40:00Z",
+        "plannedArrival": "2026-02-05T07:10:00Z",
+        "operator": "Subcontracted haulier (UK)"
+      }
+    ],
+    "milestones": [
+      {
+        "code": "ORDER_RECEIVED",
+        "label": "Order received",
+        "plannedAt": "2026-02-03T11:20:00Z",
+        "actualAt": "2026-02-03T11:20:00Z",
+        "location": "EDI"
+      },
+      {
+        "code": "COLLECTED",
+        "label": "Collected at shipper",
+        "plannedAt": "2026-02-04T04:00:00Z",
+        "actualAt": "2026-02-04T04:00:00Z",
+        "location": "Shipper, Belgium"
+      },
+      {
+        "code": "GATE_IN_ORIGIN",
+        "label": "Gated in at terminal",
+        "plannedAt": "2026-02-04T08:00:00Z",
+        "actualAt": "2026-02-04T08:00:00Z",
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "SAILED",
+        "label": "Sailed on E-312",
+        "plannedAt": "2026-02-04T12:00:00Z",
+        "actualAt": null,
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "ARRIVED_DESTINATION",
+        "label": "Arrived at UK terminal",
+        "plannedAt": "2026-02-04T20:00:00Z",
+        "actualAt": null,
+        "location": "UK East terminal"
+      },
+      {
+        "code": "GATE_OUT_DESTINATION",
+        "label": "Gated out",
+        "plannedAt": "2026-02-04T21:00:00Z",
+        "actualAt": null,
+        "location": "UK East terminal"
+      },
+      {
+        "code": "OUT_FOR_DELIVERY",
+        "label": "Out for delivery",
+        "plannedAt": "2026-02-05T04:40:00Z",
+        "actualAt": null,
+        "location": "UK road leg"
+      },
+      {
+        "code": "DELIVERED",
+        "label": "Delivered",
+        "plannedAt": "2026-02-05T07:10:00Z",
+        "actualAt": null,
+        "location": "Retail park consignee, Milton Keynes"
+      }
+    ],
+    "scenarioOrder": false
+  },
+  {
+    "orderRef": "D2D-48207",
+    "customerId": "C-MD",
+    "route": "BE-UK East",
+    "sailingId": "E-312",
+    "cargo": {
+      "description": "Reefer · dairy",
+      "unitType": "REEFER",
+      "timeCritical": true
+    },
+    "consignee": "Meadowline depot York",
+    "deliveryWindow": {
+      "start": "2026-02-05T07:00:00Z",
+      "end": "2026-02-05T11:00:00Z"
+    },
+    "plannedEta": "2026-02-05T07:30:00Z",
+    "eta": "2026-02-05T07:30:00Z",
+    "status": "AT_ORIGIN_TERMINAL",
+    "lastStatusAt": "2026-02-04T08:00:00Z",
+    "legs": [
+      {
+        "mode": "ROAD",
+        "from": "Shipper, Belgium",
+        "to": "Continental terminal (BE)",
+        "plannedDeparture": "2026-02-04T04:00:00Z",
+        "plannedArrival": "2026-02-04T08:00:00Z",
+        "operator": "Subcontracted haulier (BE)"
+      },
+      {
+        "mode": "SEA",
+        "from": "Continental terminal (BE)",
+        "to": "UK East terminal",
+        "plannedDeparture": "2026-02-04T12:00:00Z",
+        "plannedArrival": "2026-02-04T20:00:00Z",
+        "operator": "Sailing E-312"
+      },
+      {
+        "mode": "ROAD",
+        "from": "UK East terminal",
+        "to": "Meadowline depot York",
+        "plannedDeparture": "2026-02-05T05:00:00Z",
+        "plannedArrival": "2026-02-05T07:30:00Z",
+        "operator": "Subcontracted haulier (UK)"
+      }
+    ],
+    "milestones": [
+      {
+        "code": "ORDER_RECEIVED",
+        "label": "Order received",
+        "plannedAt": "2026-02-03T09:05:00Z",
+        "actualAt": "2026-02-03T09:05:00Z",
+        "location": "portal"
+      },
+      {
+        "code": "COLLECTED",
+        "label": "Collected at shipper",
+        "plannedAt": "2026-02-04T04:00:00Z",
+        "actualAt": "2026-02-04T04:00:00Z",
+        "location": "Shipper, Belgium"
+      },
+      {
+        "code": "GATE_IN_ORIGIN",
+        "label": "Gated in at terminal",
+        "plannedAt": "2026-02-04T08:00:00Z",
+        "actualAt": "2026-02-04T08:00:00Z",
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "SAILED",
+        "label": "Sailed on E-312",
+        "plannedAt": "2026-02-04T12:00:00Z",
+        "actualAt": null,
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "ARRIVED_DESTINATION",
+        "label": "Arrived at UK terminal",
+        "plannedAt": "2026-02-04T20:00:00Z",
+        "actualAt": null,
+        "location": "UK East terminal"
+      },
+      {
+        "code": "GATE_OUT_DESTINATION",
+        "label": "Gated out",
+        "plannedAt": "2026-02-04T21:00:00Z",
+        "actualAt": null,
+        "location": "UK East terminal"
+      },
+      {
+        "code": "OUT_FOR_DELIVERY",
+        "label": "Out for delivery",
+        "plannedAt": "2026-02-05T05:00:00Z",
+        "actualAt": null,
+        "location": "UK road leg"
+      },
+      {
+        "code": "DELIVERED",
+        "label": "Delivered",
+        "plannedAt": "2026-02-05T07:30:00Z",
+        "actualAt": null,
+        "location": "Meadowline depot York"
+      }
+    ],
+    "scenarioOrder": false
+  },
+  {
+    "orderRef": "D2D-48213",
+    "customerId": "C-NF",
+    "route": "BE-UK East",
+    "sailingId": "E-312",
+    "cargo": {
+      "description": "Reefer · chilled food",
+      "unitType": "REEFER",
+      "timeCritical": true
+    },
+    "consignee": "Northfield DC Doncaster",
+    "deliveryWindow": {
+      "start": "2026-02-05T06:00:00Z",
+      "end": "2026-02-05T08:00:00Z"
+    },
+    "plannedEta": "2026-02-05T06:40:00Z",
+    "eta": "2026-02-05T06:40:00Z",
+    "status": "AT_ORIGIN_TERMINAL",
+    "lastStatusAt": "2026-02-04T08:00:00Z",
+    "legs": [
+      {
+        "mode": "ROAD",
+        "from": "Shipper, Belgium",
+        "to": "Continental terminal (BE)",
+        "plannedDeparture": "2026-02-04T04:00:00Z",
+        "plannedArrival": "2026-02-04T08:00:00Z",
+        "operator": "Subcontracted haulier (BE)"
+      },
+      {
+        "mode": "SEA",
+        "from": "Continental terminal (BE)",
+        "to": "UK East terminal",
+        "plannedDeparture": "2026-02-04T12:00:00Z",
+        "plannedArrival": "2026-02-04T20:00:00Z",
+        "operator": "Sailing E-312"
+      },
+      {
+        "mode": "ROAD",
+        "from": "UK East terminal",
+        "to": "Northfield DC Doncaster",
+        "plannedDeparture": "2026-02-05T04:10:00Z",
+        "plannedArrival": "2026-02-05T06:40:00Z",
+        "operator": "Subcontracted haulier (UK)"
+      }
+    ],
+    "milestones": [
+      {
+        "code": "ORDER_RECEIVED",
+        "label": "Order received",
+        "plannedAt": "2026-02-02T15:12:00Z",
+        "actualAt": "2026-02-02T15:12:00Z",
+        "location": "portal"
+      },
+      {
+        "code": "COLLECTED",
+        "label": "Collected at shipper",
+        "plannedAt": "2026-02-04T04:00:00Z",
+        "actualAt": "2026-02-04T04:00:00Z",
+        "location": "Shipper, Belgium"
+      },
+      {
+        "code": "GATE_IN_ORIGIN",
+        "label": "Gated in at terminal",
+        "plannedAt": "2026-02-04T08:00:00Z",
+        "actualAt": "2026-02-04T08:00:00Z",
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "SAILED",
+        "label": "Sailed on E-312",
+        "plannedAt": "2026-02-04T12:00:00Z",
+        "actualAt": null,
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "ARRIVED_DESTINATION",
+        "label": "Arrived at UK terminal",
+        "plannedAt": "2026-02-04T20:00:00Z",
+        "actualAt": null,
+        "location": "UK East terminal"
+      },
+      {
+        "code": "GATE_OUT_DESTINATION",
+        "label": "Gated out",
+        "plannedAt": "2026-02-04T21:00:00Z",
+        "actualAt": null,
+        "location": "UK East terminal"
+      },
+      {
+        "code": "OUT_FOR_DELIVERY",
+        "label": "Out for delivery",
+        "plannedAt": "2026-02-05T04:10:00Z",
+        "actualAt": null,
+        "location": "UK road leg"
+      },
+      {
+        "code": "DELIVERED",
+        "label": "Delivered",
+        "plannedAt": "2026-02-05T06:40:00Z",
+        "actualAt": null,
+        "location": "Northfield DC Doncaster"
+      }
+    ],
+    "scenarioOrder": true
+  },
+  {
+    "orderRef": "D2D-48222",
+    "customerId": "C-FH",
+    "route": "BE-UK South",
+    "sailingId": "S-415",
+    "cargo": {
+      "description": "Trailer · furniture",
+      "unitType": "TRAILER",
+      "timeCritical": false
+    },
+    "consignee": "Fenwick store logistics, Bristol",
+    "deliveryWindow": {
+      "start": "2026-02-04T11:00:00Z",
+      "end": "2026-02-04T13:00:00Z"
+    },
+    "plannedEta": "2026-02-04T11:30:00Z",
+    "eta": "2026-02-04T11:30:00Z",
+    "status": "AT_DESTINATION_TERMINAL",
+    "lastStatusAt": "2026-02-04T02:30:00Z",
+    "legs": [
+      {
+        "mode": "ROAD",
+        "from": "Shipper, Belgium",
+        "to": "Continental terminal (BE)",
+        "plannedDeparture": "2026-02-03T10:00:00Z",
+        "plannedArrival": "2026-02-03T14:00:00Z",
+        "operator": "Subcontracted haulier (BE)"
+      },
+      {
+        "mode": "SEA",
+        "from": "Continental terminal (BE)",
+        "to": "UK South terminal",
+        "plannedDeparture": "2026-02-03T18:00:00Z",
+        "plannedArrival": "2026-02-04T02:30:00Z",
+        "operator": "Sailing S-415"
+      },
+      {
+        "mode": "ROAD",
+        "from": "UK South terminal",
+        "to": "Fenwick store logistics, Bristol",
+        "plannedDeparture": "2026-02-04T09:00:00Z",
+        "plannedArrival": "2026-02-04T11:30:00Z",
+        "operator": "Subcontracted haulier (UK)"
+      }
+    ],
+    "milestones": [
+      {
+        "code": "ORDER_RECEIVED",
+        "label": "Order received",
+        "plannedAt": "2026-02-02T10:21:00Z",
+        "actualAt": "2026-02-02T10:21:00Z",
+        "location": "portal"
+      },
+      {
+        "code": "COLLECTED",
+        "label": "Collected at shipper",
+        "plannedAt": "2026-02-03T10:00:00Z",
+        "actualAt": "2026-02-03T10:00:00Z",
+        "location": "Shipper, Belgium"
+      },
+      {
+        "code": "GATE_IN_ORIGIN",
+        "label": "Gated in at terminal",
+        "plannedAt": "2026-02-03T14:00:00Z",
+        "actualAt": "2026-02-03T14:00:00Z",
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "SAILED",
+        "label": "Sailed on S-415",
+        "plannedAt": "2026-02-03T18:00:00Z",
+        "actualAt": "2026-02-03T18:00:00Z",
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "ARRIVED_DESTINATION",
+        "label": "Arrived at UK terminal",
+        "plannedAt": "2026-02-04T02:30:00Z",
+        "actualAt": "2026-02-04T02:30:00Z",
+        "location": "UK South terminal"
+      },
+      {
+        "code": "GATE_OUT_DESTINATION",
+        "label": "Gated out",
+        "plannedAt": "2026-02-04T06:30:00Z",
+        "actualAt": null,
+        "location": "UK South terminal"
+      },
+      {
+        "code": "OUT_FOR_DELIVERY",
+        "label": "Out for delivery",
+        "plannedAt": "2026-02-04T09:00:00Z",
+        "actualAt": null,
+        "location": "UK road leg"
+      },
+      {
+        "code": "DELIVERED",
+        "label": "Delivered",
+        "plannedAt": "2026-02-04T11:30:00Z",
+        "actualAt": null,
+        "location": "Fenwick store logistics, Bristol"
+      }
+    ],
+    "scenarioOrder": false
+  },
+  {
+    "orderRef": "D2D-48231",
+    "customerId": "C-OT",
+    "route": "BE-UK South",
+    "sailingId": "S-415",
+    "cargo": {
+      "description": "Trailer · textiles",
+      "unitType": "TRAILER",
+      "timeCritical": false
+    },
+    "consignee": "Oakridge warehouse Leicester",
+    "deliveryWindow": {
+      "start": "2026-02-04T08:00:00Z",
+      "end": "2026-02-04T10:00:00Z"
+    },
+    "plannedEta": "2026-02-04T09:00:00Z",
+    "eta": "2026-02-04T09:00:00Z",
+    "status": "ON_DELIVERY_LEG",
+    "lastStatusAt": "2026-02-04T06:30:00Z",
+    "legs": [
+      {
+        "mode": "ROAD",
+        "from": "Shipper, Belgium",
+        "to": "Continental terminal (BE)",
+        "plannedDeparture": "2026-02-03T10:00:00Z",
+        "plannedArrival": "2026-02-03T14:00:00Z",
+        "operator": "Subcontracted haulier (BE)"
+      },
+      {
+        "mode": "SEA",
+        "from": "Continental terminal (BE)",
+        "to": "UK South terminal",
+        "plannedDeparture": "2026-02-03T18:00:00Z",
+        "plannedArrival": "2026-02-04T02:30:00Z",
+        "operator": "Sailing S-415"
+      },
+      {
+        "mode": "ROAD",
+        "from": "UK South terminal",
+        "to": "Oakridge warehouse Leicester",
+        "plannedDeparture": "2026-02-04T06:30:00Z",
+        "plannedArrival": "2026-02-04T09:00:00Z",
+        "operator": "Subcontracted haulier (UK)"
+      }
+    ],
+    "milestones": [
+      {
+        "code": "ORDER_RECEIVED",
+        "label": "Order received",
+        "plannedAt": "2026-02-02T08:15:00Z",
+        "actualAt": "2026-02-02T08:15:00Z",
+        "location": "portal"
+      },
+      {
+        "code": "COLLECTED",
+        "label": "Collected at shipper",
+        "plannedAt": "2026-02-03T10:00:00Z",
+        "actualAt": "2026-02-03T10:00:00Z",
+        "location": "Shipper, Belgium"
+      },
+      {
+        "code": "GATE_IN_ORIGIN",
+        "label": "Gated in at terminal",
+        "plannedAt": "2026-02-03T14:00:00Z",
+        "actualAt": "2026-02-03T14:00:00Z",
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "SAILED",
+        "label": "Sailed on S-415",
+        "plannedAt": "2026-02-03T18:00:00Z",
+        "actualAt": "2026-02-03T18:00:00Z",
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "ARRIVED_DESTINATION",
+        "label": "Arrived at UK terminal",
+        "plannedAt": "2026-02-04T02:30:00Z",
+        "actualAt": "2026-02-04T02:30:00Z",
+        "location": "UK South terminal"
+      },
+      {
+        "code": "GATE_OUT_DESTINATION",
+        "label": "Gated out",
+        "plannedAt": "2026-02-04T03:30:00Z",
+        "actualAt": "2026-02-04T03:30:00Z",
+        "location": "UK South terminal"
+      },
+      {
+        "code": "OUT_FOR_DELIVERY",
+        "label": "Out for delivery",
+        "plannedAt": "2026-02-04T06:30:00Z",
+        "actualAt": "2026-02-04T06:30:00Z",
+        "location": "UK road leg"
+      },
+      {
+        "code": "DELIVERED",
+        "label": "Delivered",
+        "plannedAt": "2026-02-04T09:00:00Z",
+        "actualAt": null,
+        "location": "Oakridge warehouse Leicester"
+      }
+    ],
+    "scenarioOrder": false
+  },
+  {
+    "orderRef": "D2D-48240",
+    "customerId": "C-HG",
+    "route": "BE-UK East",
+    "sailingId": "E-310",
+    "cargo": {
+      "description": "Trailer · garden products",
+      "unitType": "TRAILER",
+      "timeCritical": false
+    },
+    "consignee": "Harlow garden centre DC, Peterborough",
+    "deliveryWindow": {
+      "start": "2026-02-04T14:00:00Z",
+      "end": "2026-02-04T17:00:00Z"
+    },
+    "plannedEta": "2026-02-04T14:30:00Z",
+    "eta": "2026-02-04T14:30:00Z",
+    "status": "AT_DESTINATION_TERMINAL",
+    "lastStatusAt": "2026-02-04T04:00:00Z",
+    "legs": [
+      {
+        "mode": "ROAD",
+        "from": "Shipper, Belgium",
+        "to": "Continental terminal (BE)",
+        "plannedDeparture": "2026-02-03T12:00:00Z",
+        "plannedArrival": "2026-02-03T16:00:00Z",
+        "operator": "Subcontracted haulier (BE)"
+      },
+      {
+        "mode": "SEA",
+        "from": "Continental terminal (BE)",
+        "to": "UK East terminal",
+        "plannedDeparture": "2026-02-03T20:00:00Z",
+        "plannedArrival": "2026-02-04T04:00:00Z",
+        "operator": "Sailing E-310"
+      },
+      {
+        "mode": "ROAD",
+        "from": "UK East terminal",
+        "to": "Harlow garden centre DC, Peterborough",
+        "plannedDeparture": "2026-02-04T12:00:00Z",
+        "plannedArrival": "2026-02-04T14:30:00Z",
+        "operator": "Subcontracted haulier (UK)"
+      }
+    ],
+    "milestones": [
+      {
+        "code": "ORDER_RECEIVED",
+        "label": "Order received",
+        "plannedAt": "2026-02-02T13:02:00Z",
+        "actualAt": "2026-02-02T13:02:00Z",
+        "location": "portal"
+      },
+      {
+        "code": "COLLECTED",
+        "label": "Collected at shipper",
+        "plannedAt": "2026-02-03T12:00:00Z",
+        "actualAt": "2026-02-03T12:00:00Z",
+        "location": "Shipper, Belgium"
+      },
+      {
+        "code": "GATE_IN_ORIGIN",
+        "label": "Gated in at terminal",
+        "plannedAt": "2026-02-03T16:00:00Z",
+        "actualAt": "2026-02-03T16:00:00Z",
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "SAILED",
+        "label": "Sailed on E-310",
+        "plannedAt": "2026-02-03T20:00:00Z",
+        "actualAt": "2026-02-03T20:00:00Z",
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "ARRIVED_DESTINATION",
+        "label": "Arrived at UK terminal",
+        "plannedAt": "2026-02-04T04:00:00Z",
+        "actualAt": "2026-02-04T04:00:00Z",
+        "location": "UK East terminal"
+      },
+      {
+        "code": "GATE_OUT_DESTINATION",
+        "label": "Gated out",
+        "plannedAt": "2026-02-04T08:00:00Z",
+        "actualAt": null,
+        "location": "UK East terminal"
+      },
+      {
+        "code": "OUT_FOR_DELIVERY",
+        "label": "Out for delivery",
+        "plannedAt": "2026-02-04T12:00:00Z",
+        "actualAt": null,
+        "location": "UK road leg"
+      },
+      {
+        "code": "DELIVERED",
+        "label": "Delivered",
+        "plannedAt": "2026-02-04T14:30:00Z",
+        "actualAt": null,
+        "location": "Harlow garden centre DC, Peterborough"
+      }
+    ],
+    "scenarioOrder": false
+  },
+  {
+    "orderRef": "D2D-48255",
+    "customerId": "C-AS",
+    "route": "BE-UK South",
+    "sailingId": "S-415",
+    "cargo": {
+      "description": "Flatbed · steel coils",
+      "unitType": "FLATBED",
+      "timeCritical": false
+    },
+    "consignee": "Arden fabrication, Sheffield",
+    "deliveryWindow": {
+      "start": "2026-02-04T09:00:00Z",
+      "end": "2026-02-04T11:00:00Z"
+    },
+    "plannedEta": "2026-02-04T10:15:00Z",
+    "eta": "2026-02-04T10:15:00Z",
+    "status": "ON_DELIVERY_LEG",
+    "lastStatusAt": "2026-02-04T07:45:00Z",
+    "legs": [
+      {
+        "mode": "ROAD",
+        "from": "Shipper, Belgium",
+        "to": "Continental terminal (BE)",
+        "plannedDeparture": "2026-02-03T10:00:00Z",
+        "plannedArrival": "2026-02-03T14:00:00Z",
+        "operator": "Subcontracted haulier (BE)"
+      },
+      {
+        "mode": "SEA",
+        "from": "Continental terminal (BE)",
+        "to": "UK South terminal",
+        "plannedDeparture": "2026-02-03T18:00:00Z",
+        "plannedArrival": "2026-02-04T02:30:00Z",
+        "operator": "Sailing S-415"
+      },
+      {
+        "mode": "ROAD",
+        "from": "UK South terminal",
+        "to": "Arden fabrication, Sheffield",
+        "plannedDeparture": "2026-02-04T07:45:00Z",
+        "plannedArrival": "2026-02-04T10:15:00Z",
+        "operator": "Subcontracted haulier (UK)"
+      }
+    ],
+    "milestones": [
+      {
+        "code": "ORDER_RECEIVED",
+        "label": "Order received",
+        "plannedAt": "2026-02-02T12:12:00Z",
+        "actualAt": "2026-02-02T12:12:00Z",
+        "location": "EDI"
+      },
+      {
+        "code": "COLLECTED",
+        "label": "Collected at shipper",
+        "plannedAt": "2026-02-03T10:00:00Z",
+        "actualAt": "2026-02-03T10:00:00Z",
+        "location": "Shipper, Belgium"
+      },
+      {
+        "code": "GATE_IN_ORIGIN",
+        "label": "Gated in at terminal",
+        "plannedAt": "2026-02-03T14:00:00Z",
+        "actualAt": "2026-02-03T14:00:00Z",
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "SAILED",
+        "label": "Sailed on S-415",
+        "plannedAt": "2026-02-03T18:00:00Z",
+        "actualAt": "2026-02-03T18:00:00Z",
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "ARRIVED_DESTINATION",
+        "label": "Arrived at UK terminal",
+        "plannedAt": "2026-02-04T02:30:00Z",
+        "actualAt": "2026-02-04T02:30:00Z",
+        "location": "UK South terminal"
+      },
+      {
+        "code": "GATE_OUT_DESTINATION",
+        "label": "Gated out",
+        "plannedAt": "2026-02-04T03:30:00Z",
+        "actualAt": "2026-02-04T03:30:00Z",
+        "location": "UK South terminal"
+      },
+      {
+        "code": "OUT_FOR_DELIVERY",
+        "label": "Out for delivery",
+        "plannedAt": "2026-02-04T07:45:00Z",
+        "actualAt": "2026-02-04T07:45:00Z",
+        "location": "UK road leg"
+      },
+      {
+        "code": "DELIVERED",
+        "label": "Delivered",
+        "plannedAt": "2026-02-04T10:15:00Z",
+        "actualAt": null,
+        "location": "Arden fabrication, Sheffield"
+      }
+    ],
+    "scenarioOrder": false
+  },
+  {
+    "orderRef": "D2D-48261",
+    "customerId": "C-MD",
+    "route": "BE-UK East",
+    "sailingId": "E-310",
+    "cargo": {
+      "description": "Reefer · dairy",
+      "unitType": "REEFER",
+      "timeCritical": true
+    },
+    "consignee": "Meadowline depot Hull",
+    "deliveryWindow": {
+      "start": "2026-02-04T09:00:00Z",
+      "end": "2026-02-04T10:00:00Z"
+    },
+    "plannedEta": "2026-02-04T09:20:00Z",
+    "eta": "2026-02-04T09:20:00Z",
+    "status": "ON_DELIVERY_LEG",
+    "lastStatusAt": "2026-02-04T06:50:00Z",
+    "legs": [
+      {
+        "mode": "ROAD",
+        "from": "Shipper, Belgium",
+        "to": "Continental terminal (BE)",
+        "plannedDeparture": "2026-02-03T12:00:00Z",
+        "plannedArrival": "2026-02-03T16:00:00Z",
+        "operator": "Subcontracted haulier (BE)"
+      },
+      {
+        "mode": "SEA",
+        "from": "Continental terminal (BE)",
+        "to": "UK East terminal",
+        "plannedDeparture": "2026-02-03T20:00:00Z",
+        "plannedArrival": "2026-02-04T04:00:00Z",
+        "operator": "Sailing E-310"
+      },
+      {
+        "mode": "ROAD",
+        "from": "UK East terminal",
+        "to": "Meadowline depot Hull",
+        "plannedDeparture": "2026-02-04T06:50:00Z",
+        "plannedArrival": "2026-02-04T09:20:00Z",
+        "operator": "Subcontracted haulier (UK)"
+      }
+    ],
+    "milestones": [
+      {
+        "code": "ORDER_RECEIVED",
+        "label": "Order received",
+        "plannedAt": "2026-02-02T14:00:00Z",
+        "actualAt": "2026-02-02T14:00:00Z",
+        "location": "portal"
+      },
+      {
+        "code": "COLLECTED",
+        "label": "Collected at shipper",
+        "plannedAt": "2026-02-03T12:00:00Z",
+        "actualAt": "2026-02-03T12:00:00Z",
+        "location": "Shipper, Belgium"
+      },
+      {
+        "code": "GATE_IN_ORIGIN",
+        "label": "Gated in at terminal",
+        "plannedAt": "2026-02-03T16:00:00Z",
+        "actualAt": "2026-02-03T16:00:00Z",
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "SAILED",
+        "label": "Sailed on E-310",
+        "plannedAt": "2026-02-03T20:00:00Z",
+        "actualAt": "2026-02-03T20:00:00Z",
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "ARRIVED_DESTINATION",
+        "label": "Arrived at UK terminal",
+        "plannedAt": "2026-02-04T04:00:00Z",
+        "actualAt": "2026-02-04T04:00:00Z",
+        "location": "UK East terminal"
+      },
+      {
+        "code": "GATE_OUT_DESTINATION",
+        "label": "Gated out",
+        "plannedAt": "2026-02-04T05:00:00Z",
+        "actualAt": "2026-02-04T05:00:00Z",
+        "location": "UK East terminal"
+      },
+      {
+        "code": "OUT_FOR_DELIVERY",
+        "label": "Out for delivery",
+        "plannedAt": "2026-02-04T06:50:00Z",
+        "actualAt": "2026-02-04T06:50:00Z",
+        "location": "UK road leg"
+      },
+      {
+        "code": "DELIVERED",
+        "label": "Delivered",
+        "plannedAt": "2026-02-04T09:20:00Z",
+        "actualAt": null,
+        "location": "Meadowline depot Hull"
+      }
+    ],
+    "scenarioOrder": false
+  },
+  {
+    "orderRef": "D2D-48288",
+    "customerId": "C-PM",
+    "route": "BE-UK South",
+    "sailingId": "S-415",
+    "cargo": {
+      "description": "Trailer · medical supplies (time-critical)",
+      "unitType": "TRAILER",
+      "timeCritical": true
+    },
+    "consignee": "Pellow hub Reading",
+    "deliveryWindow": {
+      "start": "2026-02-04T12:00:00Z",
+      "end": "2026-02-04T14:00:00Z"
+    },
+    "plannedEta": "2026-02-04T12:50:00Z",
+    "eta": "2026-02-04T12:50:00Z",
+    "status": "AT_DESTINATION_TERMINAL",
+    "lastStatusAt": "2026-02-04T03:05:00Z",
+    "legs": [
+      {
+        "mode": "ROAD",
+        "from": "Shipper, Belgium",
+        "to": "Continental terminal (BE)",
+        "plannedDeparture": "2026-02-03T10:00:00Z",
+        "plannedArrival": "2026-02-03T14:00:00Z",
+        "operator": "Subcontracted haulier (BE)"
+      },
+      {
+        "mode": "SEA",
+        "from": "Continental terminal (BE)",
+        "to": "UK South terminal",
+        "plannedDeparture": "2026-02-03T18:00:00Z",
+        "plannedArrival": "2026-02-04T02:30:00Z",
+        "operator": "Sailing S-415"
+      },
+      {
+        "mode": "ROAD",
+        "from": "UK South terminal",
+        "to": "Pellow hub Reading",
+        "plannedDeparture": "2026-02-04T10:20:00Z",
+        "plannedArrival": "2026-02-04T12:50:00Z",
+        "operator": "Subcontracted haulier (UK)"
+      }
+    ],
+    "milestones": [
+      {
+        "code": "ORDER_RECEIVED",
+        "label": "Order received",
+        "plannedAt": "2026-02-02T09:30:00Z",
+        "actualAt": "2026-02-02T09:30:00Z",
+        "location": "e-mail"
+      },
+      {
+        "code": "COLLECTED",
+        "label": "Collected at shipper",
+        "plannedAt": "2026-02-03T10:00:00Z",
+        "actualAt": "2026-02-03T10:00:00Z",
+        "location": "Shipper, Belgium"
+      },
+      {
+        "code": "GATE_IN_ORIGIN",
+        "label": "Gated in at terminal",
+        "plannedAt": "2026-02-03T14:00:00Z",
+        "actualAt": "2026-02-03T14:00:00Z",
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "SAILED",
+        "label": "Sailed on S-415",
+        "plannedAt": "2026-02-03T18:00:00Z",
+        "actualAt": "2026-02-03T18:00:00Z",
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "ARRIVED_DESTINATION",
+        "label": "Arrived at UK terminal",
+        "plannedAt": "2026-02-04T02:30:00Z",
+        "actualAt": "2026-02-04T02:30:00Z",
+        "location": "UK South terminal"
+      },
+      {
+        "code": "GATE_OUT_DESTINATION",
+        "label": "Gated out",
+        "plannedAt": "2026-02-04T03:30:00Z",
+        "actualAt": null,
+        "location": "UK South terminal"
+      },
+      {
+        "code": "OUT_FOR_DELIVERY",
+        "label": "Out for delivery",
+        "plannedAt": "2026-02-04T10:20:00Z",
+        "actualAt": null,
+        "location": "UK road leg"
+      },
+      {
+        "code": "DELIVERED",
+        "label": "Delivered",
+        "plannedAt": "2026-02-04T12:50:00Z",
+        "actualAt": null,
+        "location": "Pellow hub Reading"
+      }
+    ],
+    "scenarioOrder": false
+  },
+  {
+    "orderRef": "D2D-48302",
+    "customerId": "C-KF",
+    "route": "BE-UK South",
+    "sailingId": "S-417",
+    "cargo": {
+      "description": "Trailer · general cargo",
+      "unitType": "TRAILER",
+      "timeCritical": false
+    },
+    "consignee": "Retail park consignee, Milton Keynes",
+    "deliveryWindow": {
+      "start": "2026-02-05T09:00:00Z",
+      "end": "2026-02-05T13:00:00Z"
+    },
+    "plannedEta": "2026-02-05T10:15:00Z",
+    "eta": "2026-02-05T10:15:00Z",
+    "status": "COLLECTED",
+    "lastStatusAt": "2026-02-04T09:00:00Z",
+    "legs": [
+      {
+        "mode": "ROAD",
+        "from": "Shipper, Belgium",
+        "to": "Continental terminal (BE)",
+        "plannedDeparture": "2026-02-04T09:00:00Z",
+        "plannedArrival": "2026-02-04T13:00:00Z",
+        "operator": "Subcontracted haulier (BE)"
+      },
+      {
+        "mode": "SEA",
+        "from": "Continental terminal (BE)",
+        "to": "UK South terminal",
+        "plannedDeparture": "2026-02-04T17:00:00Z",
+        "plannedArrival": "2026-02-05T01:30:00Z",
+        "operator": "Sailing S-417"
+      },
+      {
+        "mode": "ROAD",
+        "from": "UK South terminal",
+        "to": "Retail park consignee, Milton Keynes",
+        "plannedDeparture": "2026-02-05T07:45:00Z",
+        "plannedArrival": "2026-02-05T10:15:00Z",
+        "operator": "Subcontracted haulier (UK)"
+      }
+    ],
+    "milestones": [
+      {
+        "code": "ORDER_RECEIVED",
+        "label": "Order received",
+        "plannedAt": "2026-02-02T11:03:00Z",
+        "actualAt": "2026-02-02T11:03:00Z",
+        "location": "EDI"
+      },
+      {
+        "code": "COLLECTED",
+        "label": "Collected at shipper",
+        "plannedAt": "2026-02-04T09:00:00Z",
+        "actualAt": "2026-02-04T09:00:00Z",
+        "location": "Shipper, Belgium"
+      },
+      {
+        "code": "GATE_IN_ORIGIN",
+        "label": "Gated in at terminal",
+        "plannedAt": "2026-02-04T13:00:00Z",
+        "actualAt": null,
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "SAILED",
+        "label": "Sailed on S-417",
+        "plannedAt": "2026-02-04T17:00:00Z",
+        "actualAt": null,
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "ARRIVED_DESTINATION",
+        "label": "Arrived at UK terminal",
+        "plannedAt": "2026-02-05T01:30:00Z",
+        "actualAt": null,
+        "location": "UK South terminal"
+      },
+      {
+        "code": "GATE_OUT_DESTINATION",
+        "label": "Gated out",
+        "plannedAt": "2026-02-05T02:30:00Z",
+        "actualAt": null,
+        "location": "UK South terminal"
+      },
+      {
+        "code": "OUT_FOR_DELIVERY",
+        "label": "Out for delivery",
+        "plannedAt": "2026-02-05T07:45:00Z",
+        "actualAt": null,
+        "location": "UK road leg"
+      },
+      {
+        "code": "DELIVERED",
+        "label": "Delivered",
+        "plannedAt": "2026-02-05T10:15:00Z",
+        "actualAt": null,
+        "location": "Retail park consignee, Milton Keynes"
+      }
+    ],
+    "scenarioOrder": false
+  },
+  {
+    "orderRef": "D2D-48309",
+    "customerId": "C-AS",
+    "route": "BE-UK South",
+    "sailingId": "S-417",
+    "cargo": {
+      "description": "Flatbed · steel coils",
+      "unitType": "FLATBED",
+      "timeCritical": false
+    },
+    "consignee": "Arden fabrication, Sheffield",
+    "deliveryWindow": {
+      "start": "2026-02-05T10:00:00Z",
+      "end": "2026-02-05T14:00:00Z"
+    },
+    "plannedEta": "2026-02-05T11:00:00Z",
+    "eta": "2026-02-05T11:00:00Z",
+    "status": "COLLECTED",
+    "lastStatusAt": "2026-02-04T09:00:00Z",
+    "legs": [
+      {
+        "mode": "ROAD",
+        "from": "Shipper, Belgium",
+        "to": "Continental terminal (BE)",
+        "plannedDeparture": "2026-02-04T09:00:00Z",
+        "plannedArrival": "2026-02-04T13:00:00Z",
+        "operator": "Subcontracted haulier (BE)"
+      },
+      {
+        "mode": "SEA",
+        "from": "Continental terminal (BE)",
+        "to": "UK South terminal",
+        "plannedDeparture": "2026-02-04T17:00:00Z",
+        "plannedArrival": "2026-02-05T01:30:00Z",
+        "operator": "Sailing S-417"
+      },
+      {
+        "mode": "ROAD",
+        "from": "UK South terminal",
+        "to": "Arden fabrication, Sheffield",
+        "plannedDeparture": "2026-02-05T08:30:00Z",
+        "plannedArrival": "2026-02-05T11:00:00Z",
+        "operator": "Subcontracted haulier (UK)"
+      }
+    ],
+    "milestones": [
+      {
+        "code": "ORDER_RECEIVED",
+        "label": "Order received",
+        "plannedAt": "2026-02-02T14:40:00Z",
+        "actualAt": "2026-02-02T14:40:00Z",
+        "location": "EDI"
+      },
+      {
+        "code": "COLLECTED",
+        "label": "Collected at shipper",
+        "plannedAt": "2026-02-04T09:00:00Z",
+        "actualAt": "2026-02-04T09:00:00Z",
+        "location": "Shipper, Belgium"
+      },
+      {
+        "code": "GATE_IN_ORIGIN",
+        "label": "Gated in at terminal",
+        "plannedAt": "2026-02-04T13:00:00Z",
+        "actualAt": null,
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "SAILED",
+        "label": "Sailed on S-417",
+        "plannedAt": "2026-02-04T17:00:00Z",
+        "actualAt": null,
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "ARRIVED_DESTINATION",
+        "label": "Arrived at UK terminal",
+        "plannedAt": "2026-02-05T01:30:00Z",
+        "actualAt": null,
+        "location": "UK South terminal"
+      },
+      {
+        "code": "GATE_OUT_DESTINATION",
+        "label": "Gated out",
+        "plannedAt": "2026-02-05T02:30:00Z",
+        "actualAt": null,
+        "location": "UK South terminal"
+      },
+      {
+        "code": "OUT_FOR_DELIVERY",
+        "label": "Out for delivery",
+        "plannedAt": "2026-02-05T08:30:00Z",
+        "actualAt": null,
+        "location": "UK road leg"
+      },
+      {
+        "code": "DELIVERED",
+        "label": "Delivered",
+        "plannedAt": "2026-02-05T11:00:00Z",
+        "actualAt": null,
+        "location": "Arden fabrication, Sheffield"
+      }
+    ],
+    "scenarioOrder": false
+  },
+  {
+    "orderRef": "D2D-48404",
+    "customerId": "C-FH",
+    "route": "BE-UK East",
+    "sailingId": "E-312",
+    "cargo": {
+      "description": "Trailer · general cargo",
+      "unitType": "TRAILER",
+      "timeCritical": false
+    },
+    "consignee": "Fenwick store logistics, Bristol",
+    "deliveryWindow": {
+      "start": "2026-02-05T09:00:00Z",
+      "end": "2026-02-05T19:00:00Z"
+    },
+    "plannedEta": "2026-02-05T09:45:00Z",
+    "eta": "2026-02-05T09:45:00Z",
+    "status": "AT_ORIGIN_TERMINAL",
+    "lastStatusAt": "2026-02-04T08:00:00Z",
+    "legs": [
+      {
+        "mode": "ROAD",
+        "from": "Shipper, Belgium",
+        "to": "Continental terminal (BE)",
+        "plannedDeparture": "2026-02-04T04:00:00Z",
+        "plannedArrival": "2026-02-04T08:00:00Z",
+        "operator": "Subcontracted haulier (BE)"
+      },
+      {
+        "mode": "SEA",
+        "from": "Continental terminal (BE)",
+        "to": "UK East terminal",
+        "plannedDeparture": "2026-02-04T12:00:00Z",
+        "plannedArrival": "2026-02-04T20:00:00Z",
+        "operator": "Sailing E-312"
+      },
+      {
+        "mode": "ROAD",
+        "from": "UK East terminal",
+        "to": "Fenwick store logistics, Bristol",
+        "plannedDeparture": "2026-02-05T07:15:00Z",
+        "plannedArrival": "2026-02-05T09:45:00Z",
+        "operator": "Subcontracted haulier (UK)"
+      }
+    ],
+    "milestones": [
+      {
+        "code": "ORDER_RECEIVED",
+        "label": "Order received",
+        "plannedAt": "2026-02-01T21:00:00Z",
+        "actualAt": "2026-02-01T21:00:00Z",
+        "location": "portal"
+      },
+      {
+        "code": "COLLECTED",
+        "label": "Collected at shipper",
+        "plannedAt": "2026-02-04T04:00:00Z",
+        "actualAt": "2026-02-04T04:00:00Z",
+        "location": "Shipper, Belgium"
+      },
+      {
+        "code": "GATE_IN_ORIGIN",
+        "label": "Gated in at terminal",
+        "plannedAt": "2026-02-04T08:00:00Z",
+        "actualAt": "2026-02-04T08:00:00Z",
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "SAILED",
+        "label": "Sailed on E-312",
+        "plannedAt": "2026-02-04T12:00:00Z",
+        "actualAt": null,
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "ARRIVED_DESTINATION",
+        "label": "Arrived at UK terminal",
+        "plannedAt": "2026-02-04T20:00:00Z",
+        "actualAt": null,
+        "location": "UK East terminal"
+      },
+      {
+        "code": "GATE_OUT_DESTINATION",
+        "label": "Gated out",
+        "plannedAt": "2026-02-04T21:00:00Z",
+        "actualAt": null,
+        "location": "UK East terminal"
+      },
+      {
+        "code": "OUT_FOR_DELIVERY",
+        "label": "Out for delivery",
+        "plannedAt": "2026-02-05T07:15:00Z",
+        "actualAt": null,
+        "location": "UK road leg"
+      },
+      {
+        "code": "DELIVERED",
+        "label": "Delivered",
+        "plannedAt": "2026-02-05T09:45:00Z",
+        "actualAt": null,
+        "location": "Fenwick store logistics, Bristol"
+      }
+    ],
+    "scenarioOrder": false
+  },
+  {
+    "orderRef": "D2D-48409",
+    "customerId": "C-NF",
+    "route": "BE-UK East",
+    "sailingId": "E-312",
+    "cargo": {
+      "description": "Trailer · textiles",
+      "unitType": "TRAILER",
+      "timeCritical": false
+    },
+    "consignee": "Northfield DC Leeds",
+    "deliveryWindow": {
+      "start": "2026-02-05T09:00:00Z",
+      "end": "2026-02-05T18:00:00Z"
+    },
+    "plannedEta": "2026-02-05T09:30:00Z",
+    "eta": "2026-02-05T09:30:00Z",
+    "status": "AT_ORIGIN_TERMINAL",
+    "lastStatusAt": "2026-02-04T08:00:00Z",
+    "legs": [
+      {
+        "mode": "ROAD",
+        "from": "Shipper, Belgium",
+        "to": "Continental terminal (BE)",
+        "plannedDeparture": "2026-02-04T04:00:00Z",
+        "plannedArrival": "2026-02-04T08:00:00Z",
+        "operator": "Subcontracted haulier (BE)"
+      },
+      {
+        "mode": "SEA",
+        "from": "Continental terminal (BE)",
+        "to": "UK East terminal",
+        "plannedDeparture": "2026-02-04T12:00:00Z",
+        "plannedArrival": "2026-02-04T20:00:00Z",
+        "operator": "Sailing E-312"
+      },
+      {
+        "mode": "ROAD",
+        "from": "UK East terminal",
+        "to": "Northfield DC Leeds",
+        "plannedDeparture": "2026-02-05T07:00:00Z",
+        "plannedArrival": "2026-02-05T09:30:00Z",
+        "operator": "Subcontracted haulier (UK)"
+      }
+    ],
+    "milestones": [
+      {
+        "code": "ORDER_RECEIVED",
+        "label": "Order received",
+        "plannedAt": "2026-02-02T12:00:00Z",
+        "actualAt": "2026-02-02T12:00:00Z",
+        "location": "portal"
+      },
+      {
+        "code": "COLLECTED",
+        "label": "Collected at shipper",
+        "plannedAt": "2026-02-04T04:00:00Z",
+        "actualAt": "2026-02-04T04:00:00Z",
+        "location": "Shipper, Belgium"
+      },
+      {
+        "code": "GATE_IN_ORIGIN",
+        "label": "Gated in at terminal",
+        "plannedAt": "2026-02-04T08:00:00Z",
+        "actualAt": "2026-02-04T08:00:00Z",
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "SAILED",
+        "label": "Sailed on E-312",
+        "plannedAt": "2026-02-04T12:00:00Z",
+        "actualAt": null,
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "ARRIVED_DESTINATION",
+        "label": "Arrived at UK terminal",
+        "plannedAt": "2026-02-04T20:00:00Z",
+        "actualAt": null,
+        "location": "UK East terminal"
+      },
+      {
+        "code": "GATE_OUT_DESTINATION",
+        "label": "Gated out",
+        "plannedAt": "2026-02-04T21:00:00Z",
+        "actualAt": null,
+        "location": "UK East terminal"
+      },
+      {
+        "code": "OUT_FOR_DELIVERY",
+        "label": "Out for delivery",
+        "plannedAt": "2026-02-05T07:00:00Z",
+        "actualAt": null,
+        "location": "UK road leg"
+      },
+      {
+        "code": "DELIVERED",
+        "label": "Delivered",
+        "plannedAt": "2026-02-05T09:30:00Z",
+        "actualAt": null,
+        "location": "Northfield DC Leeds"
+      }
+    ],
+    "scenarioOrder": false
+  },
+  {
+    "orderRef": "D2D-48410",
+    "customerId": "C-KF",
+    "route": "BE-UK East",
+    "sailingId": "E-312",
+    "cargo": {
+      "description": "45' container · consumer goods",
+      "unitType": "CONTAINER",
+      "timeCritical": false
+    },
+    "consignee": "Retail park consignee, Milton Keynes",
+    "deliveryWindow": {
+      "start": "2026-02-05T09:00:00Z",
+      "end": "2026-02-05T18:00:00Z"
+    },
+    "plannedEta": "2026-02-05T10:00:00Z",
+    "eta": "2026-02-05T10:00:00Z",
+    "status": "AT_ORIGIN_TERMINAL",
+    "lastStatusAt": "2026-02-04T08:00:00Z",
+    "legs": [
+      {
+        "mode": "ROAD",
+        "from": "Shipper, Belgium",
+        "to": "Continental terminal (BE)",
+        "plannedDeparture": "2026-02-04T04:00:00Z",
+        "plannedArrival": "2026-02-04T08:00:00Z",
+        "operator": "Subcontracted haulier (BE)"
+      },
+      {
+        "mode": "SEA",
+        "from": "Continental terminal (BE)",
+        "to": "UK East terminal",
+        "plannedDeparture": "2026-02-04T12:00:00Z",
+        "plannedArrival": "2026-02-04T20:00:00Z",
+        "operator": "Sailing E-312"
+      },
+      {
+        "mode": "ROAD",
+        "from": "UK East terminal",
+        "to": "Retail park consignee, Milton Keynes",
+        "plannedDeparture": "2026-02-05T07:30:00Z",
+        "plannedArrival": "2026-02-05T10:00:00Z",
+        "operator": "Subcontracted haulier (UK)"
+      }
+    ],
+    "milestones": [
+      {
+        "code": "ORDER_RECEIVED",
+        "label": "Order received",
+        "plannedAt": "2026-02-02T11:00:00Z",
+        "actualAt": "2026-02-02T11:00:00Z",
+        "location": "EDI"
+      },
+      {
+        "code": "COLLECTED",
+        "label": "Collected at shipper",
+        "plannedAt": "2026-02-04T04:00:00Z",
+        "actualAt": "2026-02-04T04:00:00Z",
+        "location": "Shipper, Belgium"
+      },
+      {
+        "code": "GATE_IN_ORIGIN",
+        "label": "Gated in at terminal",
+        "plannedAt": "2026-02-04T08:00:00Z",
+        "actualAt": "2026-02-04T08:00:00Z",
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "SAILED",
+        "label": "Sailed on E-312",
+        "plannedAt": "2026-02-04T12:00:00Z",
+        "actualAt": null,
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "ARRIVED_DESTINATION",
+        "label": "Arrived at UK terminal",
+        "plannedAt": "2026-02-04T20:00:00Z",
+        "actualAt": null,
+        "location": "UK East terminal"
+      },
+      {
+        "code": "GATE_OUT_DESTINATION",
+        "label": "Gated out",
+        "plannedAt": "2026-02-04T21:00:00Z",
+        "actualAt": null,
+        "location": "UK East terminal"
+      },
+      {
+        "code": "OUT_FOR_DELIVERY",
+        "label": "Out for delivery",
+        "plannedAt": "2026-02-05T07:30:00Z",
+        "actualAt": null,
+        "location": "UK road leg"
+      },
+      {
+        "code": "DELIVERED",
+        "label": "Delivered",
+        "plannedAt": "2026-02-05T10:00:00Z",
+        "actualAt": null,
+        "location": "Retail park consignee, Milton Keynes"
+      }
+    ],
+    "scenarioOrder": false
+  },
+  {
+    "orderRef": "D2D-48415",
+    "customerId": "C-HG",
+    "route": "BE-UK East",
+    "sailingId": "E-312",
+    "cargo": {
+      "description": "Trailer · garden products",
+      "unitType": "TRAILER",
+      "timeCritical": false
+    },
+    "consignee": "Harlow garden centre DC, Peterborough",
+    "deliveryWindow": {
+      "start": "2026-02-05T09:00:00Z",
+      "end": "2026-02-05T19:00:00Z"
+    },
+    "plannedEta": "2026-02-05T10:00:00Z",
+    "eta": "2026-02-05T10:00:00Z",
+    "status": "AT_ORIGIN_TERMINAL",
+    "lastStatusAt": "2026-02-04T08:00:00Z",
+    "legs": [
+      {
+        "mode": "ROAD",
+        "from": "Shipper, Belgium",
+        "to": "Continental terminal (BE)",
+        "plannedDeparture": "2026-02-04T04:00:00Z",
+        "plannedArrival": "2026-02-04T08:00:00Z",
+        "operator": "Subcontracted haulier (BE)"
+      },
+      {
+        "mode": "SEA",
+        "from": "Continental terminal (BE)",
+        "to": "UK East terminal",
+        "plannedDeparture": "2026-02-04T12:00:00Z",
+        "plannedArrival": "2026-02-04T20:00:00Z",
+        "operator": "Sailing E-312"
+      },
+      {
+        "mode": "ROAD",
+        "from": "UK East terminal",
+        "to": "Harlow garden centre DC, Peterborough",
+        "plannedDeparture": "2026-02-05T07:30:00Z",
+        "plannedArrival": "2026-02-05T10:00:00Z",
+        "operator": "Subcontracted haulier (UK)"
+      }
+    ],
+    "milestones": [
+      {
+        "code": "ORDER_RECEIVED",
+        "label": "Order received",
+        "plannedAt": "2026-02-02T08:00:00Z",
+        "actualAt": "2026-02-02T08:00:00Z",
+        "location": "portal"
+      },
+      {
+        "code": "COLLECTED",
+        "label": "Collected at shipper",
+        "plannedAt": "2026-02-04T04:00:00Z",
+        "actualAt": "2026-02-04T04:00:00Z",
+        "location": "Shipper, Belgium"
+      },
+      {
+        "code": "GATE_IN_ORIGIN",
+        "label": "Gated in at terminal",
+        "plannedAt": "2026-02-04T08:00:00Z",
+        "actualAt": "2026-02-04T08:00:00Z",
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "SAILED",
+        "label": "Sailed on E-312",
+        "plannedAt": "2026-02-04T12:00:00Z",
+        "actualAt": null,
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "ARRIVED_DESTINATION",
+        "label": "Arrived at UK terminal",
+        "plannedAt": "2026-02-04T20:00:00Z",
+        "actualAt": null,
+        "location": "UK East terminal"
+      },
+      {
+        "code": "GATE_OUT_DESTINATION",
+        "label": "Gated out",
+        "plannedAt": "2026-02-04T21:00:00Z",
+        "actualAt": null,
+        "location": "UK East terminal"
+      },
+      {
+        "code": "OUT_FOR_DELIVERY",
+        "label": "Out for delivery",
+        "plannedAt": "2026-02-05T07:30:00Z",
+        "actualAt": null,
+        "location": "UK road leg"
+      },
+      {
+        "code": "DELIVERED",
+        "label": "Delivered",
+        "plannedAt": "2026-02-05T10:00:00Z",
+        "actualAt": null,
+        "location": "Harlow garden centre DC, Peterborough"
+      }
+    ],
+    "scenarioOrder": false
+  },
+  {
+    "orderRef": "D2D-48420",
+    "customerId": "C-KF",
+    "route": "BE-UK East",
+    "sailingId": "E-312",
+    "cargo": {
+      "description": "Trailer · general cargo",
+      "unitType": "TRAILER",
+      "timeCritical": false
+    },
+    "consignee": "Retail park consignee, Milton Keynes",
+    "deliveryWindow": {
+      "start": "2026-02-05T08:00:00Z",
+      "end": "2026-02-05T18:00:00Z"
+    },
+    "plannedEta": "2026-02-05T09:00:00Z",
+    "eta": "2026-02-05T09:00:00Z",
+    "status": "AT_ORIGIN_TERMINAL",
+    "lastStatusAt": "2026-02-04T08:00:00Z",
+    "legs": [
+      {
+        "mode": "ROAD",
+        "from": "Shipper, Belgium",
+        "to": "Continental terminal (BE)",
+        "plannedDeparture": "2026-02-04T04:00:00Z",
+        "plannedArrival": "2026-02-04T08:00:00Z",
+        "operator": "Subcontracted haulier (BE)"
+      },
+      {
+        "mode": "SEA",
+        "from": "Continental terminal (BE)",
+        "to": "UK East terminal",
+        "plannedDeparture": "2026-02-04T12:00:00Z",
+        "plannedArrival": "2026-02-04T20:00:00Z",
+        "operator": "Sailing E-312"
+      },
+      {
+        "mode": "ROAD",
+        "from": "UK East terminal",
+        "to": "Retail park consignee, Milton Keynes",
+        "plannedDeparture": "2026-02-05T06:30:00Z",
+        "plannedArrival": "2026-02-05T09:00:00Z",
+        "operator": "Subcontracted haulier (UK)"
+      }
+    ],
+    "milestones": [
+      {
+        "code": "ORDER_RECEIVED",
+        "label": "Order received",
+        "plannedAt": "2026-02-02T10:00:00Z",
+        "actualAt": "2026-02-02T10:00:00Z",
+        "location": "EDI"
+      },
+      {
+        "code": "COLLECTED",
+        "label": "Collected at shipper",
+        "plannedAt": "2026-02-04T04:00:00Z",
+        "actualAt": "2026-02-04T04:00:00Z",
+        "location": "Shipper, Belgium"
+      },
+      {
+        "code": "GATE_IN_ORIGIN",
+        "label": "Gated in at terminal",
+        "plannedAt": "2026-02-04T08:00:00Z",
+        "actualAt": "2026-02-04T08:00:00Z",
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "SAILED",
+        "label": "Sailed on E-312",
+        "plannedAt": "2026-02-04T12:00:00Z",
+        "actualAt": null,
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "ARRIVED_DESTINATION",
+        "label": "Arrived at UK terminal",
+        "plannedAt": "2026-02-04T20:00:00Z",
+        "actualAt": null,
+        "location": "UK East terminal"
+      },
+      {
+        "code": "GATE_OUT_DESTINATION",
+        "label": "Gated out",
+        "plannedAt": "2026-02-04T21:00:00Z",
+        "actualAt": null,
+        "location": "UK East terminal"
+      },
+      {
+        "code": "OUT_FOR_DELIVERY",
+        "label": "Out for delivery",
+        "plannedAt": "2026-02-05T06:30:00Z",
+        "actualAt": null,
+        "location": "UK road leg"
+      },
+      {
+        "code": "DELIVERED",
+        "label": "Delivered",
+        "plannedAt": "2026-02-05T09:00:00Z",
+        "actualAt": null,
+        "location": "Retail park consignee, Milton Keynes"
+      }
+    ],
+    "scenarioOrder": false
+  },
+  {
+    "orderRef": "D2D-48427",
+    "customerId": "C-MD",
+    "route": "BE-UK East",
+    "sailingId": "E-312",
+    "cargo": {
+      "description": "Trailer · garden products",
+      "unitType": "TRAILER",
+      "timeCritical": false
+    },
+    "consignee": "Meadowline depot York",
+    "deliveryWindow": {
+      "start": "2026-02-05T09:00:00Z",
+      "end": "2026-02-05T18:00:00Z"
+    },
+    "plannedEta": "2026-02-05T09:45:00Z",
+    "eta": "2026-02-05T09:45:00Z",
+    "status": "AT_ORIGIN_TERMINAL",
+    "lastStatusAt": "2026-02-04T08:00:00Z",
+    "legs": [
+      {
+        "mode": "ROAD",
+        "from": "Shipper, Belgium",
+        "to": "Continental terminal (BE)",
+        "plannedDeparture": "2026-02-04T04:00:00Z",
+        "plannedArrival": "2026-02-04T08:00:00Z",
+        "operator": "Subcontracted haulier (BE)"
+      },
+      {
+        "mode": "SEA",
+        "from": "Continental terminal (BE)",
+        "to": "UK East terminal",
+        "plannedDeparture": "2026-02-04T12:00:00Z",
+        "plannedArrival": "2026-02-04T20:00:00Z",
+        "operator": "Sailing E-312"
+      },
+      {
+        "mode": "ROAD",
+        "from": "UK East terminal",
+        "to": "Meadowline depot York",
+        "plannedDeparture": "2026-02-05T07:15:00Z",
+        "plannedArrival": "2026-02-05T09:45:00Z",
+        "operator": "Subcontracted haulier (UK)"
+      }
+    ],
+    "milestones": [
+      {
+        "code": "ORDER_RECEIVED",
+        "label": "Order received",
+        "plannedAt": "2026-02-02T05:00:00Z",
+        "actualAt": "2026-02-02T05:00:00Z",
+        "location": "portal"
+      },
+      {
+        "code": "COLLECTED",
+        "label": "Collected at shipper",
+        "plannedAt": "2026-02-04T04:00:00Z",
+        "actualAt": "2026-02-04T04:00:00Z",
+        "location": "Shipper, Belgium"
+      },
+      {
+        "code": "GATE_IN_ORIGIN",
+        "label": "Gated in at terminal",
+        "plannedAt": "2026-02-04T08:00:00Z",
+        "actualAt": "2026-02-04T08:00:00Z",
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "SAILED",
+        "label": "Sailed on E-312",
+        "plannedAt": "2026-02-04T12:00:00Z",
+        "actualAt": null,
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "ARRIVED_DESTINATION",
+        "label": "Arrived at UK terminal",
+        "plannedAt": "2026-02-04T20:00:00Z",
+        "actualAt": null,
+        "location": "UK East terminal"
+      },
+      {
+        "code": "GATE_OUT_DESTINATION",
+        "label": "Gated out",
+        "plannedAt": "2026-02-04T21:00:00Z",
+        "actualAt": null,
+        "location": "UK East terminal"
+      },
+      {
+        "code": "OUT_FOR_DELIVERY",
+        "label": "Out for delivery",
+        "plannedAt": "2026-02-05T07:15:00Z",
+        "actualAt": null,
+        "location": "UK road leg"
+      },
+      {
+        "code": "DELIVERED",
+        "label": "Delivered",
+        "plannedAt": "2026-02-05T09:45:00Z",
+        "actualAt": null,
+        "location": "Meadowline depot York"
+      }
+    ],
+    "scenarioOrder": false
+  },
+  {
+    "orderRef": "D2D-48432",
+    "customerId": "C-FH",
+    "route": "BE-UK East",
+    "sailingId": "E-310",
+    "cargo": {
+      "description": "Trailer · general cargo",
+      "unitType": "TRAILER",
+      "timeCritical": false
+    },
+    "consignee": "Fenwick store logistics, Bristol",
+    "deliveryWindow": {
+      "start": "2026-02-04T16:00:00Z",
+      "end": "2026-02-04T20:00:00Z"
+    },
+    "plannedEta": "2026-02-04T16:30:00Z",
+    "eta": "2026-02-04T16:30:00Z",
+    "status": "ON_DELIVERY_LEG",
+    "lastStatusAt": "2026-02-04T05:00:00Z",
+    "legs": [
+      {
+        "mode": "ROAD",
+        "from": "Shipper, Belgium",
+        "to": "Continental terminal (BE)",
+        "plannedDeparture": "2026-02-03T12:00:00Z",
+        "plannedArrival": "2026-02-03T16:00:00Z",
+        "operator": "Subcontracted haulier (BE)"
+      },
+      {
+        "mode": "SEA",
+        "from": "Continental terminal (BE)",
+        "to": "UK East terminal",
+        "plannedDeparture": "2026-02-03T20:00:00Z",
+        "plannedArrival": "2026-02-04T04:00:00Z",
+        "operator": "Sailing E-310"
+      },
+      {
+        "mode": "ROAD",
+        "from": "UK East terminal",
+        "to": "Fenwick store logistics, Bristol",
+        "plannedDeparture": "2026-02-04T14:00:00Z",
+        "plannedArrival": "2026-02-04T16:30:00Z",
+        "operator": "Subcontracted haulier (UK)"
+      }
+    ],
+    "milestones": [
+      {
+        "code": "ORDER_RECEIVED",
+        "label": "Order received",
+        "plannedAt": "2026-01-31T18:00:00Z",
+        "actualAt": "2026-01-31T18:00:00Z",
+        "location": "portal"
+      },
+      {
+        "code": "COLLECTED",
+        "label": "Collected at shipper",
+        "plannedAt": "2026-02-03T12:00:00Z",
+        "actualAt": "2026-02-03T12:00:00Z",
+        "location": "Shipper, Belgium"
+      },
+      {
+        "code": "GATE_IN_ORIGIN",
+        "label": "Gated in at terminal",
+        "plannedAt": "2026-02-03T16:00:00Z",
+        "actualAt": "2026-02-03T16:00:00Z",
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "SAILED",
+        "label": "Sailed on E-310",
+        "plannedAt": "2026-02-03T20:00:00Z",
+        "actualAt": "2026-02-03T20:00:00Z",
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "ARRIVED_DESTINATION",
+        "label": "Arrived at UK terminal",
+        "plannedAt": "2026-02-04T04:00:00Z",
+        "actualAt": "2026-02-04T04:00:00Z",
+        "location": "UK East terminal"
+      },
+      {
+        "code": "GATE_OUT_DESTINATION",
+        "label": "Gated out",
+        "plannedAt": "2026-02-04T05:00:00Z",
+        "actualAt": "2026-02-04T05:00:00Z",
+        "location": "UK East terminal"
+      },
+      {
+        "code": "OUT_FOR_DELIVERY",
+        "label": "Out for delivery",
+        "plannedAt": "2026-02-04T14:00:00Z",
+        "actualAt": null,
+        "location": "UK road leg"
+      },
+      {
+        "code": "DELIVERED",
+        "label": "Delivered",
+        "plannedAt": "2026-02-04T16:30:00Z",
+        "actualAt": null,
+        "location": "Fenwick store logistics, Bristol"
+      }
+    ],
+    "scenarioOrder": false
+  },
+  {
+    "orderRef": "D2D-48433",
+    "customerId": "C-BW",
+    "route": "BE-UK East",
+    "sailingId": "E-310",
+    "cargo": {
+      "description": "Trailer · textiles",
+      "unitType": "TRAILER",
+      "timeCritical": false
+    },
+    "consignee": "Printworks Basildon",
+    "deliveryWindow": {
+      "start": "2026-02-04T15:00:00Z",
+      "end": "2026-02-04T19:00:00Z"
+    },
+    "plannedEta": "2026-02-04T15:20:00Z",
+    "eta": "2026-02-04T15:20:00Z",
+    "status": "ON_DELIVERY_LEG",
+    "lastStatusAt": "2026-02-04T05:00:00Z",
+    "legs": [
+      {
+        "mode": "ROAD",
+        "from": "Shipper, Belgium",
+        "to": "Continental terminal (BE)",
+        "plannedDeparture": "2026-02-03T12:00:00Z",
+        "plannedArrival": "2026-02-03T16:00:00Z",
+        "operator": "Subcontracted haulier (BE)"
+      },
+      {
+        "mode": "SEA",
+        "from": "Continental terminal (BE)",
+        "to": "UK East terminal",
+        "plannedDeparture": "2026-02-03T20:00:00Z",
+        "plannedArrival": "2026-02-04T04:00:00Z",
+        "operator": "Sailing E-310"
+      },
+      {
+        "mode": "ROAD",
+        "from": "UK East terminal",
+        "to": "Printworks Basildon",
+        "plannedDeparture": "2026-02-04T12:50:00Z",
+        "plannedArrival": "2026-02-04T15:20:00Z",
+        "operator": "Subcontracted haulier (UK)"
+      }
+    ],
+    "milestones": [
+      {
+        "code": "ORDER_RECEIVED",
+        "label": "Order received",
+        "plannedAt": "2026-02-01T16:00:00Z",
+        "actualAt": "2026-02-01T16:00:00Z",
+        "location": "portal"
+      },
+      {
+        "code": "COLLECTED",
+        "label": "Collected at shipper",
+        "plannedAt": "2026-02-03T12:00:00Z",
+        "actualAt": "2026-02-03T12:00:00Z",
+        "location": "Shipper, Belgium"
+      },
+      {
+        "code": "GATE_IN_ORIGIN",
+        "label": "Gated in at terminal",
+        "plannedAt": "2026-02-03T16:00:00Z",
+        "actualAt": "2026-02-03T16:00:00Z",
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "SAILED",
+        "label": "Sailed on E-310",
+        "plannedAt": "2026-02-03T20:00:00Z",
+        "actualAt": "2026-02-03T20:00:00Z",
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "ARRIVED_DESTINATION",
+        "label": "Arrived at UK terminal",
+        "plannedAt": "2026-02-04T04:00:00Z",
+        "actualAt": "2026-02-04T04:00:00Z",
+        "location": "UK East terminal"
+      },
+      {
+        "code": "GATE_OUT_DESTINATION",
+        "label": "Gated out",
+        "plannedAt": "2026-02-04T05:00:00Z",
+        "actualAt": "2026-02-04T05:00:00Z",
+        "location": "UK East terminal"
+      },
+      {
+        "code": "OUT_FOR_DELIVERY",
+        "label": "Out for delivery",
+        "plannedAt": "2026-02-04T12:50:00Z",
+        "actualAt": null,
+        "location": "UK road leg"
+      },
+      {
+        "code": "DELIVERED",
+        "label": "Delivered",
+        "plannedAt": "2026-02-04T15:20:00Z",
+        "actualAt": null,
+        "location": "Printworks Basildon"
+      }
+    ],
+    "scenarioOrder": false
+  },
+  {
+    "orderRef": "D2D-48438",
+    "customerId": "C-PM",
+    "route": "BE-UK East",
+    "sailingId": "E-310",
+    "cargo": {
+      "description": "Trailer · paper reels",
+      "unitType": "TRAILER",
+      "timeCritical": false
+    },
+    "consignee": "Pellow hub Reading",
+    "deliveryWindow": {
+      "start": "2026-02-04T15:00:00Z",
+      "end": "2026-02-04T17:00:00Z"
+    },
+    "plannedEta": "2026-02-04T15:30:00Z",
+    "eta": "2026-02-04T15:30:00Z",
+    "status": "ON_DELIVERY_LEG",
+    "lastStatusAt": "2026-02-04T05:00:00Z",
+    "legs": [
+      {
+        "mode": "ROAD",
+        "from": "Shipper, Belgium",
+        "to": "Continental terminal (BE)",
+        "plannedDeparture": "2026-02-03T12:00:00Z",
+        "plannedArrival": "2026-02-03T16:00:00Z",
+        "operator": "Subcontracted haulier (BE)"
+      },
+      {
+        "mode": "SEA",
+        "from": "Continental terminal (BE)",
+        "to": "UK East terminal",
+        "plannedDeparture": "2026-02-03T20:00:00Z",
+        "plannedArrival": "2026-02-04T04:00:00Z",
+        "operator": "Sailing E-310"
+      },
+      {
+        "mode": "ROAD",
+        "from": "UK East terminal",
+        "to": "Pellow hub Reading",
+        "plannedDeparture": "2026-02-04T13:00:00Z",
+        "plannedArrival": "2026-02-04T15:30:00Z",
+        "operator": "Subcontracted haulier (UK)"
+      }
+    ],
+    "milestones": [
+      {
+        "code": "ORDER_RECEIVED",
+        "label": "Order received",
+        "plannedAt": "2026-02-01T18:00:00Z",
+        "actualAt": "2026-02-01T18:00:00Z",
+        "location": "e-mail"
+      },
+      {
+        "code": "COLLECTED",
+        "label": "Collected at shipper",
+        "plannedAt": "2026-02-03T12:00:00Z",
+        "actualAt": "2026-02-03T12:00:00Z",
+        "location": "Shipper, Belgium"
+      },
+      {
+        "code": "GATE_IN_ORIGIN",
+        "label": "Gated in at terminal",
+        "plannedAt": "2026-02-03T16:00:00Z",
+        "actualAt": "2026-02-03T16:00:00Z",
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "SAILED",
+        "label": "Sailed on E-310",
+        "plannedAt": "2026-02-03T20:00:00Z",
+        "actualAt": "2026-02-03T20:00:00Z",
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "ARRIVED_DESTINATION",
+        "label": "Arrived at UK terminal",
+        "plannedAt": "2026-02-04T04:00:00Z",
+        "actualAt": "2026-02-04T04:00:00Z",
+        "location": "UK East terminal"
+      },
+      {
+        "code": "GATE_OUT_DESTINATION",
+        "label": "Gated out",
+        "plannedAt": "2026-02-04T05:00:00Z",
+        "actualAt": "2026-02-04T05:00:00Z",
+        "location": "UK East terminal"
+      },
+      {
+        "code": "OUT_FOR_DELIVERY",
+        "label": "Out for delivery",
+        "plannedAt": "2026-02-04T13:00:00Z",
+        "actualAt": null,
+        "location": "UK road leg"
+      },
+      {
+        "code": "DELIVERED",
+        "label": "Delivered",
+        "plannedAt": "2026-02-04T15:30:00Z",
+        "actualAt": null,
+        "location": "Pellow hub Reading"
+      }
+    ],
+    "scenarioOrder": false
+  },
+  {
+    "orderRef": "D2D-48439",
+    "customerId": "C-KF",
+    "route": "BE-UK East",
+    "sailingId": "E-310",
+    "cargo": {
+      "description": "Trailer · paper reels",
+      "unitType": "TRAILER",
+      "timeCritical": false
+    },
+    "consignee": "Kestrel cross-dock Daventry",
+    "deliveryWindow": {
+      "start": "2026-02-04T15:00:00Z",
+      "end": "2026-02-04T19:00:00Z"
+    },
+    "plannedEta": "2026-02-04T15:20:00Z",
+    "eta": "2026-02-04T15:20:00Z",
+    "status": "ON_DELIVERY_LEG",
+    "lastStatusAt": "2026-02-04T05:00:00Z",
+    "legs": [
+      {
+        "mode": "ROAD",
+        "from": "Shipper, Belgium",
+        "to": "Continental terminal (BE)",
+        "plannedDeparture": "2026-02-03T12:00:00Z",
+        "plannedArrival": "2026-02-03T16:00:00Z",
+        "operator": "Subcontracted haulier (BE)"
+      },
+      {
+        "mode": "SEA",
+        "from": "Continental terminal (BE)",
+        "to": "UK East terminal",
+        "plannedDeparture": "2026-02-03T20:00:00Z",
+        "plannedArrival": "2026-02-04T04:00:00Z",
+        "operator": "Sailing E-310"
+      },
+      {
+        "mode": "ROAD",
+        "from": "UK East terminal",
+        "to": "Kestrel cross-dock Daventry",
+        "plannedDeparture": "2026-02-04T12:50:00Z",
+        "plannedArrival": "2026-02-04T15:20:00Z",
+        "operator": "Subcontracted haulier (UK)"
+      }
+    ],
+    "milestones": [
+      {
+        "code": "ORDER_RECEIVED",
+        "label": "Order received",
+        "plannedAt": "2026-02-01T12:00:00Z",
+        "actualAt": "2026-02-01T12:00:00Z",
+        "location": "EDI"
+      },
+      {
+        "code": "COLLECTED",
+        "label": "Collected at shipper",
+        "plannedAt": "2026-02-03T12:00:00Z",
+        "actualAt": "2026-02-03T12:00:00Z",
+        "location": "Shipper, Belgium"
+      },
+      {
+        "code": "GATE_IN_ORIGIN",
+        "label": "Gated in at terminal",
+        "plannedAt": "2026-02-03T16:00:00Z",
+        "actualAt": "2026-02-03T16:00:00Z",
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "SAILED",
+        "label": "Sailed on E-310",
+        "plannedAt": "2026-02-03T20:00:00Z",
+        "actualAt": "2026-02-03T20:00:00Z",
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "ARRIVED_DESTINATION",
+        "label": "Arrived at UK terminal",
+        "plannedAt": "2026-02-04T04:00:00Z",
+        "actualAt": "2026-02-04T04:00:00Z",
+        "location": "UK East terminal"
+      },
+      {
+        "code": "GATE_OUT_DESTINATION",
+        "label": "Gated out",
+        "plannedAt": "2026-02-04T05:00:00Z",
+        "actualAt": "2026-02-04T05:00:00Z",
+        "location": "UK East terminal"
+      },
+      {
+        "code": "OUT_FOR_DELIVERY",
+        "label": "Out for delivery",
+        "plannedAt": "2026-02-04T12:50:00Z",
+        "actualAt": null,
+        "location": "UK road leg"
+      },
+      {
+        "code": "DELIVERED",
+        "label": "Delivered",
+        "plannedAt": "2026-02-04T15:20:00Z",
+        "actualAt": null,
+        "location": "Kestrel cross-dock Daventry"
+      }
+    ],
+    "scenarioOrder": false
+  },
+  {
+    "orderRef": "D2D-48442",
+    "customerId": "C-FH",
+    "route": "BE-UK South",
+    "sailingId": "S-415",
+    "cargo": {
+      "description": "Trailer · general cargo",
+      "unitType": "TRAILER",
+      "timeCritical": false
+    },
+    "consignee": "Fenwick store logistics, Bristol",
+    "deliveryWindow": {
+      "start": "2026-02-04T14:00:00Z",
+      "end": "2026-02-04T17:00:00Z"
+    },
+    "plannedEta": "2026-02-04T14:30:00Z",
+    "eta": "2026-02-04T14:30:00Z",
+    "status": "ON_DELIVERY_LEG",
+    "lastStatusAt": "2026-02-04T03:30:00Z",
+    "legs": [
+      {
+        "mode": "ROAD",
+        "from": "Shipper, Belgium",
+        "to": "Continental terminal (BE)",
+        "plannedDeparture": "2026-02-03T10:00:00Z",
+        "plannedArrival": "2026-02-03T14:00:00Z",
+        "operator": "Subcontracted haulier (BE)"
+      },
+      {
+        "mode": "SEA",
+        "from": "Continental terminal (BE)",
+        "to": "UK South terminal",
+        "plannedDeparture": "2026-02-03T18:00:00Z",
+        "plannedArrival": "2026-02-04T02:30:00Z",
+        "operator": "Sailing S-415"
+      },
+      {
+        "mode": "ROAD",
+        "from": "UK South terminal",
+        "to": "Fenwick store logistics, Bristol",
+        "plannedDeparture": "2026-02-04T12:00:00Z",
+        "plannedArrival": "2026-02-04T14:30:00Z",
+        "operator": "Subcontracted haulier (UK)"
+      }
+    ],
+    "milestones": [
+      {
+        "code": "ORDER_RECEIVED",
+        "label": "Order received",
+        "plannedAt": "2026-01-31T23:00:00Z",
+        "actualAt": "2026-01-31T23:00:00Z",
+        "location": "portal"
+      },
+      {
+        "code": "COLLECTED",
+        "label": "Collected at shipper",
+        "plannedAt": "2026-02-03T10:00:00Z",
+        "actualAt": "2026-02-03T10:00:00Z",
+        "location": "Shipper, Belgium"
+      },
+      {
+        "code": "GATE_IN_ORIGIN",
+        "label": "Gated in at terminal",
+        "plannedAt": "2026-02-03T14:00:00Z",
+        "actualAt": "2026-02-03T14:00:00Z",
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "SAILED",
+        "label": "Sailed on S-415",
+        "plannedAt": "2026-02-03T18:00:00Z",
+        "actualAt": "2026-02-03T18:00:00Z",
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "ARRIVED_DESTINATION",
+        "label": "Arrived at UK terminal",
+        "plannedAt": "2026-02-04T02:30:00Z",
+        "actualAt": "2026-02-04T02:30:00Z",
+        "location": "UK South terminal"
+      },
+      {
+        "code": "GATE_OUT_DESTINATION",
+        "label": "Gated out",
+        "plannedAt": "2026-02-04T03:30:00Z",
+        "actualAt": "2026-02-04T03:30:00Z",
+        "location": "UK South terminal"
+      },
+      {
+        "code": "OUT_FOR_DELIVERY",
+        "label": "Out for delivery",
+        "plannedAt": "2026-02-04T12:00:00Z",
+        "actualAt": null,
+        "location": "UK road leg"
+      },
+      {
+        "code": "DELIVERED",
+        "label": "Delivered",
+        "plannedAt": "2026-02-04T14:30:00Z",
+        "actualAt": null,
+        "location": "Fenwick store logistics, Bristol"
+      }
+    ],
+    "scenarioOrder": false
+  },
+  {
+    "orderRef": "D2D-48443",
+    "customerId": "C-KF",
+    "route": "BE-UK East",
+    "sailingId": "E-310",
+    "cargo": {
+      "description": "Trailer · general cargo",
+      "unitType": "TRAILER",
+      "timeCritical": false
+    },
+    "consignee": "Kestrel cross-dock Daventry",
+    "deliveryWindow": {
+      "start": "2026-02-04T06:00:00Z",
+      "end": "2026-02-04T08:00:00Z"
+    },
+    "plannedEta": "2026-02-04T06:40:00Z",
+    "eta": "2026-02-04T06:40:00Z",
+    "status": "DELIVERED",
+    "lastStatusAt": "2026-02-04T06:40:00Z",
+    "legs": [
+      {
+        "mode": "ROAD",
+        "from": "Shipper, Belgium",
+        "to": "Continental terminal (BE)",
+        "plannedDeparture": "2026-02-03T12:00:00Z",
+        "plannedArrival": "2026-02-03T16:00:00Z",
+        "operator": "Subcontracted haulier (BE)"
+      },
+      {
+        "mode": "SEA",
+        "from": "Continental terminal (BE)",
+        "to": "UK East terminal",
+        "plannedDeparture": "2026-02-03T20:00:00Z",
+        "plannedArrival": "2026-02-04T04:00:00Z",
+        "operator": "Sailing E-310"
+      },
+      {
+        "mode": "ROAD",
+        "from": "UK East terminal",
+        "to": "Kestrel cross-dock Daventry",
+        "plannedDeparture": "2026-02-04T05:00:00Z",
+        "plannedArrival": "2026-02-04T06:40:00Z",
+        "operator": "Subcontracted haulier (UK)"
+      }
+    ],
+    "milestones": [
+      {
+        "code": "ORDER_RECEIVED",
+        "label": "Order received",
+        "plannedAt": "2026-02-01T04:00:00Z",
+        "actualAt": "2026-02-01T04:00:00Z",
+        "location": "EDI"
+      },
+      {
+        "code": "COLLECTED",
+        "label": "Collected at shipper",
+        "plannedAt": "2026-02-03T12:00:00Z",
+        "actualAt": "2026-02-03T12:00:00Z",
+        "location": "Shipper, Belgium"
+      },
+      {
+        "code": "GATE_IN_ORIGIN",
+        "label": "Gated in at terminal",
+        "plannedAt": "2026-02-03T16:00:00Z",
+        "actualAt": "2026-02-03T16:00:00Z",
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "SAILED",
+        "label": "Sailed on E-310",
+        "plannedAt": "2026-02-03T20:00:00Z",
+        "actualAt": "2026-02-03T20:00:00Z",
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "ARRIVED_DESTINATION",
+        "label": "Arrived at UK terminal",
+        "plannedAt": "2026-02-04T04:00:00Z",
+        "actualAt": "2026-02-04T04:00:00Z",
+        "location": "UK East terminal"
+      },
+      {
+        "code": "GATE_OUT_DESTINATION",
+        "label": "Gated out",
+        "plannedAt": "2026-02-04T05:00:00Z",
+        "actualAt": "2026-02-04T05:00:00Z",
+        "location": "UK East terminal"
+      },
+      {
+        "code": "OUT_FOR_DELIVERY",
+        "label": "Out for delivery",
+        "plannedAt": "2026-02-04T05:00:00Z",
+        "actualAt": "2026-02-04T05:00:00Z",
+        "location": "UK road leg"
+      },
+      {
+        "code": "DELIVERED",
+        "label": "Delivered",
+        "plannedAt": "2026-02-04T06:40:00Z",
+        "actualAt": "2026-02-04T06:40:00Z",
+        "location": "Kestrel cross-dock Daventry"
+      }
+    ],
+    "scenarioOrder": false
+  },
+  {
+    "orderRef": "D2D-48445",
+    "customerId": "C-AS",
+    "route": "BE-UK South",
+    "sailingId": "S-415",
+    "cargo": {
+      "description": "45' container · consumer goods",
+      "unitType": "CONTAINER",
+      "timeCritical": false
+    },
+    "consignee": "Arden fabrication, Sheffield",
+    "deliveryWindow": {
+      "start": "2026-02-04T07:00:00Z",
+      "end": "2026-02-04T09:00:00Z"
+    },
+    "plannedEta": "2026-02-04T07:40:00Z",
+    "eta": "2026-02-04T07:40:00Z",
+    "status": "DELIVERED",
+    "lastStatusAt": "2026-02-04T07:40:00Z",
+    "legs": [
+      {
+        "mode": "ROAD",
+        "from": "Shipper, Belgium",
+        "to": "Continental terminal (BE)",
+        "plannedDeparture": "2026-02-03T10:00:00Z",
+        "plannedArrival": "2026-02-03T14:00:00Z",
+        "operator": "Subcontracted haulier (BE)"
+      },
+      {
+        "mode": "SEA",
+        "from": "Continental terminal (BE)",
+        "to": "UK South terminal",
+        "plannedDeparture": "2026-02-03T18:00:00Z",
+        "plannedArrival": "2026-02-04T02:30:00Z",
+        "operator": "Sailing S-415"
+      },
+      {
+        "mode": "ROAD",
+        "from": "UK South terminal",
+        "to": "Arden fabrication, Sheffield",
+        "plannedDeparture": "2026-02-04T05:10:00Z",
+        "plannedArrival": "2026-02-04T07:40:00Z",
+        "operator": "Subcontracted haulier (UK)"
+      }
+    ],
+    "milestones": [
+      {
+        "code": "ORDER_RECEIVED",
+        "label": "Order received",
+        "plannedAt": "2026-02-01T04:00:00Z",
+        "actualAt": "2026-02-01T04:00:00Z",
+        "location": "EDI"
+      },
+      {
+        "code": "COLLECTED",
+        "label": "Collected at shipper",
+        "plannedAt": "2026-02-03T10:00:00Z",
+        "actualAt": "2026-02-03T10:00:00Z",
+        "location": "Shipper, Belgium"
+      },
+      {
+        "code": "GATE_IN_ORIGIN",
+        "label": "Gated in at terminal",
+        "plannedAt": "2026-02-03T14:00:00Z",
+        "actualAt": "2026-02-03T14:00:00Z",
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "SAILED",
+        "label": "Sailed on S-415",
+        "plannedAt": "2026-02-03T18:00:00Z",
+        "actualAt": "2026-02-03T18:00:00Z",
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "ARRIVED_DESTINATION",
+        "label": "Arrived at UK terminal",
+        "plannedAt": "2026-02-04T02:30:00Z",
+        "actualAt": "2026-02-04T02:30:00Z",
+        "location": "UK South terminal"
+      },
+      {
+        "code": "GATE_OUT_DESTINATION",
+        "label": "Gated out",
+        "plannedAt": "2026-02-04T03:30:00Z",
+        "actualAt": "2026-02-04T03:30:00Z",
+        "location": "UK South terminal"
+      },
+      {
+        "code": "OUT_FOR_DELIVERY",
+        "label": "Out for delivery",
+        "plannedAt": "2026-02-04T05:10:00Z",
+        "actualAt": "2026-02-04T05:10:00Z",
+        "location": "UK road leg"
+      },
+      {
+        "code": "DELIVERED",
+        "label": "Delivered",
+        "plannedAt": "2026-02-04T07:40:00Z",
+        "actualAt": "2026-02-04T07:40:00Z",
+        "location": "Arden fabrication, Sheffield"
+      }
+    ],
+    "scenarioOrder": false
+  },
+  {
+    "orderRef": "D2D-48447",
+    "customerId": "C-HG",
+    "route": "BE-UK South",
+    "sailingId": "S-415",
+    "cargo": {
+      "description": "Trailer · general cargo",
+      "unitType": "TRAILER",
+      "timeCritical": false
+    },
+    "consignee": "Harlow garden centre DC, Peterborough",
+    "deliveryWindow": {
+      "start": "2026-02-04T06:00:00Z",
+      "end": "2026-02-04T08:00:00Z"
+    },
+    "plannedEta": "2026-02-04T06:15:00Z",
+    "eta": "2026-02-04T06:15:00Z",
+    "status": "DELIVERED",
+    "lastStatusAt": "2026-02-04T06:15:00Z",
+    "legs": [
+      {
+        "mode": "ROAD",
+        "from": "Shipper, Belgium",
+        "to": "Continental terminal (BE)",
+        "plannedDeparture": "2026-02-03T10:00:00Z",
+        "plannedArrival": "2026-02-03T14:00:00Z",
+        "operator": "Subcontracted haulier (BE)"
+      },
+      {
+        "mode": "SEA",
+        "from": "Continental terminal (BE)",
+        "to": "UK South terminal",
+        "plannedDeparture": "2026-02-03T18:00:00Z",
+        "plannedArrival": "2026-02-04T02:30:00Z",
+        "operator": "Sailing S-415"
+      },
+      {
+        "mode": "ROAD",
+        "from": "UK South terminal",
+        "to": "Harlow garden centre DC, Peterborough",
+        "plannedDeparture": "2026-02-04T03:45:00Z",
+        "plannedArrival": "2026-02-04T06:15:00Z",
+        "operator": "Subcontracted haulier (UK)"
+      }
+    ],
+    "milestones": [
+      {
+        "code": "ORDER_RECEIVED",
+        "label": "Order received",
+        "plannedAt": "2026-01-31T15:00:00Z",
+        "actualAt": "2026-01-31T15:00:00Z",
+        "location": "portal"
+      },
+      {
+        "code": "COLLECTED",
+        "label": "Collected at shipper",
+        "plannedAt": "2026-02-03T10:00:00Z",
+        "actualAt": "2026-02-03T10:00:00Z",
+        "location": "Shipper, Belgium"
+      },
+      {
+        "code": "GATE_IN_ORIGIN",
+        "label": "Gated in at terminal",
+        "plannedAt": "2026-02-03T14:00:00Z",
+        "actualAt": "2026-02-03T14:00:00Z",
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "SAILED",
+        "label": "Sailed on S-415",
+        "plannedAt": "2026-02-03T18:00:00Z",
+        "actualAt": "2026-02-03T18:00:00Z",
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "ARRIVED_DESTINATION",
+        "label": "Arrived at UK terminal",
+        "plannedAt": "2026-02-04T02:30:00Z",
+        "actualAt": "2026-02-04T02:30:00Z",
+        "location": "UK South terminal"
+      },
+      {
+        "code": "GATE_OUT_DESTINATION",
+        "label": "Gated out",
+        "plannedAt": "2026-02-04T03:30:00Z",
+        "actualAt": "2026-02-04T03:30:00Z",
+        "location": "UK South terminal"
+      },
+      {
+        "code": "OUT_FOR_DELIVERY",
+        "label": "Out for delivery",
+        "plannedAt": "2026-02-04T03:45:00Z",
+        "actualAt": "2026-02-04T03:45:00Z",
+        "location": "UK road leg"
+      },
+      {
+        "code": "DELIVERED",
+        "label": "Delivered",
+        "plannedAt": "2026-02-04T06:15:00Z",
+        "actualAt": "2026-02-04T06:15:00Z",
+        "location": "Harlow garden centre DC, Peterborough"
+      }
+    ],
+    "scenarioOrder": false
+  },
+  {
+    "orderRef": "D2D-48448",
+    "customerId": "C-AS",
+    "route": "BE-UK East",
+    "sailingId": "E-310",
+    "cargo": {
+      "description": "Trailer · furniture",
+      "unitType": "TRAILER",
+      "timeCritical": false
+    },
+    "consignee": "Arden fabrication, Sheffield",
+    "deliveryWindow": {
+      "start": "2026-02-04T06:00:00Z",
+      "end": "2026-02-04T08:00:00Z"
+    },
+    "plannedEta": "2026-02-04T06:30:00Z",
+    "eta": "2026-02-04T06:30:00Z",
+    "status": "DELIVERED",
+    "lastStatusAt": "2026-02-04T06:30:00Z",
+    "legs": [
+      {
+        "mode": "ROAD",
+        "from": "Shipper, Belgium",
+        "to": "Continental terminal (BE)",
+        "plannedDeparture": "2026-02-03T12:00:00Z",
+        "plannedArrival": "2026-02-03T16:00:00Z",
+        "operator": "Subcontracted haulier (BE)"
+      },
+      {
+        "mode": "SEA",
+        "from": "Continental terminal (BE)",
+        "to": "UK East terminal",
+        "plannedDeparture": "2026-02-03T20:00:00Z",
+        "plannedArrival": "2026-02-04T04:00:00Z",
+        "operator": "Sailing E-310"
+      },
+      {
+        "mode": "ROAD",
+        "from": "UK East terminal",
+        "to": "Arden fabrication, Sheffield",
+        "plannedDeparture": "2026-02-04T05:00:00Z",
+        "plannedArrival": "2026-02-04T06:30:00Z",
+        "operator": "Subcontracted haulier (UK)"
+      }
+    ],
+    "milestones": [
+      {
+        "code": "ORDER_RECEIVED",
+        "label": "Order received",
+        "plannedAt": "2026-01-31T20:00:00Z",
+        "actualAt": "2026-01-31T20:00:00Z",
+        "location": "EDI"
+      },
+      {
+        "code": "COLLECTED",
+        "label": "Collected at shipper",
+        "plannedAt": "2026-02-03T12:00:00Z",
+        "actualAt": "2026-02-03T12:00:00Z",
+        "location": "Shipper, Belgium"
+      },
+      {
+        "code": "GATE_IN_ORIGIN",
+        "label": "Gated in at terminal",
+        "plannedAt": "2026-02-03T16:00:00Z",
+        "actualAt": "2026-02-03T16:00:00Z",
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "SAILED",
+        "label": "Sailed on E-310",
+        "plannedAt": "2026-02-03T20:00:00Z",
+        "actualAt": "2026-02-03T20:00:00Z",
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "ARRIVED_DESTINATION",
+        "label": "Arrived at UK terminal",
+        "plannedAt": "2026-02-04T04:00:00Z",
+        "actualAt": "2026-02-04T04:00:00Z",
+        "location": "UK East terminal"
+      },
+      {
+        "code": "GATE_OUT_DESTINATION",
+        "label": "Gated out",
+        "plannedAt": "2026-02-04T05:00:00Z",
+        "actualAt": "2026-02-04T05:00:00Z",
+        "location": "UK East terminal"
+      },
+      {
+        "code": "OUT_FOR_DELIVERY",
+        "label": "Out for delivery",
+        "plannedAt": "2026-02-04T05:00:00Z",
+        "actualAt": "2026-02-04T05:00:00Z",
+        "location": "UK road leg"
+      },
+      {
+        "code": "DELIVERED",
+        "label": "Delivered",
+        "plannedAt": "2026-02-04T06:30:00Z",
+        "actualAt": "2026-02-04T06:30:00Z",
+        "location": "Arden fabrication, Sheffield"
+      }
+    ],
+    "scenarioOrder": false
+  },
+  {
+    "orderRef": "D2D-48453",
+    "customerId": "C-KF",
+    "route": "BE-UK South",
+    "sailingId": "S-415",
+    "cargo": {
+      "description": "Trailer · textiles",
+      "unitType": "TRAILER",
+      "timeCritical": false
+    },
+    "consignee": "Retail park consignee, Milton Keynes",
+    "deliveryWindow": {
+      "start": "2026-02-04T08:00:00Z",
+      "end": "2026-02-04T10:00:00Z"
+    },
+    "plannedEta": "2026-02-04T08:40:00Z",
+    "eta": "2026-02-04T08:40:00Z",
+    "status": "DELIVERED",
+    "lastStatusAt": "2026-02-04T08:40:00Z",
+    "legs": [
+      {
+        "mode": "ROAD",
+        "from": "Shipper, Belgium",
+        "to": "Continental terminal (BE)",
+        "plannedDeparture": "2026-02-03T10:00:00Z",
+        "plannedArrival": "2026-02-03T14:00:00Z",
+        "operator": "Subcontracted haulier (BE)"
+      },
+      {
+        "mode": "SEA",
+        "from": "Continental terminal (BE)",
+        "to": "UK South terminal",
+        "plannedDeparture": "2026-02-03T18:00:00Z",
+        "plannedArrival": "2026-02-04T02:30:00Z",
+        "operator": "Sailing S-415"
+      },
+      {
+        "mode": "ROAD",
+        "from": "UK South terminal",
+        "to": "Retail park consignee, Milton Keynes",
+        "plannedDeparture": "2026-02-04T06:10:00Z",
+        "plannedArrival": "2026-02-04T08:40:00Z",
+        "operator": "Subcontracted haulier (UK)"
+      }
+    ],
+    "milestones": [
+      {
+        "code": "ORDER_RECEIVED",
+        "label": "Order received",
+        "plannedAt": "2026-01-31T19:00:00Z",
+        "actualAt": "2026-01-31T19:00:00Z",
+        "location": "EDI"
+      },
+      {
+        "code": "COLLECTED",
+        "label": "Collected at shipper",
+        "plannedAt": "2026-02-03T10:00:00Z",
+        "actualAt": "2026-02-03T10:00:00Z",
+        "location": "Shipper, Belgium"
+      },
+      {
+        "code": "GATE_IN_ORIGIN",
+        "label": "Gated in at terminal",
+        "plannedAt": "2026-02-03T14:00:00Z",
+        "actualAt": "2026-02-03T14:00:00Z",
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "SAILED",
+        "label": "Sailed on S-415",
+        "plannedAt": "2026-02-03T18:00:00Z",
+        "actualAt": "2026-02-03T18:00:00Z",
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "ARRIVED_DESTINATION",
+        "label": "Arrived at UK terminal",
+        "plannedAt": "2026-02-04T02:30:00Z",
+        "actualAt": "2026-02-04T02:30:00Z",
+        "location": "UK South terminal"
+      },
+      {
+        "code": "GATE_OUT_DESTINATION",
+        "label": "Gated out",
+        "plannedAt": "2026-02-04T03:30:00Z",
+        "actualAt": "2026-02-04T03:30:00Z",
+        "location": "UK South terminal"
+      },
+      {
+        "code": "OUT_FOR_DELIVERY",
+        "label": "Out for delivery",
+        "plannedAt": "2026-02-04T06:10:00Z",
+        "actualAt": "2026-02-04T06:10:00Z",
+        "location": "UK road leg"
+      },
+      {
+        "code": "DELIVERED",
+        "label": "Delivered",
+        "plannedAt": "2026-02-04T08:40:00Z",
+        "actualAt": "2026-02-04T08:40:00Z",
+        "location": "Retail park consignee, Milton Keynes"
+      }
+    ],
+    "scenarioOrder": false
+  },
+  {
+    "orderRef": "D2D-48457",
+    "customerId": "C-KF",
+    "route": "BE-UK South",
+    "sailingId": "S-419",
+    "cargo": {
+      "description": "Trailer · general cargo",
+      "unitType": "TRAILER",
+      "timeCritical": false
+    },
+    "consignee": "Retail park consignee, Milton Keynes",
+    "deliveryWindow": {
+      "start": "2026-02-06T10:00:00Z",
+      "end": "2026-02-06T12:00:00Z"
+    },
+    "plannedEta": "2026-02-06T11:10:00Z",
+    "eta": "2026-02-06T11:10:00Z",
+    "status": "BOOKED",
+    "lastStatusAt": "2026-02-02T14:00:00Z",
+    "legs": [
+      {
+        "mode": "ROAD",
+        "from": "Shipper, Belgium",
+        "to": "Continental terminal (BE)",
+        "plannedDeparture": "2026-02-05T09:00:00Z",
+        "plannedArrival": "2026-02-05T13:00:00Z",
+        "operator": "Subcontracted haulier (BE)"
+      },
+      {
+        "mode": "SEA",
+        "from": "Continental terminal (BE)",
+        "to": "UK South terminal",
+        "plannedDeparture": "2026-02-05T17:00:00Z",
+        "plannedArrival": "2026-02-06T01:30:00Z",
+        "operator": "Sailing S-419"
+      },
+      {
+        "mode": "ROAD",
+        "from": "UK South terminal",
+        "to": "Retail park consignee, Milton Keynes",
+        "plannedDeparture": "2026-02-06T08:40:00Z",
+        "plannedArrival": "2026-02-06T11:10:00Z",
+        "operator": "Subcontracted haulier (UK)"
+      }
+    ],
+    "milestones": [
+      {
+        "code": "ORDER_RECEIVED",
+        "label": "Order received",
+        "plannedAt": "2026-02-02T14:00:00Z",
+        "actualAt": "2026-02-02T14:00:00Z",
+        "location": "EDI"
+      },
+      {
+        "code": "COLLECTED",
+        "label": "Collected at shipper",
+        "plannedAt": "2026-02-05T09:00:00Z",
+        "actualAt": null,
+        "location": "Shipper, Belgium"
+      },
+      {
+        "code": "GATE_IN_ORIGIN",
+        "label": "Gated in at terminal",
+        "plannedAt": "2026-02-05T13:00:00Z",
+        "actualAt": null,
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "SAILED",
+        "label": "Sailed on S-419",
+        "plannedAt": "2026-02-05T17:00:00Z",
+        "actualAt": null,
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "ARRIVED_DESTINATION",
+        "label": "Arrived at UK terminal",
+        "plannedAt": "2026-02-06T01:30:00Z",
+        "actualAt": null,
+        "location": "UK South terminal"
+      },
+      {
+        "code": "GATE_OUT_DESTINATION",
+        "label": "Gated out",
+        "plannedAt": "2026-02-06T02:30:00Z",
+        "actualAt": null,
+        "location": "UK South terminal"
+      },
+      {
+        "code": "OUT_FOR_DELIVERY",
+        "label": "Out for delivery",
+        "plannedAt": "2026-02-06T08:40:00Z",
+        "actualAt": null,
+        "location": "UK road leg"
+      },
+      {
+        "code": "DELIVERED",
+        "label": "Delivered",
+        "plannedAt": "2026-02-06T11:10:00Z",
+        "actualAt": null,
+        "location": "Retail park consignee, Milton Keynes"
+      }
+    ],
+    "scenarioOrder": false
+  },
+  {
+    "orderRef": "D2D-48464",
+    "customerId": "C-BW",
+    "route": "BE-UK South",
+    "sailingId": "S-419",
+    "cargo": {
+      "description": "Trailer · garden products",
+      "unitType": "TRAILER",
+      "timeCritical": false
+    },
+    "consignee": "Printworks Basildon",
+    "deliveryWindow": {
+      "start": "2026-02-06T10:00:00Z",
+      "end": "2026-02-06T12:00:00Z"
+    },
+    "plannedEta": "2026-02-06T11:10:00Z",
+    "eta": "2026-02-06T11:10:00Z",
+    "status": "BOOKED",
+    "lastStatusAt": "2026-02-03T09:00:00Z",
+    "legs": [
+      {
+        "mode": "ROAD",
+        "from": "Shipper, Belgium",
+        "to": "Continental terminal (BE)",
+        "plannedDeparture": "2026-02-05T09:00:00Z",
+        "plannedArrival": "2026-02-05T13:00:00Z",
+        "operator": "Subcontracted haulier (BE)"
+      },
+      {
+        "mode": "SEA",
+        "from": "Continental terminal (BE)",
+        "to": "UK South terminal",
+        "plannedDeparture": "2026-02-05T17:00:00Z",
+        "plannedArrival": "2026-02-06T01:30:00Z",
+        "operator": "Sailing S-419"
+      },
+      {
+        "mode": "ROAD",
+        "from": "UK South terminal",
+        "to": "Printworks Basildon",
+        "plannedDeparture": "2026-02-06T08:40:00Z",
+        "plannedArrival": "2026-02-06T11:10:00Z",
+        "operator": "Subcontracted haulier (UK)"
+      }
+    ],
+    "milestones": [
+      {
+        "code": "ORDER_RECEIVED",
+        "label": "Order received",
+        "plannedAt": "2026-02-03T09:00:00Z",
+        "actualAt": "2026-02-03T09:00:00Z",
+        "location": "portal"
+      },
+      {
+        "code": "COLLECTED",
+        "label": "Collected at shipper",
+        "plannedAt": "2026-02-05T09:00:00Z",
+        "actualAt": null,
+        "location": "Shipper, Belgium"
+      },
+      {
+        "code": "GATE_IN_ORIGIN",
+        "label": "Gated in at terminal",
+        "plannedAt": "2026-02-05T13:00:00Z",
+        "actualAt": null,
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "SAILED",
+        "label": "Sailed on S-419",
+        "plannedAt": "2026-02-05T17:00:00Z",
+        "actualAt": null,
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "ARRIVED_DESTINATION",
+        "label": "Arrived at UK terminal",
+        "plannedAt": "2026-02-06T01:30:00Z",
+        "actualAt": null,
+        "location": "UK South terminal"
+      },
+      {
+        "code": "GATE_OUT_DESTINATION",
+        "label": "Gated out",
+        "plannedAt": "2026-02-06T02:30:00Z",
+        "actualAt": null,
+        "location": "UK South terminal"
+      },
+      {
+        "code": "OUT_FOR_DELIVERY",
+        "label": "Out for delivery",
+        "plannedAt": "2026-02-06T08:40:00Z",
+        "actualAt": null,
+        "location": "UK road leg"
+      },
+      {
+        "code": "DELIVERED",
+        "label": "Delivered",
+        "plannedAt": "2026-02-06T11:10:00Z",
+        "actualAt": null,
+        "location": "Printworks Basildon"
+      }
+    ],
+    "scenarioOrder": false
+  },
+  {
+    "orderRef": "D2D-48468",
+    "customerId": "C-NF",
+    "route": "BE-UK South",
+    "sailingId": "S-419",
+    "cargo": {
+      "description": "Trailer · textiles",
+      "unitType": "TRAILER",
+      "timeCritical": false
+    },
+    "consignee": "Northfield DC Leeds",
+    "deliveryWindow": {
+      "start": "2026-02-06T08:00:00Z",
+      "end": "2026-02-06T12:00:00Z"
+    },
+    "plannedEta": "2026-02-06T08:50:00Z",
+    "eta": "2026-02-06T08:50:00Z",
+    "status": "BOOKED",
+    "lastStatusAt": "2026-02-03T06:00:00Z",
+    "legs": [
+      {
+        "mode": "ROAD",
+        "from": "Shipper, Belgium",
+        "to": "Continental terminal (BE)",
+        "plannedDeparture": "2026-02-05T09:00:00Z",
+        "plannedArrival": "2026-02-05T13:00:00Z",
+        "operator": "Subcontracted haulier (BE)"
+      },
+      {
+        "mode": "SEA",
+        "from": "Continental terminal (BE)",
+        "to": "UK South terminal",
+        "plannedDeparture": "2026-02-05T17:00:00Z",
+        "plannedArrival": "2026-02-06T01:30:00Z",
+        "operator": "Sailing S-419"
+      },
+      {
+        "mode": "ROAD",
+        "from": "UK South terminal",
+        "to": "Northfield DC Leeds",
+        "plannedDeparture": "2026-02-06T06:20:00Z",
+        "plannedArrival": "2026-02-06T08:50:00Z",
+        "operator": "Subcontracted haulier (UK)"
+      }
+    ],
+    "milestones": [
+      {
+        "code": "ORDER_RECEIVED",
+        "label": "Order received",
+        "plannedAt": "2026-02-03T06:00:00Z",
+        "actualAt": "2026-02-03T06:00:00Z",
+        "location": "portal"
+      },
+      {
+        "code": "COLLECTED",
+        "label": "Collected at shipper",
+        "plannedAt": "2026-02-05T09:00:00Z",
+        "actualAt": null,
+        "location": "Shipper, Belgium"
+      },
+      {
+        "code": "GATE_IN_ORIGIN",
+        "label": "Gated in at terminal",
+        "plannedAt": "2026-02-05T13:00:00Z",
+        "actualAt": null,
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "SAILED",
+        "label": "Sailed on S-419",
+        "plannedAt": "2026-02-05T17:00:00Z",
+        "actualAt": null,
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "ARRIVED_DESTINATION",
+        "label": "Arrived at UK terminal",
+        "plannedAt": "2026-02-06T01:30:00Z",
+        "actualAt": null,
+        "location": "UK South terminal"
+      },
+      {
+        "code": "GATE_OUT_DESTINATION",
+        "label": "Gated out",
+        "plannedAt": "2026-02-06T02:30:00Z",
+        "actualAt": null,
+        "location": "UK South terminal"
+      },
+      {
+        "code": "OUT_FOR_DELIVERY",
+        "label": "Out for delivery",
+        "plannedAt": "2026-02-06T06:20:00Z",
+        "actualAt": null,
+        "location": "UK road leg"
+      },
+      {
+        "code": "DELIVERED",
+        "label": "Delivered",
+        "plannedAt": "2026-02-06T08:50:00Z",
+        "actualAt": null,
+        "location": "Northfield DC Leeds"
+      }
+    ],
+    "scenarioOrder": false
+  },
+  {
+    "orderRef": "D2D-48470",
+    "customerId": "C-BW",
+    "route": "BE-UK South",
+    "sailingId": "S-419",
+    "cargo": {
+      "description": "Trailer · general cargo",
+      "unitType": "TRAILER",
+      "timeCritical": false
+    },
+    "consignee": "Brightwater mill Kent",
+    "deliveryWindow": {
+      "start": "2026-02-06T08:00:00Z",
+      "end": "2026-02-06T10:00:00Z"
+    },
+    "plannedEta": "2026-02-06T08:50:00Z",
+    "eta": "2026-02-06T08:50:00Z",
+    "status": "BOOKED",
+    "lastStatusAt": "2026-02-02T12:00:00Z",
+    "legs": [
+      {
+        "mode": "ROAD",
+        "from": "Shipper, Belgium",
+        "to": "Continental terminal (BE)",
+        "plannedDeparture": "2026-02-05T09:00:00Z",
+        "plannedArrival": "2026-02-05T13:00:00Z",
+        "operator": "Subcontracted haulier (BE)"
+      },
+      {
+        "mode": "SEA",
+        "from": "Continental terminal (BE)",
+        "to": "UK South terminal",
+        "plannedDeparture": "2026-02-05T17:00:00Z",
+        "plannedArrival": "2026-02-06T01:30:00Z",
+        "operator": "Sailing S-419"
+      },
+      {
+        "mode": "ROAD",
+        "from": "UK South terminal",
+        "to": "Brightwater mill Kent",
+        "plannedDeparture": "2026-02-06T06:20:00Z",
+        "plannedArrival": "2026-02-06T08:50:00Z",
+        "operator": "Subcontracted haulier (UK)"
+      }
+    ],
+    "milestones": [
+      {
+        "code": "ORDER_RECEIVED",
+        "label": "Order received",
+        "plannedAt": "2026-02-02T12:00:00Z",
+        "actualAt": "2026-02-02T12:00:00Z",
+        "location": "portal"
+      },
+      {
+        "code": "COLLECTED",
+        "label": "Collected at shipper",
+        "plannedAt": "2026-02-05T09:00:00Z",
+        "actualAt": null,
+        "location": "Shipper, Belgium"
+      },
+      {
+        "code": "GATE_IN_ORIGIN",
+        "label": "Gated in at terminal",
+        "plannedAt": "2026-02-05T13:00:00Z",
+        "actualAt": null,
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "SAILED",
+        "label": "Sailed on S-419",
+        "plannedAt": "2026-02-05T17:00:00Z",
+        "actualAt": null,
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "ARRIVED_DESTINATION",
+        "label": "Arrived at UK terminal",
+        "plannedAt": "2026-02-06T01:30:00Z",
+        "actualAt": null,
+        "location": "UK South terminal"
+      },
+      {
+        "code": "GATE_OUT_DESTINATION",
+        "label": "Gated out",
+        "plannedAt": "2026-02-06T02:30:00Z",
+        "actualAt": null,
+        "location": "UK South terminal"
+      },
+      {
+        "code": "OUT_FOR_DELIVERY",
+        "label": "Out for delivery",
+        "plannedAt": "2026-02-06T06:20:00Z",
+        "actualAt": null,
+        "location": "UK road leg"
+      },
+      {
+        "code": "DELIVERED",
+        "label": "Delivered",
+        "plannedAt": "2026-02-06T08:50:00Z",
+        "actualAt": null,
+        "location": "Brightwater mill Kent"
+      }
+    ],
+    "scenarioOrder": false
+  },
+  {
+    "orderRef": "D2D-48475",
+    "customerId": "C-KF",
+    "route": "BE-UK East",
+    "sailingId": "E-314",
+    "cargo": {
+      "description": "45' container · consumer goods",
+      "unitType": "CONTAINER",
+      "timeCritical": false
+    },
+    "consignee": "Kestrel cross-dock Daventry",
+    "deliveryWindow": {
+      "start": "2026-02-06T08:00:00Z",
+      "end": "2026-02-06T10:00:00Z"
+    },
+    "plannedEta": "2026-02-06T08:50:00Z",
+    "eta": "2026-02-06T08:50:00Z",
+    "status": "BOOKED",
+    "lastStatusAt": "2026-02-02T12:00:00Z",
+    "legs": [
+      {
+        "mode": "ROAD",
+        "from": "Shipper, Belgium",
+        "to": "Continental terminal (BE)",
+        "plannedDeparture": "2026-02-04T14:00:00Z",
+        "plannedArrival": "2026-02-04T18:00:00Z",
+        "operator": "Subcontracted haulier (BE)"
+      },
+      {
+        "mode": "SEA",
+        "from": "Continental terminal (BE)",
+        "to": "UK East terminal",
+        "plannedDeparture": "2026-02-04T22:00:00Z",
+        "plannedArrival": "2026-02-05T06:00:00Z",
+        "operator": "Sailing E-314"
+      },
+      {
+        "mode": "ROAD",
+        "from": "UK East terminal",
+        "to": "Kestrel cross-dock Daventry",
+        "plannedDeparture": "2026-02-06T06:20:00Z",
+        "plannedArrival": "2026-02-06T08:50:00Z",
+        "operator": "Subcontracted haulier (UK)"
+      }
+    ],
+    "milestones": [
+      {
+        "code": "ORDER_RECEIVED",
+        "label": "Order received",
+        "plannedAt": "2026-02-02T12:00:00Z",
+        "actualAt": "2026-02-02T12:00:00Z",
+        "location": "EDI"
+      },
+      {
+        "code": "COLLECTED",
+        "label": "Collected at shipper",
+        "plannedAt": "2026-02-04T14:00:00Z",
+        "actualAt": null,
+        "location": "Shipper, Belgium"
+      },
+      {
+        "code": "GATE_IN_ORIGIN",
+        "label": "Gated in at terminal",
+        "plannedAt": "2026-02-04T18:00:00Z",
+        "actualAt": null,
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "SAILED",
+        "label": "Sailed on E-314",
+        "plannedAt": "2026-02-04T22:00:00Z",
+        "actualAt": null,
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "ARRIVED_DESTINATION",
+        "label": "Arrived at UK terminal",
+        "plannedAt": "2026-02-05T06:00:00Z",
+        "actualAt": null,
+        "location": "UK East terminal"
+      },
+      {
+        "code": "GATE_OUT_DESTINATION",
+        "label": "Gated out",
+        "plannedAt": "2026-02-05T07:00:00Z",
+        "actualAt": null,
+        "location": "UK East terminal"
+      },
+      {
+        "code": "OUT_FOR_DELIVERY",
+        "label": "Out for delivery",
+        "plannedAt": "2026-02-06T06:20:00Z",
+        "actualAt": null,
+        "location": "UK road leg"
+      },
+      {
+        "code": "DELIVERED",
+        "label": "Delivered",
+        "plannedAt": "2026-02-06T08:50:00Z",
+        "actualAt": null,
+        "location": "Kestrel cross-dock Daventry"
+      }
+    ],
+    "scenarioOrder": false
+  },
+  {
+    "orderRef": "D2D-48480",
+    "customerId": "C-PM",
+    "route": "BE-UK South",
+    "sailingId": "S-419",
+    "cargo": {
+      "description": "Trailer · retail goods",
+      "unitType": "TRAILER",
+      "timeCritical": false
+    },
+    "consignee": "Pellow hub Reading",
+    "deliveryWindow": {
+      "start": "2026-02-06T08:00:00Z",
+      "end": "2026-02-06T12:00:00Z"
+    },
+    "plannedEta": "2026-02-06T09:10:00Z",
+    "eta": "2026-02-06T09:10:00Z",
+    "status": "BOOKED",
+    "lastStatusAt": "2026-02-03T03:00:00Z",
+    "legs": [
+      {
+        "mode": "ROAD",
+        "from": "Shipper, Belgium",
+        "to": "Continental terminal (BE)",
+        "plannedDeparture": "2026-02-05T09:00:00Z",
+        "plannedArrival": "2026-02-05T13:00:00Z",
+        "operator": "Subcontracted haulier (BE)"
+      },
+      {
+        "mode": "SEA",
+        "from": "Continental terminal (BE)",
+        "to": "UK South terminal",
+        "plannedDeparture": "2026-02-05T17:00:00Z",
+        "plannedArrival": "2026-02-06T01:30:00Z",
+        "operator": "Sailing S-419"
+      },
+      {
+        "mode": "ROAD",
+        "from": "UK South terminal",
+        "to": "Pellow hub Reading",
+        "plannedDeparture": "2026-02-06T06:40:00Z",
+        "plannedArrival": "2026-02-06T09:10:00Z",
+        "operator": "Subcontracted haulier (UK)"
+      }
+    ],
+    "milestones": [
+      {
+        "code": "ORDER_RECEIVED",
+        "label": "Order received",
+        "plannedAt": "2026-02-03T03:00:00Z",
+        "actualAt": "2026-02-03T03:00:00Z",
+        "location": "e-mail"
+      },
+      {
+        "code": "COLLECTED",
+        "label": "Collected at shipper",
+        "plannedAt": "2026-02-05T09:00:00Z",
+        "actualAt": null,
+        "location": "Shipper, Belgium"
+      },
+      {
+        "code": "GATE_IN_ORIGIN",
+        "label": "Gated in at terminal",
+        "plannedAt": "2026-02-05T13:00:00Z",
+        "actualAt": null,
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "SAILED",
+        "label": "Sailed on S-419",
+        "plannedAt": "2026-02-05T17:00:00Z",
+        "actualAt": null,
+        "location": "Continental terminal (BE)"
+      },
+      {
+        "code": "ARRIVED_DESTINATION",
+        "label": "Arrived at UK terminal",
+        "plannedAt": "2026-02-06T01:30:00Z",
+        "actualAt": null,
+        "location": "UK South terminal"
+      },
+      {
+        "code": "GATE_OUT_DESTINATION",
+        "label": "Gated out",
+        "plannedAt": "2026-02-06T02:30:00Z",
+        "actualAt": null,
+        "location": "UK South terminal"
+      },
+      {
+        "code": "OUT_FOR_DELIVERY",
+        "label": "Out for delivery",
+        "plannedAt": "2026-02-06T06:40:00Z",
+        "actualAt": null,
+        "location": "UK road leg"
+      },
+      {
+        "code": "DELIVERED",
+        "label": "Delivered",
+        "plannedAt": "2026-02-06T09:10:00Z",
+        "actualAt": null,
+        "location": "Pellow hub Reading"
+      }
+    ],
+    "scenarioOrder": false
+  }
+]

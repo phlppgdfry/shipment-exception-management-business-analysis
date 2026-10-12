@@ -1,0 +1,6 @@
+{
+  "type": "https://example.org/problems/invalid-transition",
+  "title": "Not possible in the current state",
+  "status": 409,
+  "detail": "Acknowledge the exception before resolving it (now OPEN)"
+}

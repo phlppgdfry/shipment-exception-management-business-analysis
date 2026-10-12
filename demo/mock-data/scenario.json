@@ -1,0 +1,104 @@
+{
+  "demoStart": "2026-02-04T09:50:00Z",
+  "morningEvents": [
+    {
+      "eventId": "EVT-0830-HG-CUSTOMS",
+      "type": "CUSTOMS_HOLD_PLACED",
+      "occurredAt": "2026-02-04T08:30:00Z",
+      "source": "Customs broker via TMS",
+      "orderRef": "D2D-48240",
+      "reason": "Import declaration incomplete: commodity code missing"
+    },
+    {
+      "eventId": "EVT-0915-FH-TERMINAL",
+      "type": "TERMINAL_DELAYED",
+      "occurredAt": "2026-02-04T09:15:00Z",
+      "source": "Terminal operating system",
+      "orderRef": "D2D-48222",
+      "newEta": "2026-02-04T15:20:00Z",
+      "reason": "Yard congestion at UK South terminal"
+    },
+    {
+      "eventId": "EVT-0915-OT-ROAD",
+      "type": "ROAD_ETA_UPDATED",
+      "occurredAt": "2026-02-04T09:15:00Z",
+      "source": "Haulier app",
+      "orderRef": "D2D-48231",
+      "newEta": "2026-02-04T13:30:00Z",
+      "reason": "Breakdown, replacement tractor on its way"
+    },
+    {
+      "eventId": "EVT-0935-MD-ROAD",
+      "type": "ROAD_ETA_UPDATED",
+      "occurredAt": "2026-02-04T09:35:00Z",
+      "source": "Haulier app",
+      "orderRef": "D2D-48261",
+      "newEta": "2026-02-04T11:00:00Z",
+      "reason": "Traffic on the delivery leg"
+    },
+    {
+      "eventId": "EVT-0938-S417-CANCEL",
+      "type": "SAILING_CANCELLED",
+      "occurredAt": "2026-02-04T09:38:00Z",
+      "source": "Booking & sailing system",
+      "sailingId": "S-417",
+      "replacementSailingId": "S-419",
+      "delayMinutes": 1440,
+      "reason": "Weather: sailing cancelled, cargo moved to next sailing"
+    },
+    {
+      "eventId": "EVT-0945-OT-ROAD",
+      "type": "ROAD_ETA_UPDATED",
+      "occurredAt": "2026-02-04T09:45:00Z",
+      "source": "Haulier app",
+      "orderRef": "D2D-48231",
+      "newEta": "2026-02-04T13:50:00Z",
+      "reason": "Replacement tractor 20 min later than announced"
+    },
+    {
+      "eventId": "EVT-0948-AS-ROAD",
+      "type": "ROAD_ETA_UPDATED",
+      "occurredAt": "2026-02-04T09:48:00Z",
+      "source": "Haulier e-mail, keyed by planner",
+      "orderRef": "D2D-48255",
+      "newEta": "2026-02-04T12:10:00Z",
+      "reason": "Road works on the delivery route"
+    },
+    {
+      "eventId": "EVT-0950-PM-STATUS",
+      "type": "STATUS_OVERDUE",
+      "occurredAt": "2026-02-04T09:50:00Z",
+      "source": "Exception component heartbeat",
+      "orderRef": "D2D-48288",
+      "reason": "No status from the haulier since 03:05 (departed UK terminal)"
+    }
+  ],
+  "morningCommands": [
+    {
+      "at": "2026-02-04T09:25:00Z",
+      "command": "acknowledge",
+      "orderRef": "D2D-48231",
+      "actor": "USR-PLANNER"
+    }
+  ],
+  "scenario": {
+    "orderRef": "D2D-48213",
+    "delayEvent": {
+      "eventId": "EVT-0952-E312-DELAY",
+      "type": "SAILING_DELAYED",
+      "occurredAt": "2026-02-04T09:52:00Z",
+      "source": "Booking & sailing system",
+      "sailingId": "E-312",
+      "delayMinutes": 360,
+      "reason": "Technical inspection: departure 18:00 instead of 12:00"
+    },
+    "assignTo": "USR-PLANNER",
+    "responseAction": "Called the consignee's goods-in desk: a new slot Thu 13:00–15:00 is possible.",
+    "messageNote": "We have asked your DC for a new slot this afternoon and will confirm shortly.",
+    "newWindow": {
+      "start": "2026-02-05T13:00:00Z",
+      "end": "2026-02-05T15:00:00Z"
+    },
+    "resolveReason": "NEW_WINDOW_AGREED"
+  }
+}

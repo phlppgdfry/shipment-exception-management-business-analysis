@@ -23,34 +23,27 @@ jobs:
       - name: Check links
         run: python3 scripts/check-links.py
 
-      - name: Detect build step
-        id: detect
-        run: |
-          if [ -f site/package.json ] && grep -q '"build"' site/package.json; then
-            echo "build=true" >> "$GITHUB_OUTPUT"
-            echo "dir=site/dist" >> "$GITHUB_OUTPUT"
-          else
-            echo "build=false" >> "$GITHUB_OUTPUT"
-            echo "dir=site" >> "$GITHUB_OUTPUT"
-          fi
-
       - uses: actions/setup-node@v4
-        if: steps.detect.outputs.build == 'true'
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: site/package-lock.json
+          cache-dependency-path: demo/application/package-lock.json
 
-      - name: Build site
-        if: steps.detect.outputs.build == 'true'
-        working-directory: site
-        run: npm ci && npm run build
+      - name: Build the control tower demo into site/control-tower
+        working-directory: demo/application
+        env:
+          BASE_PATH: /shipment-exception-management-business-analysis/control-tower
+        run: |
+          npm ci
+          npm run build
+          rm -rf ../../site/control-tower
+          cp -R out ../../site/control-tower
 
       - uses: actions/configure-pages@v5
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: ${{ steps.detect.outputs.dir }}
+          path: site
 
   deploy:
     needs: build

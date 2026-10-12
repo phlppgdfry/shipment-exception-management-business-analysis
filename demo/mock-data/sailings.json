@@ -1,0 +1,50 @@
+[
+  {
+    "sailingId": "E-310",
+    "route": "BE-UK East",
+    "from": "Continental terminal (BE)",
+    "to": "UK East terminal",
+    "departure": "2026-02-03T20:00:00Z",
+    "arrival": "2026-02-04T04:00:00Z"
+  },
+  {
+    "sailingId": "S-415",
+    "route": "BE-UK South",
+    "from": "Continental terminal (BE)",
+    "to": "UK South terminal",
+    "departure": "2026-02-03T18:00:00Z",
+    "arrival": "2026-02-04T02:30:00Z"
+  },
+  {
+    "sailingId": "E-312",
+    "route": "BE-UK East",
+    "from": "Continental terminal (BE)",
+    "to": "UK East terminal",
+    "departure": "2026-02-04T12:00:00Z",
+    "arrival": "2026-02-04T20:00:00Z"
+  },
+  {
+    "sailingId": "S-417",
+    "route": "BE-UK South",
+    "from": "Continental terminal (BE)",
+    "to": "UK South terminal",
+    "departure": "2026-02-04T17:00:00Z",
+    "arrival": "2026-02-05T01:30:00Z"
+  },
+  {
+    "sailingId": "E-314",
+    "route": "BE-UK East",
+    "from": "Continental terminal (BE)",
+    "to": "UK East terminal",
+    "departure": "2026-02-04T22:00:00Z",
+    "arrival": "2026-02-05T06:00:00Z"
+  },
+  {
+    "sailingId": "S-419",
+    "route": "BE-UK South",
+    "from": "Continental terminal (BE)",
+    "to": "UK South terminal",
+    "departure": "2026-02-05T17:00:00Z",
+    "arrival": "2026-02-06T01:30:00Z"
+  }
+]

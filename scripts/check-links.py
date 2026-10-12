@@ -12,7 +12,7 @@ from pathlib import Path
 from urllib.parse import unquote, urlparse
 
 ROOT = Path(__file__).resolve().parent.parent
-SKIP_DIRS = {".git", "node_modules", "dist", ".venv", "__pycache__"}
+SKIP_DIRS = {".git", "node_modules", "dist", ".venv", "__pycache__", "out", ".next", "test-results", "playwright-report"}
 MD_LINK = re.compile(r"!?\[[^\]]*\]\(([^)\s]+)(?:\s+\"[^\"]*\")?\)")
 HTML_LINK = re.compile(r"""(?:href|src)\s*=\s*["']([^"']+)["']""", re.IGNORECASE)
 

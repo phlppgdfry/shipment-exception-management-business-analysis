@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+/* Design tokens — documented in docs/07-design/ux-specification.md (design system). Restrained on purpose:
+   one accent, neutral surfaces, and severity colours that are never the only signal (always a text label too). */
+:root {
+  --bg: #f6f7f9;
+  --surface: #ffffff;
+  --surface-2: #f1f3f6;
+  --border: #d9dee5;
+  --text: #17202b;
+  --text-muted: #556171;
+  --accent: #0b5cad;
+  --accent-text: #ffffff;
+  --accent-soft: #e6f0fa;
+  --focus: #0b5cad;
+  --critical: #a4161a;
+  --critical-soft: #fdecec;
+  --major: #8a4b00;
+  --major-soft: #fff3e0;
+  --minor: #3d4b5c;
+  --minor-soft: #eef1f5;
+  --ok: #1c6b3a;
+  --ok-soft: #e8f5ec;
+  --info: #0b5cad;
+  --info-soft: #e6f0fa;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f141a;
+    --surface: #161d25;
+    --surface-2: #1d2630;
+    --border: #2f3b48;
+    --text: #e7ecf2;
+    --text-muted: #a3afbd;
+    --accent: #6fb2f2;
+    --accent-text: #0b1520;
+    --accent-soft: #15293d;
+    --focus: #8cc4f7;
+    --critical: #ff8a8a;
+    --critical-soft: #3a1717;
+    --major: #ffbf66;
+    --major-soft: #372712;
+    --minor: #c2ccd8;
+    --minor-soft: #232d38;
+    --ok: #7fd49b;
+    --ok-soft: #14301f;
+    --info: #6fb2f2;
+    --info-soft: #15293d;
+  }
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-text: var(--text);
+  --color-muted: var(--text-muted);
+  --color-accent: var(--accent);
+  --color-accent-text: var(--accent-text);
+  --color-accent-soft: var(--accent-soft);
+  --color-critical: var(--critical);
+  --color-critical-soft: var(--critical-soft);
+  --color-major: var(--major);
+  --color-major-soft: var(--major-soft);
+  --color-minor: var(--minor);
+  --color-minor-soft: var(--minor-soft);
+  --color-ok: var(--ok);
+  --color-ok-soft: var(--ok-soft);
+  --color-info: var(--info);
+  --color-info-soft: var(--info-soft);
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+html {
+  background: var(--bg);
+  color: var(--text);
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}

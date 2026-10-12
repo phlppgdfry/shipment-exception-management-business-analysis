@@ -1,0 +1,54 @@
+{
+  "exceptionId": "EX-1012",
+  "orderRef": "D2D-48213",
+  "customerId": "C-NF",
+  "type": "SAILING_DELAY",
+  "severity": "CRITICAL",
+  "ownerGroup": "ROAD_PLANNING",
+  "status": "ACKNOWLEDGED",
+  "assigneeId": "USR-PLANNER",
+  "openedAt": "2026-02-04T09:52:00Z",
+  "dueAt": "2026-02-04T10:22:00Z",
+  "acknowledgedAt": "2026-02-04T09:52:00Z",
+  "escalatedAt": null,
+  "recoveredAt": null,
+  "resolvedAt": null,
+  "closedAt": null,
+  "windowAssumed": false,
+  "minutesLate": 280,
+  "rulesApplied": [
+    "ER-01",
+    "ER-02",
+    "ER-04",
+    "ER-08",
+    "ER-09",
+    "ER-10",
+    "ER-11"
+  ],
+  "notification": "NOTIFY_AND_CALL",
+  "reasonCode": null,
+  "resolutionNote": null,
+  "release": "R1",
+  "actions": [],
+  "evaluations": [
+    {
+      "at": "2026-02-04T09:52:00Z",
+      "eventId": "EVT-0952-E312-DELAY",
+      "type": "SAILING_DELAY",
+      "severity": "CRITICAL",
+      "minutesLate": 280,
+      "nextDay": false,
+      "windowAssumed": false,
+      "notification": "NOTIFY_AND_CALL",
+      "rules": [
+        "ER-01",
+        "ER-02",
+        "ER-04",
+        "ER-08",
+        "ER-09",
+        "ER-10",
+        "ER-11"
+      ]
+    }
+  ]
+}

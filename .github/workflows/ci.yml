@@ -4,16 +4,59 @@ on:
   push:
     branches: [main]
   pull_request:
+  workflow_dispatch:
 
 jobs:
-  acceptance-examples:
+  case-quality:
+    name: Rules, documentation and traceability
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Run acceptance examples against the business rules
+      - name: Acceptance examples against the business rules
         run: node --test tests/*.test.mjs
-      - name: Check links
+      - name: Mock data is up to date with its generator
+        run: node demo/mock-data/generate.mjs --check
+      - name: API contract lint (OpenAPI 3.1)
+        run: npx --yes @redocly/cli@2.62.1 lint demo/mock-apis/openapi.yaml --config demo/mock-apis/redocly.yaml
+      - name: Documentation links
         run: python3 scripts/check-links.py
+      - name: Deliverables, IDs, traceability, BPMN, learning lab
+        run: python3 scripts/validate_repo.py
+
+  control-tower:
+    name: Control tower demo (lint, types, tests, build, e2e, accessibility)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: demo/application
+    env:
+      BASE_PATH: /shipment-exception-management-business-analysis/control-tower
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: demo/application/package-lock.json
+      - run: npm ci
+      - name: Lint
+        run: npm run lint
+      - name: Type check
+        run: npm run typecheck
+      - name: Unit and contract tests
+        run: npm test
+      - name: Production build (static export)
+        run: npm run build
+      - name: Install browser
+        run: npx playwright install --with-deps chromium
+      - name: End-to-end, routes and accessibility (axe)
+        run: npm run test:e2e
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report
+          path: demo/application/playwright-report
+          retention-days: 7

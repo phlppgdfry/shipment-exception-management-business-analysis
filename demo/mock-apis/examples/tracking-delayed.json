@@ -1,0 +1,29 @@
+{
+  "orderRef": "D2D-48213",
+  "customerName": "Northfield Foods",
+  "pilot": true,
+  "progress": "At the departure terminal",
+  "messages": [
+    {
+      "messageId": "MSG-0011",
+      "sentAt": "2026-02-04T09:52:00Z",
+      "channels": [
+        "PORTAL",
+        "EMAIL"
+      ],
+      "headline": "Significant delay: expected Thu 12:40",
+      "agreedWindow": "Thu 06:00–08:00",
+      "newEta": "Thu 12:40",
+      "reasonCategory": "Sailing delayed",
+      "nextStep": "Your planner is working on a new delivery slot and will confirm it with you.",
+      "plannerNote": "We have asked your DC for a new slot this afternoon and will confirm shortly."
+    }
+  ],
+  "tone": "critical",
+  "headline": "Significant delay: expected Thu 12:40",
+  "agreedWindow": "Thu 06:00–08:00",
+  "expected": "Thu 12:40",
+  "reason": "Sailing delayed",
+  "nextStep": "Your planner is working on a new delivery slot and will confirm it with you.",
+  "plannerNote": "We have asked your DC for a new slot this afternoon and will confirm shortly."
+}
