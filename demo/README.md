@@ -72,4 +72,4 @@ Regenerate the mock data after changing the generator: `node demo/mock-data/gene
 - **Held exceptions do not escalate.** The UML diagram has no Held → Escalated transition; the demo shows "respond by" but leaves it to the planner. Recorded as open question OQ-02 in the [architecture](../docs/12-architecture/README.md#open-questions-found-while-building-the-demo).
 - **No bounce handling (FR-09)** and no EDI/API status messages (US-06, release 2).
 - **State lives in your browser tab** (sessionStorage). "Reset demo" starts the day again.
-- Window inputs are in UK local time; the demo week is in February, when UK time equals UTC.
+- **Time zones:** everything is shown in UK local time. That is right for customer messages, but refinement Q10 decided the workbench shows the *planner's* local time — a planner in Belgium would see +1 h. Window inputs are UK time (in the demo week, February, UK time equals UTC).

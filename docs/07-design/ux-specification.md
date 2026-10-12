@@ -140,7 +140,7 @@ Target: **WCAG 2.2 AA**. Checked automatically with axe-core on every route, des
 | UX-3 | Disabled-with-reason instead of hidden actions | Users learn who can act; fewer "it's broken" tickets | hide actions — confusing in a shared screen |
 | UX-4 | Customer card built only from sent messages | Daniel sees one consistent story; nothing internal leaks (NFR-05) | show the live ETA — would contradict the last message and invite calls |
 | UX-5 | Severity = shape + text + colour | Colour-blind users; printed screenshots in hypercare | colour only |
-| UX-6 | Times always UK local, labelled | DEF-01 (UTC in the e-mail) | user's browser time — wrong for a continental planner looking at UK slots |
+| UX-6 | Times labelled with their zone; customer messages in the consignee's local (UK) time | DEF-01 (UTC in the e-mail); refinement Q10 | the demo also shows UK time in the **workbench**, a simplification: Q10 decided the planner's own local time there (a planner in Belgium would see +1 h) |
 | UX-7 | Overview tiles link to filtered lists | Priya goes from a number to the work in one click (F2) | static numbers |
 | UX-8 | No live map | Customers need the window consequence, not the position (prioritisation trade-off) | map as the centrepiece — attractive, answers the wrong question |
 
