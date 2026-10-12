@@ -5,7 +5,7 @@
 | | |
 |---|---|
 | Run | 2026-10-12 01:15 UTC |
-| Commit | `217d135 + uncommitted changes` |
+| Commit | `a7a1610` |
 | Environment | Node v24.21.0, darwin 24.6.0 |
 | Automated tests | **100 of 100 passed** |
 
@@ -16,8 +16,8 @@ This page contains only **executed** results. The fictional team's system test a
 | Suite | Tool | Tests | Passed | Result | Time |
 |---|---|---:|---:|---|---:|
 | Acceptance examples against the rule module | node --test | 34 | 34 | ✅ pass | 0.1 s |
-| Engine, lifecycle and API contract | Vitest | 41 | 41 | ✅ pass | 1 s |
-| Browser: scenario, workbench, routes, accessibility (axe, WCAG 2.2 A/AA) | Playwright + axe-core | 25 | 25 | ✅ pass | 9.7 s |
+| Engine, lifecycle and API contract | Vitest | 41 | 41 | ✅ pass | 0.7 s |
+| Browser: scenario, workbench, routes, accessibility (axe, WCAG 2.2 A/AA) | Playwright + axe-core | 25 | 25 | ✅ pass | 12.9 s |
 
 | Check | Command | Result |
 |---|---|---|
