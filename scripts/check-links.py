@@ -40,7 +40,10 @@ def main() -> int:
         pattern = MD_LINK if file.suffix == ".md" else HTML_LINK
         for match in pattern.finditer(text):
             target = match.group(1).strip()
-            if not target or target.startswith("#") or is_external(target) or "{{" in target:
+            if not target or target.startswith(("#", "$")) or is_external(target) or "{{" in target or "${" in target:
+                continue
+            # The control tower is built into site/control-tower/ by the Pages workflow (demo/application).
+            if "control-tower/" in target and file.parts[-3:-1] != ("demo", "application"):
                 continue
             path_part = unquote(target.split("#", 1)[0].split("?", 1)[0])
             if not path_part:

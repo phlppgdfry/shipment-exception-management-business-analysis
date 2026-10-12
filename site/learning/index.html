@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Learning Lab — IT business analysis</title>
+  <meta name="description" content="Tien modules in het Nederlands om de methodes van de shipment-exception-case te leren en te verdedigen, met quizzen en voortgang.">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/style.css">
+  <style>
+    .modules { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+    .module { display: flex; flex-direction: column; gap: 6px; }
+    .module h3 { margin: 0; }
+    .meta { font-size: 14px; color: var(--muted); }
+    .status { font-size: 13px; font-weight: 600; }
+    .status.done { color: var(--ok); } .status.partial { color: var(--warn); } .status.none { color: var(--muted); }
+    .module .actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: auto; padding-top: 8px; }
+    .module button { cursor: pointer; font: inherit; }
+    #quiz { margin-top: 24px; }
+    fieldset.q { border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; margin: 0 0 14px; background: var(--surface); }
+    fieldset.q legend { font-weight: 600; padding: 0 6px; }
+    .opt { display: flex; gap: 10px; align-items: flex-start; padding: 6px 4px; border-radius: 6px; }
+    .opt input { margin-top: 5px; }
+    .opt.correct { background: color-mix(in srgb, var(--ok) 14%, transparent); }
+    .opt.wrong { background: color-mix(in srgb, var(--risk) 14%, transparent); }
+    .feedback { margin-top: 8px; font-size: 15px; }
+    .feedback strong.ok { color: var(--ok); } .feedback strong.risk { color: var(--risk); }
+    .score { font-size: 18px; font-weight: 700; }
+    .note { font-size: 14px; color: var(--muted); }
+    button.btn { cursor: pointer; font: inherit; font-weight: 600; }
+    .routes { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="../">Shipment exceptions</a>
+      <nav aria-label="Sections">
+        <a href="../for/recruiters/">For recruiters</a>
+        <a href="../#explore">Explore the case</a>
+        <a href="./" aria-current="page">Learning Lab</a>
+        <a href="../control-tower/">Control tower</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero wrap">
+      <p class="eyebrow">Learning Lab · Nederlandstalig · ±60 uur</p>
+      <h1>IT business analysis, geleerd aan één case</h1>
+      <p class="lede">Tien modules die de methodes van deze case uitleggen en laten oefenen — van probleemstelling en BPMN tot API's, UAT en het interview. Elke module verwijst naar de echte artefacten.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/learning/README.md">Curriculum op GitHub</a>
+        <a class="btn" href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/learning/assessment/README.md">Competentietaken</a>
+        <a class="btn" href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/learning/interview-preparation/README.md">Interviewvoorbereiding</a>
+      </div>
+      <p class="note" style="margin-top:16px">Een quizscore is een zelftest, geen bewijs van competentie. Competentie toon je met eigen werk op de oefeningen en de competentietaken. Je scores worden alleen in deze browser bewaard.</p>
+    </section>
+
+    <section class="wrap section" aria-labelledby="modules-title">
+      <h2 id="modules-title">Modules</h2>
+      <p id="load-state" role="status" class="note">Modules laden…</p>
+      <div class="modules" id="modules"></div>
+    </section>
+
+    <section class="wrap section" id="quiz" aria-labelledby="quiz-title" hidden>
+      <h2 id="quiz-title">Quiz</h2>
+      <p class="note" id="quiz-intro"></p>
+      <form id="quiz-form"></form>
+      <div class="cta-row">
+        <button type="button" class="btn primary" id="check">Controleer mijn antwoorden</button>
+        <button type="button" class="btn" id="reset">Opnieuw</button>
+      </div>
+      <p id="result" class="score" role="status" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>Independent portfolio case study based on a fictional organisation. Learning materials: CC BY 4.0. Gegenereerd uit <code>learning/</code> door <code>scripts/build_learning.py</code>.</p>
+    </div>
+  </footer>
+
+  <script type="module">
+    const KEY = "learning-lab-scores-v1";
+    const load = () => { try { return JSON.parse(localStorage.getItem(KEY) || "{}"); } catch { return {}; } };
+    const save = (v) => { try { localStorage.setItem(KEY, JSON.stringify(v)); } catch { /* storage unavailable */ } };
+    const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+    // Minimal Markdown for explanations: links, bold, code.
+    const md = (s) => esc(s)
+      .replace(/\[([^\]]+)\]\((https?:[^)\s]+)\)/g, '<a href="$2">$1</a>')
+      .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+      .replace(/`([^`]+)`/g, "<code>$1</code>");
+
+    let data;
+    let current = null;
+    const scores = load();
+
+    function renderModules() {
+      const box = document.getElementById("modules");
+      box.innerHTML = data.modules.map((m) => {
+        const s = scores[m.slug];
+        const cls = !s ? "none" : s.best === m.quiz.length ? "done" : "partial";
+        const label = !s ? "Quiz nog niet gedaan" : `Beste quizscore ${s.best}/${m.quiz.length}`;
+        return `<article class="card module">
+          <p class="meta">Module ${m.number} · ${esc(m.level)} · ${esc(m.time)}</p>
+          <h3>${esc(m.title)}</h3>
+          <p>${esc(m.objectives[0] ?? "")}</p>
+          <p class="status ${cls}">${label}</p>
+          <div class="actions">
+            <a class="btn" href="${m.url}">Lees de module</a>
+            <button type="button" class="btn primary" data-quiz="${m.slug}">Quiz (${m.quiz.length})</button>
+          </div>
+        </article>`;
+      }).join("");
+      box.querySelectorAll("[data-quiz]").forEach((b) => b.addEventListener("click", () => openQuiz(b.dataset.quiz)));
+    }
+
+    function openQuiz(slug) {
+      current = data.modules.find((m) => m.slug === slug);
+      const section = document.getElementById("quiz");
+      section.hidden = false;
+      document.getElementById("quiz-title").textContent = `Quiz — module ${current.number}: ${current.title}`;
+      document.getElementById("quiz-intro").textContent = "Kies per vraag één antwoord. Na controle zie je de uitleg — lees die ook bij een goed antwoord.";
+      document.getElementById("result").textContent = "";
+      document.getElementById("quiz-form").innerHTML = current.quiz.map((q, i) => `
+        <fieldset class="q" id="q-${i}">
+          <legend>${i + 1}. ${esc(q.question)}</legend>
+          ${q.options.map((o) => `<label class="opt"><input type="radio" name="q${i}" value="${o.key}"> <span><strong>${o.key}.</strong> ${esc(o.text)}</span></label>`).join("")}
+          <div class="feedback" hidden></div>
+        </fieldset>`).join("");
+      section.scrollIntoView({ behavior: "smooth", block: "start" });
+      document.getElementById("quiz-title").setAttribute("tabindex", "-1");
+      document.getElementById("quiz-title").focus({ preventScroll: true });
+    }
+
+    function check() {
+      if (!current) return;
+      let correct = 0;
+      current.quiz.forEach((q, i) => {
+        const fs = document.getElementById(`q-${i}`);
+        const chosen = fs.querySelector("input:checked")?.value;
+        fs.querySelectorAll(".opt").forEach((l) => {
+          const v = l.querySelector("input").value;
+          l.classList.toggle("correct", v === q.answer);
+          l.classList.toggle("wrong", v === chosen && v !== q.answer);
+        });
+        const fb = fs.querySelector(".feedback");
+        const ok = chosen === q.answer;
+        if (ok) correct += 1;
+        fb.hidden = false;
+        fb.innerHTML = `<strong class="${ok ? "ok" : "risk"}">${ok ? "Juist" : chosen ? "Niet juist" : "Niet beantwoord"}</strong> — antwoord ${q.answer}. ${md(q.explanation)}`;
+      });
+      const prev = scores[current.slug]?.best ?? 0;
+      scores[current.slug] = { best: Math.max(prev, correct), last: correct, at: new Date().toISOString().slice(0, 10) };
+      save(scores);
+      document.getElementById("result").textContent = `Score: ${correct} van ${current.quiz.length}. Noteer je resultaat in learning/progress-tracker.md.`;
+      renderModules();
+    }
+
+    document.getElementById("check").addEventListener("click", check);
+    document.getElementById("reset").addEventListener("click", () => current && openQuiz(current.slug));
+
+    try {
+      const res = await fetch("learning-data.json");
+      if (!res.ok) throw new Error(res.status);
+      data = await res.json();
+      document.getElementById("load-state").textContent = `${data.modules.length} modules, ${data.modules.reduce((n, m) => n + m.quiz.length, 0)} quizvragen.`;
+      renderModules();
+    } catch {
+      document.getElementById("load-state").textContent = "De modules konden niet geladen worden. Lees ze op GitHub: learning/README.md.";
+    }
+  </script>
+</body>
+</html>

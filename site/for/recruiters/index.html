@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>For recruiters — a 5-minute tour of the case</title>
+  <meta name="description" content="A guided five-minute tour of a business analysis portfolio case: the problem, what the analyst did, a working demo, the evidence and what is not claimed.">
+  <meta property="og:title" content="Shipment exceptions — a 5-minute tour for recruiters">
+  <meta property="og:image" content="https://phlppgdfry.github.io/shipment-exception-management-business-analysis/assets/og-image.png">
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../assets/style.css">
+  <style>
+    .tour-steps { list-style: none; padding: 0; margin: 0; display: grid; gap: 16px; counter-reset: step; }
+    .tour-steps > li { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; box-shadow: var(--shadow); }
+    .tour-steps h2 { font-size: 20px; margin: 0 0 6px; display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+    .tour-steps .time { font-size: 13px; font-weight: 600; color: var(--muted); }
+    .tour-steps p { margin: 6px 0; }
+    .label-table td:first-child { white-space: nowrap; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="../../">Shipment exceptions</a>
+      <nav aria-label="Sections">
+        <a href="./" aria-current="page">For recruiters</a>
+        <a href="../../#explore">Explore the case</a>
+        <a href="../../learning/">Learning Lab</a>
+        <a href="../../control-tower/">Control tower</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="sub-hero wrap">
+      <p class="crumbs"><a href="../../">Overview</a> / For recruiters</p>
+      <h1>The case in five minutes</h1>
+      <p class="lede">A business analysis portfolio case for a fictional short-sea and door-to-door logistics operator. Five steps, each with one thing to open. No installation needed.</p>
+    </section>
+
+    <section class="wrap section" aria-label="Tour">
+      <ol class="tour-steps">
+        <li>
+          <h2><span class="step-no">1</span> The problem <span class="time">30 seconds</span></h2>
+          <p>Customers learned about delivery delays when they arrived at the gate. Three managers asked for three different solutions. The analysis showed the real gap was <strong>missing rules</strong>: what counts as late, how serious it is, who acts, and who tells the customer.</p>
+          <p><a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/01-opportunity/problem-statement.md">Problem statement</a> · <a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/application-kit/executive/one-page-summary.md">one-page summary</a></p>
+        </li>
+        <li>
+          <h2><span class="step-no">2</span> What the analyst did <span class="time">1 minute</span></h2>
+          <p>Framed four options with a business case and named its riskiest assumption → ran discovery and an event storming → modelled AS-IS/TO-BE in BPMN 2.0 → wrote 13 rules with 30 examples that run as tests → prioritised the backlog with the Product Owner (WSJF) → designed the screens → organised Business Acceptance Testing → prepared go/no-go, rollback, support handover and measurement.</p>
+          <p><a href="../../#journey">The journey</a> · <a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/CASE_STUDY.md">case study</a> · <a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/portfolio/case-study/case-study.pdf">executive case study (PDF)</a></p>
+        </li>
+        <li>
+          <h2><span class="step-no">3</span> See it work <span class="time">2 minutes</span></h2>
+          <p>Open the control tower and follow the guided scenario on the right: a reefer for a key account is on schedule, its sailing is delayed six hours, the rules classify it as critical, the shift lead assigns it, the planner acts, the customer sees one clear message, a new window is agreed, and the audit trail and the test results show why.</p>
+          <p><a class="btn primary" href="../../control-tower/">Open the control tower</a></p>
+        </li>
+        <li>
+          <h2><span class="step-no">4</span> The evidence — and what is not claimed <span class="time">1 minute</span></h2>
+          <p>Each typical BA responsibility is mapped to an artefact, and each line says what is <em>not</em> claimed: there were no real stakeholders, no real sprints and no real BAT. The automated tests are real and run on every change.</p>
+          <p><a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/EVIDENCE.md">Evidence matrix</a> · <a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/09-acceptance/test-results.md">test results</a> · <a href="../business-analyst/">by responsibility</a></p>
+        </li>
+        <li>
+          <h2><span class="step-no">5</span> Can the author defend it? <span class="time">30 seconds</span></h2>
+          <p>The repository includes a Dutch learning lab with ten modules, a set of competency tasks and an interview defence for every artefact. It says openly that the case was built with AI assistance and that competence is shown by the author's own exercises, not by the files.</p>
+          <p><a href="../../learning/">Learning Lab</a> · <a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/learning/ai-provenance.md">AI provenance</a></p>
+        </li>
+      </ol>
+    </section>
+
+    <section class="wrap section" aria-labelledby="labels">
+      <h2 id="labels">How to read the numbers</h2>
+      <div class="table-wrap">
+        <table class="label-table">
+          <thead><tr><th>Label</th><th>Meaning</th><th>Example</th></tr></thead>
+          <tbody>
+            <tr><td>Proposed</td><td>A target or benefit in the business case, built on stated assumptions</td><td>WISMO contacts −35%; payback ±13.5 months</td></tr>
+            <tr><td>Simulated</td><td>Results of fictional activities that show the format and the decisions</td><td>BAT findings; the week-12 stage-gate readout (−26% WISMO)</td></tr>
+            <tr><td>Measured</td><td>Produced by actually running something in this repository</td><td>The automated test results; the demo's live KPIs (for the simulated day only)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small">No outcome in this case has been measured in a real organisation. All organisations, people and figures are fictional.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>Independent portfolio case study based on a fictional organisation. It contains no confidential information from any real employer or the hiring company.</p>
+      <p>Philippe Godfroy · <a href="https://github.com/phlppgdfry">GitHub</a></p>
+    </div>
+  </footer>
+</body>
+</html>

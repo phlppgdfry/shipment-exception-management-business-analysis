@@ -6,7 +6,9 @@
 
 > *Independent portfolio case study based on a fictional organisation (Tidewell Logistics). It contains no confidential information from any real employer or the hiring company. All figures are illustrative assumptions — not real company data.*
 
-**[Live site](https://phlppgdfry.github.io/shipment-exception-management-business-analysis/)** · **[Prototype (2-min tour)](https://phlppgdfry.github.io/shipment-exception-management-business-analysis/prototype/?tour)** · **[Start here](START-HERE.md)** · **[Case study](CASE_STUDY.md)** · **[Evidence matrix](EVIDENCE.md)**
+**[Live site](https://phlppgdfry.github.io/shipment-exception-management-business-analysis/)** · **[5-minute tour](https://phlppgdfry.github.io/shipment-exception-management-business-analysis/for/recruiters/)** · **[Control tower demo](https://phlppgdfry.github.io/shipment-exception-management-business-analysis/control-tower/)** · **[Learning Lab](https://phlppgdfry.github.io/shipment-exception-management-business-analysis/learning/)** · **[Start here](START-HERE.md)** · **[Executive case study (PDF)](portfolio/case-study/case-study.pdf)** · **[Evidence matrix](EVIDENCE.md)**
+
+[![CI](https://github.com/phlppgdfry/shipment-exception-management-business-analysis/actions/workflows/ci.yml/badge.svg)](https://github.com/phlppgdfry/shipment-exception-management-business-analysis/actions/workflows/ci.yml)
 
 ![Planner workbench designed in Figma](docs/07-design/figma/planner-workbench.png)
 
@@ -34,6 +36,14 @@ Accept                  Business Acceptance Testing with key users, sign-off
 Go live & measure       go/no-go, rollback, hypercare, communication, support KB, stage gate
 ```
 
+## Three ways in
+
+| You are… | Start with | Time |
+|---|---|---|
+| **a recruiter or hiring manager** | the [5-minute tour](https://phlppgdfry.github.io/shipment-exception-management-business-analysis/for/recruiters/), then the [control tower](https://phlppgdfry.github.io/shipment-exception-management-business-analysis/control-tower/) guided scenario | 5–10 min |
+| **an analyst, PO or developer** | [START-HERE](START-HERE.md) and the [documentation map](docs/00-documentation-map.md) | 30+ min |
+| **learning the methods** (Dutch) | the [Learning Lab](learning/README.md) — 10 modules, quizzes, competency tasks, interview defence | ±60 h |
+
 ## The problem
 
 Since its new transport management system went live, Tidewell's customers can see statuses in a portal — but not whether their **delivery window** is at risk. They find out at the gate and call. Customer service spends ±38% of its contacts on "where is my load?", planners notice delays by chance and copy them into an Excel sheet, and only key accounts whose account manager happens to know are warned. Three people asked for three different solutions.
@@ -47,6 +57,8 @@ Since its new transport management system went live, Tidewell's customers can se
 - **Prepared the backlog with the PO** — story map, WSJF with the trade-offs she made, a two-sprint pilot — [prioritisation](docs/06-backlog/prioritisation.md), [user stories](docs/06-backlog/user-stories.md)
 - **Designed the screens** in Figma and as a clickable prototype on the same rules — [design](docs/07-design/design.md), [prototype](https://phlppgdfry.github.io/shipment-exception-management-business-analysis/prototype/)
 - **Took it through delivery** — refinement, sprint review demo, a retro action on my own mistake — [refinement log](docs/08-delivery/refinement-log.md)
+- **Specified the solution for the team** — conceptual architecture (proposed vs. implemented), OpenAPI contract, idempotency and failure handling, data model and state machines, security and privacy — [architecture](docs/12-architecture/README.md)
+- **Built a working demo on the same rules** — the [Logistics Control Tower](demo/README.md) runs the release end to end with a guided scenario; building it exposed five open questions and a privacy leak in the first customer API
 - **Organised BAT and production readiness** — key users, defect triage, sign-off with two known issues, go/no-go with an owner per line, staged switch-on, rollback, hypercare, communication plan, KB article — [BAT log](docs/09-acceptance/bat-log.md), [readiness](docs/10-go-live/release-readiness.md)
 
 ## What this demonstrates
@@ -75,10 +87,18 @@ Full mapping, including what is *not* claimed: [EVIDENCE.md](EVIDENCE.md).
 | `site/` | GitHub Pages: landing page, prototype, rule explorer, process, event storming |
 | `site/assets/exception-rules.mjs` | the rules as one module — used by the prototype, the rule explorer and the tests |
 | `tests/` | runs every decision example against the rules (`node --test tests/*.test.mjs`) |
-| `scripts/` | BPMN generator and link checker |
+| [`demo/`](demo/README.md) | the control tower (Next.js, TypeScript), deterministic mock data, the OpenAPI contract and examples |
+| [`learning/`](learning/README.md) | Dutch learning lab: 10 modules, quizzes with separate answer keys, competency tasks, interview preparation, AI provenance |
+| [`portfolio/`](portfolio/README.md) | executive case study (PDF), interview deck, screenshots, CV text |
+| `scripts/` | BPMN generator, link checker, repository quality gate (`validate_repo.py`), learning-page builder, deck builder, test-results recorder |
+| [`PROJECT-ROADMAP.md`](PROJECT-ROADMAP.md) | charter, acceptance criteria for this repository, status and remaining gaps |
 | [`application-kit/`](application-kit/) | one-page summary (EN + NL), 5-minute walkthrough, stakeholder deck |
 
 Companion case on the same fictional operator, from the functional analyst's side: [late booking amendments](https://github.com/phlppgdfry/shortsea-booking-functional-analysis).
+
+## How this repository was made
+
+The case and the materials were built with AI assistance (Claude). What the owner has reviewed, changed and can do independently is tracked openly in [`learning/ai-provenance.md`](learning/ai-provenance.md) — and starts at zero, because files existing proves nothing. Automated checks are real and run in CI; the [test results](docs/09-acceptance/test-results.md) page records what was actually executed.
 
 ## Notes on realism and assumptions
 

@@ -39,6 +39,21 @@ Een script (`scripts/validate_repo.py`) controleert in CI dat elke module alle d
 5. Doe de **quiz** (hier of interactief); lees de uitleg ook bij goede antwoorden.
 6. Vink de **checklist** pas af als je het zonder tekst kunt; noteer niveau en bewijs in de [tracker](progress-tracker.md).
 
+## Voorgesteld schema (6 weken, ±10 uur per week)
+
+| Week | Werk | Herhaling (15 min per dag) |
+|---|---|---|
+| 1 | Module 1 en 8 | begrippen uit de [woordenlijst](glossary.md) |
+| 2 | Module 2 en 4 | quiz 1 en 8 opnieuw, zonder de uitleg te lezen |
+| 3 | Module 3 en 5 | de traceability-lijn P5 → K3 uit het hoofd |
+| 4 | Module 6 en 7 | statuscodes, testniveaus, go/no-go-criteria |
+| 5 | Module 9 + competentietaken T1, T4, T5 | quizzen met de laagste score opnieuw |
+| 6 | Module 10 + T9 en twee andere taken; simulaties | de case in 30 s / 2 min / 10 min, hardop |
+
+**Herhalen werkt beter dan herlezen.** Doe een quiz na een week nog eens, zonder te spieken; een vraag die je dan fout hebt, noteer je met de juiste redenering in `my-work/`.
+
+**Wat je nodig hebt:** een browser (demo, rule explorer, bpmn.io), optioneel een gratis Figma-account, en voor module 3 en 7 Node.js om de tests zelf te draaien (`node --test tests/*.test.mjs`).
+
 ## Mapping naar de voorgestelde mapstructuur
 
 De oorspronkelijke opdracht stelde aparte mappen voor curriculum, tutorials, exercises, quizzes, practical challenges, interview preparation en glossary. Hier zit alles **per module** samen (uitleg, tutorial, oefening, uitdaging en quiz in één map), omdat je zo één onderwerp van begin tot eind doorloopt zonder tussen mappen te springen. Alleen wat je *niet* tijdens het oefenen mag zien, staat apart: [`answer-keys/`](answer-keys/) en [`assessment/reference-solutions/`](assessment/reference-solutions/README.md).

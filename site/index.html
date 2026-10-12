@@ -18,25 +18,34 @@
     <div class="wrap header-inner">
       <a class="brand" href="./">Shipment exceptions</a>
       <nav aria-label="Sections">
-        <a href="#challenge">Challenge</a>
-        <a href="#journey">Journey</a>
-        <a href="prototype/">Prototype</a>
-        <a href="rules/">Rule explorer</a>
+        <a href="for/recruiters/">For recruiters</a>
+        <a href="#explore">Explore the case</a>
+        <a href="learning/">Learning Lab</a>
+        <a href="control-tower/">Control tower</a>
         <a href="#evidence">Evidence</a>
       </nav>
     </div>
   </header>
 
-  <main>
+  <main id="main">
     <section class="hero wrap">
       <p class="eyebrow">Independent portfolio case · fictional organisation · Philippe Godfroy</p>
       <h1>Shipment exceptions, handled before the customer calls</h1>
       <p class="lede">A business analysis case for a fictional short-sea and door-to-door operator — from opportunity and business case, through event storming, backlog and design, to Business Acceptance Testing and a controlled go-live.</p>
       <div class="cta-row">
-        <a class="btn primary" href="prototype/?tour">Open the prototype (2-min tour)</a>
-        <a class="btn" href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/CASE_STUDY.md">Read the case study</a>
-        <a class="btn" href="process/">See AS-IS / TO-BE</a>
+        <a class="btn primary" href="control-tower/">Open the control tower demo</a>
+        <a class="btn" href="for/recruiters/">5-minute tour</a>
+        <a class="btn" href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/portfolio/case-study/case-study.pdf">Executive case study (PDF)</a>
         <a class="btn" href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis">Explore on GitHub</a>
+      </div>
+    </section>
+
+    <section id="routes" class="wrap section" aria-labelledby="routes-title">
+      <h2 id="routes-title">Three ways in</h2>
+      <div class="grid cards-3">
+        <article class="card"><span class="chip ok">5 minutes</span><h3><a href="for/recruiters/">For recruiters</a></h3><p>A guided tour: the problem, what the analyst did, the working demo, the evidence — and what is not claimed.</p></article>
+        <article class="card"><span class="chip warn">30+ minutes</span><h3><a href="#explore">Explore the case</a></h3><p>Requirements, processes, rules, backlog, architecture, tests and decisions — every artefact, linked and traceable.</p></article>
+        <article class="card"><span class="chip">Dutch · ±60 h</span><h3><a href="learning/">Learning Lab</a></h3><p>Ten modules, quizzes, competency tasks and interview defence, built on this case's own artefacts.</p></article>
       </div>
     </section>
 
@@ -132,6 +141,7 @@ stateDiagram-v2
   Open --> Acknowledged: owner responds
   Open --> Escalated: response time passed
   Escalated --> Acknowledged
+  Open --> Recovered: back inside window
   Acknowledged --> Recovered: back inside window
   Acknowledged --> Resolved: reason code
   Recovered --> Resolved
@@ -191,6 +201,60 @@ stateDiagram-v2
       <p class="note">Illustrative targets — not real company data. Stage gate for release 2: at least −20% WISMO against the control group.</p>
     </section>
 
+    <section id="explore" class="wrap section" aria-labelledby="explore-title">
+      <h2 id="explore-title">Explore the case</h2>
+      <p class="measure">Every artefact is a document in the repository; the interactive ones open here. IDs (BR, FR, ER, US, AC, K…) connect them — a script checks in CI that every reference resolves.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Area</th><th>Artefacts</th></tr></thead>
+          <tbody>
+            <tr><td>Business discovery</td><td><a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/01-opportunity/problem-statement.md">problem</a> · <a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/01-opportunity/strategic-analysis.md">capability map &amp; SWOT</a> · <a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/01-opportunity/options-and-business-case.md">options &amp; business case</a> · <a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/01-opportunity/kpi-tree.md">KPI tree</a> · <a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/01-opportunity/registers.md">risks, assumptions, dependencies</a> · <a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/02-discovery/sources.md">research register</a></td></tr>
+            <tr><td>Stakeholders &amp; workshops</td><td><a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/02-discovery/stakeholders.md">stakeholders &amp; RACI</a> · <a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/02-discovery/interview-notes.md">interviews</a> · <a href="event-storming/">event storming board</a> · <a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/03-workshops/workshop-dialogue.md">facilitating a disagreement</a> · <a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/03-workshops/decision-log.md">decision log</a></td></tr>
+            <tr><td>Process</td><td><a href="process/">AS-IS / TO-BE (BPMN)</a> · <a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/04-process/gap-analysis.md">gap analysis &amp; activity diagram</a> · <a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/04-process/uml.md">UML</a></td></tr>
+            <tr><td>Requirements</td><td><a href="rules/">rule explorer</a> · <a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/05-requirements/requirements.md">BR / FR / NFR</a> · <a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/06-backlog/user-stories.md">user stories</a> · <a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/06-backlog/features/exception-decision.feature">executable examples</a> · <a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/05-requirements/traceability.md">traceability</a></td></tr>
+            <tr><td>Product delivery</td><td><a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/06-backlog/product-vision-and-roadmap.md">vision &amp; roadmap</a> · <a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/06-backlog/prioritisation.md">WSJF</a> · <a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/08-delivery/sprint-plan.md">sprints</a> · <a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/08-delivery/roles-and-responsibilities.md">roles</a> · <a href="control-tower/delivery/">delivery workspace</a></td></tr>
+            <tr><td>UX</td><td><a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/07-design/personas-and-journeys.md">personas &amp; journeys</a> · <a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/07-design/ux-specification.md">UX specification</a> · <a href="prototype/?tour">prototype</a> · <a href="control-tower/">control tower</a></td></tr>
+            <tr><td>Architecture</td><td><a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/12-architecture/README.md">overview (proposed vs. demo)</a> · <a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/12-architecture/integration-and-api.md">integration &amp; API</a> · <a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/demo/mock-apis/openapi.yaml">OpenAPI contract</a> · <a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/12-architecture/data-model-and-states.md">data model &amp; states</a></td></tr>
+            <tr><td>Testing &amp; go-live</td><td><a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/09-acceptance/test-strategy.md">test strategy</a> · <a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/09-acceptance/test-results.md">test results</a> · <a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/09-acceptance/bat-log.md">BAT</a> · <a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/10-go-live/release-readiness.md">go/no-go</a> · <a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/10-go-live/support-handover.md">support</a> · <a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/11-measure/benefits-review.md">benefits review</a></td></tr>
+            <tr><td>Quality</td><td><a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/13-quality/reviews.md">three independent reviews</a> · <a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/PROJECT-ROADMAP.md">repository acceptance criteria &amp; status</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="evaluation" class="wrap section" aria-labelledby="evaluation-title">
+      <h2 id="evaluation-title">Outcome and evaluation — what kind of evidence is what</h2>
+      <div class="grid cards-3">
+        <article class="card"><span class="chip warn">Proposed</span><h3>Business case targets</h3><p>WISMO −35%, missed slots −30%, payback ±13.5 months; pessimistic case ±31 months. Assumptions stated; the riskiest one is tested by the pilot.</p></article>
+        <article class="card"><span class="chip warn">Simulated</span><h3>BAT and stage gate</h3><p>Six BAT findings, sign-off with two known issues; an illustrative week-12 readout (−26% WISMO vs. control). Fictional — shows the format and the decisions.</p></article>
+        <article class="card"><span class="chip ok">Measured</span><h3>Automated tests</h3><p>Rule examples, engine, API contract, browser scenario and accessibility checks run in CI on every change. <a href="https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/docs/09-acceptance/test-results.md">Results</a>.</p></article>
+      </div>
+    </section>
+
+    <section id="lessons" class="wrap section" aria-labelledby="lessons-title">
+      <h2 id="lessons-title">Limitations and lessons learned</h2>
+      <div class="two-col">
+        <div>
+          <h3>Limitations</h3>
+          <ul class="checklist measure">
+            <li>Fictional organisation; interviews, workshops, sprints and BAT are simulated.</li>
+            <li>No real TMS, e-mail or load testing; the demo runs in the browser on a mock API.</li>
+            <li>Architecture and privacy controls are proposals, not reviewed by a real architect or DPO.</li>
+            <li>The control tower screens are not in Figma; only the earlier screens are.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Lessons</h3>
+          <ul class="checklist measure">
+            <li>Rules before screens: the gap was a missing definition, not a missing tool.</li>
+            <li>Passing stories are not a met need: three of four BAT majors came from real readers.</li>
+            <li>Building is a review: the demo exposed five open questions and a privacy leak in the first customer API.</li>
+            <li>Answer customer-facing questions with the PO, not alone (DEF-04).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
     <section id="evidence" class="wrap section">
       <h2>Evidence</h2>
       <div class="table-wrap">
@@ -215,7 +279,7 @@ stateDiagram-v2
   <footer class="site-footer">
     <div class="wrap">
       <p>Independent portfolio case study based on a fictional organisation. It contains no confidential information from any real employer or the hiring company. All figures are illustrative assumptions.</p>
-      <p>Philippe Godfroy · <a href="https://github.com/phlppgdfry">GitHub</a> · Updated 2026-10-09</p>
+      <p>Philippe Godfroy · <a href="https://github.com/phlppgdfry">GitHub</a> · Updated 2026-10-12</p>
     </div>
   </footer>
 

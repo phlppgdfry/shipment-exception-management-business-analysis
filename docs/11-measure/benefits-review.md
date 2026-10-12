@@ -1,6 +1,6 @@
 # Benefits review and stage gate
 
-> **What this is:** how the pilot is measured and how the sponsor decides on release 2, with an illustrative week-6 readout in the format the sponsor receives. **For:** sponsor, PO, Head of CS, road planning lead. **Previous:** [release note](../10-go-live/release-note.md) · **Back to:** [documentation map](../00-documentation-map.md).
+> **What this is:** how the pilot is measured and how the sponsor decides on release 2, with an illustrative week-12 readout (after six pilot weeks) in the format the sponsor receives. **For:** sponsor, PO, Head of CS, road planning lead. **Previous:** [release note](../10-go-live/release-note.md) · **Back to:** [documentation map](../00-documentation-map.md).
 
 ## Measurement design
 

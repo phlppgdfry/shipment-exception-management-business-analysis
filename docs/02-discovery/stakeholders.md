@@ -41,6 +41,7 @@ quadrantChart
 | **Customs desk** | Releases on time | Customers react slowly to holds | Customer asked to act, with what is missing | Not in the R1 pilot | Interview; scope R2 |
 | **Data protection officer** | GDPR | — | No driver location to customers; purpose of contact data clear | Blocks consignee messages | Review of message content and data; decision D-05 |
 | **Terminal operations** | Discharge and yard flow | — | Terminal delays owned by the terminal | — | Owner of the TERMINAL_DELAY type (ER-08) |
+| **IT architect** and **IT security** | Fit with the landscape; supportable, secure integrations | — | No new platform without need; signed webhooks; least-privilege API access | Concern about "one more component" | Decision D-03 prepared with the architect; [architecture](../12-architecture/README.md) and [security](../12-architecture/security-privacy-observability.md) reviewed before sprint 1 (proposed) |
 
 ## RACI for the release
 

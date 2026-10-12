@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Executive case study — Shipment exceptions, handled before the customer calls</title>
+<style>
+  @page { size: A4; margin: 18mm 17mm 18mm 17mm; }
+  :root { --ink: #17202b; --muted: #556171; --accent: #0b5cad; --rule: #d9dee5; --soft: #f1f4f8; --crit: #a4161a; --ok: #1c6b3a; --warn: #8a4b00; }
+  * { box-sizing: border-box; }
+  body { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; color: var(--ink); font-size: 10pt; line-height: 1.45; margin: 0; }
+  h1 { font-size: 24pt; line-height: 1.1; margin: 0 0 6pt; letter-spacing: -0.01em; }
+  h2 { font-size: 14pt; margin: 18pt 0 6pt; color: var(--accent); border-bottom: 1px solid var(--rule); padding-bottom: 3pt; break-after: avoid; }
+  h3 { font-size: 10.5pt; margin: 10pt 0 3pt; break-after: avoid; }
+  p { margin: 0 0 6pt; }
+  ul { margin: 0 0 6pt; padding-left: 14pt; } li { margin: 0 0 2pt; }
+  .kicker { font-size: 9pt; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; margin: 0 0 6pt; }
+  .lede { font-size: 12pt; color: var(--muted); margin: 0 0 12pt; }
+  .disclaimer { font-size: 8.5pt; color: var(--muted); border: 1px solid var(--rule); border-radius: 4pt; padding: 6pt 8pt; margin: 8pt 0 12pt; }
+  .grid { display: grid; gap: 8pt; } .g2 { grid-template-columns: 1fr 1fr; } .g3 { grid-template-columns: repeat(3, 1fr); } .g4 { grid-template-columns: repeat(4, 1fr); }
+  .box { background: var(--soft); border-radius: 4pt; padding: 8pt 10pt; break-inside: avoid; }
+  .box h3 { margin-top: 0; }
+  .num { font-size: 18pt; font-weight: 700; line-height: 1.1; }
+  .small { font-size: 8.5pt; color: var(--muted); }
+  table { width: 100%; border-collapse: collapse; font-size: 8.8pt; margin: 4pt 0 8pt; break-inside: avoid; }
+  th, td { text-align: left; vertical-align: top; padding: 3.5pt 5pt; border-bottom: 1px solid var(--rule); }
+  th { font-size: 7.8pt; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
+  figure { margin: 6pt 0 10pt; break-inside: avoid; }
+  figure img { width: 100%; border: 1px solid var(--rule); border-radius: 3pt; display: block; }
+  figcaption { font-size: 8pt; color: var(--muted); margin-top: 3pt; }
+  .tag { display: inline-block; font-size: 7.5pt; font-weight: 700; padding: 1pt 5pt; border-radius: 8pt; border: 1px solid currentColor; }
+  .t-prop { color: var(--warn); } .t-sim { color: var(--accent); } .t-meas { color: var(--ok); }
+  .page-break { break-before: page; }
+  .quote { border-left: 3pt solid var(--accent); padding-left: 8pt; color: var(--muted); font-style: italic; margin: 6pt 0; }
+  .footer-note { font-size: 8pt; color: var(--muted); margin-top: 14pt; border-top: 1px solid var(--rule); padding-top: 6pt; }
+  a { color: var(--accent); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<p class="kicker">Business analysis case study · short-sea &amp; door-to-door logistics</p>
+<h1>Shipment exceptions, handled before the customer calls</h1>
+<p class="lede">How a fictional operator could stop its customers from learning about delays at the gate — from a framed problem and a business case, through workshops, rules, backlog and design, to acceptance testing and a controlled go-live.</p>
+<p class="disclaimer"><strong>Independent portfolio case.</strong> Tidewell Logistics is fictional. People, workshops, sprints and acceptance tests are simulated; figures are illustrative assumptions. Results are labelled <span class="tag t-prop">proposed</span> (business case), <span class="tag t-sim">simulated</span> (fictional delivery) or <span class="tag t-meas">measured</span> (automated tests actually run in the repository). Nothing here was deployed in a real organisation. Repository: github.com/phlppgdfry/shipment-exception-management-business-analysis</p>
+
+<h2>1. Executive summary</h2>
+<p>Since its new transport management system (TMS) went live, Tidewell's customers can see statuses in a portal — but not whether their <strong>agreed delivery window</strong> is at risk. Only 22% of late deliveries were announced before the window started; "where is my load?" was 38% of all customer contacts. Three managers asked for three solutions: a tracking page, e-mails to key accounts, and "nothing that adds work".</p>
+<p>The analysis showed that the gap was not a missing screen but <strong>missing rules</strong>: what counts as late, how serious it is, who acts and who tells the customer. The recommended option is a small exception component next to the TMS: rules decide severity, owner and response time; planners work from one list; customers get one clear message. Because its value rests on one uncertain number, the sponsor funded a <strong>six-week pilot with a stage gate</strong> rather than the full build.</p>
+<div class="grid g4">
+  <div class="box"><p class="num">22% → ≥90%</p><p class="small">major/critical delays told before the window <span class="tag t-prop">proposed</span></p></div>
+  <div class="box"><p class="num">−35%</p><p class="small">WISMO contacts vs. a control group <span class="tag t-prop">proposed</span></p></div>
+  <div class="box"><p class="num">13.5 mo</p><p class="small">payback; pessimistic case ±31 months <span class="tag t-prop">proposed</span></p></div>
+  <div class="box"><p class="num">100%</p><p class="small">automated checks passing in the repository at the time of writing — see the test-results page <span class="tag t-meas">measured</span></p></div>
+</div>
+
+<h2>2. Business challenge</h2>
+<div class="grid g2">
+  <div>
+    <h3>What hurts, for whom</h3>
+    <table>
+      <tr><th>Who</th><th>Pain today</th></tr>
+      <tr><td>Customer</td><td>Plans docks around the window; hears of delays at the gate — "rather bad news at 10 than no news at 4"</td></tr>
+      <tr><td>Customer service</td><td>±1,250 WISMO contacts a week; a "switchboard" between customer and planner</td></tr>
+      <tr><td>Road planner</td><td>Notices delays by chance; copies orders into an Excel sheet; interrupted by calls</td></tr>
+      <tr><td>Account manager</td><td>Hears about problems from the customer</td></tr>
+      <tr><td>Finance</td><td>±55 missed slots a week at ±€140; credit notes without a reason</td></tr>
+    </table>
+  </div>
+  <div>
+    <h3>Root cause (5 whys)</h3>
+    <p>The customer calls → nobody told them → customer service did not know either → nobody owns "telling the customer" → every TMS change looks the same, so people filter by gut feeling → <strong>there is no shared definition of late, no severity and no owner</strong>.</p>
+    <h3>What would change our mind</h3>
+    <p>If most WISMO calls concerned on-time orders, a status page would be the fix. A sample showed ±70% were about late or at-risk orders.</p>
+  </div>
+</div>
+
+<h2>3. Discovery and analysis approach</h2>
+<p>Eight interviews, a shadowed morning shift and a two-week contact-reason tagging exercise produced a baseline and five contradictions between teams. Instead of writing one person's view into a process diagram, the analyst ran a <strong>three-hour big-picture event storming</strong> with planners, customer service, an account manager, the customs desk, the Product Owner and a developer. Disagreements became six hotspots, each with a decision owner and a date.</p>
+<div class="grid g2">
+  <div class="box">
+    <h3>Four options, scored on agreed weights</h3>
+    <table>
+      <tr><th>Option</th><th>Score</th><th>Verdict</th></tr>
+      <tr><td>O1 Add a customer-service agent</td><td>2.45</td><td>treats the symptom</td></tr>
+      <tr><td>O2 Standard TMS e-mails</td><td>3.10</td><td>±9 changes per order, ±0.3 relevant: noise</td></tr>
+      <tr><td><strong>O3 Exception management</strong></td><td><strong>3.95</strong></td><td><strong>recommended, as a pilot</strong></td></tr>
+      <tr><td>O4 External visibility platform</td><td>2.85</td><td>later, for consignees</td></tr>
+    </table>
+  </div>
+  <div class="box">
+    <h3>The decision that unlocked the design</h3>
+    <p>"Tell key accounts everything" and "no message storm" looked like opposites. A concrete story from each side revealed the needs behind them — <em>never surprise a key account with something serious</em> and <em>no message that doesn't change the customer's day</em>. <strong>Severity</strong> served both. The Product Owner decided (D-02); the analyst prepared options and consequences.</p>
+  </div>
+</div>
+<p class="small">Artefacts: problem statement, capability map and SWOT, business case with sensitivity, KPI tree, stakeholder map and RACI, interview notes, event-storming board, decision log, assumption/risk/dependency registers, research register.</p>
+
+<h2>4. Proposed process improvement</h2>
+<p>The AS-IS (BPMN 2.0) showed that the information exists — the sailing system knows a delay within minutes — but is lost between people. The TO-BE adds <strong>rules and ownership</strong>, not a tracking screen.</p>
+<figure><img src="../../site/assets/bpmn/to-be.svg" alt="TO-BE BPMN"><figcaption>TO-BE, release 1 — every TMS change is evaluated by the rules; exceptions get an owner and a response time; the customer is told proactively. Valid BPMN 2.0 XML in the repository.</figcaption></figure>
+<table>
+  <tr><th>Rule</th><th>Decision</th></tr>
+  <tr><td>ER-01</td><td>An exception exists only when expected delivery is after the <strong>end</strong> of the agreed window (or a cancellation, customs hold or missing status)</td></tr>
+  <tr><td>ER-02/03/04</td><td>1–119 min minor · 120–359 major · ≥360 or next day critical · reefer and time-critical one level up</td></tr>
+  <tr><td>ER-07</td><td>Missing status is held until a planner confirms with the haulier — no false alarms</td></tr>
+  <tr><td>ER-09</td><td>Respond within 30 min (critical) / 2 h (major), otherwise escalate to the shift lead</td></tr>
+  <tr><td>ER-10/11</td><td>Major and critical are notified; critical for a key account also creates a call task</td></tr>
+  <tr><td>ER-12/13</td><td>At most one message per order every 2 h unless worse; "back on schedule" only if told before</td></tr>
+</table>
+<p>The thirteen rules live in one table and one code module. Their thirty Given/When/Then examples <strong>run as tests</strong> — so when the PO changes a threshold, the test run shows which decisions change meaning.</p>
+
+<h2>5. Requirements and product delivery</h2>
+<div class="grid g2">
+  <div>
+    <p>Five business requirements, seventeen functional and nine non-functional requirements, each with an ID and a verification method, trace from pain point to KPI:</p>
+    <p class="quote">P5 "customer finds out at the slot" → BR-1 → FR-06, FR-10 → ER-10, ER-12 → US-05, US-07 → AC-01.6, AC-07.1, BAT-07/08 → K1, K3, K8</p>
+    <p>With the Product Owner, the backlog was ordered by <strong>WSJF</strong>: when everything was "Must", it surfaced small, high-value items (making the delivery window mandatory scored highest — 28% of orders had none). Dependencies then set the build order. Release 1 = 36 points, two sprints, five pilot customers on two routes, behind a feature toggle.</p>
+  </div>
+  <div class="box">
+    <h3>Who decided what</h3>
+    <table>
+      <tr><th>Decision</th><th>Owner</th></tr>
+      <tr><td>What counts as late (D-01)</td><td>PO</td></tr>
+      <tr><td>Who is told what (D-02)</td><td>PO</td></tr>
+      <tr><td>Build small vs. wait for supplier (D-03)</td><td>PO + architect</td></tr>
+      <tr><td>Missing status: hold first (D-04)</td><td>Road planning lead</td></tr>
+      <tr><td>No consignee messages yet (D-05)</td><td>DPO + commercial</td></tr>
+      <tr><td>Pilot and stage gate (D-07)</td><td>Sponsor + PO</td></tr>
+    </table>
+    <p class="small">The analyst is responsible for much and accountable for little: scope, priority and go-live stay with the PO.</p>
+  </div>
+</div>
+
+<h2>6. UX and technical collaboration</h2>
+<p>Personas and journey maps located the <em>moments that matter</em>: the planner must trust the severity, and the customer's message must be clear and in UK local time. The planner workbench and customer messages were designed in Figma; a working <strong>control tower</strong> demo then implemented the release on the same rule module, with a guided ten-step scenario.</p>
+<div class="grid g2">
+  <figure><img src="../screenshots/03-exception-critical.png" alt="Exception workbench"><figcaption>Workbench: most urgent first; every exception explains which rules decided it.</figcaption></figure>
+  <figure><img src="../screenshots/04-customer-view-delayed.png" alt="Customer view"><figcaption>Customer card: built only from messages actually sent — nothing internal.</figcaption></figure>
+</div>
+<p>For developers and architects, the analysis includes a conceptual architecture (proposed vs. implemented), an OpenAPI 3.1 contract, idempotency and retry rules, a data model, state machines and a role matrix. <strong>Building the demo was itself a review:</strong> it exposed five open questions the specification had missed — such as an exception that recovers before anyone acknowledged it — and a privacy leak in the first customer API, fixed with a public message projection and a test.</p>
+
+<h2>7. Testing and rollout readiness</h2>
+<div class="grid g2">
+  <div>
+    <h3>Acceptance <span class="tag t-sim">simulated</span></h3>
+    <p>Business Acceptance Testing with key users — deliberately including the sceptical senior planner — found six issues. Three of four majors came from people reading real messages in their own context; the team's tests had passed. One came from the analyst's own refinement answer (throttling per exception instead of per order) and became a retrospective action. Sign-off with two known issues, each with a workaround, owner and date.</p>
+    <h3>Go-live <span class="tag t-sim">simulated</span></h3>
+    <p>Thirteen go/no-go criteria with an owner and evidence each; two days in shadow mode; customers switched on one by one on a Monday; rollback rehearsed in four minutes; hypercare thresholds; a support article that answers "rule or bug?".</p>
+  </div>
+  <div>
+    <h3>Automated evidence <span class="tag t-meas">measured</span></h3>
+    <table>
+      <tr><th>Suite</th><th>What it proves</th></tr>
+      <tr><td>Rule examples (node:test)</td><td>30 decision examples + coverage and monotonic-threshold checks</td></tr>
+      <tr><td>Engine &amp; contract (Vitest)</td><td>lifecycle, permissions, idempotency, API responses vs. OpenAPI</td></tr>
+      <tr><td>Browser (Playwright + axe)</td><td>the full scenario, workbench behaviours, all routes on desktop and mobile, WCAG 2.2 AA automated checks</td></tr>
+      <tr><td>Repository gate</td><td>every ID defined and referenced correctly; traceability; BPMN validity</td></tr>
+    </table>
+    <p class="small">Exact counts, run date and commit: docs/09-acceptance/test-results.md. CI runs them on every push.</p>
+  </div>
+</div>
+
+<h2>8. Lessons learned and next steps</h2>
+<div class="grid g2">
+  <div>
+    <h3>Lessons</h3>
+    <ul>
+      <li><strong>Frame before solving.</strong> Three requested solutions hid one missing definition.</li>
+      <li><strong>Buy the information first.</strong> A pilot with a control group tests the riskiest assumption before the full investment.</li>
+      <li><strong>Make rules executable.</strong> Examples that run as tests keep business, code and specification aligned.</li>
+      <li><strong>Passing stories ≠ met need.</strong> Real readers in their own context find what tests cannot.</li>
+      <li><strong>Building is reviewing.</strong> Implementing the lifecycle found gaps no document review had.</li>
+    </ul>
+  </div>
+  <div>
+    <h3>Next steps (in the case)</h3>
+    <ul>
+      <li>Stage gate after six pilot weeks: fund release 2 if WISMO falls ≥20% vs. control.</li>
+      <li>Release 2: EDI/API status messages, customs holds with customer action, notification preferences, consignee opening hours.</li>
+      <li>Resolve open questions OQ-01 – OQ-05 with their owners.</li>
+    </ul>
+    <h3>Limitations</h3>
+    <p>Fictional organisation and simulated delivery; no real TMS, e-mail or load testing; architecture and privacy controls not reviewed by real experts. The case shows how the analyst works and decides — it is not a substitute for team experience.</p>
+  </div>
+</div>
+<p class="footer-note">Philippe Godfroy · Independent portfolio case study, fictional organisation, no confidential information from any real employer · Built with AI assistance; see learning/ai-provenance.md for what was reviewed by the author · Documentation CC BY 4.0</p>
+</body>
+</html>
