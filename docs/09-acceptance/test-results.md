@@ -4,10 +4,10 @@
 
 | | |
 |---|---|
-| Run | 2026-10-12 01:15 UTC |
-| Commit | `a7a1610` |
+| Run | 2026-10-12 06:16 UTC |
+| Commit | `e9a4b07` |
 | Environment | Node v24.21.0, darwin 24.6.0 |
-| Automated tests | **100 of 100 passed** |
+| Automated tests | **110 of 110 passed** |
 
 This page contains only **executed** results. The fictional team's system test and the Business Acceptance Testing with key users are **simulated** and live in the [BAT log](bat-log.md) — they are not test results of this repository. The same checks run in [CI](../../.github/workflows/ci.yml) on every push; the CI run of a commit is the authoritative result for that commit.
 
@@ -15,9 +15,9 @@ This page contains only **executed** results. The fictional team's system test a
 
 | Suite | Tool | Tests | Passed | Result | Time |
 |---|---|---:|---:|---|---:|
-| Acceptance examples against the rule module | node --test | 34 | 34 | ✅ pass | 0.1 s |
-| Engine, lifecycle and API contract | Vitest | 41 | 41 | ✅ pass | 0.7 s |
-| Browser: scenario, workbench, routes, accessibility (axe, WCAG 2.2 A/AA) | Playwright + axe-core | 25 | 25 | ✅ pass | 12.9 s |
+| Acceptance examples and DMN consistency against the rule module | node --test | 36 | 36 | ✅ pass | 0.1 s |
+| Engine, lifecycle and API contract | Vitest | 48 | 48 | ✅ pass | 1.2 s |
+| Browser: scenario, workbench, routes, accessibility (axe, WCAG 2.2 A/AA) | Playwright + axe-core | 26 | 26 | ✅ pass | 22.9 s |
 
 | Check | Command | Result |
 |---|---|---|
@@ -33,10 +33,12 @@ This page contains only **executed** results. The fictional team's system test a
 
 ## Every test
 
-<details><summary><b>Acceptance examples against the rule module</b> — 34/34</summary>
+<details><summary><b>Acceptance examples and DMN consistency against the rule module</b> — 36/36</summary>
 
 | Test | Result |
 |---|---|
+| the DMN file has the three decisions with the expected hit policies | passed |
+| DMN and the rule module give the same severity and notification for every input combination | passed |
 | at least one executable feature file exists | passed |
 | AC-01.1 Later than planned but inside the window | passed |
 | AC-01.2 Exactly at the end of the window is still on time | passed |
@@ -74,7 +76,7 @@ This page contains only **executed** results. The fictional team's system test a
 
 </details>
 
-<details><summary><b>Engine, lifecycle and API contract</b> — 41/41</summary>
+<details><summary><b>Engine, lifecycle and API contract</b> — 48/48</summary>
 
 | Test | Result |
 |---|---|
@@ -82,6 +84,8 @@ This page contains only **executed** results. The fictional team's system test a
 | contract.test.ts › mock API responses conform to openapi.yaml › a duplicate event returns 200 and changes nothing (NFR-03) | passed |
 | contract.test.ts › mock API responses conform to openapi.yaml › a refused command returns RFC 9457 problem details with the documented status codes | passed |
 | contract.test.ts › mock API responses conform to openapi.yaml › a retried command with the same Idempotency-Key is applied once | passed |
+| contract.test.ts › mock API responses conform to openapi.yaml › scenario step 6 is one atomic command: action and message with note, or nothing | passed |
+| contract.test.ts › mock API responses conform to openapi.yaml › an out-of-order event returns 200 and changes nothing | passed |
 | contract.test.ts › mock API responses conform to openapi.yaml › a TMS outage returns 503 problem details for reads | passed |
 | contract.test.ts › example payloads › are generated from the engine when UPDATE_EXAMPLES=1 | passed |
 | contract.test.ts › example payloads › tms-event-sailing-delayed.json conforms to TransportEvent | passed |
@@ -107,6 +111,11 @@ This page contains only **executed** results. The fictional team's system test a
 | lifecycle.test.ts › lifecycle table › terminal states have no way out, and every state is reachable from OPEN or HELD | passed |
 | lifecycle.test.ts › measurement (US-13) › the pilot export has the AC-13.2 columns and one row per exception | passed |
 | lifecycle.test.ts › measurement (US-13) › overview counts are consistent | passed |
+| lifecycle.test.ts › held exceptions past their response time (D-09) › are escalated to the shift lead but stay held: still no customer message | passed |
+| lifecycle.test.ts › held exceptions past their response time (D-09) › the shift lead can give a held exception to a planner; it stays held until confirmed | passed |
+| lifecycle.test.ts › held exceptions past their response time (D-09) › escalation happens once | passed |
+| lifecycle.test.ts › out-of-order events (TA-4) › an ETA update that happened before the last applied one is logged but not applied | passed |
+| lifecycle.test.ts › out-of-order events (TA-4) › a newer ETA update is still applied | passed |
 | scenario.test.ts › guided scenario: D2D-48213, reefer for a key account, sailing delayed 6 h › 1. the shipment starts on schedule | passed |
 | scenario.test.ts › guided scenario: D2D-48213, reefer for a key account, sailing delayed 6 h › 2–3. the sailing delay reaches every order on E-312; only orders outside their window become exceptions (ER-01) | passed |
 | scenario.test.ts › guided scenario: D2D-48213, reefer for a key account, sailing delayed 6 h › 4. classification: 280 min late → major, reefer → critical, key account → message + call task | passed |
@@ -122,7 +131,7 @@ This page contains only **executed** results. The fictional team's system test a
 
 </details>
 
-<details><summary><b>Browser: scenario, workbench, routes, accessibility (axe, WCAG 2.2 A/AA)</b> — 25/25</summary>
+<details><summary><b>Browser: scenario, workbench, routes, accessibility (axe, WCAG 2.2 A/AA)</b> — 26/26</summary>
 
 | Test | Result |
 |---|---|
@@ -149,6 +158,7 @@ This page contains only **executed** results. The fictional team's system test a
 | desktop › resolving with reason 'other' and no note is refused (AC-04.3) | passed |
 | desktop › missing status is held; 'haulier confirms on time' closes it without a customer message (US-08) | passed |
 | desktop › an unacknowledged critical exception escalates after 30 minutes (ER-09) | passed |
+| desktop › a held exception past its response time is escalated but stays held (D-09) | passed |
 | desktop › a TMS outage shows an error with retry, and recovers (NFR-04) | passed |
 | desktop › shipment explorer: search, filter and open a detail page | passed |
 
@@ -156,7 +166,7 @@ This page contains only **executed** results. The fictional team's system test a
 
 ## Not covered by automated tests
 
-See [test strategy — what is not tested here](test-strategy.md#what-is-not-tested-here-and-why): real TMS webhooks and e-mail, load (NFR-01), out-of-order events, bounces (FR-09), and a screen-reader walkthrough by a real user.
+See [test strategy — what is not tested here](test-strategy.md#what-is-not-tested-here-and-why): real TMS webhooks and e-mail, load (NFR-01), bounces (FR-09), and a screen-reader walkthrough by a real user.
 
 ---
 
