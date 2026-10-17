@@ -5,8 +5,10 @@
 ## 1. Reviewing the portfolio
 
 **2 minutes**
-1. [5-minute tour for recruiters](https://phlppgdfry.github.io/shipment-exception-management-business-analysis/for/recruiters/) — or the [live site](https://phlppgdfry.github.io/shipment-exception-management-business-analysis/)
-2. [One-page summary](application-kit/executive/one-page-summary.md) ([Nederlands](application-kit/executive/samenvatting-nl.md))
+1. [Live site](https://phlppgdfry.github.io/shipment-exception-management-business-analysis/) — the case on one page, with the 65-second video
+2. [Executive summary, one A4 page (PDF)](portfolio/executive-summary/executive-summary.pdf) — or as [Markdown](portfolio/executive-summary/one-page-summary.md) ([Nederlands](portfolio/executive-summary/samenvatting-nl.md))
+
+**Pick your view:** [recruiter](portfolio/views/recruiter-view.md) · [hiring manager](portfolio/views/hiring-manager-view.md) · [technical](portfolio/views/technical-view.md) · [role requirement matrix](portfolio/role-requirement-matrix.md) · demo scripts of [2](portfolio/demo/2-minute-demo.md), [5](portfolio/demo/5-minute-demo.md) and [15 minutes](portfolio/demo/15-minute-demo.md)
 
 **10 minutes**
 3. [Control tower](https://phlppgdfry.github.io/shipment-exception-management-business-analysis/control-tower/) — follow the guided scenario on the right (±3 min)
@@ -21,7 +23,7 @@
 10. [Exception rules](docs/05-requirements/exception-rules.md) → [executable examples](docs/06-backlog/features/exception-decision.feature)
 11. [Architecture: proposed vs. implemented](docs/12-architecture/README.md)
 12. [BAT log](docs/09-acceptance/bat-log.md) → [go/no-go](docs/10-go-live/release-readiness.md)
-13. [Three independent reviews](docs/13-quality/reviews.md) and [repository status](PROJECT-ROADMAP.md)
+13. [Independent reviews A–D](docs/13-quality/reviews.md) and [repository status](PROJECT-ROADMAP.md)
 
 ## 2. Running the demo locally
 
@@ -43,7 +45,8 @@ python3 scripts/check-links.py               # documentation links
 cd demo/application
 npm run lint && npm run typecheck && npm test
 BASE_PATH=/shipment-exception-management-business-analysis/control-tower npm run build
-npx playwright install chromium && npm run test:e2e
+npm run check:models
+npx playwright install chromium && npm run test:e2e && npm run test:site
 ```
 
 Everything about the demo: [demo/README.md](demo/README.md).
@@ -59,12 +62,12 @@ Everything about the demo: [demo/README.md](demo/README.md).
 | Define the rules | [exception rules](docs/05-requirements/exception-rules.md), [requirements](docs/05-requirements/requirements.md), [traceability](docs/05-requirements/traceability.md) |
 | Prioritise | [vision & roadmap](docs/06-backlog/product-vision-and-roadmap.md), [story map](docs/06-backlog/story-map.md), [prioritisation](docs/06-backlog/prioritisation.md), [DoR / DoD](docs/06-backlog/definition-of-ready-done.md) |
 | Specify & design | [user stories](docs/06-backlog/user-stories.md), [features](docs/06-backlog/features/exception-decision.feature), [personas & journeys](docs/07-design/personas-and-journeys.md), [UX specification](docs/07-design/ux-specification.md), [design](docs/07-design/design.md) |
-| Architecture | [overview](docs/12-architecture/README.md), [integration & API](docs/12-architecture/integration-and-api.md), [data & states](docs/12-architecture/data-model-and-states.md), [security & privacy](docs/12-architecture/security-privacy-observability.md), [OpenAPI](demo/mock-apis/openapi.yaml) |
+| Architecture | [overview](docs/12-architecture/README.md), [ADRs](docs/12-architecture/adr/README.md), [integration & API](docs/12-architecture/integration-and-api.md), [data & states](docs/12-architecture/data-model-and-states.md), [security & privacy](docs/12-architecture/security-privacy-observability.md), [OpenAPI](demo/mock-apis/openapi.yaml) |
 | Deliver | [roles](docs/08-delivery/roles-and-responsibilities.md), [sprint plan](docs/08-delivery/sprint-plan.md), [refinement log](docs/08-delivery/refinement-log.md), [review & retro](docs/08-delivery/sprint-review.md) |
 | Test & accept | [test strategy](docs/09-acceptance/test-strategy.md), [test cases](docs/09-acceptance/test-cases.md), [test results](docs/09-acceptance/test-results.md), [BAT plan](docs/09-acceptance/bat-plan.md), [BAT log](docs/09-acceptance/bat-log.md) |
-| Go live & measure | [readiness](docs/10-go-live/release-readiness.md), [communication](docs/10-go-live/communication-plan.md), [support handover](docs/10-go-live/support-handover.md), [release note](docs/10-go-live/release-note.md), [benefits review](docs/11-measure/benefits-review.md) |
+| Go live & measure | [readiness](docs/10-go-live/release-readiness.md), [change & adoption](docs/10-go-live/change-and-adoption.md), [communication](docs/10-go-live/communication-plan.md), [support handover](docs/10-go-live/support-handover.md), [runbook](docs/10-go-live/operations-runbook.md), [release note](docs/10-go-live/release-note.md), [benefits review](docs/11-measure/benefits-review.md) |
 
-Everything is indexed in the [documentation map](docs/00-documentation-map.md).
+Everything is indexed in the [documentation map](docs/00-documentation-map.md) and searchable in the [evidence navigator](https://phlppgdfry.github.io/shipment-exception-management-business-analysis/workspace/).
 
 ## 4. Starting the learning curriculum (Dutch)
 
@@ -84,4 +87,8 @@ Everything is indexed in the [documentation map](docs/00-documentation-map.md).
 
 ## 6. Publishing
 
-The repository is public and published with GitHub Pages: every push to `main` runs [CI](.github/workflows/ci.yml) and [deploys the site](.github/workflows/pages.yml), including the control tower (built from `demo/application`) and the learning page. Before sharing a link, check that both workflows are green. To change the published site, edit `site/`, the demo or the learning Markdown and run `python3 scripts/build_learning.py` (CI fails if the learning data is stale).
+The repository is public and published with GitHub Pages: every push to `main` runs [CI](.github/workflows/ci.yml) and [deploys the site](.github/workflows/pages.yml), including the control tower (built from `demo/application`) and the learning page. Before sharing a link, check that both workflows are green. To change the landing page or the evidence navigator, edit [`portfolio/content/case.json`](portfolio/content/case.json) and run `python3 scripts/build_site.py`; for the learning page edit the Markdown and run `python3 scripts/build_learning.py`. CI fails if either is stale.
+
+## 7. Current design and validation
+
+[Control Tower handover](docs/07-design/control-tower-handover.md): planner (Europe/Brussels) and customer (Europe/London) time zones, screen states, a real-participant test protocol and three owner exercises. Human validation remains pending.

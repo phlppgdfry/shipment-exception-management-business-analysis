@@ -72,6 +72,12 @@ REQUIRED = [
     "learning/interview-preparation/README.md", "learning/interview-preparation/questions.md", "learning/interview-preparation/defend-your-case.md",
     "learning/assessment/README.md",
     "portfolio/README.md", "portfolio/cv-description.md", "portfolio/case-study/case-study.pdf", "portfolio/presentation/interview-deck.pptx",
+    "portfolio/content/case.json", "portfolio/role-requirement-matrix.md", "portfolio/views/recruiter-view.md", "portfolio/views/hiring-manager-view.md",
+    "portfolio/views/technical-view.md", "portfolio/demo/2-minute-demo.md", "portfolio/demo/5-minute-demo.md", "portfolio/demo/15-minute-demo.md",
+    "portfolio/executive-summary/executive-summary.pdf", "portfolio/career/linkedin-project.md",
+    "docs/12-architecture/adr/README.md", "docs/10-go-live/operations-runbook.md", "docs/10-go-live/change-and-adoption.md",
+    "docs/07-design/usability-test-plan.md", "docs/06-backlog/release-2-edi-status.md",
+    "site/index.html", "site/workspace/index.html", "site/workspace/evidence.json", "site/learning/index.html", "site/for/recruiters/index.html",
     ".github/workflows/ci.yml", ".github/workflows/pages.yml",
 ]
 report("required deliverables", [f"missing: {r}" for r in REQUIRED if not (ROOT / r).exists()])
@@ -272,6 +278,32 @@ for m in modules:
         if re.search(r"(?i)antwoord\s*:", quiz.read_text(encoding="utf-8")):
             ll.append(f"{m.parent.name}: quiz.md seems to contain answers")
 report("learning lab structure", ll)
+
+# ---------------------------------------------------------------- 8. portfolio manifest
+import json as _json
+mf = []
+case = _json.loads(text("portfolio/content/case.json"))
+statuses = set(case["statuses"])
+ids = [e["id"] for e in case["evidence"]]
+mf += [f"evidence ID {i} used twice" for i in sorted({i for i in ids if ids.count(i) > 1})]
+for e in case["evidence"]:
+    if e["status"] not in statuses:
+        mf.append(f"{e['id']}: unknown status {e['status']}")
+    if not (ROOT / e["path"].split("#")[0]).exists():
+        mf.append(f"{e['id']}: path does not exist: {e['path']}")
+    if e.get("demo") and not (e["demo"].startswith("control-tower/") or (ROOT / "site" / e["demo"]).exists()):
+        mf.append(f"{e['id']}: demo page does not exist: {e['demo']}")
+links = [l for w in case["workstreams"] for l in w["links"]] + case["architecture"]["links"] + [[d["id"], d["path"]] for d in case["decisions"]]
+for label, path in links:
+    if not path.startswith("http") and not (ROOT / path.split("#")[0]).exists():
+        mf.append(f"link '{label}' points to a missing file: {path}")
+for d in case["decisions"]:
+    if d["id"] not in defined["D"]:
+        mf.append(f"decision {d['id']} is not in the decision log")
+for o in case["outcomes"]:
+    if o["kpi"] not in defined["K"]:
+        mf.append(f"outcome {o['kpi']} is not in the KPI tree")
+report("portfolio manifest (portfolio/content/case.json)", mf)
 
 print()
 if failures:

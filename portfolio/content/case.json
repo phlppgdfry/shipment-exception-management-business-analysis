@@ -1,0 +1,125 @@
+{
+  "$comment": "Source manifest for the landing page, the evidence navigator and the audience views. Every path must exist (checked by scripts/validate_repo.py). Statuses are limited to the values in 'statuses'. Figures are illustrative assumptions.",
+  "title": "Shipment exceptions, handled before the customer calls",
+  "subtitle": "From three conflicting requests to rules that run as tests, a working control tower and a controlled pilot — for a fictional short-sea and door-to-door operator.",
+  "disclosure": "Independent portfolio case. Tidewell Logistics is fictional. Workshops, sprints and acceptance testing are simulated; figures are illustrative assumptions. The automated tests and the demo are real; nothing was deployed in a real organisation.",
+  "role": "Business analyst in a Scrum team: problem framing, discovery and workshops, process and rule design, backlog preparation with the Product Owner, UX, acceptance and production readiness.",
+  "statuses": {
+    "executed": { "label": "Executed", "meaning": "Run by a tool in this repository — tests in CI, the working demo" },
+    "validated": { "label": "Validated model", "meaning": "Standard file checked by a validator (BPMN 2.0, DMN 1.3, OpenAPI 3.1)" },
+    "documented": { "label": "Documented analysis", "meaning": "Analysis or design written for the fictional organisation" },
+    "proposed": { "label": "Proposed design", "meaning": "Target design or plan; not built or run in a real organisation" },
+    "simulated": { "label": "Simulated", "meaning": "Fictional workshops, interviews, sprints, BAT or pilot readouts — shows format and decisions" },
+    "pending": { "label": "Pending real validation", "meaning": "Needs real people, real data or a real system" }
+  },
+  "pillars": [
+    { "icon": "search", "title": "Problem before solution", "text": "Three requested solutions reframed as one missing set of rules." },
+    { "icon": "rules", "title": "Rules that run as tests", "text": "13 rules, a DMN table and 30 examples executed in CI." },
+    { "icon": "screen", "title": "A working control tower", "text": "The release, built on the same rules, with a guided scenario." },
+    { "icon": "gate", "title": "Controlled pilot", "text": "BAT, go/no-go, rollback and a stage gate before scaling." }
+  ],
+  "challenge": [
+    { "icon": "clock", "title": "Customers hear it at the gate", "text": "Only 22% of late deliveries were announced before the window started." },
+    { "icon": "phone", "title": "Customer service as a switchboard", "text": "±1,250 “where is my load?” contacts a week — 38% of all contacts." },
+    { "icon": "users", "title": "Nobody owns the exception", "text": "Planners notice delays by chance and copy orders into Excel." }
+  ],
+  "myRole": [
+    { "icon": "search", "title": "Analysis", "text": "Problem framing, options and business case, discovery, event storming, registers." },
+    { "icon": "flow", "title": "Process and rule design", "text": "BPMN 2.0 AS-IS/TO-BE, decision table and DMN, requirements with traceability." },
+    { "icon": "gate", "title": "Delivery and readiness", "text": "Backlog with the PO, UX, acceptance testing, go/no-go, support and measurement." }
+  ],
+  "journey": ["Frame", "Discover", "Event storm", "Model", "Rules", "Prioritise", "Design", "Deliver", "Accept", "Go live", "Measure"],
+  "workstreams": [
+    {
+      "id": "01", "title": "Detect and classify", "tagline": "Only what puts the promise at risk becomes an exception.",
+      "problem": "Every status change looked the same, so people filtered by gut feeling; three teams counted “late” differently.",
+      "choice": "Late = after the end of the agreed window (D-01). Severity from minutes late; reefer one level up; cancellations always critical.",
+      "flow": ["TMS change", "Evaluate rules", "Severity", "Owner + response time"],
+      "links": [["Exception rules", "docs/05-requirements/exception-rules.md"], ["DMN 1.3", "docs/05-requirements/dmn/exception-decisions.dmn"], ["30 examples", "docs/06-backlog/features/exception-decision.feature"]]
+    },
+    {
+      "id": "02", "title": "Own and resolve", "tagline": "One list, one owner, one clock.",
+      "problem": "Delays were noticed by chance; nobody was accountable for acting within a time.",
+      "choice": "Owner group by cause; 30 min / 2 h response time as BPMN timer events; escalation to the shift lead; mandatory reason code.",
+      "flow": ["Workbench", "Acknowledge", "Re-plan window", "Resolve with reason"],
+      "links": [["TO-BE BPMN", "docs/04-process/to-be.md"], ["State machine", "docs/12-architecture/data-model-and-states.md"], ["User stories", "docs/06-backlog/user-stories.md"]]
+    },
+    {
+      "id": "03", "title": "Tell the customer first", "tagline": "One clear message, not a message storm.",
+      "problem": "Only key accounts whose account manager happened to know were told; standard TMS e-mails would be noise.",
+      "choice": "Notify major/critical, hold missing status until confirmed, throttle per order, recovery message only if told before, call key accounts.",
+      "flow": ["Decision", "Planner note (5 min)", "Portal + e-mail", "Back on schedule"],
+      "links": [["Decision log", "docs/03-workshops/decision-log.md"], ["Customer view spec", "docs/07-design/ux-specification.md"], ["Release 2: EDI/API", "docs/06-backlog/release-2-edi-status.md"]]
+    },
+    {
+      "id": "04", "title": "Prove it before scaling", "tagline": "Buy the information first.",
+      "problem": "The business case stands or falls with one unknown: how many “where is my load?” calls disappear.",
+      "choice": "Two-sprint pilot for five customers with a control group in shadow mode; fund release 2 only at ≥ 20% fewer WISMO contacts.",
+      "flow": ["Pilot", "Daily export", "Pilot vs. control", "Stage gate"],
+      "links": [["Business case", "docs/01-opportunity/options-and-business-case.md"], ["KPI tree", "docs/01-opportunity/kpi-tree.md"], ["Benefits review", "docs/11-measure/benefits-review.md"]]
+    }
+  ],
+  "architecture": {
+    "flow": ["TMS (SaaS)", "Signed webhook", "Exception component", "Workbench + notification", "Customer portal / e-mail"],
+    "notes": ["TMS stays system of record", "Idempotent on event ID", "Out-of-order ETAs ignored", "Rules as one portable module", "RFC 9457 errors", "Audit with rule IDs"],
+    "caption": "Proposed: a small component next to the TMS (D-03). Implemented in the demo: the same rules and engine in the browser, on a mock API that follows the OpenAPI contract.",
+    "links": [["Architecture", "docs/12-architecture/README.md"], ["ADRs", "docs/12-architecture/adr/README.md"], ["OpenAPI", "demo/mock-apis/openapi.yaml"], ["Runbook", "docs/10-go-live/operations-runbook.md"]]
+  },
+  "decisions": [
+    { "id": "D-01", "title": "Late means after the window", "text": "Not after the planned ETA: most ETA changes do not affect the promise.", "owner": "PO", "path": "docs/03-workshops/decision-log.md#d-01" },
+    { "id": "D-02", "title": "Severity decides who is told", "text": "Serves “never surprise a key account” and “no message storm” at once.", "owner": "PO", "path": "docs/03-workshops/decision-log.md#d-02" },
+    { "id": "D-03", "title": "Build small, next to the TMS", "text": "Supplier date uncertain; rules stay portable if the supplier catches up.", "owner": "PO + architect", "path": "docs/03-workshops/decision-log.md#d-03" },
+    { "id": "D-04", "title": "Confirm missing status first", "text": "A false alarm costs more trust than a late one.", "owner": "Road planning lead", "path": "docs/03-workshops/decision-log.md#d-04" },
+    { "id": "D-07", "title": "Pilot with a stage gate", "text": "Release 2 only if WISMO falls ≥ 20% against a control group.", "owner": "Sponsor + PO", "path": "docs/03-workshops/decision-log.md#d-07" },
+    { "id": "D-09", "title": "Escalate, but keep the hold", "text": "Found by building the demo: overdue held exceptions go to the shift lead.", "owner": "Road planning lead", "path": "docs/03-workshops/decision-log.md#d-09" }
+  ],
+  "implementation": [
+    { "step": "Refine", "when": "week 0", "text": "Stories ready; TMS webhook spike" },
+    { "step": "Sprint 1", "when": "weeks 1–2", "text": "A planner sees the right exceptions" },
+    { "step": "Sprint 2", "when": "weeks 3–4", "text": "The customer hears it first" },
+    { "step": "BAT", "when": "week 5", "text": "Key users incl. the sceptic; 6 findings" },
+    { "step": "Go/no-go", "when": "week 5", "text": "13 criteria, an owner each" },
+    { "step": "Pilot", "when": "weeks 6–11", "text": "Staged switch-on, hypercare" },
+    { "step": "Stage gate", "when": "week 12", "text": "Fund release 2 on evidence" }
+  ],
+  "outcomes": [
+    { "kpi": "K1", "label": "Major/critical delays told before the window", "baseline": "22%", "target": "≥ 90%", "owner": "Head of Customer Service" },
+    { "kpi": "K2", "label": "Median time to inform", "baseline": "3 h 10 min", "target": "≤ 30 min", "owner": "Head of Customer Service" },
+    { "kpi": "K3", "label": "WISMO contacts vs. control group", "baseline": "index 100", "target": "≤ 65", "owner": "Head of Customer Service" },
+    { "kpi": "K7", "label": "False alarm rate (guardrail)", "baseline": "not measured", "target": "< 5%", "owner": "Product Owner" }
+  ],
+  "evidence": [
+    { "id": "E01", "title": "Problem statement", "path": "docs/01-opportunity/problem-statement.md", "why": "Turns three requested solutions into one measurable problem with a root cause.", "area": "Discovery", "status": "documented" },
+    { "id": "E02", "title": "Options and business case", "path": "docs/01-opportunity/options-and-business-case.md", "why": "Four options on agreed weights; the riskiest assumption named and tested by a pilot.", "area": "Discovery", "status": "documented" },
+    { "id": "E03", "title": "Registers and strategic analysis", "path": "docs/01-opportunity/registers.md", "why": "Assumptions, constraints, risks and dependencies with owners and triggers.", "area": "Discovery", "status": "documented" },
+    { "id": "E04", "title": "Stakeholders and RACI", "path": "docs/02-discovery/stakeholders.md", "why": "Who decides what; the BA is responsible for much and accountable for little.", "area": "Stakeholders", "status": "documented" },
+    { "id": "E05", "title": "Event storming and facilitation", "path": "docs/03-workshops/workshop-dialogue.md", "why": "How two opposite positions became one concept (severity) and one decision owner.", "area": "Workshops", "status": "simulated" },
+    { "id": "E06", "title": "Decision log", "path": "docs/03-workshops/decision-log.md", "why": "Options, owner, decision and consequence for every choice that shaped the release.", "area": "Workshops", "status": "documented" },
+    { "id": "E07", "title": "BPMN 2.0 AS-IS / TO-BE", "path": "docs/04-process/bpmn/to-be.bpmn", "why": "Lanes per role, timer boundary events for response times; validated with bpmn-moddle.", "area": "Process", "status": "validated" },
+    { "id": "E08", "title": "Gap analysis and activity diagram", "path": "docs/04-process/gap-analysis.md", "why": "Each gap typed as system, policy, organisation or process — which decides the kind of work.", "area": "Process", "status": "documented" },
+    { "id": "E09", "title": "Exception rules and DMN 1.3", "path": "docs/05-requirements/dmn/exception-decisions.dmn", "why": "Decision tables in the OMG standard; a test proves they decide what the code decides (912 cases).", "area": "Requirements", "status": "executed" },
+    { "id": "E10", "title": "Executable acceptance examples", "path": "docs/06-backlog/features/exception-decision.feature", "why": "30 Given/When/Then rows that run against the rule module in CI.", "area": "Requirements", "status": "executed" },
+    { "id": "E11", "title": "Requirements and traceability", "path": "docs/05-requirements/traceability.md", "why": "Pain point → requirement → rule → story → test → KPI; IDs checked in CI.", "area": "Requirements", "status": "executed" },
+    { "id": "E12", "title": "Backlog, WSJF and release 2", "path": "docs/06-backlog/release-2-edi-status.md", "why": "Prioritised with the PO; a second iteration refined into slices with open questions.", "area": "Delivery", "status": "documented" },
+    { "id": "E13", "title": "UX specification and usability plan", "path": "docs/07-design/ux-specification.md", "why": "Personas, flows, states, accessibility and eight UX decisions tied to user needs.", "area": "Design", "status": "documented" },
+    { "id": "E14", "title": "Logistics Control Tower", "path": "demo/README.md", "why": "The release working end to end on the same rules; guided 10-step scenario.", "area": "Demo", "status": "executed", "demo": "control-tower/" },
+    { "id": "E15", "title": "Architecture and ADRs", "path": "docs/12-architecture/adr/README.md", "why": "Proposed vs. implemented; five decisions with alternatives and consequences.", "area": "Architecture", "status": "proposed" },
+    { "id": "E16", "title": "OpenAPI 3.1 contract", "path": "demo/mock-apis/openapi.yaml", "why": "Linted in CI; a contract test checks every response and example against it.", "area": "Architecture", "status": "validated" },
+    { "id": "E17", "title": "Test strategy and results", "path": "docs/09-acceptance/test-results.md", "why": "What actually ran — unit, contract, browser and accessibility tests — separate from simulated BAT.", "area": "Testing", "status": "executed" },
+    { "id": "E18", "title": "BAT log and go/no-go", "path": "docs/09-acceptance/bat-log.md", "why": "Key users, triage, sign-off with known issues, and the BA's own mistake (DEF-04).", "area": "Testing", "status": "simulated" },
+    { "id": "E19", "title": "Operations runbook and change plan", "path": "docs/10-go-live/operations-runbook.md", "why": "What support does when webhooks stop or messages go wrong; adoption and training per group.", "area": "Go-live", "status": "proposed" },
+    { "id": "E20", "title": "Usability test with real people", "path": "docs/07-design/usability-test-plan.md", "why": "Script, tasks and report template ready; the sessions themselves are not yet run.", "area": "Design", "status": "pending" }
+  ],
+  "limits": [
+    "Fictional organisation; interviews, workshops, sprints, BAT and the pilot readout are simulated.",
+    "No real TMS, e-mail or load testing; the demo runs in the browser on a mock API.",
+    "Architecture, privacy and runbook are proposals, not reviewed by a real architect, DPO or support team.",
+    "No usability test with real participants yet."
+  ],
+  "lessons": [
+    "Rules before screens: the gap was a missing definition, not a missing tool.",
+    "Passing stories are not a met need — three of four BAT majors came from real readers.",
+    "Building is a review: the demo exposed five open questions and a privacy leak.",
+    "Answer customer-facing questions with the PO, not alone (DEF-04)."
+  ]
+}

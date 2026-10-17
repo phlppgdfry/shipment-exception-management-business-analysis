@@ -20,6 +20,8 @@ A test is only called "passed" in this repository when a tool ran it and reporte
 | **Contract** | Do responses match the agreed API? | developers + tester | Vitest contract test against `openapi.yaml`; Redocly lint | every push / all green |
 | **System / end-to-end** | Does a user get through the workflow? | tester | Playwright: the 10-step scenario, workbench behaviours, routes | every push / all green |
 | **Accessibility** | Can everyone use the workbench and the portal card? | tester + designer | axe-core (WCAG 2.2 A/AA) on every route, desktop and mobile | no serious or critical violations |
+| **Case site** | Does the portfolio itself work for every reader? | (repository quality) | Playwright + axe on every page of the GitHub Pages site, desktop and mobile; manifest-driven content; navigator filters; quiz (`npm run test:site`) | no serious or critical violations, no console errors |
+| **Model validity** | Are the BPMN and DMN files valid models, not just XML? | BA | `npm run check:models` parses them with `bpmn-moddle` and `dmn-moddle` against the BPMN 2.0 and DMN 1.3 meta-models | no unknown elements, no warnings |
 | **Non-functional** | Fast enough, idempotent, recoverable? | team | proposed: replayed events, load test against NFR-01, webhook outage (NFR-04) — **demo covers idempotency and the outage path only** | NFR table |
 | **BAT** | Is what the stories say what the business needs? | key users, organised by the BA | simulated ([BAT log](bat-log.md)) | [entry/exit](bat-plan.md#entry-and-exit-criteria) |
 | **Pilot measurement** | Did it work? | PO, Head of CS | export (US-13); [benefits review](../11-measure/benefits-review.md) | stage gate |
@@ -28,7 +30,7 @@ A test is only called "passed" in this repository when a tool ran it and reporte
 
 | Technique | Where it shows up |
 |---|---|
-| **Boundary value analysis** | 0 / 1 / 119 / 120 / 359 / 360 minutes (AC-01.2 – AC-01.8); exactly 2 h since the last message (AC-07.3); response time 29 vs. 30 min (lifecycle test) |
+| **Boundary value analysis** | 0 / 1 / 119 / 120 / 359 / 360 minutes (AC-01.2 – AC-01.8); exactly 2 h since the last message (AC-07.3); response time 29 vs. 30 min (lifecycle test); the spring and autumn DST change for planner input (TC-37) |
 | **Decision table testing** | the [decision table](../05-requirements/exception-rules.md#decision-table) row by row; a CI check that every rule is exercised by at least one example |
 | **State transition testing** | every arrow of the [exception state machine](../12-architecture/data-model-and-states.md#exception-state-machine), plus "invalid" transitions (resolve before acknowledge → 409) |
 | **Negative testing** | permissions (403), validation (422), invalid transitions (409), duplicate events, retried commands, TMS outage |
@@ -42,7 +44,7 @@ Severity definitions for findings are in the [BAT plan](bat-plan.md#finding-seve
 
 ## Regression
 
-The rule examples, unit, contract and browser tests are the regression suite. They run on every push to `main` and on pull requests ([CI workflow](../../.github/workflows/ci.yml)). When the PO changes a threshold, the analyst updates the examples first; the failing examples show exactly which decisions change meaning — that list goes to the PO before the change is merged.
+The rule examples, unit, contract and browser tests — plus the case-site tests and the model check — are the regression suite. They run on every push to `main` and on pull requests ([CI workflow](../../.github/workflows/ci.yml)). When the PO changes a threshold, the analyst updates the examples first; the failing examples show exactly which decisions change meaning — that list goes to the PO before the change is merged.
 
 ## What is not tested here (and why)
 

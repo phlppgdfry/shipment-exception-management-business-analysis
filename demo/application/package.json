@@ -11,7 +11,9 @@
     "typecheck": "node scripts/build-case-data.mjs && tsc --noEmit",
     "test": "vitest run",
     "test:e2e": "playwright test",
-    "serve": "node scripts/serve-static.mjs"
+    "serve": "node scripts/serve-static.mjs",
+    "test:site": "playwright test --config playwright.site.config.ts",
+    "check:models": "node scripts/check-models.mjs"
   },
   "dependencies": {
     "next": "16.4.0",

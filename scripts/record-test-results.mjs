@@ -53,13 +53,15 @@ const checks = [
   ["Production build (static export)", "npm run build", () => run("npm", ["run", "build"], app, { BASE_PATH })],
   ["Mock data up to date", "node demo/mock-data/generate.mjs --check", () => run(process.execPath, ["demo/mock-data/generate.mjs", "--check"], root)],
   ["OpenAPI lint (Redocly)", "npx @redocly/cli lint demo/mock-apis/openapi.yaml", () => run("npx", ["--yes", "@redocly/cli@2.62.1", "lint", "demo/mock-apis/openapi.yaml", "--config", "demo/mock-apis/redocly.yaml"], root)],
+  ["BPMN 2.0 / DMN 1.3 against their meta-models", "cd demo/application && npm run check:models", () => run("npm", ["run", "check:models"], app)],
+  ["Generated site and evidence index up to date", "python3 scripts/build_site.py --check", () => run("python3", ["scripts/build_site.py", "--check"], root)],
   ["Documentation links", "python3 scripts/check-links.py", () => run("python3", ["scripts/check-links.py"], root)],
 ].map(([name, command, fn]) => ({ name, command, ...fn() }));
 
-// 4. End-to-end, routes and accessibility (Playwright, JSON) — needs the build from step 3
-{
-  const file = join(tmp, "pw.json");
-  const r = run("npx", ["playwright", "test", "--reporter=json"], app, { PLAYWRIGHT_JSON_OUTPUT_NAME: file });
+// 4. Browser tests (Playwright, JSON): the control tower (needs the build from step 3) and the case site
+function playwright(name, command, args) {
+  const file = join(tmp, `pw-${suites.length}.json`);
+  const r = run("npx", ["playwright", "test", ...args, "--reporter=json"], app, { PLAYWRIGHT_JSON_OUTPUT_NAME: file });
   let tests = [];
   try {
     const json = JSON.parse(readFileSync(file, "utf8"));
@@ -72,8 +74,10 @@ const checks = [
   } catch {
     /* reporter did not write output */
   }
-  suites.push({ name: "Browser: scenario, workbench, routes, accessibility (axe, WCAG 2.2 A/AA)", tool: "Playwright + axe-core", command: "cd demo/application && npm run test:e2e", code: r.code, seconds: r.seconds, tests });
+  suites.push({ name, tool: "Playwright + axe-core", command, code: r.code, seconds: r.seconds, tests });
 }
+playwright("Browser: control tower scenario, workbench, routes, accessibility (axe, WCAG 2.2 A/AA)", "cd demo/application && npm run test:e2e", []);
+playwright("Browser: case site pages, manifest, evidence navigator, quiz, accessibility (axe, WCAG 2.2 A/AA)", "cd demo/application && npm run test:site", ["--config", "playwright.site.config.ts"]);
 
 // 5. Repository quality gate (runs last: it checks that this page exists)
 const gate = run("python3", ["scripts/validate_repo.py"], root);
@@ -116,7 +120,7 @@ ${suites.map((s) => `| ${s.name} | ${s.tool} | ${s.tests.length} | ${s.tests.fil
 | Check | Command | Result |
 |---|---|---|
 ${checks.map((c) => `| ${c.name} | \`${c.command}\` | ${icon(c.code === 0)} |`).join("\n")}
-| Repository quality gate (deliverables, IDs, traceability, test names, BPMN, learning lab) | \`python3 scripts/validate_repo.py\` | ${icon(gate.code === 0)} |
+| Repository quality gate (deliverables, IDs, traceability, test names, BPMN, learning lab, portfolio manifest) | \`python3 scripts/validate_repo.py\` | ${icon(gate.code === 0)} |
 
 ${[...checks, { name: "Repository quality gate", ...gate }].filter((c) => c.code !== 0).map((c) => `### ${c.name} — output\n\n\`\`\`text\n${c.out.trim().split("\n").slice(-25).join("\n")}\n\`\`\``).join("\n\n")}
 

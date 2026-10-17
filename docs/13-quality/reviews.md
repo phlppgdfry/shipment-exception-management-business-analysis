@@ -1,6 +1,6 @@
-# Three independent reviews
+# Independent reviews
 
-> **What this is:** three critical reviews of the whole repository, each from a different perspective, with what was found and what was changed. **For:** the owner, and reviewers who want to see the repository judged by its own standards. **Previous:** [benefits review](../11-measure/benefits-review.md) · **Back to:** [documentation map](../00-documentation-map.md).
+> **What this is:** three critical reviews of the whole repository, each from a different perspective, plus a later senior-quality round, with what was found and what was changed. **For:** the owner, and reviewers who want to see the repository judged by its own standards. **Previous:** [benefits review](../11-measure/benefits-review.md) · **Back to:** [documentation map](../00-documentation-map.md).
 
 *Method: each review read the repository as its persona would — the senior BA from the documents, the hiring manager from the site and the PDF, the instructor from the learning lab — and listed findings before any fix. "Fixed" means a change is in the repository; "open" means it is recorded here and not resolved. The reviews were carried out with AI assistance; the owner has not yet reviewed them (see [AI provenance](../../learning/ai-provenance.md)).*
 
@@ -73,6 +73,24 @@
 | C9 | No check that the owner can run the tests and tools | module 3 and 7 tutorials require running the tests; module 2 requires editing the `.bpmn` | **fixed** |
 
 **Instructor's summary:** the materials are sufficient to learn and defend the case **if the owner does the exercises**. The single biggest risk is reading instead of practising. The ownership levels in [AI provenance](../../learning/ai-provenance.md) are the honest measure; today they are all 0.
+
+---
+
+## Review D — senior quality round (2026-10-17)
+
+**Question:** compared with a strong portfolio case, what would a senior reviewer still miss — in the decisions behind the design, in operations and adoption, and in how the work is presented to different readers?
+
+| # | Finding | Severity | Action | Status |
+|---|---|---|---|---|
+| D1 | Architecture choices were described but not recorded as decisions with alternatives and consequences | moderate | five [ADRs](../12-architecture/adr/README.md) (component next to the TMS, one rule module, webhooks with a queue table, state per order, demo on a mock API) | **fixed** |
+| D2 | Support handover existed, but no runbook: what to do when webhooks stop, messages pile up or a rule misfires | moderate | [operations runbook](../10-go-live/operations-runbook.md) with signals, severities P1–P3 and playbooks RB-1 – RB-6 | **fixed** (proposal) |
+| D3 | Adoption was implicit in the communication plan; planners' resistance ("nothing that adds work") had no plan | moderate | [change and adoption plan](../10-go-live/change-and-adoption.md): impact per group, ADKAR-lite check, champions, adoption measures, resistance signals | **fixed** (proposal) |
+| D4 | One landing page for every reader; a recruiter and an architect had to find their own route | moderate | audience views (recruiter, hiring manager, technical), 2-, 5- and 15-minute demo scripts, role requirement matrix | **fixed** |
+| D5 | Evidence labels (proposed / simulated / measured) lived per document; nothing showed the whole picture or let a reader filter | moderate | one [content manifest](../../portfolio/content/case.json) with six evidence statuses drives the landing page and a searchable evidence navigator; CI fails when it goes stale | **fixed** |
+| D6 | The case site itself was never tested — only the control tower | significant (quality claim) | Playwright + axe on every site page, desktop and mobile (TC-38 – TC-41); it found five real accessibility issues (contrast of step numbers and stickies, two scrollable regions not reachable by keyboard), all fixed | **fixed** |
+| D7 | BPMN and DMN were checked as XML, not as models | minor | `npm run check:models` validates against the BPMN 2.0 and DMN 1.3 meta-models in CI | **fixed** |
+| D8 | Executive material was one page in a folder called "application kit" | minor | A4 executive summary as PDF; material moved under `portfolio/` | **fixed** |
+| D9 | Control tower screens are not in the Figma file in their current state | moderate | [handover](../07-design/control-tower-handover.md) with editable vectors; native Figma cleanup blocked by the plan's limits | **open** |
 
 ---
 

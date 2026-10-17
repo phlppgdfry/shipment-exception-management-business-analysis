@@ -23,6 +23,7 @@
 | 5 Portfolio presentation | landing page with three routes, recruiter tour, executive case study PDF, interview deck, CV text | done |
 | 6 Learning lab | 10 Dutch modules, quizzes + separate keys, competency tasks, interview preparation | done (content); **owner's own work not started** |
 | 7 Validation & refinement | CI quality gate, three reviews applied, test results recorded | done; open items below |
+| 8 Senior quality round | content manifest with evidence statuses, generated landing page, evidence navigator, audience views, ADRs, runbook, change & adoption, A4 executive summary, site and model tests, planner/customer time zones | done 2026-10-17 ([review D](docs/13-quality/reviews.md#review-d--senior-quality-round-2026-10-17)) |
 
 ## Acceptance criteria for the repository
 
@@ -41,7 +42,10 @@
 | R11 | Every learning module has the required sections; quizzes and answer keys are separate and complete | `validate_repo.py` learning check | ✅ verified |
 | R12 | No fictional outcome presented as verified | review of README, site, PDF and deck; labels proposed / simulated / measured | ✅ reviewed |
 | R13 | No hard-coded secrets | gitleaks pre-commit hook on the owner's machine; nothing to hide in the demo | ✅ |
-| R14 | Three independent reviews done and applied | [reviews](docs/13-quality/reviews.md) | ✅ done; open items listed |
+| R14 | Independent reviews done and applied (A–C, plus a senior quality round D) | [reviews](docs/13-quality/reviews.md) | ✅ done; open items listed |
+| R16 | Landing page and evidence navigator come from one content manifest; every path in it exists and every decision and KPI it names is defined | `build_site.py --check` + `validate_repo.py` manifest check (CI) | ✅ verified |
+| R17 | Every page of the case site passes axe on desktop and mobile, with no console errors | `npm run test:site` (CI) | ✅ verified (automated checks only) |
+| R18 | The BPMN and DMN files are valid against their meta-models | `npm run check:models` (CI) | ✅ verified |
 | R15 | The owner can defend the work independently | own exercises and competency tasks, assessed | ❌ **not started — owner's work** |
 
 ## Remaining gaps (honest list)

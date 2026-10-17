@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Executive summary — Shipment exceptions, handled before the customer calls</title>
+<style>
+  @page { size: A4; margin: 14mm 15mm; }
+  :root { --ink: #17202b; --muted: #556171; --accent: #1d5e57; --rule: #d9dee5; --soft: #f1f4f6; --warn: #8a4b00; --ok: #1c6b3a; --blue: #0b5cad; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; color: var(--ink); font-size: 9.4pt; line-height: 1.42; }
+  .kicker { font-size: 8pt; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 0 0 3pt; }
+  h1 { font-size: 20pt; line-height: 1.1; margin: 0 0 4pt; }
+  .lede { font-size: 10.5pt; color: var(--muted); margin: 0 0 7pt; }
+  .note { font-size: 7.6pt; color: var(--muted); border: 1px solid var(--rule); border-radius: 4pt; padding: 4pt 7pt; margin: 0 0 9pt; }
+  h2 { font-size: 10.5pt; color: var(--accent); margin: 9pt 0 4pt; text-transform: uppercase; letter-spacing: .05em; }
+  p { margin: 0 0 4pt; }
+  .grid { display: grid; gap: 7pt; } .g2 { grid-template-columns: 1fr 1fr; } .g3 { grid-template-columns: repeat(3, 1fr); } .g4 { grid-template-columns: repeat(4, 1fr); }
+  .box { background: var(--soft); border-radius: 4pt; padding: 6pt 8pt; }
+  .box b { display: block; margin-bottom: 1pt; }
+  .num { font-size: 14pt; font-weight: 700; line-height: 1.1; }
+  .small { font-size: 7.8pt; color: var(--muted); }
+  ul { margin: 0; padding-left: 12pt; } li { margin-bottom: 1.5pt; }
+  .flow { display: flex; gap: 4pt; align-items: center; flex-wrap: wrap; margin: 2pt 0 4pt; }
+  .flow span { border: 1px solid var(--rule); border-radius: 3pt; padding: 2pt 5pt; background: #fff; font-size: 8.2pt; }
+  .flow i { color: var(--muted); font-style: normal; }
+  .tag { display: inline-block; font-size: 6.8pt; font-weight: 700; border: 1px solid currentColor; border-radius: 6pt; padding: 0 4pt; vertical-align: 1px; }
+  .t-p { color: var(--warn); } .t-s { color: var(--blue); } .t-m { color: var(--ok); }
+  table { width: 100%; border-collapse: collapse; font-size: 8.2pt; }
+  th, td { text-align: left; padding: 2.5pt 4pt; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  th { font-size: 7.2pt; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+  footer { margin-top: 8pt; padding-top: 4pt; border-top: 1px solid var(--rule); font-size: 7.4pt; color: var(--muted); }
+  a { color: var(--accent); text-decoration: none; }
+</style>
+</head>
+<body>
+<p class="kicker">Business analysis portfolio case · short-sea &amp; door-to-door logistics · executive summary</p>
+<h1>Shipment exceptions, handled before the customer calls</h1>
+<p class="lede">How a fictional operator could tell customers about delays before they call — framed, specified, built as a working demo, accepted and brought live in a controlled pilot.</p>
+<p class="note"><b>Independent portfolio case.</b> Tidewell Logistics is fictional; workshops, sprints and acceptance tests are simulated; figures are illustrative. Labels: <span class="tag t-p">proposed</span> business case and plans · <span class="tag t-s">simulated</span> fictional delivery · <span class="tag t-m">measured</span> automated tests run in the repository.</p>
+
+<h2>The problem</h2>
+<div class="grid g4">
+  <div class="box"><span class="num">22%</span><br><span class="small">of late deliveries announced before the window</span></div>
+  <div class="box"><span class="num">38%</span><br><span class="small">of all contacts are “where is my load?”</span></div>
+  <div class="box"><span class="num">±55 / wk</span><br><span class="small">missed delivery slots at ±€140</span></div>
+  <div class="box"><span class="num">3 → 1</span><br><span class="small">three requested solutions, one root cause: no rules for <i>late</i> and no owner</span></div>
+</div>
+
+<h2>The recommendation <span class="tag t-p">proposed</span></h2>
+<div class="grid g2">
+  <div>
+    <p>A small exception component next to the TMS: rules decide severity, owner and response time; planners work from one list; customers get one clear message. Scored 3.95 against 2.45–3.10 for the alternatives on weights agreed beforehand.</p>
+    <div class="flow"><span>TMS change</span><i>→</i><span>13 rules</span><i>→</i><span>owner + 30 min / 2 h</span><i>→</i><span>one message</span><i>→</i><span>resolved with reason</span></div>
+  </div>
+  <div class="box">
+    <b>Buy the information first</b>
+    Payback ±13.5 months <i>if</i> a third of WISMO calls disappear (pessimistic: ±31 months). So: a two-sprint pilot for five customers with a control group, ±€114k; release 2 only if WISMO falls ≥ 20%.
+  </div>
+</div>
+
+<h2>How it was worked out</h2>
+<table>
+  <tr><th>Step</th><th>Key decision or artefact</th></tr>
+  <tr><td>Discover &amp; event storm <span class="tag t-s">simulated</span></td><td>“Tell key accounts everything” vs. “no message storm” → severity; late = after the end of the agreed window (D-01, D-02)</td></tr>
+  <tr><td>Model &amp; specify</td><td>BPMN 2.0 with timer events; 13 rules also as DMN 1.3; 30 Given/When/Then examples; traceability from pain point to KPI</td></tr>
+  <tr><td>Prioritise with the PO</td><td>WSJF + dependencies; release 1 = 36 points in two sprints; release 2 refined and honestly “not ready”</td></tr>
+  <tr><td>Build to learn <span class="tag t-m">measured</span></td><td>Working control tower on the same rules; 100+ automated tests incl. accessibility; building exposed 5 open questions and a privacy leak</td></tr>
+  <tr><td>Accept &amp; go live <span class="tag t-s">simulated</span></td><td>BAT with the sceptical planner as key user; 6 findings, one from the analyst’s own refinement answer; 13 go/no-go criteria; shadow mode; rollback in 4 min</td></tr>
+</table>
+
+<h2>What success looks like <span class="tag t-p">proposed</span></h2>
+<div class="grid g4">
+  <div class="box"><b>K1 told in time</b>22% → ≥ 90%</div>
+  <div class="box"><b>K2 time to inform</b>3 h 10 → ≤ 30 min</div>
+  <div class="box"><b>K3 WISMO vs. control</b>−35% (gate −20%)</div>
+  <div class="box"><b>K7 false alarms</b>&lt; 5% (guardrail)</div>
+</div>
+
+<h2>Limits</h2>
+<p class="small">No real stakeholders, data, TMS or deployment; architecture and privacy controls are proposals; no usability test with real people yet. The case shows how the analyst frames, decides, specifies and prepares delivery — it is not a substitute for team experience.</p>
+
+<footer>Philippe Godfroy · phlppgdfry.github.io/shipment-exception-management-business-analysis · Independent portfolio case with a fictional organisation; no confidential information from any employer · Built with AI assistance (see learning/ai-provenance.md)</footer>
+</body>
+</html>

@@ -63,6 +63,11 @@ The 30 decision examples **are** test cases; they live in [`exception-decision.f
 | TC-34 | negative | An ETA update older than the last applied one → logged, not applied, no message (HTTP 200) | TA-4, NFR-03 | `an ETA update that happened before the last applied one…`, `an out-of-order event returns 200…` |
 | TC-35 | negative | Scenario step 6 is one command: refused completely for a user outside the owner group, applied completely otherwise | API atomicity | `scenario step 6 is one atomic command…` |
 | TC-36 | consistency | The DMN decision tables and the rule module agree on severity and notification for all 912 input combinations | ER-01 – ER-11, DMN | `DMN and the rule module give the same severity and notification…` |
+| TC-37 | exception | Planner enters a window in Brussels time; a wall-clock time that does not exist (spring DST gap) is refused instead of silently shifted; the customer sees UK time | A4, refinement Q10 | `planner inputs use Brussels and reject a missing DST wall clock` (e2e); unit tests for both DST changes in tests/unit/time.test.ts |
+| TC-38 | accessibility | Every page of the case site (landing, recruiter tour, evidence navigator, learning lab, prototype, rule explorer, process, event storming): no serious/critical axe violations, one h1, no horizontal scroll, no console errors — desktop and mobile | portfolio quality, WCAG 2.2 | `site /… renders and passes axe` (desktop + mobile) |
+| TC-39 | consistency | The landing page shows exactly the evidence, status tiers and workstreams in the content manifest | single source of truth | `landing: evidence register and status tiers come from the manifest` |
+| TC-40 | positive | Evidence navigator: free-text search, area and kind filters combine, and the URL keeps the state | findability | `evidence navigator: search, area and kind filters, URL state` |
+| TC-41 | positive | A learning-lab quiz can be answered and is scored in the browser | learning lab | `learning lab: a quiz can be answered and scored` |
 | TC-32 | coverage | Every documented rule is exercised by an example | traceability | `every rule the module can fire has a plain-language explanation` |
 
 ## Manual (designed, not automated here)
@@ -99,7 +104,7 @@ The 30 decision examples **are** test cases; they live in [`exception-decision.f
 | NFR-04 recovery | TC-26 (read path), TC-M1 |
 | NFR-05 privacy | TC-27 |
 | NFR-06 access | TC-12, TC-13 |
-| NFR-07 accessibility | TC-29, TC-M6 |
+| NFR-07 accessibility | TC-29, TC-38, TC-M6 |
 | NFR-08 auditability | TC-07 |
 | NFR-09 changeability | rule examples run in CI on every change |
 

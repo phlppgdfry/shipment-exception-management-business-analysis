@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Evidence navigator — shipment exceptions case</title>
+  <meta name="description" content="Search every artefact of the shipment exception case by area and by kind of evidence: executed, validated, documented, proposed, simulated or pending.">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="../">Shipment exceptions <span class="brand-sub">Evidence navigator</span></a>
+      <nav aria-label="Sections">
+        <a href="../for/recruiters/">For recruiters</a>
+        <a href="./" aria-current="page">Evidence</a>
+        <a href="../control-tower/">Control tower</a>
+        <a href="../learning/">Learning Lab</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="wrap">
+    <section class="sub-hero" style="padding-left:0;padding-right:0">
+      <p class="crumbs"><a href="../">Overview</a> / Evidence navigator</p>
+      <h1>Every artefact, findable</h1>
+      <p class="lede">Case navigation, not a project tool. Filter by area or by the kind of evidence — and see at a glance what was executed, what is a design and what was simulated.</p>
+    </section>
+
+    <div class="ws">
+      <nav class="ws-side" aria-label="Areas" id="areas"></nav>
+      <div>
+        <div class="ws-search">
+          <label for="q" class="sr-only">Search the evidence</label>
+          <input id="q" type="search" placeholder="Search: BPMN, idempotency, BAT, WSJF, DMN…" autocomplete="off">
+          <div class="ws-filters" role="group" aria-label="Kind of evidence" id="filters"></div>
+        </div>
+        <p id="count" class="small" role="status" aria-live="polite">Loading the evidence…</p>
+        <ol class="ws-list" id="list"></ol>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>Independent portfolio case study based on a fictional organisation. Generated from <code>portfolio/content/case.json</code> and the documentation by <code>scripts/build_site.py</code>.</p>
+    </div>
+  </footer>
+
+  <script type="module">
+    const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+    const params = new URLSearchParams(location.search);
+    const state = { area: params.get("area") || "All", status: params.get("status") || "all", q: params.get("q") || "" };
+    let data;
+
+    function sync() {
+      const p = new URLSearchParams();
+      if (state.area !== "All") p.set("area", state.area);
+      if (state.status !== "all") p.set("status", state.status);
+      if (state.q) p.set("q", state.q);
+      history.replaceState(null, "", p.toString() ? `?${p}` : location.pathname);
+    }
+
+    function render() {
+      const areas = ["All", ...data.areas];
+      document.getElementById("areas").innerHTML = areas
+        .map((a) => `<button type="button" data-area="${esc(a)}" aria-pressed="${a === state.area}">${esc(a)}</button>`)
+        .join("");
+      const statuses = [["all", "All kinds"], ...Object.entries(data.statuses).map(([k, v]) => [k, v.label])];
+      document.getElementById("filters").innerHTML = statuses
+        .map(([k, label]) => `<button type="button" class="${k === "all" ? "" : "status-" + k}" data-status="${k}" aria-pressed="${k === state.status}" title="${esc(k === "all" ? "" : data.statuses[k].meaning)}">${esc(label)}</button>`)
+        .join("");
+      const q = state.q.trim().toLowerCase();
+      const shown = data.items.filter(
+        (i) =>
+          (state.area === "All" || i.area === state.area) &&
+          (state.status === "all" || i.status === state.status) &&
+          (!q || [i.title, i.summary, i.path, i.id, i.area, i.keywords || ""].join(" ").toLowerCase().includes(q)),
+      );
+      document.getElementById("count").textContent = `${shown.length} of ${data.items.length} artefacts`;
+      document.getElementById("list").innerHTML = shown.length
+        ? shown
+            .map(
+              (i) => `<li class="ws-item">
+                <h3><a href="${esc(i.url)}">${i.id ? `<span class="ev-id">${esc(i.id)}</span> ` : ""}${esc(i.title)}</a></h3>
+                ${i.summary ? `<p>${esc(i.summary)}</p>` : ""}
+                <div class="meta"><span class="status status-${esc(i.status)}">${esc(data.statuses[i.status].label)}</span><span>${esc(i.area)}</span><code>${esc(i.path)}</code></div>
+              </li>`,
+            )
+            .join("")
+        : `<li class="ws-item"><h3>Nothing matches</h3><p>Try another word, or choose “All” for area and kind.</p></li>`;
+    }
+
+    document.getElementById("areas").addEventListener("click", (e) => {
+      const b = e.target.closest("button[data-area]");
+      if (!b) return;
+      state.area = b.dataset.area;
+      sync();
+      render();
+    });
+    document.getElementById("filters").addEventListener("click", (e) => {
+      const b = e.target.closest("button[data-status]");
+      if (!b) return;
+      state.status = b.dataset.status;
+      sync();
+      render();
+    });
+    const input = document.getElementById("q");
+    input.value = state.q;
+    input.addEventListener("input", () => {
+      state.q = input.value;
+      sync();
+      render();
+    });
+
+    try {
+      const res = await fetch("evidence.json");
+      if (!res.ok) throw new Error(String(res.status));
+      data = await res.json();
+      render();
+    } catch {
+      document.getElementById("count").textContent = "The evidence list could not be loaded. Browse the documentation map on GitHub instead.";
+    }
+  </script>
+</body>
+</html>

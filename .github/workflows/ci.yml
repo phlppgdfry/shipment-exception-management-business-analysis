@@ -28,6 +28,8 @@ jobs:
         run: npx --yes @redocly/cli@2.62.1 lint demo/mock-apis/openapi.yaml --config demo/mock-apis/redocly.yaml
       - name: Learning page data is up to date with the Markdown
         run: python3 scripts/build_learning.py --check
+      - name: Landing page and evidence navigator are up to date with the manifest
+        run: python3 scripts/build_site.py --check
       - name: Documentation links
         run: python3 scripts/check-links.py
       - name: Deliverables, IDs, traceability, BPMN, learning lab
@@ -53,6 +55,8 @@ jobs:
         run: npm run lint
       - name: Type check
         run: npm run typecheck
+      - name: BPMN 2.0 and DMN 1.3 against their meta-models
+        run: npm run check:models
       - name: Unit and contract tests
         run: npm test
       - name: Production build (static export)
@@ -61,6 +65,8 @@ jobs:
         run: npx playwright install --with-deps chromium
       - name: End-to-end, routes and accessibility (axe)
         run: npm run test:e2e
+      - name: Static case site — pages, navigator, learning lab, accessibility (axe)
+        run: npm run test:site
       - uses: actions/upload-artifact@v4
         if: failure()
         with:

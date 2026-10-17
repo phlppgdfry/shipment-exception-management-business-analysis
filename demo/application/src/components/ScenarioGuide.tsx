@@ -4,7 +4,7 @@
 import Link from "next/link";
 import { useState, type ReactNode } from "react";
 import { SCENARIO } from "@/domain/seed";
-import { formatWindow } from "@/domain/time";
+import { formatCustomerWindow } from "@/domain/time";
 import { useCommand, useDemoState } from "@/state/store";
 import type { DemoState } from "@/domain/types";
 import { Button, InlineError, RuleChip, SeverityBadge, cx } from "./ui";
@@ -52,7 +52,7 @@ export function ScenarioGuide() {
       title: "A shipment starts on schedule",
       body: (
         <>
-          <strong>{REF}</strong> — Northfield Foods (key account), reefer with chilled food, window {formatWindow(state.shipments[REF].originalWindow ?? state.shipments[REF].deliveryWindow)}, gated in at the
+          <strong>{REF}</strong> — Northfield Foods (key account), reefer with chilled food, window {formatCustomerWindow(state.shipments[REF].originalWindow ?? state.shipments[REF].deliveryWindow)} UK time, gated in at the
           continental terminal for sailing E-312.
         </>
       ),
@@ -129,7 +129,7 @@ export function ScenarioGuide() {
       title: "The exception is resolved",
       body: (
         <>
-          A new window {formatWindow(SCENARIO.newWindow)} is agreed with the consignee. The order is re-evaluated: back inside the window → <em>recovered</em>, and because the customer was told, they get a “back on schedule” message <RuleChip id="ER-13" text={RULE_TEXT["ER-13"]} />. Maren then resolves with reason
+          A new window {formatCustomerWindow(SCENARIO.newWindow)} (UK time) is agreed with the consignee. The order is re-evaluated: back inside the window → <em>recovered</em>, and because the customer was told, they get a “back on schedule” message <RuleChip id="ER-13" text={RULE_TEXT["ER-13"]} />. Maren then resolves with reason
           “new window agreed” (AC-04.3).
         </>
       ),
