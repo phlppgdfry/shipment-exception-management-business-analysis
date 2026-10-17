@@ -77,7 +77,7 @@ function DemoControls() {
     <div className="border-t border-border bg-surface-2">
       <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-x-5 gap-y-2 px-4 py-2 text-sm">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="text-muted">Demo clock (UK time)</span>
+          <span className="text-muted">Planner clock (Europe/Brussels)</span>
           <time dateTime={state.now} className="tabular font-semibold" aria-live="polite" data-testid="demo-clock">
             {formatDayTime(state.now)}
           </time>

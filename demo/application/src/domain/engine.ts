@@ -6,7 +6,7 @@
 // so a failed command never leaves a half-applied change behind.
 import { evaluate, PARAMS } from "./rules";
 import type { Cause, Decision, OwnerGroup, Severity } from "./rules";
-import { addMinutes, formatDayTime, formatWindow, londonDateKey, minutesBetween } from "./time";
+import { formatCustomerDayTime, formatCustomerWindow, addMinutes, formatDayTime, formatWindow, londonDateKey, minutesBetween } from "./time";
 import {
   ACTIVE_STATUSES,
   type CustomerMessage,
@@ -147,9 +147,9 @@ function buildMessage(state: DemoState, ex: ExceptionRecord, s: Shipment, kind: 
   const content =
     kind === "RECOVERY"
       ? {
-          headline: `Back on schedule: delivery ${formatWindow(s.deliveryWindow)}`,
-          agreedWindow: formatWindow(s.deliveryWindow),
-          newEta: formatDayTime(s.eta),
+          headline: `Back on schedule: delivery ${formatCustomerWindow(s.deliveryWindow)}`,
+          agreedWindow: formatCustomerWindow(s.deliveryWindow),
+          newEta: formatCustomerDayTime(s.eta),
           reasonCategory: REASON_CATEGORY[ex.type],
           nextStep: "No action needed. We will let you know if anything changes.",
           plannerNote: null,
@@ -157,7 +157,7 @@ function buildMessage(state: DemoState, ex: ExceptionRecord, s: Shipment, kind: 
       : kind === "ACTION_REQUIRED"
         ? {
             headline: "Action required: customs documents needed",
-            agreedWindow: formatWindow(agreed),
+            agreedWindow: formatCustomerWindow(agreed),
             newEta: null,
             reasonCategory: REASON_CATEGORY[ex.type],
             nextStep: "Please send the missing information to the customs desk so the unit can be released.",
@@ -166,10 +166,10 @@ function buildMessage(state: DemoState, ex: ExceptionRecord, s: Shipment, kind: 
         : {
             headline:
               ex.severity === "CRITICAL"
-                ? `Significant delay: expected ${formatDayTime(s.eta)}`
-                : `Delayed: expected ${formatDayTime(s.eta)}`,
-            agreedWindow: formatWindow(agreed),
-            newEta: formatDayTime(s.eta),
+                ? `Significant delay: expected ${formatCustomerDayTime(s.eta)}`
+                : `Delayed: expected ${formatCustomerDayTime(s.eta)}`,
+            agreedWindow: formatCustomerWindow(agreed),
+            newEta: formatCustomerDayTime(s.eta),
             reasonCategory: REASON_CATEGORY[ex.type],
             nextStep:
               ex.severity === "CRITICAL"

@@ -14,12 +14,6 @@ const nextConfig: NextConfig = {
   turbopack: {
     // The repository root: the app imports the shared rule module (site/assets) and the mock data (demo/mock-data).
     root: path.join(__dirname, "..", ".."),
-    rules: {
-      "*.css": {
-        loaders: ["@tailwindcss/turbopack"],
-        as: "*.css",
-      },
-    },
   },
 };
 

@@ -44,3 +44,7 @@ Number and profile of participants; moderator = designer (bias); fictional data.
 ---
 
 [Usability test plan](usability-test-plan.md) · [Documentation map](../00-documentation-map.md)
+
+## 2026-10-17 preparation
+
+P1 and P2 sessions remain **NOT EXECUTED**. Use the timed tasks and capture fields in [the current handover](control-tower-handover.md). Automated browser tests are not participant results.

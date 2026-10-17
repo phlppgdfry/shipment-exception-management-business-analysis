@@ -17,7 +17,7 @@
 | A1 | Benefits review said "week-6 readout" while the heading and the pilot plan put the stage gate in week 12 | minor (inconsistency) | wording aligned to week 12 | **fixed** |
 | A2 | Context said the TMS spike was in sprint 1; registers and sprint plan say sprint 0 | minor | duplicated assumptions table in context replaced by a pointer to the register | **fixed** |
 | A3 | IT architect and security appeared in D-03 but not in the stakeholder analysis | moderate | added to the stakeholder matrix | **fixed** |
-| A4 | The demo shows UK time in the workbench, while refinement Q10 decided the planner's local time there | moderate | recorded as a known demo simplification (UX-6, demo README) | **fixed** (documented) |
+| A4 | The demo shows UK time in the workbench, while refinement Q10 decided the planner's local time there | moderate | Implemented 2026-10-17: planner Europe/Brussels, customer Europe/London; DST-safe inputs and regression tests | **fixed** (implemented) |
 | A5 | The lifecycle had gaps (recover before acknowledge; late again after recovery; pending message when recovering) | significant | found by building the demo; OQ-01, OQ-03, OQ-04 answered as proposals; state diagram updated | **fixed** (proposal) |
 | A6 | Held (missing-status) exceptions have a response time but no escalation path | moderate | decided in D-09 (escalate, stay held); timer boundary event in the TO-BE; tested (TC-33) | **fixed** |
 | A7 | Customer tracking API first exposed internal severity and message status | significant (privacy) | public message projection + unit and contract tests | **fixed** |

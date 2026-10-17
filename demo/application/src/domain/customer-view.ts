@@ -1,7 +1,7 @@
 // What the customer sees in the portal (US-05, US-10). It follows the messages that were actually sent,
 // not the internal exception: a held, minor, shadow or throttled exception does not change the customer view.
 import { effectiveWindow } from "./engine";
-import { formatDayTime, formatWindow } from "./time";
+import { formatCustomerDayTime as formatDayTime, formatCustomerWindow as formatWindow } from "./time";
 import type { CustomerMessage, DemoState } from "./types";
 
 export type CustomerStatusTone = "ok" | "delayed" | "critical" | "action";

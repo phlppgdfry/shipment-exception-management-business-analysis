@@ -72,3 +72,13 @@ test("shipment explorer: search, filter and open a detail page", async ({ page }
   await expect(page.getByRole("heading", { name: "Shipment D2D-48213" })).toBeVisible();
   await expect(page.getByLabel("Transport legs")).toContainText("Sailing E-312");
 });
+
+
+test("planner inputs use Brussels and reject a missing DST wall clock", async ({ page }) => {
+  await page.goto("exceptions/?id=EX-1008");
+  await expect(page.getByText("Planner clock (Europe/Brussels)")).toBeVisible();
+  await page.getByLabel("New ETA from the haulier (Europe/Brussels)").fill("2026-03-29T02:30");
+  await page.getByRole("button", {name:"Haulier confirms a delay"}).click();
+  await expect(page.locator("main").getByRole("alert")).toContainText("clocks change");
+  await expect(page.getByText("Held: nothing goes to the customer")).toBeVisible();
+});

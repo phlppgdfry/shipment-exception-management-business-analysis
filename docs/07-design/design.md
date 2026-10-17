@@ -32,7 +32,7 @@
 | 6 | The customer message is one fixed block: window, new ETA, reason, next step; window in the subject line | US-05, sprint review feedback |
 | 7 | Deliberately not designed: live map, filters, bulk actions | discovery, prioritisation |
 
-## How the design was validated
+## Simulated design validation (fictional stakeholders)
 
 | When | With whom | Method | What changed |
 |---|---|---|---|
@@ -44,10 +44,16 @@
 
 ## Why a prototype as well as Figma
 
-Figma shows the screens; the [prototype](https://phlppgdfry.github.io/shipment-exception-management-business-analysis/prototype/) shows **behaviour**: what happens when the ETA changes again, when a held exception is confirmed, when nobody acknowledges in time. Those are the moments where analysis errors hide, and they are hard to show with static frames. The prototype runs on the same rule module as the acceptance tests, so it cannot drift from the specification.
+Figma shows the screens; the [prototype](https://phlppgdfry.github.io/shipment-exception-management-business-analysis/prototype/) shows **behaviour**: what happens when the ETA changes again, when a held exception is confirmed, when nobody acknowledges in time. Those are the moments where analysis errors hide, and they are hard to show with static frames. The prototype runs on the same rule module as the acceptance tests, which limits drift in decision outcomes. Screens, copy, permissions and lifecycle behaviour still require separate checks.
 
 *All screens use fictional data. No employer branding is used or imitated.*
 
 ---
 
 [Documentation map](../00-documentation-map.md) · Next: [Sprint plan →](../08-delivery/sprint-plan.md)
+
+## Current Control Tower handover
+
+[Screen/state map, editable vector, time-zone contract, two-person usability protocol and ownership exercises](control-tower-handover.md). Historical validation above is simulated; real participant sessions are still NOT EXECUTED.
+
+Native Figma additions (2026-10-17): [current handover](https://www.figma.com/design/W6hussB5UmQf2wwWEkeJnI?node-id=3-52) and [actual app captures](https://www.figma.com/design/W6hussB5UmQf2wwWEkeJnI?node-id=6-2). Vector flow and screenshot references have different purposes; neither is a claim of real user validation.

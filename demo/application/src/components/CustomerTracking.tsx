@@ -3,7 +3,7 @@
 // It is built only from messages that were actually sent — never from internal severity, rules or owners.
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
-import { formatDayTime } from "@/domain/time";
+import { formatCustomerDayTime as formatDayTime } from "@/domain/time";
 import { useDemoState, useQuery } from "@/state/store";
 import { Button, EmptyState, ErrorState, Field, LoadingState, PageHeader, cx, inputClass } from "./ui";
 

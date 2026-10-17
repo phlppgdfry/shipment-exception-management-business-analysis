@@ -5,16 +5,15 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useMemo, useState } from "react";
 import { CAUSE_LABEL, OWNER_LABEL, REASON_CODES, isActive } from "@/domain/engine";
 import { RULE_TEXT } from "@/domain/rules";
-import { addMinutes, formatDayTime, formatDuration, formatWindow, minutesBetween } from "@/domain/time";
+import { fromLocalInput, toLocalInput, addMinutes, formatDayTime, formatDuration, formatWindow, minutesBetween } from "@/domain/time";
 import type { DemoState, ExceptionRecord, OwnerGroup, ReasonCode } from "@/domain/types";
 import { useActingAs, useCommand, useDemoState, useQuery } from "@/state/store";
 import { Button, Card, EmptyState, ErrorState, Field, InlineError, LoadingState, MessageStatusBadge, PageHeader, RuleChip, SeverityBadge, StatusBadge, cx, inputClass } from "./ui";
 
 const SEVERITY_ORDER = { CRITICAL: 0, MAJOR: 1, MINOR: 2, NONE: 3 };
 const key = () => (typeof crypto !== "undefined" && "randomUUID" in crypto ? crypto.randomUUID() : String(Math.random()));
-/** Inputs are in UK local time; in the demo week (February) that equals UTC. */
-const fromInput = (v: string) => (v ? `${v}:00Z` : "");
-const toInput = (iso: string) => iso.slice(0, 16);
+const fromInput = fromLocalInput;
+const toInput = toLocalInput;
 
 /** AC-03.1: critical first, then major, then minor; within a severity the earliest due time first. */
 export function sortForWorkbench(list: ExceptionRecord[]) {
@@ -201,6 +200,7 @@ function ExceptionDetail({ ex, state, actorId }: { ex: ExceptionRecord; state: D
       <Actions ex={ex} state={state} actorId={actorId} canWork={canWork} />
 
       <Card title="Customer messages for this order">
+        <p className="mb-3 text-xs text-muted">Message content: Europe/London. Message timestamps: Europe/Brussels.</p>
         {messages.length === 0 ? (
           <p className="text-sm text-muted">{ex.status === "HELD" ? "Held: nothing goes to the customer until a planner confirms the situation with the haulier (ER-07)." : "No message — the rules did not ask for one (minor, ER-10)."}</p>
         ) : (
@@ -311,7 +311,7 @@ function Actions({ ex, state, actorId, canWork }: { ex: ExceptionRecord; state: 
             <p className="mb-2 text-sm text-muted">The customer hears nothing until you confirm. Many hauliers simply did not update the app (D-04).{ex.escalatedAt ? ` Escalated to the shift lead at ${formatDayTime(ex.escalatedAt)}: not confirmed within the response time — still held (D-09).` : ""}</p>
             <div className="flex flex-wrap items-end gap-3">
               <Button onClick={() => run((api) => api.confirmStatus(ex.exceptionId, "ON_TIME", null, actorId, key()))}>Haulier confirms on time</Button>
-              <Field label="New ETA from the haulier (UK time)" htmlFor="neweta">
+              <Field label="New ETA from the haulier (Europe/Brussels)" htmlFor="neweta">
                 <input id="neweta" type="datetime-local" className={inputClass} value={newEta} onChange={(e) => setNewEta(e.target.value)} />
               </Field>
               <Button variant="primary" onClick={() => run((api) => api.confirmStatus(ex.exceptionId, "DELAYED", fromInput(newEta), actorId, key()))}>Haulier confirms a delay</Button>
@@ -351,8 +351,8 @@ function Actions({ ex, state, actorId, canWork }: { ex: ExceptionRecord; state: 
             <fieldset className="rounded-md border border-border p-3" disabled={!canWork || pending}>
               <legend className="px-1 text-sm font-medium">Agree a new delivery window (AC-04.2)</legend>
               <div className="flex flex-wrap items-end gap-3">
-                <Field label="From (UK time)" htmlFor="ws"><input id="ws" type="datetime-local" className={inputClass} value={winStart} onChange={(e) => setWinStart(e.target.value)} /></Field>
-                <Field label="To (UK time)" htmlFor="we"><input id="we" type="datetime-local" className={inputClass} value={winEnd} onChange={(e) => setWinEnd(e.target.value)} /></Field>
+                <Field label="From (Europe/Brussels)" htmlFor="ws"><input id="ws" type="datetime-local" className={inputClass} value={winStart} onChange={(e) => setWinStart(e.target.value)} /></Field>
+                <Field label="To (Europe/Brussels)" htmlFor="we"><input id="we" type="datetime-local" className={inputClass} value={winEnd} onChange={(e) => setWinEnd(e.target.value)} /></Field>
                 <Button onClick={() => run((api) => api.replan(ex.exceptionId, { start: fromInput(winStart), end: fromInput(winEnd) }, actorId, key()))}>Record new window</Button>
               </div>
               <p className="mt-2 text-xs text-muted">The order is re-evaluated. Back inside the window → recovered; the customer gets “back on schedule” only if they were told before (ER-13).</p>

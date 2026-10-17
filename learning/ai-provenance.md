@@ -22,3 +22,7 @@
 - Een claim in een cv, motivatiebrief of gesprek gaat **niet verder dan niveau 2** van het onderliggende artefact.
 - "Ik heb dit gemaakt" zeg je alleen over niveau 3. Voor de rest: "ik heb dit met AI-hulp opgebouwd en [concreet] gecontroleerd en aangepast".
 - De beslissingen in de case (D-01 – D-08) zijn **fictieve** beslissingen van fictieve eigenaars — geen beslissingen die de eigenaar in een echte organisatie nam.
+
+## 2026-10-17 additions
+
+Time-zone conversion, DST checks and the design handover were added with AI assistance. No owner-review level was raised. Complete the [three ownership exercises](../docs/07-design/control-tower-handover.md) and attach your actual work before updating a level.

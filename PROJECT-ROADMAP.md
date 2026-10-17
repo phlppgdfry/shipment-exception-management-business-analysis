@@ -1,6 +1,6 @@
 # Project roadmap — charter, acceptance criteria and status
 
-> **What this is:** the charter of this repository as a portfolio and learning project, the acceptance criteria it is held to, what is done and verified, and what remains. **For:** the owner and anyone who wants to know how complete the repository really is. Status as of **2026-10-12**.
+> **What this is:** the charter of this repository as a portfolio and learning project, the acceptance criteria it is held to, what is done and verified, and what remains. **For:** the owner and anyone who wants to know how complete the repository really is. Status as of **2026-10-17**.
 
 ## Charter
 
@@ -49,7 +49,7 @@
 | Gap | Why it is open | Next step |
 |---|---|---|
 | Owner's own exercises, competency tasks and AI-provenance levels | only the owner can do them | start with module 1, T1, T4, T5 ([learning lab](learning/README.md)) |
-| Control tower screens not in Figma | not created in this environment | import screenshots or html.to.design into the existing Figma file |
+| Current Control Tower design handover | editable vector imported into the native Figma handover page; current app captures prepared | [handover](docs/07-design/control-tower-handover.md); verify current Figma page |
 | Interview deck not opened in PowerPoint/Keynote here | no presentation app available | open once and fix any layout issue |
 | Review items A10, A11, C5, C7, C8 | need a real owner or real practice | see [reviews](docs/13-quality/reviews.md) |
 | Usability test with 1–2 real people | only the owner can run it | [plan and script](docs/07-design/usability-test-plan.md) ready; [report](docs/07-design/usability-test-report.md) template empty |
