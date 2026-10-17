@@ -4,10 +4,10 @@
 
 | | |
 |---|---|
-| Run | 2026-10-12 06:16 UTC |
-| Commit | `e9a4b07` |
+| Run | 2026-10-17 06:00 UTC |
+| Commit | `ef292de` |
 | Environment | Node v24.21.0, darwin 24.6.0 |
-| Automated tests | **110 of 110 passed** |
+| Automated tests | **141 of 141 passed** |
 
 This page contains only **executed** results. The fictional team's system test and the Business Acceptance Testing with key users are **simulated** and live in the [BAT log](bat-log.md) — they are not test results of this repository. The same checks run in [CI](../../.github/workflows/ci.yml) on every push; the CI run of a commit is the authoritative result for that commit.
 
@@ -16,8 +16,9 @@ This page contains only **executed** results. The fictional team's system test a
 | Suite | Tool | Tests | Passed | Result | Time |
 |---|---|---:|---:|---|---:|
 | Acceptance examples and DMN consistency against the rule module | node --test | 36 | 36 | ✅ pass | 0.1 s |
-| Engine, lifecycle and API contract | Vitest | 48 | 48 | ✅ pass | 1.2 s |
-| Browser: scenario, workbench, routes, accessibility (axe, WCAG 2.2 A/AA) | Playwright + axe-core | 26 | 26 | ✅ pass | 22.9 s |
+| Engine, lifecycle and API contract | Vitest | 54 | 54 | ✅ pass | 1 s |
+| Browser: control tower scenario, workbench, routes, accessibility (axe, WCAG 2.2 A/AA) | Playwright + axe-core | 27 | 27 | ✅ pass | 11.7 s |
+| Browser: case site pages, manifest, evidence navigator, quiz, accessibility (axe, WCAG 2.2 A/AA) | Playwright + axe-core | 24 | 24 | ✅ pass | 7.8 s |
 
 | Check | Command | Result |
 |---|---|---|
@@ -26,8 +27,10 @@ This page contains only **executed** results. The fictional team's system test a
 | Production build (static export) | `npm run build` | ✅ pass |
 | Mock data up to date | `node demo/mock-data/generate.mjs --check` | ✅ pass |
 | OpenAPI lint (Redocly) | `npx @redocly/cli lint demo/mock-apis/openapi.yaml` | ✅ pass |
+| BPMN 2.0 / DMN 1.3 against their meta-models | `cd demo/application && npm run check:models` | ✅ pass |
+| Generated site and evidence index up to date | `python3 scripts/build_site.py --check` | ✅ pass |
 | Documentation links | `python3 scripts/check-links.py` | ✅ pass |
-| Repository quality gate (deliverables, IDs, traceability, test names, BPMN, learning lab) | `python3 scripts/validate_repo.py` | ✅ pass |
+| Repository quality gate (deliverables, IDs, traceability, test names, BPMN, learning lab, portfolio manifest) | `python3 scripts/validate_repo.py` | ✅ pass |
 
 
 
@@ -76,7 +79,7 @@ This page contains only **executed** results. The fictional team's system test a
 
 </details>
 
-<details><summary><b>Engine, lifecycle and API contract</b> — 48/48</summary>
+<details><summary><b>Engine, lifecycle and API contract</b> — 54/54</summary>
 
 | Test | Result |
 |---|---|
@@ -128,10 +131,16 @@ This page contains only **executed** results. The fictional team's system test a
 | scenario.test.ts › the morning replay › Oakridge was told 'major' at 09:15; the 09:45 update with the same severity is throttled (ER-12) | passed |
 | scenario.test.ts › the morning replay › the control group is in shadow mode: exceptions logged, nothing sent (AC-13.1) | passed |
 | scenario.test.ts › the morning replay › the cancelled sailing's critical message went out without a note after 5 minutes (D-08) | passed |
+| time.test.ts › planner and consignee zones › same instant has different planner/customer wall clocks in winter and summer | passed |
+| time.test.ts › planner and consignee zones › destination day classification does not change with planner date | passed |
+| time.test.ts › planner and consignee zones › midnight windows show both local dates | passed |
+| time.test.ts › planner and consignee zones › planner input round-trips in both seasons | passed |
+| time.test.ts › planner and consignee zones › spring gap and autumn overlap are rejected instead of shifting the delivery | passed |
+| time.test.ts › planner and consignee zones › invalid input is rejected | passed |
 
 </details>
 
-<details><summary><b>Browser: scenario, workbench, routes, accessibility (axe, WCAG 2.2 A/AA)</b> — 26/26</summary>
+<details><summary><b>Browser: control tower scenario, workbench, routes, accessibility (axe, WCAG 2.2 A/AA)</b> — 27/27</summary>
 
 | Test | Result |
 |---|---|
@@ -161,6 +170,38 @@ This page contains only **executed** results. The fictional team's system test a
 | desktop › a held exception past its response time is escalated but stays held (D-09) | passed |
 | desktop › a TMS outage shows an error with retry, and recovers (NFR-04) | passed |
 | desktop › shipment explorer: search, filter and open a detail page | passed |
+| desktop › planner inputs use Brussels and reject a missing DST wall clock | passed |
+
+</details>
+
+<details><summary><b>Browser: case site pages, manifest, evidence navigator, quiz, accessibility (axe, WCAG 2.2 A/AA)</b> — 24/24</summary>
+
+| Test | Result |
+|---|---|
+| desktop › site / renders and passes axe (WCAG 2.2 A/AA) | passed |
+| desktop › site /for/recruiters/ renders and passes axe (WCAG 2.2 A/AA) | passed |
+| desktop › site /for/business-analyst/ renders and passes axe (WCAG 2.2 A/AA) | passed |
+| desktop › site /workspace/ renders and passes axe (WCAG 2.2 A/AA) | passed |
+| desktop › site /learning/ renders and passes axe (WCAG 2.2 A/AA) | passed |
+| desktop › site /process/ renders and passes axe (WCAG 2.2 A/AA) | passed |
+| desktop › site /rules/ renders and passes axe (WCAG 2.2 A/AA) | passed |
+| desktop › site /event-storming/ renders and passes axe (WCAG 2.2 A/AA) | passed |
+| desktop › site /prototype/ renders and passes axe (WCAG 2.2 A/AA) | passed |
+| desktop › landing: evidence register and status tiers come from the manifest | passed |
+| desktop › evidence navigator: search, area and kind filters, URL state | passed |
+| desktop › learning lab: a quiz can be answered and scored | passed |
+| mobile › site / renders and passes axe (WCAG 2.2 A/AA) | passed |
+| mobile › site /for/recruiters/ renders and passes axe (WCAG 2.2 A/AA) | passed |
+| mobile › site /for/business-analyst/ renders and passes axe (WCAG 2.2 A/AA) | passed |
+| mobile › site /workspace/ renders and passes axe (WCAG 2.2 A/AA) | passed |
+| mobile › site /learning/ renders and passes axe (WCAG 2.2 A/AA) | passed |
+| mobile › site /process/ renders and passes axe (WCAG 2.2 A/AA) | passed |
+| mobile › site /rules/ renders and passes axe (WCAG 2.2 A/AA) | passed |
+| mobile › site /event-storming/ renders and passes axe (WCAG 2.2 A/AA) | passed |
+| mobile › site /prototype/ renders and passes axe (WCAG 2.2 A/AA) | passed |
+| mobile › landing: evidence register and status tiers come from the manifest | passed |
+| mobile › evidence navigator: search, area and kind filters, URL state | passed |
+| mobile › learning lab: a quiz can be answered and scored | passed |
 
 </details>
 
