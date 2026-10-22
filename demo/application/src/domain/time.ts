@@ -18,7 +18,7 @@ export function formatDayTime(iso: string | null | undefined, zone = PLANNER_TIM
 export function formatTime(iso: string | null | undefined, zone = PLANNER_TIME_ZONE): string {
   return iso ? formatter(zone,"time").format(new Date(iso)) : "—";
 }
-function dateKey(iso: string, zone: string) { return formatter(zone,"date").format(new Date(iso)); }
+function dateKey(iso: string, zone: string) { const parts = Object.fromEntries(formatter(zone,"date").formatToParts(new Date(iso)).map(p => [p.type,p.value])); return `${parts.year}-${parts.month}-${parts.day}`; }
 export function formatWindow(w: { start: string; end: string } | null | undefined, zone = PLANNER_TIME_ZONE): string {
   if (!w) return "no window";
   return dateKey(w.start,zone) === dateKey(w.end,zone) ? `${formatDayTime(w.start,zone)}–${formatTime(w.end,zone)}` : `${formatDayTime(w.start,zone)} – ${formatDayTime(w.end,zone)}`;

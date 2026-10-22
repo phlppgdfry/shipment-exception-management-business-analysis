@@ -25,6 +25,9 @@ test("resolving with reason 'other' and no note is refused (AC-04.3)", async ({ 
 });
 
 test("missing status is held; 'haulier confirms on time' closes it without a customer message (US-08)", async ({ page }) => {
+  await page.goto("track/?ref=D2D-48288");
+  await expect(page.getByRole("heading", {level:2,name:"Status awaiting confirmation"})).toBeVisible();
+  await expect(page.getByText("EX-1008")).toHaveCount(0);
   await page.goto("exceptions/?id=EX-1008");
   await expect(page.getByText("Held: nothing goes to the customer")).toBeVisible();
   await page.getByRole("button", { name: "Haulier confirms on time" }).click();

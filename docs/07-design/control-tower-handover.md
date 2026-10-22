@@ -51,3 +51,7 @@ Each evidence entry needs the owner's date, unaided explanation, concrete diff, 
 [Combined screen reference sheet](figma/control-tower-current-screens.svg) · [Native Figma app captures](https://www.figma.com/design/W6hussB5UmQf2wwWEkeJnI?node-id=6-2), imported next to the vector handover on the Control Tower page.
 
 Captured from the current production static export in Chromium, not mock Figma data. Re-capture after a screen change; the browser checks cover the mapped behaviours separately.
+
+## P2 customer-status correction — 2026-10-22
+
+The current customer card can show a neutral Awaiting confirmation state before any customer message is sent. A missing/held or stale status is not evidence of being on schedule. See [P1/P2 remediation](../13-quality/p1-p2-remediation.md) for the rule, tests and API compatibility. Earlier Figma screenshots predate this correction.

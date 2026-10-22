@@ -252,6 +252,7 @@ export interface DemoState {
   processedEventIds: string[];
   /** Idempotency keys of commands already applied (proposed API: Idempotency-Key header). */
   processedCommandKeys: string[];
+  commandReceipts?: Record<string, { fingerprint: string; result: unknown }>;
   counters: { exception: number; message: number; task: number; audit: number };
   scenarioStep: number;
 }

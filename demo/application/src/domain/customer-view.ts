@@ -1,10 +1,10 @@
 // What the customer sees in the portal (US-05, US-10). It follows the messages that were actually sent,
-// not the internal exception: a held, minor, shadow or throttled exception does not change the customer view.
+// never exposes internal exception details. Neutral confidence information may indicate an unconfirmed status.
 import { effectiveWindow } from "./engine";
 import { formatCustomerDayTime as formatDayTime, formatCustomerWindow as formatWindow } from "./time";
 import type { CustomerMessage, DemoState } from "./types";
 
-export type CustomerStatusTone = "ok" | "delayed" | "critical" | "action";
+export type CustomerStatusTone = "unknown" | "ok" | "delayed" | "critical" | "action";
 
 /** A sent message as the customer sees it: no severity, status, owner or rule IDs (NFR-05, NFR-08 stays internal). */
 export interface PublicMessage {
@@ -71,14 +71,15 @@ export function customerView(state: DemoState, orderRef: string): CustomerView |
     messages: sent.map(toPublic),
   };
   if (!last) {
+    const unconfirmed = s.status !== 'DELIVERED' && (state.exceptions.some(e => e.orderRef === orderRef && (e.status === 'HELD' || (e.type === 'STATUS_MISSING' && !['CLOSED','RESOLVED','RECOVERED'].includes(e.status)))) || Date.parse(state.now) - Date.parse(s.lastStatusAt) > 120 * 60000);
     return {
       ...base,
-      tone: "ok",
-      headline: s.status === "DELIVERED" ? "Delivered" : "On schedule",
+      tone: unconfirmed ? "unknown" : "ok",
+      headline: unconfirmed ? "Status awaiting confirmation" : s.status === "DELIVERED" ? "Delivered" : "On schedule",
       agreedWindow: window ? formatWindow(window) : `around ${formatDayTime(s.plannedEta)} (window not agreed)`,
-      expected: window ? "Within your delivery window" : formatDayTime(effectiveWindow(s).window.start),
+      expected: unconfirmed ? `Last reported ETA: ${formatDayTime(s.eta)} (awaiting confirmation)` : window ? "Within your delivery window" : formatDayTime(effectiveWindow(s).window.start),
       reason: null,
-      nextStep: null,
+      nextStep: unconfirmed ? "We are checking the latest transport status. Your agreed delivery window is shown above." : null,
       plannerNote: null,
     };
   }

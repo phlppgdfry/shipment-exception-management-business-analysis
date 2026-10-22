@@ -1,6 +1,6 @@
 "use client";
 // The customer portal's order card (US-05, US-10): what the customer sees, in their words.
-// It is built only from messages that were actually sent — never from internal severity, rules or owners.
+// Published delays follow sent messages; unconfirmed status has a neutral confidence indicator.
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { formatCustomerDayTime as formatDayTime } from "@/domain/time";
@@ -8,6 +8,7 @@ import { useDemoState, useQuery } from "@/state/store";
 import { Button, EmptyState, ErrorState, Field, LoadingState, PageHeader, cx, inputClass } from "./ui";
 
 const TONE = {
+  unknown: { box: "border-border", badge: "bg-surface text-ink", label: "Awaiting confirmation" },
   ok: { box: "border-ok", badge: "bg-ok-soft text-ok", label: "On schedule" },
   delayed: { box: "border-major", badge: "bg-major-soft text-major", label: "Delayed" },
   critical: { box: "border-critical", badge: "bg-critical-soft text-critical", label: "Significant delay" },

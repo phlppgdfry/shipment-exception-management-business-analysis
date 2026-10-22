@@ -389,7 +389,7 @@ components:
       name: Idempotency-Key
       in: header
       required: false
-      description: A retried command with the same key returns the first result and changes nothing.
+      description: Exact replay of the same command, target, actor and canonical payload returns the original result without mutation. Different content or an unverifiable legacy receipt returns 409 idempotency-conflict.
       schema: { type: string, format: uuid }
 
   responses:
@@ -608,7 +608,7 @@ components:
         orderRef: { type: string }
         customerName: { type: string }
         pilot: { type: boolean }
-        tone: { type: string, enum: [ok, delayed, critical, action] }
+        tone: { type: string, enum: [unknown, ok, delayed, critical, action] }
         headline: { type: string }
         progress: { type: string }
         agreedWindow: { type: string }
@@ -643,3 +643,7 @@ components:
         title: { type: string }
         status: { type: integer }
         detail: { type: string }
+
+# Idempotency-Key: same command, target, actor and canonical payload replays the original result.
+# Reusing a key with different content returns 409 idempotency-conflict, without a state change.
+# Legacy receipts without payload proof also return 409; a new operation needs a new key.

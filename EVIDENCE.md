@@ -29,3 +29,5 @@ Each artefact carries one of six evidence statuses — executed, validated model
 ## Honest summary
 
 This repository shows how I work through one feature end to end, from "should we do this at all?" to "is it working?". It is the evidence behind the interview conversation, not a substitute for team experience. Every decision in it is one I can explain: why this option, what the alternative was, what could go wrong, who decides and what happens if it fails.
+
+P1/P2 correction: [calendar boundaries, neutral unconfirmed customer status and payload-bound idempotency](docs/13-quality/p1-p2-remediation.md), with domain, contract and browser regressions.

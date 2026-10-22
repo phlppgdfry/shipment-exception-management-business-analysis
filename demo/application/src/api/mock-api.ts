@@ -48,6 +48,12 @@ export interface Faults {
   tmsUnavailable: boolean;
 }
 
+function canonical(value: unknown): string {
+  if (Array.isArray(value)) return `[${value.map(canonical).join(',')}]`;
+  if (value && typeof value === 'object') return `{${Object.keys(value).sort().map(k=>`${JSON.stringify(k)}:${canonical((value as Record<string,unknown>)[k])}`).join(',')}}`;
+  return JSON.stringify(value) ?? 'null';
+}
+
 type Listener = () => void;
 
 export class MockControlTowerApi {
@@ -108,16 +114,23 @@ export class MockControlTowerApi {
     return structuredClone(fn(this.state));
   }
 
-  private async command<T>(fn: (draft: DemoState) => T, idempotencyKey?: string): Promise<T> {
+  private async command<T>(fn: (draft: DemoState) => T, idempotencyKey?: string, identity?: unknown): Promise<T> {
     await this.wait();
+    const fingerprint = canonical(identity);
     if (idempotencyKey && this.state.processedCommandKeys.includes(idempotencyKey)) {
-      // Same Idempotency-Key again: the proposed API returns the original result and changes nothing.
-      return undefined as T;
+      const receipt = this.state.commandReceipts?.[idempotencyKey];
+      // Legacy v1 sessions have no payload proof. Refuse their key rather than silently accepting it.
+      if (!receipt || receipt.fingerprint !== fingerprint) throw new ApiError({ type:'https://example.org/problems/idempotency-conflict', title:'Idempotency key conflict', status:409, detail:'This key belongs to another command or an unverifiable legacy request. Use a new key for a new operation.' });
+      return structuredClone(receipt.result) as T;
     }
     const draft = structuredClone(this.state);
     try {
       const result = fn(draft);
-      if (idempotencyKey) draft.processedCommandKeys.push(idempotencyKey);
+      if (idempotencyKey) {
+        draft.processedCommandKeys.push(idempotencyKey);
+        draft.commandReceipts ??= {};
+        Object.defineProperty(draft.commandReceipts, idempotencyKey, { value:{fingerprint,result:structuredClone(result)}, enumerable:true, writable:true, configurable:true });
+      }
       this.state = draft;
       this.emit();
       return result;
@@ -154,13 +167,13 @@ export class MockControlTowerApi {
     });
 
   // POST /v1/exceptions/{id}/acknowledge · /assign · /actions · /confirm-status · /replan · /resolve
-  acknowledge = (id: string, actorId: string, key?: string) => this.command((d) => acknowledge(d, id, actorId), key);
-  assign = (id: string, assigneeId: string, actorId: string, key?: string) => this.command((d) => assign(d, id, assigneeId, actorId), key);
-  addAction = (id: string, text: string, actorId: string, key?: string) => this.command((d) => addAction(d, id, text, actorId), key);
+  acknowledge = (id: string, actorId: string, key?: string) => this.command((d) => acknowledge(d, id, actorId), key, ["acknowledge",id,actorId]);
+  assign = (id: string, assigneeId: string, actorId: string, key?: string) => this.command((d) => assign(d, id, assigneeId, actorId), key, ["assign",id,assigneeId,actorId]);
+  addAction = (id: string, text: string, actorId: string, key?: string) => this.command((d) => addAction(d, id, text, actorId), key, ["addAction",id,text,actorId]);
   confirmStatus = (id: string, outcome: "ON_TIME" | "DELAYED", newEta: string | null, actorId: string, key?: string) =>
-    this.command((d) => confirmStatus(d, id, outcome, newEta, actorId), key);
-  replan = (id: string, window: TimeWindow, actorId: string, key?: string) => this.command((d) => replan(d, id, window, actorId), key);
-  resolve = (id: string, reason: ReasonCode, note: string, actorId: string, key?: string) => this.command((d) => resolve(d, id, reason, note, actorId), key);
+    this.command((d) => confirmStatus(d, id, outcome, newEta, actorId), key, ["confirmStatus",id,outcome,newEta,actorId]);
+  replan = (id: string, window: TimeWindow, actorId: string, key?: string) => this.command((d) => replan(d, id, window, actorId), key, ["replan",id,window,actorId]);
+  resolve = (id: string, reason: ReasonCode, note: string, actorId: string, key?: string) => this.command((d) => resolve(d, id, reason, note, actorId), key, ["resolve",id,reason,note,actorId]);
 
   /**
    * Scenario step 6 as ONE command: register the action and, if a message is waiting for a note, send it with the note.
@@ -171,11 +184,11 @@ export class MockControlTowerApi {
       addAction(d, id, text, actorId);
       const pending = messageId ? d.messages.find((m) => m.messageId === messageId && m.status === "PENDING_NOTE") : undefined;
       if (pending) sendWithNote(d, pending.messageId, note, actorId);
-    }, key);
+    }, key, ["respondAndSend",id,text,messageId,note,actorId]);
 
   // POST /v1/messages/{id}/send · POST /v1/call-tasks/{id}/complete
-  sendWithNote = (messageId: string, note: string, actorId: string, key?: string) => this.command((d) => sendWithNote(d, messageId, note, actorId), key);
-  completeCallTask = (taskId: string, outcome: string, actorId: string, key?: string) => this.command((d) => completeCallTask(d, taskId, outcome, actorId), key);
+  sendWithNote = (messageId: string, note: string, actorId: string, key?: string) => this.command((d) => sendWithNote(d, messageId, note, actorId), key, ["sendWithNote",messageId,note,actorId]);
+  completeCallTask = (taskId: string, outcome: string, actorId: string, key?: string) => this.command((d) => completeCallTask(d, taskId, outcome, actorId), key, ["completeCallTask",taskId,outcome,actorId]);
 
   // Demo-only controls (no counterpart in the proposed API)
   advanceClock = (minutes: number) => this.command((d) => advanceClock(d, minutes));
