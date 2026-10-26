@@ -22,7 +22,7 @@ A business analysis case from opportunity to production readiness — framed as 
 | **Hiring manager** | [hiring manager view](portfolio/views/hiring-manager-view.md) — ambiguity, trade-offs, ownership | 10 min |
 | **Architect, developer, tester** | [technical view](portfolio/views/technical-view.md) — boundaries, contract, ADRs, runbook | 15 min |
 | **Analyst who wants everything** | [documentation map](docs/00-documentation-map.md) or the [evidence navigator](https://phlppgdfry.github.io/shipment-exception-management-business-analysis/workspace/) | 30+ min |
-| **Learning the methods (Dutch)** | [Learning Lab](learning/README.md) — 10 modules, quizzes, competency tasks, interview defence | ±60 h |
+| **Learning the methods (Dutch)** | [Learning Lab](learning/README.md) — 10 modules, quizzes, competency tasks | ±60 h |
 
 The [role requirement matrix](portfolio/role-requirement-matrix.md) maps a typical IT business analyst profile to evidence **and** to what still needs practical validation.
 
@@ -104,7 +104,7 @@ npm run test:e2e && npm run test:site                             # browser + ac
 
 ## How this repository was made
 
-The case and the materials were built with AI assistance (Claude). What the owner has reviewed, changed and can do independently is tracked openly in [`learning/ai-provenance.md`](learning/ai-provenance.md) — and starts at zero, because files existing proves nothing.
+The case and the materials were built with AI assistance (Claude). What the owner has reviewed, changed and can do independently is tracked per artefact, and starts at zero — because files existing proves nothing. That table and the interview preparation are kept **privately**, outside this public repository; they are available on request in a conversation.
 
 ## Notes on realism and assumptions
 

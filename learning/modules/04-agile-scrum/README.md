@@ -151,7 +151,7 @@ Schrijf een korte notitie aan de PO (max. 1 pagina): wat staat er op het spel, w
 3. Hoe prioriteer je als iedereen zegt dat alles "Must" is?
 4. Wat staat er in een goede Definition of Ready?
 5. Een developer heeft midden in de sprint een vraag die je niet kunt beantwoorden. Wat doe je?
-6. Heb je in een professioneel Scrum-team gewerkt? (Eerlijk antwoorden — zie [transferverhaal](../../interview-preparation/transfer-story.md).)
+6. Heb je in een professioneel Scrum-team gewerkt? (Eerlijk antwoorden — zie transferverhaal.)
 
 ## 12. Competentiechecklist
 

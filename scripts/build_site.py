@@ -251,7 +251,7 @@ def landing() -> str:
   <footer class="site-footer">
     <div class="wrap">
       <p>{escape(case["disclosure"])} It contains no confidential information from any real employer or the hiring company.</p>
-      <p>Philippe Godfroy · <a href="https://github.com/phlppgdfry">GitHub</a> · <a href="{BLOB}portfolio/README.md">Portfolio kit</a> · <a href="{BLOB}learning/ai-provenance.md">AI provenance</a></p>
+      <p>Philippe Godfroy · <a href="https://github.com/phlppgdfry">GitHub</a> · <a href="{BLOB}portfolio/README.md">Portfolio kit</a></p>
     </div>
   </footer>
 </body>
@@ -290,11 +290,12 @@ def navigator() -> dict:
             title = first_heading(md) or rel
             e = curated.get(rel)
             status = e["status"] if e else ("simulated" if re.search(r"(?i)\*simulated", md[:1200]) else "proposed" if prefix in ("docs/10-go-live", "docs/12-architecture") else "documented")
-            heads = [re.sub(r"[*`#]", "", h).strip() for h in re.findall(r"^#{2,3} (.+)$", md, re.M)]
-            ids = sorted(set(re.findall(r"\b(?:BR|FR|NFR|ER|US|EN|AC|D|K|BAT|DEF|TC|ADR|OQ|UX)-\d+(?:\.\d+)?\b", md)))[:40]
+            # test-results.md is rewritten by every test run; indexing its content would make this index stale each time
+            volatile = rel.endswith("test-results.md")
+            heads = [] if volatile else [re.sub(r"[*`#]", "", h).strip() for h in re.findall(r"^#{2,3} (.+)$", md, re.M)]
+            ids = [] if volatile else sorted(set(re.findall(r"\b(?:BR|FR|NFR|ER|US|EN|AC|D|K|BAT|DEF|TC|ADR|OQ|UX)-\d+(?:\.\d+)?\b", md)))[:40]
             body = re.sub(r"\]\([^)]*\)|https?://\S+|```.*?```", " ", md, flags=re.S).lower()
-            # test-results.md is rewritten by every test run; indexing its body would make this index stale each time
-            words = [] if rel.endswith("test-results.md") else list(dict.fromkeys(w for w in re.findall(r"[a-z][a-z0-9-]{2,}", body)))[:400]
+            words = [] if volatile else list(dict.fromkeys(w for w in re.findall(r"[a-z][a-z0-9-]{2,}", body)))[:400]
             items.append({"id": e["id"] if e else "", "title": title, "path": rel, "url": BLOB + rel, "area": area, "status": status, "summary": e["why"] if e else summary(md), "keywords": " ".join(heads + ids + words)})
     for e in case["evidence"]:
         p = e["path"].split("#")[0]

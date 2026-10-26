@@ -3,7 +3,7 @@
 ## Quiz
 
 ### Q1 — B
-Een verzonnen getal sneuvelt bij de eerste doorvraag of referentiecheck. Zie het [transferverhaal](../interview-preparation/transfer-story.md).
+Een verzonnen getal sneuvelt bij de eerste doorvraag of referentiecheck. Zie het transferverhaal.
 
 ### Q2 — B
 Eigen fout, oorzaak begrepen, gevolg voor de klant, concrete actie — de beste soort verhaal.
@@ -12,7 +12,7 @@ Eigen fout, oorzaak begrepen, gevolg voor de klant, concrete actie — de beste 
 STAR structureert een echte ervaring; een hypothetische case vraagt een aanpak (begrijpen → verkennen → analyseren → afwegen → specificeren → communiceren).
 
 ### Q4 — C
-Specifiek en controleerbaar. Houd de [AI-herkomsttabel](../ai-provenance.md) bij zodat je het kunt waarmaken.
+Specifiek en controleerbaar. Houd de AI-herkomsttabel bij zodat je het kunt waarmaken.
 
 ### Q5 — B
 Nooit beweren dat je interne processen kent; je fictieve case is gebaseerd op publieke bronnen en dat zeg je erbij.

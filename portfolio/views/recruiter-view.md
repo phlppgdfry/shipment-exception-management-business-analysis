@@ -14,6 +14,6 @@
 
 **Relevant for** IT business analyst, functional analyst and product roles in logistics, supply chain or any operations-heavy business.
 
-**What it does not claim.** No real employer, stakeholders or deployment; not a substitute for years in a professional Scrum team. Built with AI assistance — what the author reviewed is tracked in [AI provenance](../../learning/ai-provenance.md).
+**What it does not claim.** No real employer, stakeholders or deployment; not a substitute for years in a professional Scrum team. Built with AI assistance — what the author reviewed is tracked in AI provenance.
 
 [Hiring manager view →](hiring-manager-view.md) · [Technical view →](technical-view.md) · [Role requirement matrix →](../role-requirement-matrix.md)

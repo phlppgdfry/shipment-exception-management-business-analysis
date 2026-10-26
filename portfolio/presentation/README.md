@@ -13,6 +13,6 @@
 | 7 | Backlog | WSJF + dependencies; PO trade-offs | why US-03 stayed |
 | 8 | Demo | the control tower; building found 5 open questions and a privacy leak | live demo, guided scenario |
 | 9 | Acceptance & go-live | BAT majors from real readers; DEF-04 = my mistake; go/no-go | readiness checklist, rollback |
-| 10 | Shown / not claimed | evidence labels; AI-assisted, tracked openly; two questions for them | [AI provenance](../../learning/ai-provenance.md) |
+| 10 | Shown / not claimed | evidence labels; AI-assisted, tracked openly; two questions for them | AI provenance |
 
-Practise with [simulation 1](../../learning/interview-preparation/simulations.md) and the [defence table](../../learning/interview-preparation/defend-your-case.md).
+Practise with simulation 1 and the defence table.

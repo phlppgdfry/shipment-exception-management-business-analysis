@@ -235,7 +235,7 @@ card(s, M, Inches(1.8), Inches(5.9), Inches(3.6), "Shown", ["How I frame a probl
 card(s, Inches(6.8), Inches(1.8), Inches(5.9), Inches(3.6), "Not claimed", ["Real stakeholders, sprints or BAT — all simulated.", "Years in a professional Scrum team.", "That the case was built without help: it was built with AI assistance; what I reviewed is tracked openly."], title_color=CRIT, size=15)
 text(s, M, Inches(5.7), Inches(12), Inches(1.0), [[("My questions for you: ", {"bold": True, "color": ACCENT}), ("How does refinement work in your team, and who writes the acceptance criteria? Where do business analysts add the most value here today?", {})]], size=17)
 footer(s, 10)
-notes(s, "Close by being precise about evidence. Then switch to their world with the two questions. Only claim AI-assisted work at the level recorded in learning/ai-provenance.md.")
+notes(s, "Close by being precise about evidence. Then switch to their world with the two questions. Only claim AI-assisted work at the level recorded in your private provenance table.")
 
 OUT.parent.mkdir(parents=True, exist_ok=True)
 prs.save(OUT)

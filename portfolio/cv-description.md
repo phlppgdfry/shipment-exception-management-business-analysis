@@ -1,6 +1,6 @@
 # CV project description
 
-> Use only the claims that match your ownership level in [`learning/ai-provenance.md`](../learning/ai-provenance.md): nothing above level 2 ("checked and adapted myself"). Never present the case as client work.
+> Use only the claims that match your ownership level in your private provenance table: nothing above level 2 ("checked and adapted myself"). Never present the case as client work.
 
 ## English — short (CV, 3 lines)
 

@@ -4,7 +4,7 @@
 
 ## Waarom deze cursus bestaat
 
-Deze repository toont een volledige BA-aanpak. Maar **gemaakt is niet beheerst**: de case is grotendeels met AI-hulp opgebouwd ([AI-herkomst](ai-provenance.md)). Competentie toon je pas met je **eigen** antwoorden op de oefeningen, de uitdagingen en de [competentietaken](assessment/README.md) — niet doordat de bestanden bestaan. De [voortgangstracker](progress-tracker.md) begint daarom overal op "niet gestart".
+Deze repository toont een volledige BA-aanpak. Maar **gemaakt is niet beheerst**: de case is grotendeels met AI-hulp opgebouwd (de herkomst per artefact wordt privé bijgehouden). Competentie toon je pas met je **eigen** antwoorden op de oefeningen, de uitdagingen en de [competentietaken](assessment/README.md) — niet doordat de bestanden bestaan. De [voortgangstracker](progress-tracker.md) begint daarom overal op "niet gestart".
 
 ## Curriculum
 
@@ -19,7 +19,7 @@ Deze repository toont een volledige BA-aanpak. Maar **gemaakt is niet beheerst**
 | 7 | [Testen, UAT en oplevering](modules/07-testing-delivery/README.md) | 5 u | teststrategie, BAT, go/no-go, support |
 | 8 | [Logistiek domein](modules/08-logistics-domain/README.md) | 4 u | context, glossary, bronnen |
 | 9 | [Realistische case-oefeningen](modules/09-case-exercises/README.md) | 8 u | de hele case + demo |
-| 10 | [Interviewvoorbereiding](modules/10-interview-preparation/README.md) | 6 u | vragen, defend your case, simulaties |
+| 10 | Interviewvoorbereiding | 6 u | vragen, defend your case, simulaties |
 | — | [Competentietaken met rubrics](assessment/README.md) | 10 u | 10 praktijktaken |
 
 **Totaal ±60 uur.** Moeilijkheid loopt op: 1, 8 → 2, 4, 5 → 3, 6, 7 → 9, 10 → competentietaken.
@@ -62,7 +62,7 @@ De oorspronkelijke opdracht stelde aparte mappen voor curriculum, tutorials, exe
 |---|---|
 | curriculum/ | deze README |
 | tutorials/, exercises/, quizzes/, practical-challenges/ | `modules/NN-*/` (secties 6–9) |
-| interview-preparation/ | [`interview-preparation/`](interview-preparation/README.md) |
+| interview-preparation/ | privé bijgehouden, buiten deze repo |
 | glossary/ | [`glossary.md`](glossary.md) |
 | progress-tracker.md | [`progress-tracker.md`](progress-tracker.md) |
 | (praktische competentietoets) | [`assessment/`](assessment/README.md) |

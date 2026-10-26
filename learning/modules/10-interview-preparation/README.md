@@ -1,6 +1,6 @@
 # Module 10 — Interviewvoorbereiding
 
-> **Niveau:** alle · **Tijd:** ±6 uur + oefengesprekken · **Voorkennis:** modules 1–9 · **Materiaal:** [interviewvragen (45)](../../interview-preparation/questions.md), [Defend your case](../../interview-preparation/defend-your-case.md), [simulaties](../../interview-preparation/simulations.md), [transferverhaal](../../interview-preparation/transfer-story.md), [AI-herkomst](../../ai-provenance.md)
+> **Niveau:** alle · **Tijd:** ±6 uur + oefengesprekken · **Voorkennis:** modules 1–9 · **Materiaal:** interviewvragen (45), Defend your case, simulaties, transferverhaal, AI-herkomst
 
 ## 1. Leerdoelen
 
@@ -25,7 +25,7 @@ Een interviewer wil drie dingen weten: **kun je het** (vakkennis), **doe je het 
 
 ### STAR — en wanneer niet
 
-**STAR** (Situation, Task, Action, Result) is geschikt voor "vertel over een keer dat…". Voor een portfoliocase is het eerlijk om te zeggen: *"In deze case — die fictief is — heb ik…"*. Voor echte ervaring gebruik je je eigen voorbeelden (zie [transferverhaal](../../interview-preparation/transfer-story.md)); verzin er geen.
+**STAR** (Situation, Task, Action, Result) is geschikt voor "vertel over een keer dat…". Voor een portfoliocase is het eerlijk om te zeggen: *"In deze case — die fictief is — heb ik…"*. Voor echte ervaring gebruik je je eigen voorbeelden (zie transferverhaal); verzin er geen.
 
 Voor case-vragen ("wat zou je doen als…") werkt de **BA-lus** van module 9 beter dan STAR.
 
@@ -35,7 +35,7 @@ Zeg wat de case níét bewijst: geen echte stakeholders, geen echte sprints, gee
 
 ### AI-gebruik
 
-Deze repository is grotendeels met AI-hulp gemaakt. De vraag "heb je dit zelf gemaakt?" is legitiem. Een sterk antwoord: wat de AI deed, wat jij controleerde, wat je veranderde, en wat je nu zonder hulp kunt — met bewijs uit je eigen [oefenwerk](../../my-work/README.md). Houd de [AI-herkomsttabel](../../ai-provenance.md) eerlijk bij.
+Deze repository is grotendeels met AI-hulp gemaakt. De vraag "heb je dit zelf gemaakt?" is legitiem. Een sterk antwoord: wat de AI deed, wat jij controleerde, wat je veranderde, en wat je nu zonder hulp kunt — met bewijs uit je eigen [oefenwerk](../../my-work/README.md). Houd de AI-herkomsttabel eerlijk bij.
 
 ## 3. Begrippen
 
@@ -59,11 +59,7 @@ Deze repository is grotendeels met AI-hulp gemaakt. De vraag "heb je dit zelf ge
 
 | Gebruik | Waarvoor |
 |---|---|
-| [45 interviewvragen](../../interview-preparation/questions.md) | per onderwerp: verwachte concepten, sterk en zwak antwoord, doorvragen |
-| [Defend your case](../../interview-preparation/defend-your-case.md) | per artefact de 8 verdedigingsvragen |
-| [Simulaties](../../interview-preparation/simulations.md) | drie gesprekken om hardop te oefenen |
-| [Transferverhaal](../../interview-preparation/transfer-story.md) | jouw ervaring vertalen zonder te overclaimen (met invulvelden) |
-| [AI-herkomst](../../ai-provenance.md) | wat AI deed en wat jij controleerde |
+| Vragenlijst (45), defence-tabel, simulaties, transferverhaal en AI-herkomst | privé bijgehouden buiten deze repo — vraag ernaar in een gesprek |
 | [EVIDENCE.md](../../../EVIDENCE.md) | wat de case wel en niet claimt |
 
 ## 6. Stap voor stap (tutorial)
@@ -90,7 +86,7 @@ Vergelijk met de [modeluitwerking](../../answer-keys/10-interview-preparation.md
 
 ## 8. Zelfstandige uitdaging
 
-**Neem een gesprek van 20 minuten op** (met iemand, of met jezelf en een timer) op basis van [simulatie 1](../../interview-preparation/simulations.md). Beluister het en scoor jezelf.
+**Neem een gesprek van 20 minuten op** (met iemand, of met jezelf en een timer) op basis van simulatie 1. Beluister het en scoor jezelf.
 
 **Rubric (10 p.):** vakinhoud juist (3) · structuur en bondigheid (2) · eerlijk over grenzen, geen overclaim (2) · doorvragen goed opgevangen (2) · eigen vraag aan de interviewer (1). Noteer drie verbeterpunten in `learning/my-work/module-10.md`.
 
@@ -111,7 +107,7 @@ Vergelijk met de [modeluitwerking](../../answer-keys/10-interview-preparation.md
 
 ## 11. Interviewvragen
 
-Alle vragen staan in de [vragenlijst](../../interview-preparation/questions.md) (45, in 9 thema's). Begin met deze vijf:
+Alle vragen staan in de vragenlijst (45, in 9 thema's). Begin met deze vijf:
 
 1. Vertel over je case in twee minuten.
 2. Wat zou je anders doen als je dit opnieuw deed?

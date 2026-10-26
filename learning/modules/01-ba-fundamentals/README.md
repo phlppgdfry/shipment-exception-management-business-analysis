@@ -155,7 +155,7 @@ Schrijf (max. 1 pagina):
 4. Hoe ga je om met een stakeholder met veel invloed en veel weerstand?
 5. Welke discoverytechniek kies je wanneer mensen zeggen dat ze iets doen, maar je twijfelt of dat klopt?
 
-Voorbeeldantwoorden en valkuilen: [interviewvoorbereiding](../../interview-preparation/questions.md#1-de-rol-van-de-business-analyst).
+Voorbeeldantwoorden en valkuilen: interviewvoorbereiding.
 
 ## 12. Competentiechecklist
 

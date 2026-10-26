@@ -106,7 +106,7 @@ Veel interviews hebben een **case-opdracht**. Oefen deze hardop met een timer va
 3. "Je krijgt twee tegenstrijdige requirements van twee managers. Wat doe je?"
 4. "Een feature is live en de cijfers verbeteren niet. Wat analyseer je?"
 
-Uitgewerkte aanpakken: [interviewvragen, case-based](../../interview-preparation/questions.md#9-case-based-scenarios).
+Uitgewerkte aanpakken: interviewvragen, case-based.
 
 ## 12. Competentiechecklist
 
@@ -119,4 +119,4 @@ Uitgewerkte aanpakken: [interviewvragen, case-based](../../interview-preparation
 
 ---
 
-[← Module 8](../08-logistics-domain/README.md) · [Learning Lab](../../README.md) · Volgende: [Module 10 — Interviewvoorbereiding →](../10-interview-preparation/README.md)
+[← Module 8](../08-logistics-domain/README.md) · [Learning Lab](../../README.md) · Volgende: Module 10 — Interviewvoorbereiding →

@@ -74,14 +74,12 @@ Everything is indexed in the [documentation map](docs/00-documentation-map.md) a
 1. Read the [Learning Lab README](learning/README.md) — curriculum, six-week schedule, how competence is earned.
 2. Start with [module 1](learning/modules/01-ba-fundamentals/README.md); put your own answers in [`learning/my-work/`](learning/my-work/README.md).
 3. Quiz yourself on the [interactive page](https://phlppgdfry.github.io/shipment-exception-management-business-analysis/learning/).
-4. Track your level in the [progress tracker](learning/progress-tracker.md) and the [AI provenance table](learning/ai-provenance.md).
+4. Track your level in the [progress tracker](learning/progress-tracker.md); the per-artefact AI-provenance table is kept privately, outside this repository.
 5. Finish with the [competency tasks](learning/assessment/README.md) — reference solutions are kept separate.
 
 ## 5. Preparing for interviews
 
-- [45 questions](learning/interview-preparation/questions.md) with strong and weak answers and follow-ups
-- [Defend your case](learning/interview-preparation/defend-your-case.md) — 12 artefacts × 8 questions
-- [Simulations](learning/interview-preparation/simulations.md) and the [transfer story](learning/interview-preparation/transfer-story.md)
+- The question bank (45 questions), the per-artefact defence table, the simulations and the transfer story are kept **privately**, outside this public repository
 - [Interview deck (10 slides)](portfolio/presentation/interview-deck.pptx) with a [talk track](portfolio/presentation/README.md)
 - [CV project description](portfolio/cv-description.md) — use only claims that match your ownership level
 

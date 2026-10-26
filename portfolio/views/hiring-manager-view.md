@@ -25,4 +25,4 @@ Thirteen rules in one table, also as [DMN](../../docs/05-requirements/dmn/except
 - "Tell me about a mistake." — DEF-04.
 - "What did building the demo teach you?" — five open questions (OQ-01 – OQ-05) and a privacy leak.
 
-The [defence table](../../learning/interview-preparation/defend-your-case.md) lists the weak spots too.
+The defence table lists the weak spots too.

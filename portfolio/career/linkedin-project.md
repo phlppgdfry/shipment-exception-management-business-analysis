@@ -1,6 +1,6 @@
 # LinkedIn — project entry and post
 
-> Use only claims that match your ownership level in [AI provenance](../../learning/ai-provenance.md). Never present the case as client work.
+> Use only claims that match your ownership level in AI provenance. Never present the case as client work.
 
 ## Projects section
 

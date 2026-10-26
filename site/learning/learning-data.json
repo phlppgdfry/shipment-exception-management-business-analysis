@@ -1863,7 +1863,7 @@
       }
      ],
      "answer": "B",
-     "explanation": "Een verzonnen getal sneuvelt bij de eerste doorvraag of referentiecheck. Zie het [transferverhaal](https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/learning/interview-preparation/transfer-story.md)."
+     "explanation": "Een verzonnen getal sneuvelt bij de eerste doorvraag of referentiecheck. Zie het transferverhaal."
     },
     {
      "id": "Q2",
@@ -1935,7 +1935,7 @@
       }
      ],
      "answer": "C",
-     "explanation": "Specifiek en controleerbaar. Houd de [AI-herkomsttabel](https://github.com/phlppgdfry/shipment-exception-management-business-analysis/blob/main/learning/ai-provenance.md) bij zodat je het kunt waarmaken."
+     "explanation": "Specifiek en controleerbaar. Houd de AI-herkomsttabel bij zodat je het kunt waarmaken."
     },
     {
      "id": "Q5",

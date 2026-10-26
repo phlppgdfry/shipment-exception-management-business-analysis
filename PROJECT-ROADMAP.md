@@ -52,12 +52,12 @@
 
 | Gap | Why it is open | Next step |
 |---|---|---|
-| Owner's own exercises, competency tasks and AI-provenance levels | only the owner can do them | start with module 1, T1, T4, T5 ([learning lab](learning/README.md)) |
+| Owner's own exercises, competency tasks and AI-provenance levels (tracked privately) | only the owner can do them | start with module 1, T1, T4, T5 ([learning lab](learning/README.md)) |
 | Dark mode as a second Figma variable mode | the Figma Starter plan allows one mode per collection | keep dark mode in CSS only, or move the file to a paid plan |
 | Interview deck not opened in PowerPoint/Keynote here | no presentation app available | open once and fix any layout issue |
 | Review items A10, A11, C5, C7, C8 | need a real owner or real practice | see [reviews](docs/13-quality/reviews.md) |
 | Usability test with 1–2 real people | only the owner can run it | [plan and script](docs/07-design/usability-test-plan.md) ready; [report](docs/07-design/usability-test-report.md) template empty |
-| Real-world validation (stakeholders, data, BAT) | fictional case | listed per artefact in [defend your case](learning/interview-preparation/defend-your-case.md) |
+| Real-world validation (stakeholders, data, BAT) | fictional case | listed per artefact in the private defence pack |
 | Bounces (FR-09), load testing | not in the demo | proposed in the [architecture](docs/12-architecture/integration-and-api.md) |
 | Screen-reader walkthrough | needs a person | TC-M6 |
 

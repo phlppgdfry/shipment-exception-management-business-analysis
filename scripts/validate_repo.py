@@ -69,7 +69,6 @@ REQUIRED = [
     "demo/README.md", "demo/mock-apis/openapi.yaml", "demo/mock-data/generate.mjs", "demo/application/package.json",
     "site/assets/exception-rules.mjs", "tests/exception-rules.test.mjs",
     "learning/README.md", "learning/progress-tracker.md", "learning/glossary.md",
-    "learning/interview-preparation/README.md", "learning/interview-preparation/questions.md", "learning/interview-preparation/defend-your-case.md",
     "learning/assessment/README.md",
     "portfolio/README.md", "portfolio/cv-description.md", "portfolio/case-study/case-study.pdf", "portfolio/presentation/interview-deck.pptx",
     "portfolio/content/case.json", "portfolio/role-requirement-matrix.md", "portfolio/views/recruiter-view.md", "portfolio/views/hiring-manager-view.md",
