@@ -4,10 +4,10 @@
 
 | | |
 |---|---|
-| Run | 2026-10-17 06:00 UTC |
-| Commit | `ef292de` |
+| Run | 2026-10-26 19:12 UTC |
+| Commit | `7208c09 + uncommitted changes` |
 | Environment | Node v24.21.0, darwin 24.6.0 |
-| Automated tests | **141 of 141 passed** |
+| Automated tests | **147 of 147 passed** |
 
 This page contains only **executed** results. The fictional team's system test and the Business Acceptance Testing with key users are **simulated** and live in the [BAT log](bat-log.md) — they are not test results of this repository. The same checks run in [CI](../../.github/workflows/ci.yml) on every push; the CI run of a commit is the authoritative result for that commit.
 
@@ -16,9 +16,9 @@ This page contains only **executed** results. The fictional team's system test a
 | Suite | Tool | Tests | Passed | Result | Time |
 |---|---|---:|---:|---|---:|
 | Acceptance examples and DMN consistency against the rule module | node --test | 36 | 36 | ✅ pass | 0.1 s |
-| Engine, lifecycle and API contract | Vitest | 54 | 54 | ✅ pass | 1 s |
-| Browser: control tower scenario, workbench, routes, accessibility (axe, WCAG 2.2 A/AA) | Playwright + axe-core | 27 | 27 | ✅ pass | 11.7 s |
-| Browser: case site pages, manifest, evidence navigator, quiz, accessibility (axe, WCAG 2.2 A/AA) | Playwright + axe-core | 24 | 24 | ✅ pass | 7.8 s |
+| Engine, lifecycle and API contract | Vitest | 60 | 60 | ✅ pass | 1 s |
+| Browser: control tower scenario, workbench, routes, accessibility (axe, WCAG 2.2 A/AA) | Playwright + axe-core | 27 | 27 | ✅ pass | 11.4 s |
+| Browser: case site pages, manifest, evidence navigator, quiz, accessibility (axe, WCAG 2.2 A/AA) | Playwright + axe-core | 24 | 24 | ✅ pass | 8.9 s |
 
 | Check | Command | Result |
 |---|---|---|
@@ -79,7 +79,7 @@ This page contains only **executed** results. The fictional team's system test a
 
 </details>
 
-<details><summary><b>Engine, lifecycle and API contract</b> — 54/54</summary>
+<details><summary><b>Engine, lifecycle and API contract</b> — 60/60</summary>
 
 | Test | Result |
 |---|---|
@@ -119,6 +119,12 @@ This page contains only **executed** results. The fictional team's system test a
 | lifecycle.test.ts › held exceptions past their response time (D-09) › escalation happens once | passed |
 | lifecycle.test.ts › out-of-order events (TA-4) › an ETA update that happened before the last applied one is logged but not applied | passed |
 | lifecycle.test.ts › out-of-order events (TA-4) › a newer ETA update is still applied | passed |
+| p1p2.test.ts › ER-03 next day crosses 2026-01-31T23:30:00Z | passed |
+| p1p2.test.ts › ER-03 next day crosses 2026-12-31T23:30:00Z | passed |
+| p1p2.test.ts › ER-03 next day crosses 2028-02-29T23:30:00Z | passed |
+| p1p2.test.ts › ER-03 next day crosses 2026-07-31T22:30:00Z | passed |
+| p1p2.test.ts › held and stale statuses never claim an on-schedule delivery; verified on-time status can | passed |
+| p1p2.test.ts › idempotent receipt binds operation, target, body and actor without partial mutation | passed |
 | scenario.test.ts › guided scenario: D2D-48213, reefer for a key account, sailing delayed 6 h › 1. the shipment starts on schedule | passed |
 | scenario.test.ts › guided scenario: D2D-48213, reefer for a key account, sailing delayed 6 h › 2–3. the sailing delay reaches every order on E-312; only orders outside their window become exceptions (ER-01) | passed |
 | scenario.test.ts › guided scenario: D2D-48213, reefer for a key account, sailing delayed 6 h › 4. classification: 280 min late → major, reefer → critical, key account → message + call task | passed |
