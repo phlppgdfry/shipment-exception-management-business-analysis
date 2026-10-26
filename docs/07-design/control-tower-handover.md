@@ -4,6 +4,24 @@ Updated 2026-10-17. Fictional case. The editable [vector handover](figma/control
 
 [Native Figma handover page](https://www.figma.com/design/W6hussB5UmQf2wwWEkeJnI?node-id=3-52) — imported SVG vectors, separate from the historical release-1 page. This is a static handover; interaction behaviour is verified in the working app.
 
+## Native screens (editable layers, added 2026-10-23)
+
+The current application is now rebuilt on the same Figma page as **native, editable layers** — auto-layout frames, live text and component instances, not screenshots. A designer can restyle, rename or extend them; a developer can read spacing and colour tokens off them.
+
+| Frame | Figma node | Shows |
+|---|---|---|
+| Exceptions — critical (EX-1012) | [`10:53`](https://www.figma.com/design/W6hussB5UmQf2wwWEkeJnI?node-id=10-53) | full 1440 px workbench: top bar, planner clock, filters, list, detail, rule explanation, actions |
+| Held exception (EX-1008) | [`11:128`](https://www.figma.com/design/W6hussB5UmQf2wwWEkeJnI?node-id=11-128) | the held state: no customer message until the haulier confirms (ER-07, D-04, D-09) |
+| Customer tracking — delayed | [`11:176`](https://www.figma.com/design/W6hussB5UmQf2wwWEkeJnI?node-id=11-176) | what the customer sees, in UK time, with the internal fields deliberately absent (NFR-05, D-05) |
+
+**Foundation.** A variable collection *Control Tower tokens* (16 colour variables, one Light mode) mirrors the CSS custom properties in `demo/application/src/app/globals.css`, so a colour change in the design maps to one token in code. Five components carry the repetition: `Severity chip` (four variants: critical, major, minor, held), `Status pill`, `Exception card`, `Rule row` and `Fact`.
+
+![Native Figma rebuild of the exception workbench, with the planner clock in Europe/Brussels](figma/native-workbench.png)
+
+*Figma renders of the native frames: [workbench](figma/native-workbench.png) · [held](figma/native-held.png) · [customer](figma/native-customer.png). These PNGs are exports for readers without Figma access; the editable layers live in the file.*
+
+**Limits.** Starter plan: one variable mode, so dark mode is in code only (`prefers-color-scheme` in `globals.css`), not as a second Figma mode. The frames are a design of the current build, not a prototype — interaction and state behaviour are verified by the browser tests, not here.
+
 ## Screen/state mapping
 
 | Stage | App route | Stories | Required states |

@@ -90,7 +90,7 @@
 | D6 | The case site itself was never tested — only the control tower | significant (quality claim) | Playwright + axe on every site page, desktop and mobile (TC-38 – TC-41); it found five real accessibility issues (contrast of step numbers and stickies, two scrollable regions not reachable by keyboard), all fixed | **fixed** |
 | D7 | BPMN and DMN were checked as XML, not as models | minor | `npm run check:models` validates against the BPMN 2.0 and DMN 1.3 meta-models in CI | **fixed** |
 | D8 | Executive material was one page in a folder called "application kit" | minor | A4 executive summary as PDF; material moved under `portfolio/` | **fixed** |
-| D9 | Control tower screens are not in the Figma file in their current state | moderate | [handover](../07-design/control-tower-handover.md) with editable vectors; native Figma cleanup blocked by the plan's limits | **open** |
+| D9 | Control tower screens were not in the Figma file in their current state | moderate | rebuilt on 2026-10-23 as native editable layers: a 16-variable token collection mirroring `globals.css`, five components (severity chip with four variants, status pill, exception card, rule row, fact) and three screens — workbench, held, customer tracking | **fixed** |
 
 ---
 
