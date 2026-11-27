@@ -145,7 +145,7 @@ function runAcceptanceExamples() {
     const name = (m[1].match(/name="([^"]*)"/) ?? [])[1] ?? "";
     const inner = m[3] ?? "";
     const status = /<failure\b/.test(inner) ? "failed" : /<skipped\b/.test(inner) ? "skipped" : "passed";
-    tests.push({ name: name.replace(/&quot;/g, '"').replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&apos;/g, "'"), status });
+    tests.push({ name: name.replace(/&quot;/g, '"').replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&apos;/g, "'").replace(/&amp;/g, "&"), status });
   }
   let commit = null;
   try {

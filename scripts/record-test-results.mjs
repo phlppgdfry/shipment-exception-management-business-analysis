@@ -31,7 +31,7 @@ const suites = [];
   const r = run(process.execPath, ["--test", "--test-reporter=junit", `--test-reporter-destination=${file}`, "tests/exception-rules.test.mjs", "tests/dmn-consistency.test.mjs"], root);
   const xml = readFileSync(file, "utf8");
   const tests = [...xml.matchAll(/<testcase\b([^>]*?)(\/>|>([\s\S]*?)<\/testcase>)/g)].map((m) => ({
-    name: ((m[1].match(/name="([^"]*)"/) ?? [])[1] ?? "").replace(/&quot;/g, '"').replace(/&amp;/g, "&").replace(/&gt;/g, ">").replace(/&lt;/g, "<").replace(/&apos;/g, "'"),
+    name: ((m[1].match(/name="([^"]*)"/) ?? [])[1] ?? "").replace(/&quot;/g, '"').replace(/&gt;/g, ">").replace(/&lt;/g, "<").replace(/&apos;/g, "'").replace(/&amp;/g, "&"),
     status: /<failure\b/.test(m[3] ?? "") ? "failed" : "passed",
   }));
   suites.push({ name: "Acceptance examples and DMN consistency against the rule module", tool: "node --test", command: "node --test tests/*.test.mjs", code: r.code, seconds: r.seconds, tests });
@@ -126,7 +126,7 @@ ${[...checks, { name: "Repository quality gate", ...gate }].filter((c) => c.code
 
 ## Every test
 
-${suites.map((s) => `<details><summary><b>${s.name}</b> — ${s.tests.filter((t) => t.status === "passed").length}/${s.tests.length}</summary>\n\n| Test | Result |\n|---|---|\n${s.tests.map((t) => `| ${t.name.replace(/\|/g, "\\|")} | ${t.status} |`).join("\n")}\n\n</details>`).join("\n\n")}
+${suites.map((s) => `<details><summary><b>${s.name}</b> — ${s.tests.filter((t) => t.status === "passed").length}/${s.tests.length}</summary>\n\n| Test | Result |\n|---|---|\n${s.tests.map((t) => `| ${t.name.replace(/\\/g, "\\\\").replace(/\|/g, "\\|")} | ${t.status} |`).join("\n")}\n\n</details>`).join("\n\n")}
 
 ## Not covered by automated tests
 
